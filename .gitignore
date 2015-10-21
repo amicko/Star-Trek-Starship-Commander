@@ -1,3 +1,4 @@
+/node_modules
 /node_modules/.bin
 /node_modules/babelify
 /node_modules/browserify
