@@ -1,0 +1,107 @@
+.missionScreenContainer {
+	background-color: grey;
+
+	.sectorMapIcon {
+		height: 4em;
+		width: 4em;
+		border: 2px solid black;
+		text-align: center;
+		float: left;
+		margin: 1em;
+	}
+
+	.userSettingsIcon {
+		height: 4em;
+		width: 4em;
+		border: 2px solid black;
+		text-align: center;
+		float: right;
+		margin: 1em;
+	}
+
+	.userHUD {
+		clear: both;
+		border: 3px solid black;
+		overflow: hidden;
+		background-color: lightgrey;
+
+		.HUDFiller {
+			height: 3em;
+			width: 20%;
+			float: left;
+		}
+
+		.HUDButton {
+			width: 30%;
+			float: left;
+			height: 3em;
+		}
+	}
+
+	.sectorBlockContainer {
+		width: 50em;
+		border: 3px solid black;
+		margin: 0 auto;
+		overflow: hidden;
+		background-color: lightblue;
+
+		.sectorLoreBlock {
+			width: 50%;
+			border: 3px solid black;
+			box-sizing: border-box;
+			float: left;
+
+			h3 {
+				font-size: 2.5em;
+				text-align: center;
+			}
+
+			.sectorImage {
+				height: 10em;
+				width: 18em;
+				margin: 2em auto;
+				border: 3px solid black;
+			}
+
+			.sectorLoreTitle {
+				font-size: 1.5em;
+				margin-left: 0.5em;
+			}
+
+			.sectorLore {
+				margin: 0.5em;
+			}
+		}
+
+		.sectorMissionBlock {
+			width: 50%;
+			height: 20em;
+			border: 3px solid black;
+			box-sizing: border-box;
+			float: right;
+			overflow: scroll;
+
+			.sectorMission {
+				border: 3px solid black;
+				overflow: hidden;
+				padding: 0.5em;
+
+				.missionName {
+					font-size: 1.5em;
+					font-weight: bold;
+				}
+
+				.missionTeaser {
+					font-size: 0.8em;
+				}
+
+				.dropDownIcon {
+					float: right;
+					position: relative;
+					bottom: 1.7em;
+					right: 1em;
+				}
+			}
+		}
+	}
+}

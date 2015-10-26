@@ -1,0 +1,63 @@
+.sectorMapContainer {
+	background-color: grey;
+	overflow: hidden;
+	min-width: 75em;
+
+	.userSettingsIcon {
+		height: 4em;
+		width: 4em;
+		border: 3px solid black;
+		position: absolute;
+		right: 0;
+		margin: 1em;
+	}
+
+	.sectorMap {
+		margin: 6em auto 2em auto;
+		height: 35em;
+		width: 70em;
+		background: no-repeat center/85% url("../images/STO-Map.jpg");
+
+		.sectorBlock {
+			display: block;
+			color: white;
+			border: 3px solid #ffffff;
+			height: 6em;
+			width: 8em;
+			text-align: center;
+			line-height: 6em;
+			position: relative;
+			border-radius: 10px;
+			background-color: hsla(100, 100%, 100%, 0.2);
+		}
+
+		.sector1 {
+			left: 22em;
+			top: 6em;
+		}
+
+		.sector2 {
+			left: 37em;
+			top: 7em;
+		}
+
+		.sector3 {
+			left: 18em;
+			top: 8em;
+		}
+
+		.sector4 {
+			left: 45em;
+			top: 3em;
+		}
+	}
+
+	.dashboardButton {
+		display: block;
+		width: 50em;
+		height: 5em;
+		border-radius: 15px;
+		background-color: lightgrey;
+		margin: 1em auto;
+	}
+}

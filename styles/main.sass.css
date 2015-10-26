@@ -1,0 +1,234 @@
+.titleContainer {
+  background-color: #2B2626;
+  padding: 5em 0 7em 0; }
+  .titleContainer .titlePic {
+    background-color: grey;
+    height: 25em; }
+  .titleContainer nav {
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #000000; }
+    .titleContainer nav .loginBtn {
+      background-color: #000000;
+      border: none;
+      color: #ffffff;
+      font-size: 2em;
+      margin: 0 0.5em; }
+    .titleContainer nav .registerBtn {
+      background-color: #000000;
+      border: none;
+      color: #ffffff;
+      font-size: 2em;
+      margin: 0 0.5em; }
+  .titleContainer .dropDownBox {
+    display: block;
+    z-index: 9999;
+    margin: 0 auto;
+    width: 50%;
+    border: 2px solid #000000;
+    background-color: grey;
+    padding: 0 2em; }
+    .titleContainer .dropDownBox input {
+      display: block;
+      width: 99%;
+      margin: 0 auto; }
+    .titleContainer .dropDownBox button {
+      display: block;
+      margin: 1em auto;
+      height: 3em;
+      width: 8em; }
+
+.dashboardContainer {
+  background-color: lightgrey;
+  overflow: hidden; }
+  .dashboardContainer .userSettingsIcon {
+    position: relative;
+    left: 91.5%;
+    height: 4em;
+    width: 4em;
+    border: 3px solid #000000;
+    color: blue;
+    clear: both;
+    margin: 1em; }
+  .dashboardContainer .optionBoxContainer {
+    width: 65em;
+    margin: 0 auto;
+    margin-bottom: 1px;
+    overflow: hidden; }
+    .dashboardContainer .optionBoxContainer .optionBox {
+      color: red;
+      height: 25em;
+      width: 18em;
+      border: 0.75em solid grey;
+      border-style: outset;
+      float: left;
+      margin: 1px 1em;
+      overflow: scroll; }
+      .dashboardContainer .optionBoxContainer .optionBox span {
+        display: block;
+        text-align: center;
+        margin-top: 4em;
+        font-size: 2em; }
+      .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer {
+        color: black;
+        width: 100%;
+        border: 4px outset black;
+        overflow: hidden; }
+        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats {
+          color: green;
+          margin: 0.5em;
+          float: left;
+          font-weight: bold;
+          font-size: 1.3em; }
+        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer {
+          float: right;
+          padding: 2em 0.5em 2em 0.5em;
+          box-sizing: border-box; }
+          .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer .charStatsButton {
+            width: 8em;
+            display: block;
+            margin: 0 auto; }
+  .dashboardContainer .footerBox {
+    display: block;
+    height: 5em;
+    width: 60em;
+    margin: 2em auto;
+    clear: both; }
+    .dashboardContainer .footerBox .footerImage {
+      display: block;
+      height: 4em;
+      width: 4em;
+      border: 3px solid #000000;
+      color: blue;
+      float: left; }
+    .dashboardContainer .footerBox .footerText {
+      display: block;
+      width: 50em;
+      color: green;
+      float: left;
+      margin: 0 2em; }
+
+.sectorMapContainer {
+  background-color: grey;
+  overflow: hidden;
+  min-width: 75em; }
+  .sectorMapContainer .userSettingsIcon {
+    height: 4em;
+    width: 4em;
+    border: 3px solid black;
+    position: absolute;
+    right: 0;
+    margin: 1em; }
+  .sectorMapContainer .sectorMap {
+    margin: 6em auto 2em auto;
+    height: 35em;
+    width: 70em;
+    background: no-repeat center/85% url("../images/STO-Map.jpg"); }
+    .sectorMapContainer .sectorMap .sectorBlock {
+      display: block;
+      color: white;
+      border: 3px solid #ffffff;
+      height: 6em;
+      width: 8em;
+      text-align: center;
+      line-height: 6em;
+      position: relative;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.2); }
+    .sectorMapContainer .sectorMap .sector1 {
+      left: 22em;
+      top: 6em; }
+    .sectorMapContainer .sectorMap .sector2 {
+      left: 37em;
+      top: 7em; }
+    .sectorMapContainer .sectorMap .sector3 {
+      left: 18em;
+      top: 8em; }
+    .sectorMapContainer .sectorMap .sector4 {
+      left: 45em;
+      top: 3em; }
+  .sectorMapContainer .dashboardButton {
+    display: block;
+    width: 50em;
+    height: 5em;
+    border-radius: 15px;
+    background-color: lightgrey;
+    margin: 1em auto; }
+
+.missionScreenContainer {
+  background-color: grey; }
+  .missionScreenContainer .sectorMapIcon {
+    height: 4em;
+    width: 4em;
+    border: 2px solid black;
+    text-align: center;
+    float: left;
+    margin: 1em; }
+  .missionScreenContainer .userSettingsIcon {
+    height: 4em;
+    width: 4em;
+    border: 2px solid black;
+    text-align: center;
+    float: right;
+    margin: 1em; }
+  .missionScreenContainer .userHUD {
+    clear: both;
+    border: 3px solid black;
+    overflow: hidden;
+    background-color: lightgrey; }
+    .missionScreenContainer .userHUD .HUDFiller {
+      height: 3em;
+      width: 20%;
+      float: left; }
+    .missionScreenContainer .userHUD .HUDButton {
+      width: 30%;
+      float: left;
+      height: 3em; }
+  .missionScreenContainer .sectorBlockContainer {
+    width: 50em;
+    border: 3px solid black;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: lightblue; }
+    .missionScreenContainer .sectorBlockContainer .sectorLoreBlock {
+      width: 50%;
+      border: 3px solid black;
+      box-sizing: border-box;
+      float: left; }
+      .missionScreenContainer .sectorBlockContainer .sectorLoreBlock h3 {
+        font-size: 2.5em;
+        text-align: center; }
+      .missionScreenContainer .sectorBlockContainer .sectorLoreBlock .sectorImage {
+        height: 10em;
+        width: 18em;
+        margin: 2em auto;
+        border: 3px solid black; }
+      .missionScreenContainer .sectorBlockContainer .sectorLoreBlock .sectorLoreTitle {
+        font-size: 1.5em;
+        margin-left: 0.5em; }
+      .missionScreenContainer .sectorBlockContainer .sectorLoreBlock .sectorLore {
+        margin: 0.5em; }
+    .missionScreenContainer .sectorBlockContainer .sectorMissionBlock {
+      width: 50%;
+      height: 20em;
+      border: 3px solid black;
+      box-sizing: border-box;
+      float: right;
+      overflow: scroll; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .sectorMission {
+        border: 3px solid black;
+        overflow: hidden;
+        padding: 0.5em; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .sectorMission .missionName {
+          font-size: 1.5em;
+          font-weight: bold; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .sectorMission .missionTeaser {
+          font-size: 0.8em; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .sectorMission .dropDownIcon {
+          float: right;
+          position: relative;
+          bottom: 1.7em;
+          right: 1em; }
+
+a {
+  text-decoration: none; }

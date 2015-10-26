@@ -1,0 +1,53 @@
+.titleContainer{
+	background-color: #2B2626;
+	padding: 5em 0 7em 0;
+
+	.titlePic {
+		background-color: grey;
+		height: 25em;
+	}
+
+	nav {
+		margin-bottom: 1em;
+		padding: 1em;
+		background-color: #000000;
+
+		.loginBtn {
+			background-color: #000000;
+			border: none;
+			color: #ffffff;
+			font-size: 2em;
+			margin: 0 0.5em;
+		}
+
+		.registerBtn {
+			background-color: #000000;
+			border: none;
+			color: #ffffff;
+			font-size: 2em;
+			margin: 0 0.5em;
+		}
+	}
+
+	.dropDownBox {
+			display: block;
+			z-index: 9999;
+			margin: 0 auto;
+			width: 50%;
+			border: 2px solid #000000;
+			background-color: grey;
+			padding: 0 2em;
+
+			input {
+				display: block;
+				width: 99%;
+				margin: 0 auto;
+			}
+			button {
+				display: block;
+				margin: 1em auto;
+				height: 3em;
+				width: 8em;
+			}
+	}
+}

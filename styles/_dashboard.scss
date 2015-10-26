@@ -1,0 +1,92 @@
+.dashboardContainer {
+	background-color: lightgrey;
+	overflow: hidden;
+
+	.userSettingsIcon {
+		position: relative;
+		left: 91.5%;
+		height: 4em;
+		width: 4em;
+		border: 3px solid #000000;
+		color: blue;
+		clear: both;
+		margin: 1em;
+	}
+
+	.optionBoxContainer {
+		width: 65em;
+		margin: 0 auto;
+		margin-bottom: 1px;
+		overflow: hidden;
+
+		.optionBox {
+			color: red;
+			height: 25em;
+			width: 18em;
+			border: 0.75em solid grey;
+			border-style: outset;
+			float: left;
+			margin: 1px 1em;
+			overflow: scroll;
+
+			span {
+				display: block;
+				text-align: center;
+				margin-top: 4em;
+				font-size: 2em;
+			}
+
+			.charStatsContainer {
+				color: black;
+				width: 100%;
+				border: 4px outset black;
+				overflow: hidden;
+
+				.charStats {
+					color: green;
+					margin: 0.5em;
+					float: left;
+					font-weight: bold;
+					font-size: 1.3em;
+				}
+
+				.buttonContainer {
+					float: right;
+					padding: 2em 0.5em 2em 0.5em;
+					box-sizing: border-box;
+
+					.charStatsButton {
+						width: 8em;
+						display: block;
+						margin: 0 auto;
+					}
+				}
+			}
+		}
+	}
+
+	.footerBox {
+		display: block;
+		height: 5em;
+		width: 60em;
+		margin: 2em auto;
+		clear: both;
+
+		.footerImage {
+			display: block;
+			height: 4em;
+			width: 4em;
+			border: 3px solid #000000;
+			color: blue;
+			float: left;
+		}
+
+		.footerText {
+			display: block;
+			width: 50em;
+			color: green;
+			float: left;
+			margin: 0 2em;
+		}
+	}
+}
