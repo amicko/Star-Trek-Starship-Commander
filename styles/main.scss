@@ -1,8 +1,39 @@
 @import 'lobby',
 		'dashboard',
 		'sectorMap',
-		'missionScreen';
+		'missionScreen',
+		'createCharacter';
 
 a {
 	text-decoration: none;
+}
+
+.sectorMapIcon {
+	display: block;
+	height: 4em;
+	width: 4em;
+	border: 2px solid black;
+	text-align: center;
+	float: left;
+	margin: 1em;
+}
+
+.dashboardIcon {
+	display: block;
+	height: 4em;
+	width: 4em;
+	border: 2px solid black;
+	text-align: center;
+	float: left;
+	margin: 1em;
+}
+
+.userSettingsIcon {
+	display: block;
+	height: 4em;
+	width: 4em;
+	border: 2px solid black;
+	text-align: center;
+	float: right;
+	margin: 1em;
 }

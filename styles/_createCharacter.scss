@@ -1,0 +1,158 @@
+.createCharacterContainer {
+	background-color: grey;
+	min-width: 1550px;
+
+	.statsContainer {
+		clear: both;
+		background-color: lightgrey;
+
+		.newCharacterForm {
+			float: left;
+			width: 40em;
+			height: 8em;
+			// border: 3px solid black;
+			overflow: hidden;
+			position: relative;
+			left: 3em;
+			top: 2em;
+
+			label {
+				float: left;
+				display: block;
+				clear: left;
+				margin-left: 1em;
+			}
+			input {
+				display: block;
+				width: 70%;
+				float: left;
+				clear: left;
+				margin-left: 1em;
+			}
+			button {
+				float: right;
+				position: relative;
+				bottom: 8em;
+				width: 7em;
+				height: 7em;
+				margin: 2em;
+			}
+		}
+
+		.starshipBox {
+			border: 3px solid black;
+			height: 8.8em;
+			width: 40em;
+			float: right;
+			position: relative;
+			right: 3em;
+			top: 1em;
+			margin-bottom: 2em;
+
+			.starshipStatsBox {
+				background-color: grey;
+				width: 75%;
+				padding-top: 1px;
+				overflow: hidden;
+
+				.starshipImage {
+					border: 3px solid black;
+					width: 3em;
+					height: 3em;
+					margin: 1em auto;
+				}
+
+				.starshipStatBox {
+					border: 3px solid black;
+					width: 5em;
+					float: left;
+					margin: 1em 2em;
+				}
+			}
+
+			.chooseStarshipBox {
+					border-left: 3px solid black;
+					float: right;
+					width: 25%;
+					height: 8.8em;
+					position: relative;
+					bottom: 8.8em;
+
+				.changeStarship {
+					height: 5em;
+					width: 5em;
+					position: relative;
+					left: 5em;
+					top: 3.5em;
+				}
+			}
+		}
+
+		.seniorStaffContainer {
+			clear: both;
+			overflow: hidden;
+			margin-left: 2em;
+
+			.personnelBox {
+				border: 3px solid black;
+				height: 18em;
+				width: 12em;
+				float: left;
+				margin: 2em 0.5em;
+
+				.position {
+					text-align: center;
+					margin: 2em 0 1em 0;
+				}
+
+				.personnelImage {
+					margin: 0 auto 1em auto;
+					width: 3em;
+					height: 3em;
+					border: 3px solid black;
+				}
+
+				.personnelName {
+					text-align: center;
+					margin-bottom: 2em;
+				}
+
+				.personnelStatBox {
+						width: 5em;
+						overflow: hidden;
+						float: left;
+						margin: 0.1em 0.1em 0.3em 0.5em;
+
+					.stat {
+						float: left;
+					}
+
+					.box {
+						float: right;
+						border: 2px solid black;
+					}
+				}
+
+				// button {
+				// 	display: block;
+				// 	clear: both;
+				// 	height: 2em;
+				// 	width: 5em;
+				// 	margin: 2em auto;
+				// 	position: relative;
+				// 	bottom: -1em;
+				// }
+			}
+
+			.buttons {
+				clear: both;
+
+				.changePersonnel {
+					margin: 0 7.2em;
+					position: relative;
+					top: -2em;
+				}
+			}
+		}
+	}
+}

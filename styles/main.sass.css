@@ -41,16 +41,8 @@
 .dashboardContainer {
   background-color: lightgrey;
   overflow: hidden; }
-  .dashboardContainer .userSettingsIcon {
-    position: relative;
-    left: 91.5%;
-    height: 4em;
-    width: 4em;
-    border: 3px solid #000000;
-    color: blue;
-    clear: both;
-    margin: 1em; }
   .dashboardContainer .optionBoxContainer {
+    clear: both;
     width: 65em;
     margin: 0 auto;
     margin-bottom: 1px;
@@ -157,20 +149,6 @@
 
 .missionScreenContainer {
   background-color: grey; }
-  .missionScreenContainer .sectorMapIcon {
-    height: 4em;
-    width: 4em;
-    border: 2px solid black;
-    text-align: center;
-    float: left;
-    margin: 1em; }
-  .missionScreenContainer .userSettingsIcon {
-    height: 4em;
-    width: 4em;
-    border: 2px solid black;
-    text-align: center;
-    float: right;
-    margin: 1em; }
   .missionScreenContainer .userHUD {
     clear: both;
     border: 3px solid black;
@@ -230,5 +208,139 @@
           bottom: 1.7em;
           right: 1em; }
 
+.createCharacterContainer {
+  background-color: grey;
+  min-width: 1550px; }
+  .createCharacterContainer .statsContainer {
+    clear: both;
+    background-color: lightgrey; }
+    .createCharacterContainer .statsContainer .newCharacterForm {
+      float: left;
+      width: 40em;
+      height: 8em;
+      overflow: hidden;
+      position: relative;
+      left: 3em;
+      top: 2em; }
+      .createCharacterContainer .statsContainer .newCharacterForm label {
+        float: left;
+        display: block;
+        clear: left;
+        margin-left: 1em; }
+      .createCharacterContainer .statsContainer .newCharacterForm input {
+        display: block;
+        width: 70%;
+        float: left;
+        clear: left;
+        margin-left: 1em; }
+      .createCharacterContainer .statsContainer .newCharacterForm button {
+        float: right;
+        position: relative;
+        bottom: 8em;
+        width: 7em;
+        height: 7em;
+        margin: 2em; }
+    .createCharacterContainer .statsContainer .starshipBox {
+      border: 3px solid black;
+      height: 8.8em;
+      width: 40em;
+      float: right;
+      position: relative;
+      right: 3em;
+      top: 1em;
+      margin-bottom: 2em; }
+      .createCharacterContainer .statsContainer .starshipBox .starshipStatsBox {
+        background-color: grey;
+        width: 75%;
+        padding-top: 1px;
+        overflow: hidden; }
+        .createCharacterContainer .statsContainer .starshipBox .starshipStatsBox .starshipImage {
+          border: 3px solid black;
+          width: 3em;
+          height: 3em;
+          margin: 1em auto; }
+        .createCharacterContainer .statsContainer .starshipBox .starshipStatsBox .starshipStatBox {
+          border: 3px solid black;
+          width: 5em;
+          float: left;
+          margin: 1em 2em; }
+      .createCharacterContainer .statsContainer .starshipBox .chooseStarshipBox {
+        border-left: 3px solid black;
+        float: right;
+        width: 25%;
+        height: 8.8em;
+        position: relative;
+        bottom: 8.8em; }
+        .createCharacterContainer .statsContainer .starshipBox .chooseStarshipBox .changeStarship {
+          height: 5em;
+          width: 5em;
+          position: relative;
+          left: 5em;
+          top: 3.5em; }
+    .createCharacterContainer .statsContainer .seniorStaffContainer {
+      clear: both;
+      overflow: hidden;
+      margin-left: 2em; }
+      .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox {
+        border: 3px solid black;
+        height: 18em;
+        width: 12em;
+        float: left;
+        margin: 2em 0.5em; }
+        .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .position {
+          text-align: center;
+          margin: 2em 0 1em 0; }
+        .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .personnelImage {
+          margin: 0 auto 1em auto;
+          width: 3em;
+          height: 3em;
+          border: 3px solid black; }
+        .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .personnelName {
+          text-align: center;
+          margin-bottom: 2em; }
+        .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatBox {
+          width: 5em;
+          overflow: hidden;
+          float: left;
+          margin: 0.1em 0.1em 0.3em 0.5em; }
+          .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatBox .stat {
+            float: left; }
+          .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatBox .box {
+            float: right;
+            border: 2px solid black; }
+      .createCharacterContainer .statsContainer .seniorStaffContainer .buttons {
+        clear: both; }
+        .createCharacterContainer .statsContainer .seniorStaffContainer .buttons .changePersonnel {
+          margin: 0 7.2em;
+          position: relative;
+          top: -2em; }
+
 a {
   text-decoration: none; }
+
+.sectorMapIcon {
+  display: block;
+  height: 4em;
+  width: 4em;
+  border: 2px solid black;
+  text-align: center;
+  float: left;
+  margin: 1em; }
+
+.dashboardIcon {
+  display: block;
+  height: 4em;
+  width: 4em;
+  border: 2px solid black;
+  text-align: center;
+  float: left;
+  margin: 1em; }
+
+.userSettingsIcon {
+  display: block;
+  height: 4em;
+  width: 4em;
+  border: 2px solid black;
+  text-align: center;
+  float: right;
+  margin: 1em; }

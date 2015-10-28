@@ -4,54 +4,108 @@ var React = require('react');
 //components
 
 module.exports = React.createClass({
+	getInitialState: function() {
+		return {
+			missionDrop: 'missions',
+			sectorMissions: [],
+			sector: []
+		};
+	},
+	componentWillMount: function() {
+		this.props.router.on('route', () => {
+			this.forceUpdate();
+		})
+
+		var sectorId = this.props.sectorId;
+		var Query = new Parse.Query('MissionsModel');
+		var SectorQuery = new Parse.Query('SectorModel');
+
+		Query.equalTo('Sector', sectorId)
+		.find().then((missions) => {
+			this.setState({
+				sectorMissions: missions
+			})
+		})
+
+		SectorQuery.equalTo('objectId', sectorId)
+		.find().then((sector) => {
+			this.setState({
+				sector: sector
+			})
+		})
+	},
 	render: function() {
+
+		var sectorMissions = this.state.sectorMissions.map((missions) => {
+			return (
+				<div className="sectorMission">
+					<div className="missionName">{missions.get('Name')}</div>
+					<div className="missionTeaser">{missions.get('Lore')}</div>
+					<button className="dropDownIcon" onClick={this.onMissionDropDown}>Arrow</button>
+				</div>
+			)
+		})
+
+		var SectorStats = this.state.sector.map((sector) => {
+			return (
+				<div className="sectorLoreBlock">
+					<h3>{sector.get('Name')}</h3>
+					<div className="sectorImage">SectorImage</div>
+					<div className="sectorLoreTitle">Sector Lore</div>
+					<div className="sectorLore">{sector.get('Lore')}
+					</div>
+				</div>
+			)
+		})
+
+		var dropDown = null;
+
+		if(this.state.missionDrop === 'missions') {
+			dropDown = (
+				<div className="sectorMissionBlock">
+						{sectorMissions}
+				</div>
+			)
+		}
+		else {
+			dropDown = (
+				<div className="sectorMissionBlock">
+						Stuff
+				</div>
+			)
+		}
+
 		return (
 			<div className="missionScreenContainer">
-				<div className="sectorMapIcon">Sector Map</div>
-				<div className="userSettingsIcon">User Settings</div>
+				<a href="#sector-map"className="sectorMapIcon">Sector Map</a>
+				<a href="#" className="userSettingsIcon">User Settings</a>
 				<div className="userHUD">
-					<button className="HUDFiller HUDButton">Character Name</button>
+					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>Character Name</button>
 					<div className="HUDFiller">Dilithium Amount</div>
 					<div className="HUDFiller">Gold-Pressed Latinum Amount</div>
-					<button className="HUDFiller HUDButton">Starship Name</button>
+					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>Starship Name</button>
 				</div>
 				<div className="sectorBlockContainer">
-					<div className="sectorLoreBlock">
-						<h3>Sector Name</h3>
-						<div className="sectorImage">SectorImage</div>
-						<div className="sectorLoreTitle">Sector Lore</div>
-						<div className="sectorLore">Shields up. I recommend we transfer power to phasers and arm the photon torpedoes. Something strange on the detector circuit. The weapons must have disrupted our communicators. You saw something as tasty as meat, but inorganically materialized out of patterns used by our transporters. Captain, the most elementary and valuable statement in science, the beginning of wisdom, is 'I do not know.' All transporters off.
-						</div>
-					</div>
-					<div className="sectorMissionBlock">
-						<div className="sectorMission">
-							<div className="missionName">Mission Name</div>
-							<div className="missionTeaser">Words words words...</div>
-							<button className="dropDownIcon">Arrow</button>
-						</div>
-						<div className="sectorMission">
-							<div className="missionName">Mission Name</div>
-							<div className="missionTeaser">Words words words...</div>
-							<button className="dropDownIcon">Arrow</button>
-						</div>
-						<div className="sectorMission">
-							<div className="missionName">Mission Name</div>
-							<div className="missionTeaser">Words words words...</div>
-							<button className="dropDownIcon">Arrow</button>
-						</div>
-						<div className="sectorMission">
-							<div className="missionName">Mission Name</div>
-							<div className="missionTeaser">Words words words...</div>
-							<button className="dropDownIcon">Arrow</button>
-						</div>
-						<div className="sectorMission">
-							<div className="missionName">Mission Name</div>
-							<div className="missionTeaser">Words words words...</div>
-							<button className="dropDownIcon">Arrow</button>
-						</div>
-					</div>
+					{SectorStats}
+					{dropDown}
 				</div>
 			</div>
 		)
+	},
+	onCharStats: function() {
+		this.props.router.navigate('character-stats/number', {trigger: true});
+	},
+	onMissionDropDown: function(e) {
+		e.preventDefault();
+		if(this.state.missionDrop === 'missions') {
+			this.setState({
+				missionDrop: null
+			});
+		}
+		else {
+			this.setState({
+				missionDrop: 'missions'
+			})
+		}
 	}
 })

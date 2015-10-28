@@ -1,24 +1,6 @@
 .missionScreenContainer {
 	background-color: grey;
 
-	.sectorMapIcon {
-		height: 4em;
-		width: 4em;
-		border: 2px solid black;
-		text-align: center;
-		float: left;
-		margin: 1em;
-	}
-
-	.userSettingsIcon {
-		height: 4em;
-		width: 4em;
-		border: 2px solid black;
-		text-align: center;
-		float: right;
-		margin: 1em;
-	}
-
 	.userHUD {
 		clear: both;
 		border: 3px solid black;

@@ -4,7 +4,6 @@ var React = require('react');
 var ReactDom = require('react-dom');
 var Backbone = require('backbone');
 var $ = require('jquery');
-var jQuery = $;
 Parse.initialize('Snilj4eJd19FAHaUolOCxWfJTPMzBazhkRlVyWkV', 'BtifBAoTsDgeuDpIl6pyabRCInHRsqk5Qic6P64U');
 
 //page elements
@@ -15,6 +14,8 @@ var HomeComponent = require('./components/HomeComponent.js');
 var DashboardComponent = require('./components/DashboardComponent.js');
 var SectorMapComponent = require('./components/SectorMapComponent.js');
 var MissionComponent = require('./components/MissionComponent.js');
+var CreateCharacterComponent = require('./components/CreateCharacterComponent.js');
+var CharacterStatsComponent = require('./components/CharacterStatsComponent.js');
 
 //router
 var Router = Backbone.Router.extend({
@@ -23,8 +24,8 @@ var Router = Backbone.Router.extend({
 		'dashboard': 'dashboard',
 		'create-character': 'createCharacter',
 		'sector-map': 'sectorMap',
-		'sector/number': 'sectorMissions',
-		'character-stats/:id': 'characterStats',
+		'sector/:id': 'sectorMissions',
+		'character-stats/number': 'characterStats',
 		'settings': 'settings'
 	},
 	home: function() {
@@ -40,16 +41,16 @@ var Router = Backbone.Router.extend({
 		}
 	},
 	createCharacter: function() {
-
+		ReactDom.render(<CreateCharacterComponent router={r}/>, main)
 	},
 	sectorMap: function() {
 		ReactDom.render(<SectorMapComponent router={r}/>, main)
 	},
-	sectorMissions: function() {
-		ReactDom.render(<MissionComponent router={r}/>, main)
+	sectorMissions: function(id) {
+		ReactDom.render(<MissionComponent sectorId={id} router={r}/>, main)
 	},
-	characterStats: function(id) {
-
+	characterStats: function() {
+		ReactDom.render(<CharacterStatsComponent router={r}/>, main)
 	},
 	settings: function() {
 

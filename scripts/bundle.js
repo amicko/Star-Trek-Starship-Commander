@@ -31714,15 +31714,2017 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		return {
-			popup: null
+			starship: 'starship',
+			captain: 'captain',
+			firstOff: 'firstOff',
+			helmsman: 'helmsman',
+			tacOff: 'tacOff',
+			medOff: 'medOff',
+			sciOff: 'sciOff',
+			engOff: 'engOff'
 		};
 	},
-	componentWillMount: function componentWillMount() {
-		var _this = this;
+	render: function render() {
+		var starship = null;
+		var captain = null;
+		var firstOff = null;
+		var helmsman = null;
+		var tacOff = null;
+		var medOff = null;
+		var sciOff = null;
+		var engOff = null;
 
-		this.props.router.on('route', function () {
-			_this.forceUpdate();
-		});
+		if (this.state.starship === 'starship') {
+			starship = React.createElement(
+				'div',
+				{ className: 'starshipBox' },
+				React.createElement(
+					'div',
+					{ className: 'starshipStatsBox' },
+					React.createElement(
+						'div',
+						{ className: 'starshipImage' },
+						'Image'
+					),
+					React.createElement(
+						'div',
+						{ className: 'starshipStatBox' },
+						'Range'
+					),
+					React.createElement(
+						'div',
+						{ className: 'starshipStatBox' },
+						'Weapons'
+					),
+					React.createElement(
+						'div',
+						{ className: 'starshipStatBox' },
+						'Shields'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'chooseStarshipBox' },
+					React.createElement(
+						'button',
+						{ className: 'changeStarship', onClick: this.onChangeStarship },
+						'Change Starship'
+					)
+				)
+			);
+		} else {
+			starship = React.createElement(
+				'div',
+				{ className: 'starshipBox' },
+				'List Component'
+			);
+		}
+
+		if (this.state.captain === 'captain') {
+			captain = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'CAPTAIN'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			captain = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.firstOff === 'firstOff') {
+			firstOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'FIRST OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			firstOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.helmsman === 'helmsman') {
+			helmsman = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'HELMSMAN'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			helmsman = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.tacOff === 'tacOff') {
+			tacOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'TACTICAL OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			tacOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.medOff === 'medOff') {
+			medOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'MEDICAL OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			medOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.sciOff === 'sciOff') {
+			sciOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'SCIENCE OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			sciOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.engOff === 'engOff') {
+			engOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'ENGINEERING OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			engOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		return React.createElement(
+			'div',
+			{ className: 'createCharacterContainer', onClick: this.onBackground },
+			React.createElement(
+				'a',
+				{ href: '#sector/number', className: 'dashboardIcon', onClick: this.onReturn },
+				'GO BACK'
+			),
+			React.createElement(
+				'a',
+				{ href: '#', className: 'userSettingsIcon' },
+				'USER SETTINGS'
+			),
+			React.createElement(
+				'div',
+				{ className: 'statsContainer' },
+				React.createElement(
+					'div',
+					{ className: 'characterStatsBox' },
+					React.createElement(
+						'div',
+						{ className: 'characterName' },
+						'Character Name'
+					),
+					React.createElement(
+						'div',
+						{ className: 'characterXp' },
+						'XP'
+					),
+					React.createElement(
+						'div',
+						{ className: 'characterLevel' },
+						'Level'
+					),
+					React.createElement(
+						'div',
+						{ className: 'CharacterDilithium' },
+						'Dilithium #'
+					),
+					React.createElement(
+						'div',
+						{ className: 'goldPressedLatinum' },
+						'Gold-Pressed Latinum #'
+					)
+				),
+				starship,
+				React.createElement(
+					'div',
+					{ className: 'seniorStaffContainer' },
+					captain,
+					firstOff,
+					helmsman,
+					tacOff,
+					medOff,
+					sciOff,
+					engOff,
+					React.createElement(
+						'div',
+						{ className: 'buttons' },
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeCaptain },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeFirstOff },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeHelmsman },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeTacOff },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeMedOff },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeSciOff },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeEngOff },
+							'Change'
+						)
+					)
+				)
+			)
+		);
+	},
+	onSaveCharacter: function onSaveCharacter(e) {
+		e.preventDefault();
+		console.log('Character Saved');
+	},
+	onBackground: function onBackground(e) {
+		e.preventDefault();
+		if (this.state.starship === null) {
+			this.setState({
+				starship: 'starship'
+			});
+		}
+		if (this.state.captain === null) {
+			this.setState({
+				captain: 'captain'
+			});
+		}
+		if (this.state.firstOff === null) {
+			this.setState({
+				firstOff: 'firstOff'
+			});
+		}
+		if (this.state.helmsman === null) {
+			this.setState({
+				helmsman: 'helmsman'
+			});
+		}
+		if (this.state.tacOff === null) {
+			this.setState({
+				tacOff: 'tacOff'
+			});
+		}
+		if (this.state.medOff === null) {
+			this.setState({
+				medOff: 'medOff'
+			});
+		}
+		if (this.state.sciOff === null) {
+			this.setState({
+				sciOff: 'sciOff'
+			});
+		}
+		if (this.state.engOff === null) {
+			this.setState({
+				engOff: 'engOff'
+			});
+		}
+	},
+	onReturn: function onReturn() {
+		this.props.router.navigate('sector/number', { trigger: true });
+	},
+	onChangeStarship: function onChangeStarship(e) {
+		e.preventDefault();
+		if (!this.state.starship) {
+			this.setState({
+				starship: 'starship'
+			});
+		} else {
+			this.setState({
+				starship: null
+			});
+		}
+	},
+	onChangeCaptain: function onChangeCaptain(e) {
+		e.preventDefault();
+		if (!this.state.captain) {
+			this.setState({
+				captain: 'captain'
+			});
+		} else {
+			this.setState({
+				captain: null
+			});
+		}
+	},
+	onChangeFirstOff: function onChangeFirstOff(e) {
+		e.preventDefault();
+		if (!this.state.firstOff) {
+			this.setState({
+				firstOff: 'firstOff'
+			});
+		} else {
+			this.setState({
+				firstOff: null
+			});
+		}
+	},
+	onChangeHelmsman: function onChangeHelmsman(e) {
+		e.preventDefault();
+		if (!this.state.helmsman) {
+			this.setState({
+				helmsman: 'helmsman'
+			});
+		} else {
+			this.setState({
+				helmsman: null
+			});
+		}
+	},
+	onChangeTacOff: function onChangeTacOff(e) {
+		e.preventDefault();
+		if (!this.state.tacOff) {
+			this.setState({
+				tacOff: 'tacOff'
+			});
+		} else {
+			this.setState({
+				tacOff: null
+			});
+		}
+	},
+	onChangeMedOff: function onChangeMedOff(e) {
+		e.preventDefault();
+		if (!this.state.medOff) {
+			this.setState({
+				medOff: 'medOff'
+			});
+		} else {
+			this.setState({
+				medOff: null
+			});
+		}
+	},
+	onChangeSciOff: function onChangeSciOff(e) {
+		e.preventDefault();
+		if (!this.state.sciOff) {
+			this.setState({
+				sciOff: 'sciOff'
+			});
+		} else {
+			this.setState({
+				sciOff: null
+			});
+		}
+	},
+	onChangeEngOff: function onChangeEngOff(e) {
+		e.preventDefault();
+		if (!this.state.engOff) {
+			this.setState({
+				engOff: 'engOff'
+			});
+		} else {
+			this.setState({
+				engOff: null
+			});
+		}
+	}
+});
+
+},{"react":160}],162:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+//components
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			starship: 'starship',
+			captain: 'captain',
+			firstOff: 'firstOff',
+			helmsman: 'helmsman',
+			tacOff: 'tacOff',
+			medOff: 'medOff',
+			sciOff: 'sciOff',
+			engOff: 'engOff'
+		};
+	},
+	render: function render() {
+		var starship = null;
+		var captain = null;
+		var firstOff = null;
+		var helmsman = null;
+		var tacOff = null;
+		var medOff = null;
+		var sciOff = null;
+		var engOff = null;
+
+		if (this.state.starship === 'starship') {
+			starship = React.createElement(
+				'div',
+				{ className: 'starshipBox' },
+				React.createElement(
+					'div',
+					{ className: 'starshipStatsBox' },
+					React.createElement(
+						'div',
+						{ className: 'starshipImage' },
+						'Image'
+					),
+					React.createElement(
+						'div',
+						{ className: 'starshipStatBox' },
+						'Range'
+					),
+					React.createElement(
+						'div',
+						{ className: 'starshipStatBox' },
+						'Weapons'
+					),
+					React.createElement(
+						'div',
+						{ className: 'starshipStatBox' },
+						'Shields'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'chooseStarshipBox' },
+					React.createElement(
+						'button',
+						{ className: 'changeStarship', onClick: this.onChangeStarship },
+						'Change Starship'
+					)
+				)
+			);
+		} else {
+			starship = React.createElement(
+				'div',
+				{ className: 'starshipBox' },
+				'List Component'
+			);
+		}
+
+		if (this.state.captain === 'captain') {
+			captain = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'CAPTAIN'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			captain = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.firstOff === 'firstOff') {
+			firstOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'FIRST OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			firstOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.helmsman === 'helmsman') {
+			helmsman = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'HELMSMAN'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			helmsman = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.tacOff === 'tacOff') {
+			tacOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'TACTICAL OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			tacOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.medOff === 'medOff') {
+			medOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'MEDICAL OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			medOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.sciOff === 'sciOff') {
+			sciOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'SCIENCE OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			sciOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.engOff === 'engOff') {
+			engOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'ENGINEERING OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					'Name'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						'#'
+					)
+				)
+			);
+		} else {
+			engOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		return React.createElement(
+			'div',
+			{ className: 'createCharacterContainer', onClick: this.onBackground },
+			React.createElement(
+				'a',
+				{ href: '#dashboard', className: 'dashboardIcon', onClick: this.onDashboard },
+				'GO BACK'
+			),
+			React.createElement(
+				'a',
+				{ href: '#', className: 'userSettingsIcon' },
+				'USER SETTINGS'
+			),
+			React.createElement(
+				'div',
+				{ className: 'statsContainer' },
+				React.createElement(
+					'form',
+					{ className: 'newCharacterForm' },
+					React.createElement(
+						'label',
+						null,
+						'Choose Character Name'
+					),
+					React.createElement('input', { type: 'text', placeholder: 'ex: Edward Jellico' }),
+					React.createElement(
+						'label',
+						null,
+						'Choose Starship Name'
+					),
+					React.createElement('input', { type: 'text', placeholder: 'ex: Enterprise' }),
+					React.createElement(
+						'label',
+						null,
+						'Choose Starship Registry'
+					),
+					React.createElement('input', { type: 'text', placeholder: 'ex: 1701' }),
+					React.createElement(
+						'button',
+						{ onClick: this.onSaveCharacter },
+						'Save New Character'
+					)
+				),
+				starship,
+				React.createElement(
+					'div',
+					{ className: 'seniorStaffContainer' },
+					captain,
+					firstOff,
+					helmsman,
+					tacOff,
+					medOff,
+					sciOff,
+					engOff,
+					React.createElement(
+						'div',
+						{ className: 'buttons' },
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeCaptain },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeFirstOff },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeHelmsman },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeTacOff },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeMedOff },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeSciOff },
+							'Change'
+						),
+						React.createElement(
+							'button',
+							{ className: 'changePersonnel', onClick: this.onChangeEngOff },
+							'Change'
+						)
+					)
+				)
+			)
+		);
+	},
+	onDashboard: function onDashboard() {
+		this.props.router.navigate('dashboard', { trigger: true });
+	},
+	onSaveCharacter: function onSaveCharacter(e) {
+		e.preventDefault();
+		console.log('Character Saved');
+	},
+	onBackground: function onBackground(e) {
+		e.preventDefault();
+		console.log('Background Clicked');
+		if (this.state.starship === null) {
+			this.setState({
+				starship: 'starship'
+			});
+		}
+		if (this.state.captain === null) {
+			this.setState({
+				captain: 'captain'
+			});
+		}
+		if (this.state.firstOff === null) {
+			this.setState({
+				firstOff: 'firstOff'
+			});
+		}
+		if (this.state.helmsman === null) {
+			this.setState({
+				helmsman: 'helmsman'
+			});
+		}
+		if (this.state.tacOff === null) {
+			this.setState({
+				tacOff: 'tacOff'
+			});
+		}
+		if (this.state.medOff === null) {
+			this.setState({
+				medOff: 'medOff'
+			});
+		}
+		if (this.state.sciOff === null) {
+			this.setState({
+				sciOff: 'sciOff'
+			});
+		}
+		if (this.state.engOff === null) {
+			this.setState({
+				engOff: 'engOff'
+			});
+		}
+	},
+	onChangeStarship: function onChangeStarship(e) {
+		e.preventDefault();
+		if (!this.state.starship) {
+			this.setState({
+				starship: 'starship'
+			});
+		} else {
+			this.setState({
+				starship: null
+			});
+		}
+	},
+	onChangeCaptain: function onChangeCaptain(e) {
+		e.preventDefault();
+		if (!this.state.captain) {
+			this.setState({
+				captain: 'captain'
+			});
+		} else {
+			this.setState({
+				captain: null
+			});
+		}
+	},
+	onChangeFirstOff: function onChangeFirstOff(e) {
+		e.preventDefault();
+		if (!this.state.firstOff) {
+			this.setState({
+				firstOff: 'firstOff'
+			});
+		} else {
+			this.setState({
+				firstOff: null
+			});
+		}
+	},
+	onChangeHelmsman: function onChangeHelmsman(e) {
+		e.preventDefault();
+		if (!this.state.helmsman) {
+			this.setState({
+				helmsman: 'helmsman'
+			});
+		} else {
+			this.setState({
+				helmsman: null
+			});
+		}
+	},
+	onChangeTacOff: function onChangeTacOff(e) {
+		e.preventDefault();
+		if (!this.state.tacOff) {
+			this.setState({
+				tacOff: 'tacOff'
+			});
+		} else {
+			this.setState({
+				tacOff: null
+			});
+		}
+	},
+	onChangeMedOff: function onChangeMedOff(e) {
+		e.preventDefault();
+		if (!this.state.medOff) {
+			this.setState({
+				medOff: 'medOff'
+			});
+		} else {
+			this.setState({
+				medOff: null
+			});
+		}
+	},
+	onChangeSciOff: function onChangeSciOff(e) {
+		e.preventDefault();
+		if (!this.state.sciOff) {
+			this.setState({
+				sciOff: 'sciOff'
+			});
+		} else {
+			this.setState({
+				sciOff: null
+			});
+		}
+	},
+	onChangeEngOff: function onChangeEngOff(e) {
+		e.preventDefault();
+		if (!this.state.engOff) {
+			this.setState({
+				engOff: 'engOff'
+			});
+		} else {
+			this.setState({
+				engOff: null
+			});
+		}
+	}
+});
+
+},{"react":160}],163:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+//components
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			popup: null
+		};
 	},
 	render: function render() {
 		var dropDown = null;
@@ -31870,16 +33872,21 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'dashboardContainer', onClick: this.onBackground },
 			React.createElement(
-				'div',
-				{ className: 'userSettingsIcon' },
-				'Image'
+				'a',
+				{ href: '#', className: 'dashboardIcon' },
+				'LOBBY'
+			),
+			React.createElement(
+				'a',
+				{ href: '#', className: 'userSettingsIcon' },
+				'USER SETTINGS'
 			),
 			React.createElement(
 				'div',
 				{ className: 'optionBoxContainer' },
 				React.createElement(
 					'a',
-					{ href: '#', className: 'optionBox' },
+					{ href: '#create-character', className: 'optionBox' },
 					React.createElement(
 						'span',
 						null,
@@ -31919,17 +33926,6 @@ module.exports = React.createClass({
 	},
 	onChoose: function onChoose(e) {
 		e.preventDefault();
-		// console.log('Existing Characters')
-		// if(this.state.popup === 'choose') {
-		// 	this.setState({
-		// 		popup: null
-		// 	});
-		// }
-		// else {
-		// 	this.setState({
-		// 		popup: 'choose'
-		// 	});
-		// }
 		if (!this.state.popup) {
 			this.setState({
 				popup: 'choose'
@@ -31937,7 +33933,6 @@ module.exports = React.createClass({
 		}
 	},
 	onBackground: function onBackground(e) {
-		// console.log('Background clicked')
 		if (this.state.popup === 'choose') {
 			this.setState({
 				popup: null
@@ -31946,12 +33941,11 @@ module.exports = React.createClass({
 	},
 	onEnter: function onEnter(e) {
 		e.preventDefault();
-		// console.log('Character Entered');
 		this.props.router.navigate('sector-map', { trigger: true });
 	}
 });
 
-},{"react":160}],162:[function(require,module,exports){
+},{"react":160}],164:[function(require,module,exports){
 //dependencies
 'use strict';
 
@@ -31970,11 +33964,9 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillMount: function componentWillMount() {
-		var _this = this;
-
-		this.props.router.on('route', function () {
-			_this.forceUpdate();
-		});
+		// this.props.router.on('route', () => {
+		// 	this.forceUpdate();
+		// });
 	},
 	render: function render() {
 		var r = this.props.router;
@@ -32035,7 +34027,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./LoginComponent.js":163,"./RegisterComponent.js":165,"react":160}],163:[function(require,module,exports){
+},{"./LoginComponent.js":165,"./RegisterComponent.js":167,"react":160}],165:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32134,187 +34126,178 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],164:[function(require,module,exports){
+},{"react":160}],166:[function(require,module,exports){
 //dependencies
-"use strict";
+'use strict';
 
 var React = require('react');
 
 //components
 
 module.exports = React.createClass({
-	displayName: "exports",
+	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		return {
+			missionDrop: 'missions',
+			sectorMissions: [],
+			sector: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		this.props.router.on('route', function () {
+			_this.forceUpdate();
+		});
+
+		var sectorId = this.props.sectorId;
+		var Query = new Parse.Query('MissionsModel');
+		var SectorQuery = new Parse.Query('SectorModel');
+
+		Query.equalTo('Sector', sectorId).find().then(function (missions) {
+			_this.setState({
+				sectorMissions: missions
+			});
+		});
+
+		SectorQuery.equalTo('objectId', sectorId).find().then(function (sector) {
+			_this.setState({
+				sector: sector
+			});
+		});
+	},
 	render: function render() {
+		var _this2 = this;
+
+		var sectorMissions = this.state.sectorMissions.map(function (missions) {
+			return React.createElement(
+				'div',
+				{ className: 'sectorMission' },
+				React.createElement(
+					'div',
+					{ className: 'missionName' },
+					missions.get('Name')
+				),
+				React.createElement(
+					'div',
+					{ className: 'missionTeaser' },
+					missions.get('Lore')
+				),
+				React.createElement(
+					'button',
+					{ className: 'dropDownIcon', onClick: _this2.onMissionDropDown },
+					'Arrow'
+				)
+			);
+		});
+
+		var SectorStats = this.state.sector.map(function (sector) {
+			return React.createElement(
+				'div',
+				{ className: 'sectorLoreBlock' },
+				React.createElement(
+					'h3',
+					null,
+					sector.get('Name')
+				),
+				React.createElement(
+					'div',
+					{ className: 'sectorImage' },
+					'SectorImage'
+				),
+				React.createElement(
+					'div',
+					{ className: 'sectorLoreTitle' },
+					'Sector Lore'
+				),
+				React.createElement(
+					'div',
+					{ className: 'sectorLore' },
+					sector.get('Lore')
+				)
+			);
+		});
+
+		var dropDown = null;
+
+		if (this.state.missionDrop === 'missions') {
+			dropDown = React.createElement(
+				'div',
+				{ className: 'sectorMissionBlock' },
+				sectorMissions
+			);
+		} else {
+			dropDown = React.createElement(
+				'div',
+				{ className: 'sectorMissionBlock' },
+				'Stuff'
+			);
+		}
+
 		return React.createElement(
-			"div",
-			{ className: "missionScreenContainer" },
+			'div',
+			{ className: 'missionScreenContainer' },
 			React.createElement(
-				"div",
-				{ className: "sectorMapIcon" },
-				"Sector Map"
+				'a',
+				{ href: '#sector-map', className: 'sectorMapIcon' },
+				'Sector Map'
 			),
 			React.createElement(
-				"div",
-				{ className: "userSettingsIcon" },
-				"User Settings"
+				'a',
+				{ href: '#', className: 'userSettingsIcon' },
+				'User Settings'
 			),
 			React.createElement(
-				"div",
-				{ className: "userHUD" },
+				'div',
+				{ className: 'userHUD' },
 				React.createElement(
-					"button",
-					{ className: "HUDFiller HUDButton" },
-					"Character Name"
+					'button',
+					{ className: 'HUDFiller HUDButton', onClick: this.onCharStats },
+					'Character Name'
 				),
 				React.createElement(
-					"div",
-					{ className: "HUDFiller" },
-					"Dilithium Amount"
+					'div',
+					{ className: 'HUDFiller' },
+					'Dilithium Amount'
 				),
 				React.createElement(
-					"div",
-					{ className: "HUDFiller" },
-					"Gold-Pressed Latinum Amount"
+					'div',
+					{ className: 'HUDFiller' },
+					'Gold-Pressed Latinum Amount'
 				),
 				React.createElement(
-					"button",
-					{ className: "HUDFiller HUDButton" },
-					"Starship Name"
+					'button',
+					{ className: 'HUDFiller HUDButton', onClick: this.onCharStats },
+					'Starship Name'
 				)
 			),
 			React.createElement(
-				"div",
-				{ className: "sectorBlockContainer" },
-				React.createElement(
-					"div",
-					{ className: "sectorLoreBlock" },
-					React.createElement(
-						"h3",
-						null,
-						"Sector Name"
-					),
-					React.createElement(
-						"div",
-						{ className: "sectorImage" },
-						"SectorImage"
-					),
-					React.createElement(
-						"div",
-						{ className: "sectorLoreTitle" },
-						"Sector Lore"
-					),
-					React.createElement(
-						"div",
-						{ className: "sectorLore" },
-						"Shields up. I recommend we transfer power to phasers and arm the photon torpedoes. Something strange on the detector circuit. The weapons must have disrupted our communicators. You saw something as tasty as meat, but inorganically materialized out of patterns used by our transporters. Captain, the most elementary and valuable statement in science, the beginning of wisdom, is 'I do not know.' All transporters off."
-					)
-				),
-				React.createElement(
-					"div",
-					{ className: "sectorMissionBlock" },
-					React.createElement(
-						"div",
-						{ className: "sectorMission" },
-						React.createElement(
-							"div",
-							{ className: "missionName" },
-							"Mission Name"
-						),
-						React.createElement(
-							"div",
-							{ className: "missionTeaser" },
-							"Words words words..."
-						),
-						React.createElement(
-							"button",
-							{ className: "dropDownIcon" },
-							"Arrow"
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "sectorMission" },
-						React.createElement(
-							"div",
-							{ className: "missionName" },
-							"Mission Name"
-						),
-						React.createElement(
-							"div",
-							{ className: "missionTeaser" },
-							"Words words words..."
-						),
-						React.createElement(
-							"button",
-							{ className: "dropDownIcon" },
-							"Arrow"
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "sectorMission" },
-						React.createElement(
-							"div",
-							{ className: "missionName" },
-							"Mission Name"
-						),
-						React.createElement(
-							"div",
-							{ className: "missionTeaser" },
-							"Words words words..."
-						),
-						React.createElement(
-							"button",
-							{ className: "dropDownIcon" },
-							"Arrow"
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "sectorMission" },
-						React.createElement(
-							"div",
-							{ className: "missionName" },
-							"Mission Name"
-						),
-						React.createElement(
-							"div",
-							{ className: "missionTeaser" },
-							"Words words words..."
-						),
-						React.createElement(
-							"button",
-							{ className: "dropDownIcon" },
-							"Arrow"
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "sectorMission" },
-						React.createElement(
-							"div",
-							{ className: "missionName" },
-							"Mission Name"
-						),
-						React.createElement(
-							"div",
-							{ className: "missionTeaser" },
-							"Words words words..."
-						),
-						React.createElement(
-							"button",
-							{ className: "dropDownIcon" },
-							"Arrow"
-						)
-					)
-				)
+				'div',
+				{ className: 'sectorBlockContainer' },
+				SectorStats,
+				dropDown
 			)
 		);
+	},
+	onCharStats: function onCharStats() {
+		this.props.router.navigate('character-stats/number', { trigger: true });
+	},
+	onMissionDropDown: function onMissionDropDown(e) {
+		e.preventDefault();
+		if (this.state.missionDrop === 'missions') {
+			this.setState({
+				missionDrop: null
+			});
+		} else {
+			this.setState({
+				missionDrop: 'missions'
+			});
+		}
 	}
 });
 
-},{"react":160}],165:[function(require,module,exports){
+},{"react":160}],167:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32415,64 +34398,128 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],166:[function(require,module,exports){
+},{"react":160}],168:[function(require,module,exports){
 //dependencies
-"use strict";
+'use strict';
 
 var React = require('react');
 
 //components
 
 module.exports = React.createClass({
-	displayName: "exports",
+	displayName: 'exports',
 
-	// getInitialState: function() {
-	// 	return {
-	// 		popup: null
-	// 	};
-	// },
-	// componentWillMount: function() {
-	// 	this.props.router.on('route', () => {
-	// 		this.forceUpdate();
-	// 	});
-	// },
+	getInitialState: function getInitialState() {
+		return {
+			sector1: [],
+			sector2: [],
+			sector3: [],
+			sector4: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		this.props.router.on('route', function () {
+			_this.forceUpdate();
+		});
+
+		var SectorModel = Parse.Object.extend('SectorModel');
+		var Query = new Parse.Query(SectorModel);
+
+		Query.equalTo('Name', 'Arawath Sector').find().then(function (result) {
+			_this.setState({
+				sector1: result
+			});
+		});
+
+		Query.equalTo('Name', 'Nelvana Sector').find().then(function (result) {
+			_this.setState({
+				sector2: result
+			});
+		});
+
+		Query.equalTo('Name', 'Bajor Sector').find().then(function (result) {
+			_this.setState({
+				sector3: result
+			});
+		});
+
+		Query.equalTo('Name', 'Archanis Sector').find().then(function (result) {
+			_this.setState({
+				sector4: result
+			});
+		});
+	},
 	render: function render() {
+		var sector1Name = this.state.sector1.map(function (name) {
+			return name.get('Name');
+		});
+
+		var sector1Id = this.state.sector1.map(function (name) {
+			return name.id;
+		});
+
+		var sector2Name = this.state.sector2.map(function (name) {
+			return name.get('Name');
+		});
+
+		var sector2Id = this.state.sector2.map(function (name) {
+			return name.id;
+		});
+
+		var sector3Name = this.state.sector3.map(function (name) {
+			return name.get('Name');
+		});
+
+		var sector3Id = this.state.sector3.map(function (name) {
+			return name.id;
+		});
+
+		var sector4Name = this.state.sector4.map(function (name) {
+			return name.get('Name');
+		});
+
+		var sector4Id = this.state.sector4.map(function (name) {
+			return name.id;
+		});
+
 		return React.createElement(
-			"div",
-			{ className: "sectorMapContainer" },
+			'div',
+			{ className: 'sectorMapContainer' },
 			React.createElement(
-				"div",
-				{ className: "userSettingsIcon" },
-				"Image"
+				'div',
+				{ className: 'userSettingsIcon' },
+				'Image'
 			),
 			React.createElement(
-				"div",
-				{ className: "sectorMap" },
+				'div',
+				{ className: 'sectorMap' },
 				React.createElement(
-					"a",
-					{ href: "#sector/number", className: "sectorBlock sector1" },
-					"Sector One"
+					'a',
+					{ href: '#sector/' + sector1Id, className: 'sectorBlock sector1' },
+					sector1Name
 				),
 				React.createElement(
-					"a",
-					{ href: "#sector/number", className: "sectorBlock sector2" },
-					"Sector Two"
+					'a',
+					{ href: '#sector/' + sector2Id, className: 'sectorBlock sector2' },
+					sector2Name
 				),
 				React.createElement(
-					"a",
-					{ href: "#sector/number", className: "sectorBlock sector3" },
-					"Sector Three"
+					'a',
+					{ href: '#sector/' + sector3Id, className: 'sectorBlock sector3' },
+					sector3Name
 				),
 				React.createElement(
-					"a",
-					{ href: "#sector/number", className: "sectorBlock sector4" },
-					"Sector Four"
+					'a',
+					{ href: '#sector/' + sector4Id, className: 'sectorBlock sector4' },
+					sector4Name
 				)
 			),
 			React.createElement(
-				"button",
-				{ className: "dashboardButton", onClick: this.onDashboard },
-				"DASHBOARD"
+				'button',
+				{ className: 'dashboardButton', onClick: this.onDashboard },
+				'DASHBOARD'
 			)
 		);
 	},
@@ -32482,14 +34529,13 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],167:[function(require,module,exports){
+},{"react":160}],169:[function(require,module,exports){
 'use strict';
 //dependencies
 var React = require('react');
 var ReactDom = require('react-dom');
 var Backbone = require('backbone');
 var $ = require('jquery');
-var jQuery = $;
 Parse.initialize('Snilj4eJd19FAHaUolOCxWfJTPMzBazhkRlVyWkV', 'BtifBAoTsDgeuDpIl6pyabRCInHRsqk5Qic6P64U');
 
 //page elements
@@ -32500,6 +34546,8 @@ var HomeComponent = require('./components/HomeComponent.js');
 var DashboardComponent = require('./components/DashboardComponent.js');
 var SectorMapComponent = require('./components/SectorMapComponent.js');
 var MissionComponent = require('./components/MissionComponent.js');
+var CreateCharacterComponent = require('./components/CreateCharacterComponent.js');
+var CharacterStatsComponent = require('./components/CharacterStatsComponent.js');
 
 //router
 var Router = Backbone.Router.extend({
@@ -32508,8 +34556,8 @@ var Router = Backbone.Router.extend({
 		'dashboard': 'dashboard',
 		'create-character': 'createCharacter',
 		'sector-map': 'sectorMap',
-		'sector/number': 'sectorMissions',
-		'character-stats/:id': 'characterStats',
+		'sector/:id': 'sectorMissions',
+		'character-stats/number': 'characterStats',
 		'settings': 'settings'
 	},
 	home: function home() {
@@ -32523,14 +34571,18 @@ var Router = Backbone.Router.extend({
 			ReactDom.render(React.createElement(DashboardComponent, { router: r }), main);
 		}
 	},
-	createCharacter: function createCharacter() {},
+	createCharacter: function createCharacter() {
+		ReactDom.render(React.createElement(CreateCharacterComponent, { router: r }), main);
+	},
 	sectorMap: function sectorMap() {
 		ReactDom.render(React.createElement(SectorMapComponent, { router: r }), main);
 	},
-	sectorMissions: function sectorMissions() {
-		ReactDom.render(React.createElement(MissionComponent, { router: r }), main);
+	sectorMissions: function sectorMissions(id) {
+		ReactDom.render(React.createElement(MissionComponent, { sectorId: id, router: r }), main);
 	},
-	characterStats: function characterStats(id) {},
+	characterStats: function characterStats() {
+		ReactDom.render(React.createElement(CharacterStatsComponent, { router: r }), main);
+	},
 	settings: function settings() {}
 });
 
@@ -32542,7 +34594,7 @@ function onLogout() {
 	// this.props.router.navigate('', {trigger: true});
 }
 
-},{"./components/DashboardComponent.js":161,"./components/HomeComponent.js":162,"./components/MissionComponent.js":164,"./components/SectorMapComponent.js":166,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[167])
+},{"./components/CharacterStatsComponent.js":161,"./components/CreateCharacterComponent.js":162,"./components/DashboardComponent.js":163,"./components/HomeComponent.js":164,"./components/MissionComponent.js":166,"./components/SectorMapComponent.js":168,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[169])
 
 
 //# sourceMappingURL=bundle.js.map

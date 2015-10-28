@@ -12,9 +12,9 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillMount: function() {
-		this.props.router.on('route', () => {
-			this.forceUpdate();
-		});
+		// this.props.router.on('route', () => {
+		// 	this.forceUpdate();
+		// });
 	},
 	render: function() {
 		var r = this.props.router;
