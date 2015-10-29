@@ -2,12 +2,21 @@
 var React = require('react');
 
 //components
+var StarshipListComponent = require('./StarshipListComponent.js');
+var SeniorOffCaptainComponent = require('./SeniorOffCaptainComponent.js');
+var SeniorOffFirstOffComponent = require('./SeniorOffFirstOffComponent.js');
+var SeniorOffHelmsmanComponent = require('./SeniorOffHelmsmanComponent.js');
+var SeniorOffTacOffComponent = require('./SeniorOffTacOffComponent.js');
+var SeniorOffMedOffComponent = require('./SeniorOffMedOffComponent.js');
+var SeniorOffSciOffComponent = require('./SeniorOffSciOffComponent.js');
+var SeniorOffEngOffComponent = require('./SeniorOffEngOffComponent.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
 			currentCharacter: [],
 			currentStarship: [],
+			currentStarshipClass: [],
 			currentStarshipCaptain: [],
 			currentStarshipFirstOfficer: [],
 			currentStarshipHelmsman: [],
@@ -40,11 +49,18 @@ module.exports = React.createClass({
 		var StarshipModel = Parse.Object.extend('StarshipModel');
 		var StarshipQuery = new Parse.Query(StarshipModel);
 
+		StarshipQuery.equalTo('characterId', currentCharacter)
+		.find().then((starship) => {
+			this.setState({
+				currentStarship: starship
+			})
+		})
+
 		StarshipQuery.equalTo('characterId', currentCharacter);
 		StarshipQuery.include('Class')
 		.find().then((starship) => {
 			this.setState({
-				currentStarship: starship
+				currentStarshipClass: starship
 			})
 		})
 		StarshipQuery.include('Captain')
@@ -102,8 +118,8 @@ module.exports = React.createClass({
 				</div>
 			)
 		})
-
-		var currentStarship = this.state.currentStarship.map((starship) => {
+		
+		var currentStarshipClass = this.state.currentStarshipClass.map((starship) => {
 			return(
 				<div className="starshipBox">
 					<div className="starshipStatsBox">
@@ -341,12 +357,12 @@ module.exports = React.createClass({
 
 		if(this.state.starship === 'starship') {
 			starship = (
-				<div>{currentStarship}</div>
+				<div>{currentStarshipClass}</div>
 			);
 		}
 		else {
 			starship = (
-				<div className="starshipBox">List Component</div>
+				<StarshipListComponent />
 			);
 		}
 
@@ -357,7 +373,7 @@ module.exports = React.createClass({
 		}
 		else {
 			captain = (
-				<div className="personnelBox">List Component</div>
+				<SeniorOffCaptainComponent starship={this.state.currentStarship}/>
 			);
 		}
 		if(this.state.firstOff === 'firstOff') {
@@ -367,7 +383,7 @@ module.exports = React.createClass({
 		}
 		else {
 			firstOff = (
-				<div className="personnelBox">List Component</div>
+				<SeniorOffFirstOffComponent />
 			);
 		}
 		if(this.state.helmsman === 'helmsman') {
@@ -377,7 +393,7 @@ module.exports = React.createClass({
 		}
 		else {
 			helmsman = (
-				<div className="personnelBox">List Component</div>
+				<SeniorOffHelmsmanComponent />
 			);
 		}
 		if(this.state.tacOff === 'tacOff') {
@@ -387,7 +403,7 @@ module.exports = React.createClass({
 		}
 		else {
 			tacOff = (
-				<div className="personnelBox">List Component</div>
+				<SeniorOffTacOffComponent />
 			);
 		}
 		if(this.state.medOff === 'medOff') {
@@ -397,7 +413,7 @@ module.exports = React.createClass({
 		}
 		else {
 			medOff = (
-				<div className="personnelBox">List Component</div>
+				<SeniorOffMedOffComponent />
 			);
 		}
 		if(this.state.sciOff === 'sciOff') {
@@ -407,7 +423,7 @@ module.exports = React.createClass({
 		}
 		else {
 			sciOff = (
-				<div className="personnelBox">List Component</div>
+				<SeniorOffSciOffComponent />
 			);
 		}
 		if(this.state.engOff === 'engOff') {
@@ -417,7 +433,7 @@ module.exports = React.createClass({
 		}
 		else {
 			engOff = (
-				<div className="personnelBox">List Component</div>
+				<SeniorOffEngOffComponent />
 			);
 		}
 		return (

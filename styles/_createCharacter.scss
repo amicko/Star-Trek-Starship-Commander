@@ -48,6 +48,7 @@
 			right: 3em;
 			top: 1em;
 			margin-bottom: 2em;
+			overflow: scroll;
 
 			.starshipStatsBox {
 				background-color: grey;
@@ -99,6 +100,11 @@
 				width: 12em;
 				float: left;
 				margin: 2em 0.5em;
+				overflow: scroll;
+
+				.personBox {
+					background-color: red;
+				}
 
 				.position {
 					text-align: center;

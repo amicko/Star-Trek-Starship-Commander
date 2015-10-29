@@ -31770,6 +31770,14 @@ module.exports = React.createClass({
 var React = require('react');
 
 //components
+var StarshipListComponent = require('./StarshipListComponent.js');
+var SeniorOffCaptainComponent = require('./SeniorOffCaptainComponent.js');
+var SeniorOffFirstOffComponent = require('./SeniorOffFirstOffComponent.js');
+var SeniorOffHelmsmanComponent = require('./SeniorOffHelmsmanComponent.js');
+var SeniorOffTacOffComponent = require('./SeniorOffTacOffComponent.js');
+var SeniorOffMedOffComponent = require('./SeniorOffMedOffComponent.js');
+var SeniorOffSciOffComponent = require('./SeniorOffSciOffComponent.js');
+var SeniorOffEngOffComponent = require('./SeniorOffEngOffComponent.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -31778,6 +31786,7 @@ module.exports = React.createClass({
 		return {
 			currentCharacter: [],
 			currentStarship: [],
+			currentStarshipClass: [],
 			currentStarshipCaptain: [],
 			currentStarshipFirstOfficer: [],
 			currentStarshipHelmsman: [],
@@ -31811,10 +31820,16 @@ module.exports = React.createClass({
 		var StarshipModel = Parse.Object.extend('StarshipModel');
 		var StarshipQuery = new Parse.Query(StarshipModel);
 
+		StarshipQuery.equalTo('characterId', currentCharacter).find().then(function (starship) {
+			_this.setState({
+				currentStarship: starship
+			});
+		});
+
 		StarshipQuery.equalTo('characterId', currentCharacter);
 		StarshipQuery.include('Class').find().then(function (starship) {
 			_this.setState({
-				currentStarship: starship
+				currentStarshipClass: starship
 			});
 		});
 		StarshipQuery.include('Captain').find().then(function (captain) {
@@ -31893,7 +31908,7 @@ module.exports = React.createClass({
 			);
 		});
 
-		var currentStarship = this.state.currentStarship.map(function (starship) {
+		var currentStarshipClass = this.state.currentStarshipClass.map(function (starship) {
 			return React.createElement(
 				'div',
 				{ className: 'starshipBox' },
@@ -32598,14 +32613,10 @@ module.exports = React.createClass({
 			starship = React.createElement(
 				'div',
 				null,
-				currentStarship
+				currentStarshipClass
 			);
 		} else {
-			starship = React.createElement(
-				'div',
-				{ className: 'starshipBox' },
-				'List Component'
-			);
+			starship = React.createElement(StarshipListComponent, null);
 		}
 
 		if (this.state.captain === 'captain') {
@@ -32615,11 +32626,7 @@ module.exports = React.createClass({
 				starshipCaptain
 			);
 		} else {
-			captain = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
+			captain = React.createElement(SeniorOffCaptainComponent, { starship: this.state.currentStarship });
 		}
 		if (this.state.firstOff === 'firstOff') {
 			firstOff = React.createElement(
@@ -32628,11 +32635,7 @@ module.exports = React.createClass({
 				starshipFirstOfficer
 			);
 		} else {
-			firstOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
+			firstOff = React.createElement(SeniorOffFirstOffComponent, null);
 		}
 		if (this.state.helmsman === 'helmsman') {
 			helmsman = React.createElement(
@@ -32641,11 +32644,7 @@ module.exports = React.createClass({
 				starshipHelmsman
 			);
 		} else {
-			helmsman = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
+			helmsman = React.createElement(SeniorOffHelmsmanComponent, null);
 		}
 		if (this.state.tacOff === 'tacOff') {
 			tacOff = React.createElement(
@@ -32654,11 +32653,7 @@ module.exports = React.createClass({
 				starshipTacticalOfficer
 			);
 		} else {
-			tacOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
+			tacOff = React.createElement(SeniorOffTacOffComponent, null);
 		}
 		if (this.state.medOff === 'medOff') {
 			medOff = React.createElement(
@@ -32667,11 +32662,7 @@ module.exports = React.createClass({
 				starshipMedicalOfficer
 			);
 		} else {
-			medOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
+			medOff = React.createElement(SeniorOffMedOffComponent, null);
 		}
 		if (this.state.sciOff === 'sciOff') {
 			sciOff = React.createElement(
@@ -32680,11 +32671,7 @@ module.exports = React.createClass({
 				starshipScienceOfficer
 			);
 		} else {
-			sciOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
+			sciOff = React.createElement(SeniorOffSciOffComponent, null);
 		}
 		if (this.state.engOff === 'engOff') {
 			engOff = React.createElement(
@@ -32693,11 +32680,7 @@ module.exports = React.createClass({
 				starshipEngineerOfficer
 			);
 		} else {
-			engOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
+			engOff = React.createElement(SeniorOffEngOffComponent, null);
 		}
 		return React.createElement(
 			'div',
@@ -32918,7 +32901,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],163:[function(require,module,exports){
+},{"./SeniorOffCaptainComponent.js":171,"./SeniorOffEngOffComponent.js":172,"./SeniorOffFirstOffComponent.js":173,"./SeniorOffHelmsmanComponent.js":174,"./SeniorOffMedOffComponent.js":175,"./SeniorOffSciOffComponent.js":176,"./SeniorOffTacOffComponent.js":177,"./StarshipListComponent.js":178,"react":160}],163:[function(require,module,exports){
 //dependencies
 'use strict';
 
@@ -34781,6 +34764,761 @@ module.exports = React.createClass({
 });
 
 },{"react":160}],171:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			personnel: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var PersonnelModel = Parse.Object.extend('PersonnelModel');
+		var Query = new Parse.Query(PersonnelModel);
+
+		Query.find().then(function (personnel) {
+			_this.setState({
+				personnel: personnel
+			});
+		});
+	},
+	render: function render() {
+		var _this2 = this;
+
+		var personnel = this.state.personnel.map(function (person) {
+			return React.createElement(
+				'div',
+				{ className: 'personBox' },
+				React.createElement(
+					'div',
+					null,
+					'Name: ',
+					person.get('Name')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Officer: ',
+					person.get('officer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Security: ',
+					person.get('security')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Medical: ',
+					person.get('medical')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Science: ',
+					person.get('science')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Engineer: ',
+					person.get('engineer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Cost: ',
+					person.get('cost')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Level Req: ',
+					person.get('lvlReq')
+				),
+				React.createElement(
+					'button',
+					{ onClick: _this2.onChoose.bind(_this2, person) },
+					'Select'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'personnelBox' },
+			personnel
+		);
+	},
+	onChoose: function onChoose(person) {
+		// console.log(this.props.starship);
+		this.props.starship.set('Captain', person.id);
+
+		this.props.starship.save(null, {
+			success: function success(StarshipModel) {}
+		});
+	}
+});
+
+},{"react":160}],172:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			personnel: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var PersonnelModel = Parse.Object.extend('PersonnelModel');
+		var Query = new Parse.Query(PersonnelModel);
+
+		Query.find().then(function (personnel) {
+			_this.setState({
+				personnel: personnel
+			});
+		});
+	},
+	render: function render() {
+		var personnel = this.state.personnel.map(function (person) {
+			return React.createElement(
+				'div',
+				{ className: 'personBox' },
+				React.createElement(
+					'div',
+					null,
+					'Name: ',
+					person.get('Name')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Officer: ',
+					person.get('officer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Security: ',
+					person.get('security')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Medical: ',
+					person.get('medical')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Science: ',
+					person.get('science')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Engineer: ',
+					person.get('engineer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Cost: ',
+					person.get('cost')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Level Req: ',
+					person.get('lvlReq')
+				),
+				React.createElement(
+					'button',
+					null,
+					'Select'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'personnelBox' },
+			personnel
+		);
+	}
+});
+
+},{"react":160}],173:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			personnel: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var PersonnelModel = Parse.Object.extend('PersonnelModel');
+		var Query = new Parse.Query(PersonnelModel);
+
+		Query.find().then(function (personnel) {
+			_this.setState({
+				personnel: personnel
+			});
+		});
+	},
+	render: function render() {
+		var personnel = this.state.personnel.map(function (person) {
+			return React.createElement(
+				'div',
+				{ className: 'personBox' },
+				React.createElement(
+					'div',
+					null,
+					'Name: ',
+					person.get('Name')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Officer: ',
+					person.get('officer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Security: ',
+					person.get('security')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Medical: ',
+					person.get('medical')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Science: ',
+					person.get('science')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Engineer: ',
+					person.get('engineer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Cost: ',
+					person.get('cost')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Level Req: ',
+					person.get('lvlReq')
+				),
+				React.createElement(
+					'button',
+					null,
+					'Select'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'personnelBox' },
+			personnel
+		);
+	}
+});
+
+},{"react":160}],174:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			personnel: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var PersonnelModel = Parse.Object.extend('PersonnelModel');
+		var Query = new Parse.Query(PersonnelModel);
+
+		Query.find().then(function (personnel) {
+			_this.setState({
+				personnel: personnel
+			});
+		});
+	},
+	render: function render() {
+		var personnel = this.state.personnel.map(function (person) {
+			return React.createElement(
+				'div',
+				{ className: 'personBox' },
+				React.createElement(
+					'div',
+					null,
+					'Name: ',
+					person.get('Name')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Officer: ',
+					person.get('officer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Security: ',
+					person.get('security')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Medical: ',
+					person.get('medical')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Science: ',
+					person.get('science')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Engineer: ',
+					person.get('engineer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Cost: ',
+					person.get('cost')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Level Req: ',
+					person.get('lvlReq')
+				),
+				React.createElement(
+					'button',
+					null,
+					'Select'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'personnelBox' },
+			personnel
+		);
+	}
+});
+
+},{"react":160}],175:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			personnel: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var PersonnelModel = Parse.Object.extend('PersonnelModel');
+		var Query = new Parse.Query(PersonnelModel);
+
+		Query.find().then(function (personnel) {
+			_this.setState({
+				personnel: personnel
+			});
+		});
+	},
+	render: function render() {
+		var personnel = this.state.personnel.map(function (person) {
+			return React.createElement(
+				'div',
+				{ className: 'personBox' },
+				React.createElement(
+					'div',
+					null,
+					'Name: ',
+					person.get('Name')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Officer: ',
+					person.get('officer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Security: ',
+					person.get('security')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Medical: ',
+					person.get('medical')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Science: ',
+					person.get('science')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Engineer: ',
+					person.get('engineer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Cost: ',
+					person.get('cost')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Level Req: ',
+					person.get('lvlReq')
+				),
+				React.createElement(
+					'button',
+					null,
+					'Select'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'personnelBox' },
+			personnel
+		);
+	}
+});
+
+},{"react":160}],176:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			personnel: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var PersonnelModel = Parse.Object.extend('PersonnelModel');
+		var Query = new Parse.Query(PersonnelModel);
+
+		Query.find().then(function (personnel) {
+			_this.setState({
+				personnel: personnel
+			});
+		});
+	},
+	render: function render() {
+		var personnel = this.state.personnel.map(function (person) {
+			return React.createElement(
+				'div',
+				{ className: 'personBox' },
+				React.createElement(
+					'div',
+					null,
+					'Name: ',
+					person.get('Name')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Officer: ',
+					person.get('officer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Security: ',
+					person.get('security')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Medical: ',
+					person.get('medical')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Science: ',
+					person.get('science')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Engineer: ',
+					person.get('engineer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Cost: ',
+					person.get('cost')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Level Req: ',
+					person.get('lvlReq')
+				),
+				React.createElement(
+					'button',
+					null,
+					'Select'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'personnelBox' },
+			personnel
+		);
+	}
+});
+
+},{"react":160}],177:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			personnel: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var PersonnelModel = Parse.Object.extend('PersonnelModel');
+		var Query = new Parse.Query(PersonnelModel);
+
+		Query.find().then(function (personnel) {
+			_this.setState({
+				personnel: personnel
+			});
+		});
+	},
+	render: function render() {
+		var personnel = this.state.personnel.map(function (person) {
+			return React.createElement(
+				'div',
+				{ className: 'personBox' },
+				React.createElement(
+					'div',
+					null,
+					'Name: ',
+					person.get('Name')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Officer: ',
+					person.get('officer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Security: ',
+					person.get('security')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Medical: ',
+					person.get('medical')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Science: ',
+					person.get('science')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Engineer: ',
+					person.get('engineer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Cost: ',
+					person.get('cost')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Level Req: ',
+					person.get('lvlReq')
+				),
+				React.createElement(
+					'button',
+					null,
+					'Select'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'personnelBox' },
+			personnel
+		);
+	}
+});
+
+},{"react":160}],178:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			starships: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var StarshipClassModel = Parse.Object.extend('StarshipClassModel');
+		var Query = new Parse.Query(StarshipClassModel);
+
+		Query.find().then(function (starships) {
+			_this.setState({
+				starships: starships
+			});
+		});
+	},
+	render: function render() {
+		var _this2 = this;
+
+		var personnel = this.state.starships.map(function (starship) {
+			return React.createElement(
+				'div',
+				{ className: 'starshipDetailBox' },
+				React.createElement(
+					'div',
+					null,
+					'Class Name: ',
+					starship.get('Name')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Range: ',
+					starship.get('Range')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Weapons: ',
+					starship.get('Weapons')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Shields: ',
+					starship.get('Shields')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Cost: ',
+					starship.get('Cost')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Level Req: ',
+					starship.get('lvlReq')
+				),
+				React.createElement(
+					'button',
+					{ onClick: _this2.onChoose },
+					'Select'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'starshipBox' },
+			personnel
+		);
+	},
+	onChoose: function onChoose() {
+		console.log('Starship Class Chosen');
+	}
+});
+
+},{"react":160}],179:[function(require,module,exports){
 'use strict';
 //dependencies
 var React = require('react');
@@ -34845,7 +35583,7 @@ function onLogout() {
 	// this.props.router.navigate('', {trigger: true});
 }
 
-},{"./components/CharacterStatsComponent.js":162,"./components/CreateCharacterComponent.js":163,"./components/DashboardComponent.js":164,"./components/HomeComponent.js":165,"./components/MissionComponent.js":167,"./components/SectorMapComponent.js":170,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[171])
+},{"./components/CharacterStatsComponent.js":162,"./components/CreateCharacterComponent.js":163,"./components/DashboardComponent.js":164,"./components/HomeComponent.js":165,"./components/MissionComponent.js":167,"./components/SectorMapComponent.js":170,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[179])
 
 
 //# sourceMappingURL=bundle.js.map
