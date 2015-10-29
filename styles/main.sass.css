@@ -300,7 +300,8 @@
       position: relative;
       right: 3em;
       top: 1em;
-      margin-bottom: 2em; }
+      margin-bottom: 2em;
+      overflow: scroll; }
       .createCharacterContainer .statsContainer .starshipBox .starshipStatsBox {
         background-color: grey;
         width: 75%;
@@ -338,7 +339,10 @@
         height: 18em;
         width: 12em;
         float: left;
-        margin: 2em 0.5em; }
+        margin: 2em 0.5em;
+        overflow: scroll; }
+        .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .personBox {
+          background-color: red; }
         .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .position {
           text-align: center;
           margin: 2em 0 1em 0; }
