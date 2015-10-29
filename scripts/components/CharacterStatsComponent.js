@@ -6,6 +6,15 @@ var React = require('react');
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
+			currentCharacter: [],
+			currentStarship: [],
+			currentStarshipCaptain: [],
+			currentStarshipFirstOfficer: [],
+			currentStarshipHelmsman: [],
+			currentStarshipTacticalOfficer: [],
+			currentStarshipMedicalOfficer: [],
+			currentStarshipScienceOfficer: [],
+			currentStarshipEngineerOfficer: [],
 			starship: 'starship',
 			captain: 'captain',
 			firstOff: 'firstOff',
@@ -16,7 +25,311 @@ module.exports = React.createClass({
 			engOff: 'engOff'
 		};
 	},
+	componentWillMount: function() {
+		var CharacterModel = Parse.Object.extend('CharacterModel');
+		var CharacterQuery = new Parse.Query(CharacterModel);
+		var currentCharacter = this.props.characterId
+
+		CharacterQuery.equalTo('objectId', currentCharacter)
+		.find().then((character) => {
+			this.setState({
+				currentCharacter: character
+			})
+		})
+
+		var StarshipModel = Parse.Object.extend('StarshipModel');
+		var StarshipQuery = new Parse.Query(StarshipModel);
+
+		StarshipQuery.equalTo('characterId', currentCharacter);
+		StarshipQuery.include('Class')
+		.find().then((starship) => {
+			this.setState({
+				currentStarship: starship
+			})
+		})
+		StarshipQuery.include('Captain')
+		.find().then((captain) => {
+			this.setState({
+				currentStarshipCaptain: captain
+			})
+		})
+		StarshipQuery.include('FirstOfficer')
+		.find().then((firstOfficer) => {
+			this.setState({
+				currentStarshipFirstOfficer: firstOfficer
+			})
+		})
+		StarshipQuery.include('Helmsman')
+		.find().then((helmsman) => {
+			this.setState({
+				currentStarshipHelmsman: helmsman
+			})
+		})
+		StarshipQuery.include('TacOfficer')
+		.find().then((tacticalOfficer) => {
+			this.setState({
+				currentStarshipTacticalOfficer: tacticalOfficer
+			})
+		})
+		StarshipQuery.include('MedOfficer')
+		.find().then((medicalOfficer) => {
+			this.setState({
+				currentStarshipMedicalOfficer: medicalOfficer
+			})
+		})
+		StarshipQuery.include('SciOfficer')
+		.find().then((scienceOfficer) => {
+			this.setState({
+				currentStarshipScienceOfficer: scienceOfficer
+			})
+		})
+		StarshipQuery.include('EngOfficer')
+		.find().then((engineerOfficer) => {
+			this.setState({
+				currentStarshipEngineerOfficer: engineerOfficer
+			})
+		})
+	},
 	render: function() {
+		var currentCharacter = this.state.currentCharacter.map((character) => {
+			return (
+				<div className="characterStatsBox">
+					<div className="characterName">NAME: {character.get('Name')}</div>
+					<div className="characterXp">XP: {character.get('XP')}</div>
+					<div className="characterLevel">LEVEL: {Math.round(character.get('XP')/100)}</div>
+					<div className="CharacterDilithium">DILITHIUM: {character.get('Dilithium')}</div>
+					<div className="goldPressedLatinum">GOLD-PRESSED LATINUM: {character.get('GoldPressedLatinum')}</div>
+				</div>
+			)
+		})
+
+		var currentStarship = this.state.currentStarship.map((starship) => {
+			return(
+				<div className="starshipBox">
+					<div className="starshipStatsBox">
+						<div className="starshipName">{starship.get('Name')}</div>
+						<div className="starshipImage">Image</div>
+						<div className="starshipStatBox">Range: {starship.get('Class').get('Range')}</div>
+						<div className="starshipStatBox">Weapons: {starship.get('Class').get('Weapons')}</div>
+						<div className="starshipStatBox">Shields: {starship.get('Class').get('Shields')}</div>
+					</div>
+					<div className="chooseStarshipBox">
+						<button className="changeStarship" onClick={this.onChangeStarship}>Change Starship</button>
+					</div>
+				</div>
+			)
+		})
+
+		var starshipCaptain = this.state.currentStarshipCaptain.map((person) => {
+			return (
+				<div className="personnelBox">
+					<div className="position">CAPTAIN</div>
+					<div className="personnelImage">IMAGE</div>
+					<div className="personnelName">{person.get('Captain').get('Name')}</div>
+					<div className="personnelStatBox">
+						<div className="stat">Officer</div>
+						<div className="box">{person.get('Captain').get('officer')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Security</div>
+						<div className="box">{person.get('Captain').get('security')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Medical</div>
+						<div className="box">{person.get('Captain').get('medical')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Science</div>
+						<div className="box">{person.get('Captain').get('science')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Engineer</div>
+						<div className="box">{person.get('Captain').get('engineer')}</div>
+					</div>
+				</div>
+			)
+		})
+
+		var starshipFirstOfficer = this.state.currentStarshipFirstOfficer.map((person) => {
+			return (
+				<div className="personnelBox">
+					<div className="position">FIRST OFFICER</div>
+					<div className="personnelImage">IMAGE</div>
+					<div className="personnelName">{person.get('FirstOfficer').get('Name')}</div>
+					<div className="personnelStatBox">
+						<div className="stat">Officer</div>
+						<div className="box">{person.get('FirstOfficer').get('officer')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Security</div>
+						<div className="box">{person.get('FirstOfficer').get('security')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Medical</div>
+						<div className="box">{person.get('FirstOfficer').get('medical')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Science</div>
+						<div className="box">{person.get('FirstOfficer').get('science')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Engineer</div>
+						<div className="box">{person.get('FirstOfficer').get('engineer')}</div>
+					</div>
+				</div>
+			)
+		})
+
+		var starshipHelmsman = this.state.currentStarshipHelmsman.map((person) => {
+			return (
+				<div className="personnelBox">
+					<div className="position">HELMSMAN</div>
+					<div className="personnelImage">IMAGE</div>
+					<div className="personnelName">{person.get('Helmsman').get('Name')}</div>
+					<div className="personnelStatBox">
+						<div className="stat">Officer</div>
+						<div className="box">{person.get('Helmsman').get('officer')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Security</div>
+						<div className="box">{person.get('Helmsman').get('security')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Medical</div>
+						<div className="box">{person.get('Helmsman').get('medical')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Science</div>
+						<div className="box">{person.get('Helmsman').get('science')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Engineer</div>
+						<div className="box">{person.get('Helmsman').get('engineer')}</div>
+					</div>
+				</div>
+			)
+		})
+
+		var starshipTacticalOfficer = this.state.currentStarshipTacticalOfficer.map((person) => {
+			return (
+				<div className="personnelBox">
+					<div className="position">TACTICAL OFFICER</div>
+					<div className="personnelImage">IMAGE</div>
+					<div className="personnelName">{person.get('TacOfficer').get('Name')}</div>
+					<div className="personnelStatBox">
+						<div className="stat">Officer</div>
+						<div className="box">{person.get('TacOfficer').get('officer')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Security</div>
+						<div className="box">{person.get('TacOfficer').get('security')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Medical</div>
+						<div className="box">{person.get('TacOfficer').get('medical')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Science</div>
+						<div className="box">{person.get('TacOfficer').get('science')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Engineer</div>
+						<div className="box">{person.get('TacOfficer').get('engineer')}</div>
+					</div>
+				</div>
+			)
+		})
+
+		var starshipMedicalOfficer = this.state.currentStarshipMedicalOfficer.map((person) => {
+			return (
+				<div className="personnelBox">
+					<div className="position">MEDICAL OFFICER</div>
+					<div className="personnelImage">IMAGE</div>
+					<div className="personnelName">{person.get('MedOfficer').get('Name')}</div>
+					<div className="personnelStatBox">
+						<div className="stat">Officer</div>
+						<div className="box">{person.get('MedOfficer').get('officer')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Security</div>
+						<div className="box">{person.get('MedOfficer').get('security')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Medical</div>
+						<div className="box">{person.get('MedOfficer').get('medical')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Science</div>
+						<div className="box">{person.get('MedOfficer').get('science')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Engineer</div>
+						<div className="box">{person.get('MedOfficer').get('engineer')}</div>
+					</div>
+				</div>
+			)
+		})
+
+		var starshipScienceOfficer = this.state.currentStarshipScienceOfficer.map((person) => {
+			return (
+				<div className="personnelBox">
+					<div className="position">SCIENCE OFFICER</div>
+					<div className="personnelImage">IMAGE</div>
+					<div className="personnelName">{person.get('SciOfficer').get('Name')}</div>
+					<div className="personnelStatBox">
+						<div className="stat">Officer</div>
+						<div className="box">{person.get('SciOfficer').get('officer')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Security</div>
+						<div className="box">{person.get('SciOfficer').get('security')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Medical</div>
+						<div className="box">{person.get('SciOfficer').get('medical')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Science</div>
+						<div className="box">{person.get('SciOfficer').get('science')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Engineer</div>
+						<div className="box">{person.get('SciOfficer').get('engineer')}</div>
+					</div>
+				</div>
+			)
+		})
+
+		var starshipEngineerOfficer = this.state.currentStarshipEngineerOfficer.map((person) => {
+			return (
+				<div className="personnelBox">
+					<div className="position">ENGINEER OFFICER</div>
+					<div className="personnelImage">IMAGE</div>
+					<div className="personnelName">{person.get('EngOfficer').get('Name')}</div>
+					<div className="personnelStatBox">
+						<div className="stat">Officer</div>
+						<div className="box">{person.get('EngOfficer').get('officer')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Security</div>
+						<div className="box">{person.get('EngOfficer').get('security')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Medical</div>
+						<div className="box">{person.get('EngOfficer').get('medical')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Science</div>
+						<div className="box">{person.get('EngOfficer').get('science')}</div>
+					</div>
+					<div className="personnelStatBox">
+						<div className="stat">Engineer</div>
+						<div className="box">{person.get('EngOfficer').get('engineer')}</div>
+					</div>
+				</div>
+			)
+		})
+
 		var starship = null;
 		var captain = null;
 		var firstOff = null;
@@ -28,17 +341,7 @@ module.exports = React.createClass({
 
 		if(this.state.starship === 'starship') {
 			starship = (
-				<div className="starshipBox">
-					<div className="starshipStatsBox">
-						<div className="starshipImage">Image</div>
-						<div className="starshipStatBox">Range</div>
-						<div className="starshipStatBox">Weapons</div>
-						<div className="starshipStatBox">Shields</div>
-					</div>
-					<div className="chooseStarshipBox">
-						<button className="changeStarship" onClick={this.onChangeStarship}>Change Starship</button>
-					</div>
-				</div>
+				<div>{currentStarship}</div>
 			);
 		}
 		else {
@@ -49,31 +352,7 @@ module.exports = React.createClass({
 
 		if(this.state.captain === 'captain') {
 			captain = (
-				<div className="personnelBox">
-					<div className="position">CAPTAIN</div>
-					<div className="personnelImage">IMAGE</div>
-					<div className="personnelName">Name</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">#</div>
-					</div>
-				</div>
+				<div>{starshipCaptain}</div>
 			);
 		}
 		else {
@@ -83,31 +362,7 @@ module.exports = React.createClass({
 		}
 		if(this.state.firstOff === 'firstOff') {
 			firstOff = (
-				<div className="personnelBox">
-					<div className="position">FIRST OFFICER</div>
-					<div className="personnelImage">IMAGE</div>
-					<div className="personnelName">Name</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">#</div>
-					</div>
-				</div>
+				<div>{starshipFirstOfficer}</div>
 			);
 		}
 		else {
@@ -117,31 +372,7 @@ module.exports = React.createClass({
 		}
 		if(this.state.helmsman === 'helmsman') {
 			helmsman = (
-				<div className="personnelBox">
-					<div className="position">HELMSMAN</div>
-					<div className="personnelImage">IMAGE</div>
-					<div className="personnelName">Name</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">#</div>
-					</div>
-				</div>
+				<div>{starshipHelmsman}</div>
 			);
 		}
 		else {
@@ -151,31 +382,7 @@ module.exports = React.createClass({
 		}
 		if(this.state.tacOff === 'tacOff') {
 			tacOff = (
-				<div className="personnelBox">
-					<div className="position">TACTICAL OFFICER</div>
-					<div className="personnelImage">IMAGE</div>
-					<div className="personnelName">Name</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">#</div>
-					</div>
-				</div>
+				<div>{starshipTacticalOfficer}</div>
 			);
 		}
 		else {
@@ -185,31 +392,7 @@ module.exports = React.createClass({
 		}
 		if(this.state.medOff === 'medOff') {
 			medOff = (
-				<div className="personnelBox">
-					<div className="position">MEDICAL OFFICER</div>
-					<div className="personnelImage">IMAGE</div>
-					<div className="personnelName">Name</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">#</div>
-					</div>
-				</div>
+				<div>{starshipMedicalOfficer}</div>
 			);
 		}
 		else {
@@ -219,31 +402,7 @@ module.exports = React.createClass({
 		}
 		if(this.state.sciOff === 'sciOff') {
 			sciOff = (
-				<div className="personnelBox">
-					<div className="position">SCIENCE OFFICER</div>
-					<div className="personnelImage">IMAGE</div>
-					<div className="personnelName">Name</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">#</div>
-					</div>
-				</div>
+				<div>{starshipScienceOfficer}</div>
 			);
 		}
 		else {
@@ -253,31 +412,7 @@ module.exports = React.createClass({
 		}
 		if(this.state.engOff === 'engOff') {
 			engOff = (
-				<div className="personnelBox">
-					<div className="position">ENGINEERING OFFICER</div>
-					<div className="personnelImage">IMAGE</div>
-					<div className="personnelName">Name</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">#</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">#</div>
-					</div>
-				</div>
+				<div>{starshipEngineerOfficer}</div>
 			);
 		}
 		else {
@@ -287,16 +422,10 @@ module.exports = React.createClass({
 		}
 		return (
 			<div className="createCharacterContainer" onClick={this.onBackground}>
-				<a href="#sector/number" className="dashboardIcon" onClick={this.onReturn}>GO BACK</a>
+				<a href={'#sector-map/'+ this.props.characterId} className="dashboardIcon" onClick={this.onReturn}>GO BACK</a>
 				<a href="#" className="userSettingsIcon">USER SETTINGS</a>
 				<div className="statsContainer">
-					<div className="characterStatsBox">
-						<div className="characterName">Character Name</div>
-						<div className="characterXp">XP</div>
-						<div className="characterLevel">Level</div>
-						<div className="CharacterDilithium">Dilithium #</div>
-						<div className="goldPressedLatinum">Gold-Pressed Latinum #</div>
-					</div>
+					{currentCharacter}
 					{starship}
 					<div className="seniorStaffContainer">
 						{captain}
@@ -368,7 +497,7 @@ module.exports = React.createClass({
 		}
 	},
 	onReturn: function() {
-		this.props.router.navigate('sector/number', {trigger: true});
+		this.props.router.navigate('sector-map/'+ this.props.characterId, {trigger: true});
 	},
 	onChangeStarship: function(e) {
 		e.preventDefault();

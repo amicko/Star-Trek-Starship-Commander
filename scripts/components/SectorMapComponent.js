@@ -13,10 +13,6 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillMount: function() {
-		this.props.router.on('route', () => {
-			this.forceUpdate();
-		})
-
 		var SectorModel = Parse.Object.extend('SectorModel');
 		var Query = new Parse.Query(SectorModel);
 
@@ -85,10 +81,10 @@ module.exports = React.createClass({
 			<div className="sectorMapContainer">
 				<div className="userSettingsIcon">Image</div>
 				<div className="sectorMap">
-					<a href={'#sector/' + sector1Id} className="sectorBlock sector1">{sector1Name}</a>
-					<a href={'#sector/' + sector2Id} className="sectorBlock sector2">{sector2Name}</a>
-					<a href={'#sector/' + sector3Id} className="sectorBlock sector3">{sector3Name}</a>
-					<a href={'#sector/' + sector4Id} className="sectorBlock sector4">{sector4Name}</a>
+					<a href={'#sector/' +this.props.characterId+ '/'+ sector1Id} className="sectorBlock sector1">{sector1Name}</a>
+					<a href={'#sector/' +this.props.characterId+ '/'+ sector2Id} className="sectorBlock sector2">{sector2Name}</a>
+					<a href={'#sector/' +this.props.characterId+ '/'+ sector3Id} className="sectorBlock sector3">{sector3Name}</a>
+					<a href={'#sector/' +this.props.characterId+ '/'+ sector4Id} className="sectorBlock sector4">{sector4Name}</a>
 				</div>
 				<button className="dashboardButton" onClick={this.onDashboard}>DASHBOARD</button>
 			</div>

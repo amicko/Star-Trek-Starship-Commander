@@ -32,7 +32,7 @@ module.exports = React.createClass({
 		return (
 			<div className="titleContainer">
 				<div className="titlePicBox">
-					<div className="titlePic"></div>
+					<div className="titlePic"><span>STARSHIP COMMANDER</span></div>
 				</div>
 				<nav>
 					<button className="loginBtn" onClick={this.onLogin}>Login</button>

@@ -31703,6 +31703,68 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":29}],161:[function(require,module,exports){
 //dependencies
+"use strict";
+
+var React = require('react');
+
+//components
+
+module.exports = React.createClass({
+	displayName: "exports",
+
+	getInitialState: function getInitialState() {
+		return {
+			sector1: null
+		};
+	},
+	componentWillMount: function componentWillMount() {},
+	render: function render() {
+
+		return React.createElement(
+			"div",
+			{ className: "charStatsContainer" },
+			React.createElement(
+				"div",
+				{ className: "charStats" },
+				React.createElement(
+					"div",
+					null,
+					"Character: ",
+					this.props.name
+				),
+				React.createElement(
+					"div",
+					null,
+					"Level: ",
+					Math.round(this.props.level / 100)
+				),
+				React.createElement(
+					"div",
+					null,
+					"Starship: ",
+					this.props.starship
+				)
+			),
+			React.createElement(
+				"div",
+				{ className: "buttonContainer" },
+				React.createElement(
+					"button",
+					{ className: "charStatsButton", onClick: this.onClickEnter },
+					"ENTER"
+				)
+			)
+		);
+	},
+	onClickEnter: function onClickEnter(e) {
+		e.preventDefault();
+		console.log('button clicked');
+		this.props.router.navigate('sector-map/' + this.props.characterId, { trigger: true });
+	}
+});
+
+},{"react":160}],162:[function(require,module,exports){
+//dependencies
 'use strict';
 
 var React = require('react');
@@ -31714,6 +31776,15 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		return {
+			currentCharacter: [],
+			currentStarship: [],
+			currentStarshipCaptain: [],
+			currentStarshipFirstOfficer: [],
+			currentStarshipHelmsman: [],
+			currentStarshipTacticalOfficer: [],
+			currentStarshipMedicalOfficer: [],
+			currentStarshipScienceOfficer: [],
+			currentStarshipEngineerOfficer: [],
 			starship: 'starship',
 			captain: 'captain',
 			firstOff: 'firstOff',
@@ -31724,23 +31795,116 @@ module.exports = React.createClass({
 			engOff: 'engOff'
 		};
 	},
-	render: function render() {
-		var starship = null;
-		var captain = null;
-		var firstOff = null;
-		var helmsman = null;
-		var tacOff = null;
-		var medOff = null;
-		var sciOff = null;
-		var engOff = null;
+	componentWillMount: function componentWillMount() {
+		var _this = this;
 
-		if (this.state.starship === 'starship') {
-			starship = React.createElement(
+		var CharacterModel = Parse.Object.extend('CharacterModel');
+		var CharacterQuery = new Parse.Query(CharacterModel);
+		var currentCharacter = this.props.characterId;
+
+		CharacterQuery.equalTo('objectId', currentCharacter).find().then(function (character) {
+			_this.setState({
+				currentCharacter: character
+			});
+		});
+
+		var StarshipModel = Parse.Object.extend('StarshipModel');
+		var StarshipQuery = new Parse.Query(StarshipModel);
+
+		StarshipQuery.equalTo('characterId', currentCharacter);
+		StarshipQuery.include('Class').find().then(function (starship) {
+			_this.setState({
+				currentStarship: starship
+			});
+		});
+		StarshipQuery.include('Captain').find().then(function (captain) {
+			_this.setState({
+				currentStarshipCaptain: captain
+			});
+		});
+		StarshipQuery.include('FirstOfficer').find().then(function (firstOfficer) {
+			_this.setState({
+				currentStarshipFirstOfficer: firstOfficer
+			});
+		});
+		StarshipQuery.include('Helmsman').find().then(function (helmsman) {
+			_this.setState({
+				currentStarshipHelmsman: helmsman
+			});
+		});
+		StarshipQuery.include('TacOfficer').find().then(function (tacticalOfficer) {
+			_this.setState({
+				currentStarshipTacticalOfficer: tacticalOfficer
+			});
+		});
+		StarshipQuery.include('MedOfficer').find().then(function (medicalOfficer) {
+			_this.setState({
+				currentStarshipMedicalOfficer: medicalOfficer
+			});
+		});
+		StarshipQuery.include('SciOfficer').find().then(function (scienceOfficer) {
+			_this.setState({
+				currentStarshipScienceOfficer: scienceOfficer
+			});
+		});
+		StarshipQuery.include('EngOfficer').find().then(function (engineerOfficer) {
+			_this.setState({
+				currentStarshipEngineerOfficer: engineerOfficer
+			});
+		});
+	},
+	render: function render() {
+		var _this2 = this;
+
+		var currentCharacter = this.state.currentCharacter.map(function (character) {
+			return React.createElement(
+				'div',
+				{ className: 'characterStatsBox' },
+				React.createElement(
+					'div',
+					{ className: 'characterName' },
+					'NAME: ',
+					character.get('Name')
+				),
+				React.createElement(
+					'div',
+					{ className: 'characterXp' },
+					'XP: ',
+					character.get('XP')
+				),
+				React.createElement(
+					'div',
+					{ className: 'characterLevel' },
+					'LEVEL: ',
+					Math.round(character.get('XP') / 100)
+				),
+				React.createElement(
+					'div',
+					{ className: 'CharacterDilithium' },
+					'DILITHIUM: ',
+					character.get('Dilithium')
+				),
+				React.createElement(
+					'div',
+					{ className: 'goldPressedLatinum' },
+					'GOLD-PRESSED LATINUM: ',
+					character.get('GoldPressedLatinum')
+				)
+			);
+		});
+
+		var currentStarship = this.state.currentStarship.map(function (starship) {
+			return React.createElement(
 				'div',
 				{ className: 'starshipBox' },
 				React.createElement(
 					'div',
 					{ className: 'starshipStatsBox' },
+					React.createElement(
+						'div',
+						{ className: 'starshipName' },
+						starship.get('Name')
+					),
 					React.createElement(
 						'div',
 						{ className: 'starshipImage' },
@@ -31749,17 +31913,20 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'starshipStatBox' },
-						'Range'
+						'Range: ',
+						starship.get('Class').get('Range')
 					),
 					React.createElement(
 						'div',
 						{ className: 'starshipStatBox' },
-						'Weapons'
+						'Weapons: ',
+						starship.get('Class').get('Weapons')
 					),
 					React.createElement(
 						'div',
 						{ className: 'starshipStatBox' },
-						'Shields'
+						'Shields: ',
+						starship.get('Class').get('Shields')
 					)
 				),
 				React.createElement(
@@ -31767,21 +31934,15 @@ module.exports = React.createClass({
 					{ className: 'chooseStarshipBox' },
 					React.createElement(
 						'button',
-						{ className: 'changeStarship', onClick: this.onChangeStarship },
+						{ className: 'changeStarship', onClick: _this2.onChangeStarship },
 						'Change Starship'
 					)
 				)
 			);
-		} else {
-			starship = React.createElement(
-				'div',
-				{ className: 'starshipBox' },
-				'List Component'
-			);
-		}
+		});
 
-		if (this.state.captain === 'captain') {
-			captain = React.createElement(
+		var starshipCaptain = this.state.currentStarshipCaptain.map(function (person) {
+			return React.createElement(
 				'div',
 				{ className: 'personnelBox' },
 				React.createElement(
@@ -31797,7 +31958,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'personnelName' },
-					'Name'
+					person.get('Captain').get('Name')
 				),
 				React.createElement(
 					'div',
@@ -31810,7 +31971,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Captain').get('officer')
 					)
 				),
 				React.createElement(
@@ -31824,7 +31985,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Captain').get('security')
 					)
 				),
 				React.createElement(
@@ -31838,7 +31999,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Captain').get('medical')
 					)
 				),
 				React.createElement(
@@ -31852,7 +32013,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Captain').get('science')
 					)
 				),
 				React.createElement(
@@ -31866,19 +32027,14 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Captain').get('engineer')
 					)
 				)
 			);
-		} else {
-			captain = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.firstOff === 'firstOff') {
-			firstOff = React.createElement(
+		});
+
+		var starshipFirstOfficer = this.state.currentStarshipFirstOfficer.map(function (person) {
+			return React.createElement(
 				'div',
 				{ className: 'personnelBox' },
 				React.createElement(
@@ -31894,7 +32050,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'personnelName' },
-					'Name'
+					person.get('FirstOfficer').get('Name')
 				),
 				React.createElement(
 					'div',
@@ -31907,7 +32063,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('FirstOfficer').get('officer')
 					)
 				),
 				React.createElement(
@@ -31921,7 +32077,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('FirstOfficer').get('security')
 					)
 				),
 				React.createElement(
@@ -31935,7 +32091,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('FirstOfficer').get('medical')
 					)
 				),
 				React.createElement(
@@ -31949,7 +32105,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('FirstOfficer').get('science')
 					)
 				),
 				React.createElement(
@@ -31963,19 +32119,14 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('FirstOfficer').get('engineer')
 					)
 				)
 			);
-		} else {
-			firstOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.helmsman === 'helmsman') {
-			helmsman = React.createElement(
+		});
+
+		var starshipHelmsman = this.state.currentStarshipHelmsman.map(function (person) {
+			return React.createElement(
 				'div',
 				{ className: 'personnelBox' },
 				React.createElement(
@@ -31991,7 +32142,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'personnelName' },
-					'Name'
+					person.get('Helmsman').get('Name')
 				),
 				React.createElement(
 					'div',
@@ -32004,7 +32155,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Helmsman').get('officer')
 					)
 				),
 				React.createElement(
@@ -32018,7 +32169,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Helmsman').get('security')
 					)
 				),
 				React.createElement(
@@ -32032,7 +32183,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Helmsman').get('medical')
 					)
 				),
 				React.createElement(
@@ -32046,7 +32197,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Helmsman').get('science')
 					)
 				),
 				React.createElement(
@@ -32060,19 +32211,14 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('Helmsman').get('engineer')
 					)
 				)
 			);
-		} else {
-			helmsman = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.tacOff === 'tacOff') {
-			tacOff = React.createElement(
+		});
+
+		var starshipTacticalOfficer = this.state.currentStarshipTacticalOfficer.map(function (person) {
+			return React.createElement(
 				'div',
 				{ className: 'personnelBox' },
 				React.createElement(
@@ -32088,7 +32234,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'personnelName' },
-					'Name'
+					person.get('TacOfficer').get('Name')
 				),
 				React.createElement(
 					'div',
@@ -32101,7 +32247,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('TacOfficer').get('officer')
 					)
 				),
 				React.createElement(
@@ -32115,7 +32261,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('TacOfficer').get('security')
 					)
 				),
 				React.createElement(
@@ -32129,7 +32275,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('TacOfficer').get('medical')
 					)
 				),
 				React.createElement(
@@ -32143,7 +32289,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('TacOfficer').get('science')
 					)
 				),
 				React.createElement(
@@ -32157,19 +32303,14 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('TacOfficer').get('engineer')
 					)
 				)
 			);
-		} else {
-			tacOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.medOff === 'medOff') {
-			medOff = React.createElement(
+		});
+
+		var starshipMedicalOfficer = this.state.currentStarshipMedicalOfficer.map(function (person) {
+			return React.createElement(
 				'div',
 				{ className: 'personnelBox' },
 				React.createElement(
@@ -32185,7 +32326,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'personnelName' },
-					'Name'
+					person.get('MedOfficer').get('Name')
 				),
 				React.createElement(
 					'div',
@@ -32198,7 +32339,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('MedOfficer').get('officer')
 					)
 				),
 				React.createElement(
@@ -32212,7 +32353,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('MedOfficer').get('security')
 					)
 				),
 				React.createElement(
@@ -32226,7 +32367,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('MedOfficer').get('medical')
 					)
 				),
 				React.createElement(
@@ -32240,7 +32381,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('MedOfficer').get('science')
 					)
 				),
 				React.createElement(
@@ -32254,19 +32395,14 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('MedOfficer').get('engineer')
 					)
 				)
 			);
-		} else {
-			medOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.sciOff === 'sciOff') {
-			sciOff = React.createElement(
+		});
+
+		var starshipScienceOfficer = this.state.currentStarshipScienceOfficer.map(function (person) {
+			return React.createElement(
 				'div',
 				{ className: 'personnelBox' },
 				React.createElement(
@@ -32282,7 +32418,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'personnelName' },
-					'Name'
+					person.get('SciOfficer').get('Name')
 				),
 				React.createElement(
 					'div',
@@ -32295,7 +32431,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('SciOfficer').get('officer')
 					)
 				),
 				React.createElement(
@@ -32309,7 +32445,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('SciOfficer').get('security')
 					)
 				),
 				React.createElement(
@@ -32323,7 +32459,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('SciOfficer').get('medical')
 					)
 				),
 				React.createElement(
@@ -32337,7 +32473,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('SciOfficer').get('science')
 					)
 				),
 				React.createElement(
@@ -32351,9 +32487,197 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'box' },
-						'#'
+						person.get('SciOfficer').get('engineer')
 					)
 				)
+			);
+		});
+
+		var starshipEngineerOfficer = this.state.currentStarshipEngineerOfficer.map(function (person) {
+			return React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				React.createElement(
+					'div',
+					{ className: 'position' },
+					'ENGINEER OFFICER'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelImage' },
+					'IMAGE'
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelName' },
+					person.get('EngOfficer').get('Name')
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Officer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						person.get('EngOfficer').get('officer')
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Security'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						person.get('EngOfficer').get('security')
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Medical'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						person.get('EngOfficer').get('medical')
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Science'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						person.get('EngOfficer').get('science')
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'personnelStatBox' },
+					React.createElement(
+						'div',
+						{ className: 'stat' },
+						'Engineer'
+					),
+					React.createElement(
+						'div',
+						{ className: 'box' },
+						person.get('EngOfficer').get('engineer')
+					)
+				)
+			);
+		});
+
+		var starship = null;
+		var captain = null;
+		var firstOff = null;
+		var helmsman = null;
+		var tacOff = null;
+		var medOff = null;
+		var sciOff = null;
+		var engOff = null;
+
+		if (this.state.starship === 'starship') {
+			starship = React.createElement(
+				'div',
+				null,
+				currentStarship
+			);
+		} else {
+			starship = React.createElement(
+				'div',
+				{ className: 'starshipBox' },
+				'List Component'
+			);
+		}
+
+		if (this.state.captain === 'captain') {
+			captain = React.createElement(
+				'div',
+				null,
+				starshipCaptain
+			);
+		} else {
+			captain = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.firstOff === 'firstOff') {
+			firstOff = React.createElement(
+				'div',
+				null,
+				starshipFirstOfficer
+			);
+		} else {
+			firstOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.helmsman === 'helmsman') {
+			helmsman = React.createElement(
+				'div',
+				null,
+				starshipHelmsman
+			);
+		} else {
+			helmsman = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.tacOff === 'tacOff') {
+			tacOff = React.createElement(
+				'div',
+				null,
+				starshipTacticalOfficer
+			);
+		} else {
+			tacOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.medOff === 'medOff') {
+			medOff = React.createElement(
+				'div',
+				null,
+				starshipMedicalOfficer
+			);
+		} else {
+			medOff = React.createElement(
+				'div',
+				{ className: 'personnelBox' },
+				'List Component'
+			);
+		}
+		if (this.state.sciOff === 'sciOff') {
+			sciOff = React.createElement(
+				'div',
+				null,
+				starshipScienceOfficer
 			);
 		} else {
 			sciOff = React.createElement(
@@ -32365,92 +32689,8 @@ module.exports = React.createClass({
 		if (this.state.engOff === 'engOff') {
 			engOff = React.createElement(
 				'div',
-				{ className: 'personnelBox' },
-				React.createElement(
-					'div',
-					{ className: 'position' },
-					'ENGINEERING OFFICER'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelImage' },
-					'IMAGE'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelName' },
-					'Name'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Officer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				)
+				null,
+				starshipEngineerOfficer
 			);
 		} else {
 			engOff = React.createElement(
@@ -32464,7 +32704,7 @@ module.exports = React.createClass({
 			{ className: 'createCharacterContainer', onClick: this.onBackground },
 			React.createElement(
 				'a',
-				{ href: '#sector/number', className: 'dashboardIcon', onClick: this.onReturn },
+				{ href: '#sector-map/' + this.props.characterId, className: 'dashboardIcon', onClick: this.onReturn },
 				'GO BACK'
 			),
 			React.createElement(
@@ -32475,35 +32715,7 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'statsContainer' },
-				React.createElement(
-					'div',
-					{ className: 'characterStatsBox' },
-					React.createElement(
-						'div',
-						{ className: 'characterName' },
-						'Character Name'
-					),
-					React.createElement(
-						'div',
-						{ className: 'characterXp' },
-						'XP'
-					),
-					React.createElement(
-						'div',
-						{ className: 'characterLevel' },
-						'Level'
-					),
-					React.createElement(
-						'div',
-						{ className: 'CharacterDilithium' },
-						'Dilithium #'
-					),
-					React.createElement(
-						'div',
-						{ className: 'goldPressedLatinum' },
-						'Gold-Pressed Latinum #'
-					)
-				),
+				currentCharacter,
 				starship,
 				React.createElement(
 					'div',
@@ -32606,7 +32818,7 @@ module.exports = React.createClass({
 		}
 	},
 	onReturn: function onReturn() {
-		this.props.router.navigate('sector/number', { trigger: true });
+		this.props.router.navigate('sector-map/' + this.props.characterId, { trigger: true });
 	},
 	onChangeStarship: function onChangeStarship(e) {
 		e.preventDefault();
@@ -32706,7 +32918,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],162:[function(require,module,exports){
+},{"react":160}],163:[function(require,module,exports){
 //dependencies
 'use strict';
 
@@ -33710,161 +33922,71 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],163:[function(require,module,exports){
+},{"react":160}],164:[function(require,module,exports){
 //dependencies
 'use strict';
 
 var React = require('react');
 
 //components
+var CharacterListComponent = require('./CharacterListComponent.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			popup: null
+			popup: null,
+			characters: []
 		};
 	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		// var SectorModel = Parse.Object.extend('SectorModel');
+		// var Query = new Parse.Query(SectorModel);
+
+		// Query.equalTo('Name', 'Arawath Sector')
+		// .find().then((result) => {
+		// 	this.setState({
+		// 		sector1: result
+		// 	})
+		// })
+		var User = Parse.User.current();
+		var UserId = User.id;
+		// var CharacterModel = Parse.Object.extend('CharacterModel');
+		var Query = new Parse.Query('CharacterModel');
+		var InnerQuery = new Parse.Query('StarshipModel');
+
+		Query.equalTo('UserId', UserId);
+		// InnerQuery.equalTo('characterId', '9JJXd6NFGB');
+		// Query.matchesQuery('Starship', InnerQuery)
+		Query.include('Starship');
+		Query.find().then(function (result) {
+			_this.setState({
+				characters: result
+			});
+		});
+	},
 	render: function render() {
+		// console.log(this.state.characters);
+		var r = this.props.router;
+
+		var CharacterList = this.state.characters.map(function (character) {
+			return React.createElement(CharacterListComponent, { characterId: character.id, name: character.get('Name'), level: character.get('XP'), starship: character.get('Starship').get('Name'), dilithium: character.get('Dilithium'), gpl: character.get('GoldPressedLatinum'), router: r });
+		});
+
 		var dropDown = null;
 		if (this.state.popup === 'choose') {
 			dropDown = React.createElement(
 				'div',
-				null,
-				React.createElement(
-					'div',
-					{ className: 'charStatsContainer' },
-					React.createElement(
-						'div',
-						{ className: 'charStats' },
-						React.createElement(
-							'div',
-							null,
-							'Character name'
-						),
-						React.createElement(
-							'div',
-							null,
-							'Level'
-						),
-						React.createElement(
-							'div',
-							null,
-							'Starship'
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'buttonContainer' },
-						React.createElement(
-							'button',
-							{ className: 'charStatsButton', onClick: this.onEnter },
-							'ENTER'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'charStatsContainer' },
-					React.createElement(
-						'div',
-						{ className: 'charStats' },
-						React.createElement(
-							'div',
-							null,
-							'Character name'
-						),
-						React.createElement(
-							'div',
-							null,
-							'Level'
-						),
-						React.createElement(
-							'div',
-							null,
-							'Starship'
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'buttonContainer' },
-						React.createElement(
-							'button',
-							{ className: 'charStatsButton', onClick: this.onEnter },
-							'ENTER'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'charStatsContainer' },
-					React.createElement(
-						'div',
-						{ className: 'charStats' },
-						React.createElement(
-							'div',
-							null,
-							'Character name'
-						),
-						React.createElement(
-							'div',
-							null,
-							'Level'
-						),
-						React.createElement(
-							'div',
-							null,
-							'Starship'
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'buttonContainer' },
-						React.createElement(
-							'button',
-							{ className: 'charStatsButton', onClick: this.onEnter },
-							'ENTER'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'charStatsContainer' },
-					React.createElement(
-						'div',
-						{ className: 'charStats' },
-						React.createElement(
-							'div',
-							null,
-							'Character name'
-						),
-						React.createElement(
-							'div',
-							null,
-							'Level'
-						),
-						React.createElement(
-							'div',
-							null,
-							'Starship'
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'buttonContainer' },
-						React.createElement(
-							'button',
-							{ className: 'charStatsButton', onClick: this.onEnter },
-							'ENTER'
-						)
-					)
-				)
+				{ className: 'charStatsContainer' },
+				CharacterList
 			);
 		} else {
 			dropDown = React.createElement(
 				'span',
-				null,
+				{ className: 'span' },
 				'CHOOSE EXISTING CHARACTER'
 			);
 		}
@@ -33889,7 +34011,7 @@ module.exports = React.createClass({
 					{ href: '#create-character', className: 'optionBox' },
 					React.createElement(
 						'span',
-						null,
+						{ className: 'span' },
 						'CREATE NEW CHARACTER'
 					)
 				),
@@ -33903,7 +34025,7 @@ module.exports = React.createClass({
 					{ href: '#', className: 'optionBox' },
 					React.createElement(
 						'span',
-						null,
+						{ className: 'span' },
 						'HOW TO PLAY'
 					)
 				)
@@ -33939,13 +34061,14 @@ module.exports = React.createClass({
 			});
 		}
 	},
-	onEnter: function onEnter(e) {
-		e.preventDefault();
+	onEnter: function onEnter() {
+		// e.preventDefault();
+		console.log('to sector');
 		this.props.router.navigate('sector-map', { trigger: true });
 	}
 });
 
-},{"react":160}],164:[function(require,module,exports){
+},{"./CharacterListComponent.js":161,"react":160}],165:[function(require,module,exports){
 //dependencies
 'use strict';
 
@@ -33982,7 +34105,15 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'titlePicBox' },
-				React.createElement('div', { className: 'titlePic' })
+				React.createElement(
+					'div',
+					{ className: 'titlePic' },
+					React.createElement(
+						'span',
+						null,
+						'STARSHIP COMMANDER'
+					)
+				)
 			),
 			React.createElement(
 				'nav',
@@ -34027,7 +34158,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./LoginComponent.js":165,"./RegisterComponent.js":167,"react":160}],165:[function(require,module,exports){
+},{"./LoginComponent.js":166,"./RegisterComponent.js":169,"react":160}],166:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34057,11 +34188,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"form",
 					{ onSubmit: this.onLogin },
-					React.createElement(
-						"h1",
-						null,
-						"Login"
-					),
+					React.createElement("h1", null),
 					errorElement,
 					React.createElement(
 						"div",
@@ -34126,30 +34253,28 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],166:[function(require,module,exports){
+},{"react":160}],167:[function(require,module,exports){
 //dependencies
 'use strict';
 
 var React = require('react');
 
 //components
+var MissionStatsComponent = require('./MissionStatsComponent.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			missionDrop: 'missions',
+			mainBox: 'missions',
+			missionDrop: null,
 			sectorMissions: [],
 			sector: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
-
-		this.props.router.on('route', function () {
-			_this.forceUpdate();
-		});
 
 		var sectorId = this.props.sectorId;
 		var Query = new Parse.Query('MissionsModel');
@@ -34170,10 +34295,10 @@ module.exports = React.createClass({
 	render: function render() {
 		var _this2 = this;
 
-		var sectorMissions = this.state.sectorMissions.map(function (missions) {
+		var sectorMissions = this.state.sectorMissions.map(function (missions, index) {
 			return React.createElement(
 				'div',
-				{ className: 'sectorMission' },
+				{ key: 'mission' + index, className: 'sectorMission' },
 				React.createElement(
 					'div',
 					{ className: 'missionName' },
@@ -34186,10 +34311,17 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'button',
-					{ className: 'dropDownIcon', onClick: _this2.onMissionDropDown },
-					'Arrow'
+					{ className: 'dropDownIcon', onClick: function (e) {
+							_this2.onMissionDropDown(e, index);
+						} },
+					'Expand'
 				)
 			);
+		});
+
+		this.sectorMissionStats = this.state.sectorMissions.map(function (mission, index) {
+			var style = { display: 'none', 'zIndex': '999', 'backgroundColor': 'red', 'marginLeft': '-25em', width: '50%', float: 'right' };
+			return React.createElement(MissionStatsComponent, { toggle: _this2.onBackground, style: style, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), typeReq: mission.get('TypeReq'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL') });
 		});
 
 		var SectorStats = this.state.sector.map(function (sector) {
@@ -34220,8 +34352,7 @@ module.exports = React.createClass({
 		});
 
 		var dropDown = null;
-
-		if (this.state.missionDrop === 'missions') {
+		if (this.state.mainBox === 'missions') {
 			dropDown = React.createElement(
 				'div',
 				{ className: 'sectorMissionBlock' },
@@ -34230,8 +34361,8 @@ module.exports = React.createClass({
 		} else {
 			dropDown = React.createElement(
 				'div',
-				{ className: 'sectorMissionBlock' },
-				'Stuff'
+				null,
+				this.state.missionDrop
 			);
 		}
 
@@ -34240,7 +34371,7 @@ module.exports = React.createClass({
 			{ className: 'missionScreenContainer' },
 			React.createElement(
 				'a',
-				{ href: '#sector-map', className: 'sectorMapIcon' },
+				{ href: '#sector-map/' + this.props.characterId, className: 'sectorMapIcon' },
 				'Sector Map'
 			),
 			React.createElement(
@@ -34275,29 +34406,157 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'sectorBlockContainer' },
-				SectorStats,
-				dropDown
+				dropDown,
+				SectorStats
 			)
 		);
 	},
-	onCharStats: function onCharStats() {
-		this.props.router.navigate('character-stats/number', { trigger: true });
+	onBackground: function onBackground(e) {
+		this.setState({
+			mainBox: 'missions'
+		});
 	},
-	onMissionDropDown: function onMissionDropDown(e) {
+	onCharStats: function onCharStats() {
+		var User = Parse.User.current();
+		// console.log(User);
+		this.props.router.navigate('character-stats/' + this.props.characterId, { trigger: true });
+	},
+	onMissionDropDown: function onMissionDropDown(e, index) {
 		e.preventDefault();
-		if (this.state.missionDrop === 'missions') {
+		this.sectorMissionStats[index].props.style.display = 'block';
+		var shownComponent = this.sectorMissionStats[index];
+		this.setState({
+			missionDrop: shownComponent
+		});
+		if (this.state.mainBox === 'missions') {
 			this.setState({
-				missionDrop: null
+				mainBox: 'null'
 			});
 		} else {
 			this.setState({
-				missionDrop: 'missions'
+				mainBox: 'missions'
 			});
 		}
 	}
 });
 
-},{"react":160}],167:[function(require,module,exports){
+},{"./MissionStatsComponent.js":168,"react":160}],168:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ style: this.props.style, className: ' missionStatBlock' },
+			React.createElement(
+				'h3',
+				null,
+				this.props.missionName
+			),
+			React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'strong',
+					null,
+					'Lore:'
+				),
+				React.createElement('br', null),
+				this.props.missionLore
+			),
+			React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'strong',
+					null,
+					'Level Required:'
+				),
+				' ',
+				this.props.lvlReq
+			),
+			React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'strong',
+					null,
+					'Time to Complete:'
+				),
+				' ',
+				this.props.time,
+				' Minute'
+			),
+			React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'strong',
+					null,
+					'Senior Officer Needed:'
+				),
+				' ',
+				this.props.typeReq
+			),
+			React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'strong',
+					null,
+					'Stat Used:'
+				),
+				' ',
+				this.props.neededStat
+			),
+			React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'strong',
+					null,
+					'XP Value:'
+				),
+				' ',
+				this.props.rewardXP
+			),
+			React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'strong',
+					null,
+					'Gold-Pressed Latinum Value:'
+				),
+				' ',
+				this.props.rewardGPL
+			),
+			React.createElement(
+				'button',
+				{ onClick: this.onToggle },
+				'Minimize'
+			),
+			React.createElement(
+				'button',
+				{ onClick: this.doMission },
+				'Attempt Mission'
+			)
+		);
+	},
+	onToggle: function onToggle() {
+		this.props.toggle();
+	},
+	doMission: function doMission() {
+		console.log('Mission Attempted');
+	}
+});
+
+},{"react":160}],169:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34326,11 +34585,7 @@ module.exports = React.createClass({
 				React.createElement(
 					"form",
 					{ onSubmit: this.onRegister },
-					React.createElement(
-						"h1",
-						null,
-						"Register"
-					),
+					React.createElement("h1", null),
 					errorElement,
 					React.createElement(
 						"div",
@@ -34398,7 +34653,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],168:[function(require,module,exports){
+},{"react":160}],170:[function(require,module,exports){
 //dependencies
 'use strict';
 
@@ -34419,10 +34674,6 @@ module.exports = React.createClass({
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
-
-		this.props.router.on('route', function () {
-			_this.forceUpdate();
-		});
 
 		var SectorModel = Parse.Object.extend('SectorModel');
 		var Query = new Parse.Query(SectorModel);
@@ -34497,22 +34748,22 @@ module.exports = React.createClass({
 				{ className: 'sectorMap' },
 				React.createElement(
 					'a',
-					{ href: '#sector/' + sector1Id, className: 'sectorBlock sector1' },
+					{ href: '#sector/' + this.props.characterId + '/' + sector1Id, className: 'sectorBlock sector1' },
 					sector1Name
 				),
 				React.createElement(
 					'a',
-					{ href: '#sector/' + sector2Id, className: 'sectorBlock sector2' },
+					{ href: '#sector/' + this.props.characterId + '/' + sector2Id, className: 'sectorBlock sector2' },
 					sector2Name
 				),
 				React.createElement(
 					'a',
-					{ href: '#sector/' + sector3Id, className: 'sectorBlock sector3' },
+					{ href: '#sector/' + this.props.characterId + '/' + sector3Id, className: 'sectorBlock sector3' },
 					sector3Name
 				),
 				React.createElement(
 					'a',
-					{ href: '#sector/' + sector4Id, className: 'sectorBlock sector4' },
+					{ href: '#sector/' + this.props.characterId + '/' + sector4Id, className: 'sectorBlock sector4' },
 					sector4Name
 				)
 			),
@@ -34529,7 +34780,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],169:[function(require,module,exports){
+},{"react":160}],171:[function(require,module,exports){
 'use strict';
 //dependencies
 var React = require('react');
@@ -34555,9 +34806,9 @@ var Router = Backbone.Router.extend({
 		'': 'home',
 		'dashboard': 'dashboard',
 		'create-character': 'createCharacter',
-		'sector-map': 'sectorMap',
-		'sector/:id': 'sectorMissions',
-		'character-stats/number': 'characterStats',
+		'sector-map/:characterId': 'sectorMap',
+		'sector/:characterId/:sectorId': 'sectorMissions',
+		'character-stats/:characterId': 'characterStats',
 		'settings': 'settings'
 	},
 	home: function home() {
@@ -34574,14 +34825,14 @@ var Router = Backbone.Router.extend({
 	createCharacter: function createCharacter() {
 		ReactDom.render(React.createElement(CreateCharacterComponent, { router: r }), main);
 	},
-	sectorMap: function sectorMap() {
-		ReactDom.render(React.createElement(SectorMapComponent, { router: r }), main);
+	sectorMap: function sectorMap(characterId) {
+		ReactDom.render(React.createElement(SectorMapComponent, { characterId: characterId, router: r }), main);
 	},
-	sectorMissions: function sectorMissions(id) {
-		ReactDom.render(React.createElement(MissionComponent, { sectorId: id, router: r }), main);
+	sectorMissions: function sectorMissions(characterId, sectorId) {
+		ReactDom.render(React.createElement(MissionComponent, { characterId: characterId, sectorId: sectorId, router: r }), main);
 	},
-	characterStats: function characterStats() {
-		ReactDom.render(React.createElement(CharacterStatsComponent, { router: r }), main);
+	characterStats: function characterStats(characterId) {
+		ReactDom.render(React.createElement(CharacterStatsComponent, { characterId: characterId, router: r }), main);
 	},
 	settings: function settings() {}
 });
@@ -34594,7 +34845,7 @@ function onLogout() {
 	// this.props.router.navigate('', {trigger: true});
 }
 
-},{"./components/CharacterStatsComponent.js":161,"./components/CreateCharacterComponent.js":162,"./components/DashboardComponent.js":163,"./components/HomeComponent.js":164,"./components/MissionComponent.js":166,"./components/SectorMapComponent.js":168,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[169])
+},{"./components/CharacterStatsComponent.js":162,"./components/CreateCharacterComponent.js":163,"./components/DashboardComponent.js":164,"./components/HomeComponent.js":165,"./components/MissionComponent.js":167,"./components/SectorMapComponent.js":170,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[171])
 
 
 //# sourceMappingURL=bundle.js.map

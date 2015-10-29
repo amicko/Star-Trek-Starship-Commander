@@ -1,28 +1,32 @@
 .dashboardContainer {
 	background-color: lightgrey;
 	overflow: hidden;
+	height: 97vh;
+	// background: no-repeat center/100% url("../images/brushed2.jpg");
 
 	.optionBoxContainer {
 		clear: both;
 		width: 65em;
-		margin: 0 auto;
+		margin: 10em auto;
 		margin-bottom: 1px;
 		overflow: hidden;
 
 		.optionBox {
 			color: red;
-			height: 25em;
+			height: 30em;
 			width: 18em;
 			border: 0.75em solid grey;
 			border-style: outset;
 			float: left;
 			margin: 1px 1em;
 			overflow: scroll;
+			text-align: center;
+			// background: no-repeat center/100% url("../images/metal-frame.jpg");
 
-			span {
+			.span {
 				display: block;
-				text-align: center;
-				margin-top: 4em;
+				// text-align: center;
+				margin-top: 5.5em;
 				font-size: 2em;
 			}
 
@@ -31,13 +35,18 @@
 				width: 100%;
 				border: 4px outset black;
 				overflow: hidden;
+				padding-top: 1px;
 
 				.charStats {
+					text-align: left;
+					display: inline;
+					width: 60%;
 					color: green;
-					margin: 0.5em;
+					margin: 1em auto;
 					float: left;
 					font-weight: bold;
-					font-size: 1.3em;
+					font-size: 1em;
+					// border: 2px solid black;
 				}
 
 				.buttonContainer {
@@ -59,7 +68,7 @@
 		display: block;
 		height: 5em;
 		width: 60em;
-		margin: 2em auto;
+		margin: 5em auto;
 		clear: both;
 
 		.footerImage {

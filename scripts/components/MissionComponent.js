@@ -2,19 +2,19 @@
 var React = require('react');
 
 //components
+var MissionStatsComponent = require('./MissionStatsComponent.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
-			missionDrop: 'missions',
+			mainBox: 'missions',
+			missionDrop: null,
 			sectorMissions: [],
 			sector: []
 		};
 	},
 	componentWillMount: function() {
-		this.props.router.on('route', () => {
-			this.forceUpdate();
-		})
+		
 
 		var sectorId = this.props.sectorId;
 		var Query = new Parse.Query('MissionsModel');
@@ -35,14 +35,20 @@ module.exports = React.createClass({
 		})
 	},
 	render: function() {
-
-		var sectorMissions = this.state.sectorMissions.map((missions) => {
+		var sectorMissions = this.state.sectorMissions.map((missions, index) => {
 			return (
-				<div className="sectorMission">
-					<div className="missionName">{missions.get('Name')}</div>
-					<div className="missionTeaser">{missions.get('Lore')}</div>
-					<button className="dropDownIcon" onClick={this.onMissionDropDown}>Arrow</button>
-				</div>
+					<div key={'mission'+index} className="sectorMission">
+						<div className="missionName">{missions.get('Name')}</div>
+						<div className="missionTeaser">{missions.get('Lore')}</div>
+						<button className="dropDownIcon" onClick={(e) => {this.onMissionDropDown(e, index)}}>Expand</button>
+					</div>
+			)
+		})
+
+		this.sectorMissionStats = this.state.sectorMissions.map((mission, index) => {
+			var style = {display: 'none', 'zIndex': '999', 'backgroundColor': 'red', 'marginLeft': '-25em', width: '50%', float: 'right'};
+			return (
+				<MissionStatsComponent toggle={this.onBackground} style={style} key={index} missionName={mission.get('Name')} missionLore={mission.get('Lore')} lvlReq={mission.get('lvlReq')} time={mission.get('TimeToCompletion')} typeReq={mission.get('TypeReq')} neededStat={mission.get('NeededStat')} rewardXP={mission.get('RewardXP')} rewardGPL={mission.get('RewardGPL')} />
 			)
 		})
 
@@ -59,8 +65,7 @@ module.exports = React.createClass({
 		})
 
 		var dropDown = null;
-
-		if(this.state.missionDrop === 'missions') {
+		if(this.state.mainBox === 'missions') {
 			dropDown = (
 				<div className="sectorMissionBlock">
 						{sectorMissions}
@@ -69,15 +74,13 @@ module.exports = React.createClass({
 		}
 		else {
 			dropDown = (
-				<div className="sectorMissionBlock">
-						Stuff
-				</div>
+				<div>{this.state.missionDrop}</div>
 			)
 		}
 
 		return (
 			<div className="missionScreenContainer">
-				<a href="#sector-map"className="sectorMapIcon">Sector Map</a>
+				<a href={'#sector-map/' + this.props.characterId}className="sectorMapIcon">Sector Map</a>
 				<a href="#" className="userSettingsIcon">User Settings</a>
 				<div className="userHUD">
 					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>Character Name</button>
@@ -86,25 +89,37 @@ module.exports = React.createClass({
 					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>Starship Name</button>
 				</div>
 				<div className="sectorBlockContainer">
-					{SectorStats}
 					{dropDown}
+					{SectorStats}
 				</div>
 			</div>
 		)
 	},
-	onCharStats: function() {
-		this.props.router.navigate('character-stats/number', {trigger: true});
+	onBackground: function(e) {
+		this.setState({
+			mainBox: 'missions'
+		})
 	},
-	onMissionDropDown: function(e) {
+	onCharStats: function() {
+		var User = Parse.User.current();
+		// console.log(User);
+		this.props.router.navigate('character-stats/' + this.props.characterId, {trigger: true});
+	},
+	onMissionDropDown: function(e, index) {
 		e.preventDefault();
-		if(this.state.missionDrop === 'missions') {
+		this.sectorMissionStats[index].props.style.display = 'block';
+		var shownComponent = this.sectorMissionStats[index]
+		this.setState({
+			missionDrop: shownComponent
+		});
+		if(this.state.mainBox === 'missions') {
 			this.setState({
-				missionDrop: null
+				mainBox: 'null'
 			});
 		}
 		else {
 			this.setState({
-				missionDrop: 'missions'
+				mainBox: 'missions'
 			})
 		}
 	}

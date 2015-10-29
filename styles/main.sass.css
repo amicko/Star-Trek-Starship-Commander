@@ -1,77 +1,129 @@
 .titleContainer {
   background-color: #2B2626;
-  padding: 5em 0 7em 0; }
+  padding: 5em 0 7em 0;
+  height: 77vh;
+  background: no-repeat center/100% url("../images/brushed2.jpg"); }
   .titleContainer .titlePic {
-    background-color: grey;
-    height: 25em; }
+    color: #ffffff;
+    text-align: center;
+    background-color: black;
+    height: 25em;
+    background: no-repeat center/100% url("../images/startreklogo.jpg"); }
+    .titleContainer .titlePic span {
+      font-size: 3em;
+      position: relative;
+      top: 6.5em;
+      font-family: 'Orbitron', sans-serif;
+      color: #7D7072;
+      background: -webkit-linear-gradient(#eee, #333);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; }
   .titleContainer nav {
     margin-bottom: 1em;
     padding: 1em;
-    background-color: #000000; }
-    .titleContainer nav .loginBtn {
+    background-color: #000000;
+    background: linear-gradient(#423D3D, #7D7072); }
+    .titleContainer nav button {
       background-color: #000000;
+      background: linear-gradient(#423D3D, #7D7072);
       border: none;
       color: #ffffff;
       font-size: 2em;
-      margin: 0 0.5em; }
-    .titleContainer nav .registerBtn {
+      margin: 0 0.5em;
+      border-radius: 10px;
+      padding: 0 0.5em;
+      font-family: 'Orbitron', sans-serif; }
+    .titleContainer nav button:hover {
       background-color: #000000;
+      background: linear-gradient(#110E0F, #7D7072);
       border: none;
-      color: #ffffff;
-      font-size: 2em;
-      margin: 0 0.5em; }
+      color: #ffffff; }
   .titleContainer .dropDownBox {
+    color: #ffffff;
     display: block;
     z-index: 9999;
     margin: 0 auto;
     width: 50%;
-    border: 2px solid #000000;
+    border: 5px solid #423D3D;
+    border-style: outset;
+    border-radius: 10px;
     background-color: grey;
-    padding: 0 2em; }
+    padding: 0 2em;
+    background: no-repeat center/100% url("../images/drop-box.jpg");
+    font-family: 'Orbitron', sans-serif;
+    font-weight: none; }
+    .titleContainer .dropDownBox label {
+      display: block;
+      font-size: 1.5em;
+      padding: 0.5em; }
     .titleContainer .dropDownBox input {
       display: block;
       width: 99%;
-      margin: 0 auto; }
+      margin: 0 auto;
+      font-size: 1.5em;
+      background-color: green; }
+    .titleContainer .dropDownBox input:-webkit-autofill {
+      -webkit-box-shadow: 5px 5px 5px 1000px #423D3D inset;
+      -webkit-text-fill-color: #ffffff !important; }
     .titleContainer .dropDownBox button {
       display: block;
-      margin: 1em auto;
-      height: 3em;
-      width: 8em; }
+      margin: 0.5em auto;
+      height: 1.5em;
+      width: 6em;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: none;
+      font-size: 1.5em;
+      background-color: #000000;
+      background: linear-gradient(#423D3D, #7D7072);
+      border: none;
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 0 1em; }
+    .titleContainer .dropDownBox button:hover {
+      background-color: #000000;
+      background: linear-gradient(#110E0F, #7D7072);
+      border: none;
+      color: #ffffff; }
 
 .dashboardContainer {
   background-color: lightgrey;
-  overflow: hidden; }
+  overflow: hidden;
+  height: 97vh; }
   .dashboardContainer .optionBoxContainer {
     clear: both;
     width: 65em;
-    margin: 0 auto;
+    margin: 10em auto;
     margin-bottom: 1px;
     overflow: hidden; }
     .dashboardContainer .optionBoxContainer .optionBox {
       color: red;
-      height: 25em;
+      height: 30em;
       width: 18em;
       border: 0.75em solid grey;
       border-style: outset;
       float: left;
       margin: 1px 1em;
-      overflow: scroll; }
-      .dashboardContainer .optionBoxContainer .optionBox span {
+      overflow: scroll;
+      text-align: center; }
+      .dashboardContainer .optionBoxContainer .optionBox .span {
         display: block;
-        text-align: center;
-        margin-top: 4em;
+        margin-top: 5.5em;
         font-size: 2em; }
       .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer {
         color: black;
         width: 100%;
         border: 4px outset black;
-        overflow: hidden; }
+        overflow: hidden;
+        padding-top: 1px; }
         .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats {
+          text-align: left;
+          display: inline;
+          width: 60%;
           color: green;
-          margin: 0.5em;
+          margin: 1em auto;
           float: left;
           font-weight: bold;
-          font-size: 1.3em; }
+          font-size: 1em; }
         .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer {
           float: right;
           padding: 2em 0.5em 2em 0.5em;
@@ -84,7 +136,7 @@
     display: block;
     height: 5em;
     width: 60em;
-    margin: 2em auto;
+    margin: 5em auto;
     clear: both; }
     .dashboardContainer .footerBox .footerImage {
       display: block;
@@ -148,7 +200,7 @@
     margin: 1em auto; }
 
 .missionScreenContainer {
-  background-color: grey; }
+  z-index: 1; }
   .missionScreenContainer .userHUD {
     clear: both;
     border: 3px solid black;
@@ -306,6 +358,7 @@
           .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatBox .stat {
             float: left; }
           .createCharacterContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatBox .box {
+            padding: 0.2em;
             float: right;
             border: 2px solid black; }
       .createCharacterContainer .statsContainer .seniorStaffContainer .buttons {
@@ -317,6 +370,9 @@
 
 a {
   text-decoration: none; }
+
+body {
+  background: no-repeat center/100% url("../images/brushed2.jpg"); }
 
 .sectorMapIcon {
   display: block;
