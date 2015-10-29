@@ -1,5 +1,6 @@
 .missionScreenContainer {
-	background-color: grey;
+	// background-color: grey;
+	z-index: 1;
 
 	.userHUD {
 		clear: both;
@@ -87,3 +88,5 @@
 		}
 	}
 }
+
+

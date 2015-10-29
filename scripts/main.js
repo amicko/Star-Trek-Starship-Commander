@@ -23,9 +23,9 @@ var Router = Backbone.Router.extend({
 		'': 'home',
 		'dashboard': 'dashboard',
 		'create-character': 'createCharacter',
-		'sector-map': 'sectorMap',
-		'sector/:id': 'sectorMissions',
-		'character-stats/number': 'characterStats',
+		'sector-map/:characterId': 'sectorMap',
+		'sector/:characterId/:sectorId': 'sectorMissions',
+		'character-stats/:characterId': 'characterStats',
 		'settings': 'settings'
 	},
 	home: function() {
@@ -43,14 +43,14 @@ var Router = Backbone.Router.extend({
 	createCharacter: function() {
 		ReactDom.render(<CreateCharacterComponent router={r}/>, main)
 	},
-	sectorMap: function() {
-		ReactDom.render(<SectorMapComponent router={r}/>, main)
+	sectorMap: function(characterId) {
+		ReactDom.render(<SectorMapComponent characterId={characterId} router={r}/>, main)
 	},
-	sectorMissions: function(id) {
-		ReactDom.render(<MissionComponent sectorId={id} router={r}/>, main)
+	sectorMissions: function(characterId, sectorId) {
+		ReactDom.render(<MissionComponent characterId={characterId} sectorId={sectorId} router={r}/>, main)
 	},
-	characterStats: function() {
-		ReactDom.render(<CharacterStatsComponent router={r}/>, main)
+	characterStats: function(characterId) {
+		ReactDom.render(<CharacterStatsComponent characterId={characterId} router={r}/>, main)
 	},
 	settings: function() {
 

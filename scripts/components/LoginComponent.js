@@ -16,7 +16,7 @@ module.exports = React.createClass({
 			<div className="dropDownBox">
 				<div>
 					<form onSubmit={this.onLogin}>
-						<h1>Login</h1>
+						<h1></h1>
 						{errorElement}
 						<div>
 							<div>

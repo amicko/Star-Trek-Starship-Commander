@@ -1,53 +1,119 @@
 .titleContainer{
 	background-color: #2B2626;
 	padding: 5em 0 7em 0;
+	height: 77vh;
+	background: no-repeat center/100% url("../images/brushed2.jpg");
 
 	.titlePic {
-		background-color: grey;
+		color: #ffffff;
+		text-align: center;
+		background-color: black;
 		height: 25em;
+		background: no-repeat center/100% url("../images/startreklogo.jpg");
+
+		span {
+			font-size: 3em;
+			position: relative;
+			top: 6.5em;
+			font-family: 'Orbitron', sans-serif;
+			color: #7D7072;
+			background: -webkit-linear-gradient(#eee, #333);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
 	}
 
 	nav {
 		margin-bottom: 1em;
 		padding: 1em;
 		background-color: #000000;
+		background: linear-gradient(#423D3D, #7D7072);
 
-		.loginBtn {
+		button {
 			background-color: #000000;
+			background: linear-gradient(#423D3D, #7D7072);
 			border: none;
 			color: #ffffff;
 			font-size: 2em;
 			margin: 0 0.5em;
+			border-radius: 10px;
+			padding: 0 0.5em;
+			font-family: 'Orbitron', sans-serif;
+
 		}
 
-		.registerBtn {
+		button:hover {
 			background-color: #000000;
+			background: linear-gradient(#110E0F, #7D7072);
 			border: none;
 			color: #ffffff;
-			font-size: 2em;
-			margin: 0 0.5em;
 		}
+
+		// .registerBtn {
+		// 	background-color: #000000;
+		// 	border: none;
+		// 	color: #ffffff;
+		// 	font-size: 2em;
+		// 	margin: 0 0.5em;
+		// }
 	}
 
 	.dropDownBox {
+			color: #ffffff;
 			display: block;
 			z-index: 9999;
 			margin: 0 auto;
 			width: 50%;
-			border: 2px solid #000000;
+			border: 5px solid #423D3D;
+			border-style: outset;
+			border-radius: 10px;
 			background-color: grey;
 			padding: 0 2em;
+			background: no-repeat center/100% url("../images/drop-box.jpg");
+			font-family: 'Orbitron', sans-serif;
+			font-weight: none;
+			// opacity: 0.4;
 
-			input {
+			label {
+				display: block;
+				font-size: 1.5em;
+				padding: 0.5em;
+			}
+
+			input{
 				display: block;
 				width: 99%;
 				margin: 0 auto;
+				font-size: 1.5em;
+				background-color: green;
 			}
+
+			input:-webkit-autofill {
+				-webkit-box-shadow: 5px 5px 5px 1000px #423D3D inset;
+				-webkit-text-fill-color: #ffffff !important;
+			}
+
 			button {
 				display: block;
-				margin: 1em auto;
-				height: 3em;
-				width: 8em;
+				margin: 0.5em auto;
+				height: 1.5em;
+				width: 6em;
+				font-family: 'Orbitron', sans-serif;
+				font-weight: none;
+				font-size: 1.5em;
+				background-color: #000000;
+				background: linear-gradient(#423D3D, #7D7072);
+				border: none;
+				color: #ffffff;
+				border-radius: 10px;
+				padding: 0 1em;
+			}
+
+			button:hover {
+				background-color: #000000;
+				background: linear-gradient(#110E0F, #7D7072);
+				border: none;
+				color: #ffffff;
 			}
 	}
 }
