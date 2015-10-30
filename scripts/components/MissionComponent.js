@@ -46,7 +46,7 @@ module.exports = React.createClass({
 		})
 
 		this.sectorMissionStats = this.state.sectorMissions.map((mission, index) => {
-			var style = {display: 'none', 'zIndex': '999', 'backgroundColor': 'red', 'marginLeft': '-25em', width: '50%', float: 'right'};
+			var style = {display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '50%', height: '75.5vh', float: 'right'};
 			return (
 				<MissionStatsComponent toggle={this.onBackground} style={style} key={index} missionName={mission.get('Name')} missionLore={mission.get('Lore')} lvlReq={mission.get('lvlReq')} time={mission.get('TimeToCompletion')} typeReq={mission.get('TypeReq')} neededStat={mission.get('NeededStat')} rewardXP={mission.get('RewardXP')} rewardGPL={mission.get('RewardGPL')} />
 			)
@@ -56,7 +56,7 @@ module.exports = React.createClass({
 			return (
 				<div className="sectorLoreBlock">
 					<h3>{sector.get('Name')}</h3>
-					<div className="sectorImage">SectorImage</div>
+					<div className="sectorImage"></div>
 					<div className="sectorLoreTitle">Sector Lore</div>
 					<div className="sectorLore">{sector.get('Lore')}
 					</div>
@@ -80,8 +80,8 @@ module.exports = React.createClass({
 
 		return (
 			<div className="missionScreenContainer">
-				<a href={'#sector-map/' + this.props.characterId}className="sectorMapIcon">Sector Map</a>
-				<a href="#" className="userSettingsIcon">User Settings</a>
+				<a href={'#sector-map/' + this.props.characterId}className="sectorMapIcon"></a>
+				<a href="#" className="userSettingsIcon"></a>
 				<div className="userHUD">
 					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>Character Name</button>
 					<div className="HUDFiller">Dilithium Amount</div>

@@ -79,7 +79,7 @@ module.exports = React.createClass({
 
 		return (
 			<div className="sectorMapContainer">
-				<div className="userSettingsIcon">Image</div>
+				<div className="userSettingsIcon"></div>
 				<div className="sectorMap">
 					<a href={'#sector/' +this.props.characterId+ '/'+ sector1Id} className="sectorBlock sector1">{sector1Name}</a>
 					<a href={'#sector/' +this.props.characterId+ '/'+ sector2Id} className="sectorBlock sector2">{sector2Name}</a>

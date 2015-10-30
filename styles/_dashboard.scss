@@ -1,5 +1,5 @@
 .dashboardContainer {
-	background-color: lightgrey;
+	// background-color: lightgrey;
 	overflow: hidden;
 	height: 97vh;
 	// background: no-repeat center/100% url("../images/brushed2.jpg");
@@ -15,13 +15,15 @@
 			color: red;
 			height: 30em;
 			width: 18em;
-			border: 0.75em solid grey;
+			border: 0.1em solid grey;
 			border-style: outset;
+			border-radius: 15px;
 			float: left;
 			margin: 1px 1em;
 			overflow: scroll;
 			text-align: center;
-			// background: no-repeat center/100% url("../images/metal-frame.jpg");
+			// background: no-repeat center/100% url("../images/glass-texture.jpg")
+			background: no-repeat center/300% url("../images/glass-texture.jpg");
 
 			.span {
 				display: block;
@@ -62,7 +64,30 @@
 				}
 			}
 		}
-	}
+
+		.optionBox:hover {
+			border-style: inset;
+			opacity: 0.8;
+		}
+
+		.gradient-box{
+		    border-radius: 30px;
+		    border: 0.2em solid transparent;
+		    -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+		    -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+		    border-image: linear-gradient(to bottom, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+		    border-image-slice: 1;
+		}
+
+		.gradient-box:hover {
+			border-radius: 30px;
+		    border: 0.4em solid transparent;
+		    -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
+		    -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
+		    border-image: linear-gradient(to bottom, #FAEFED 0%, green 50%, #FAEFED 100%);
+		    border-image-slice: 1;
+		}
+		}
 
 	.footerBox {
 		display: block;

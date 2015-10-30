@@ -1,8 +1,11 @@
 .titleContainer{
 	background-color: #2B2626;
+	// min-height: 100em;
 	padding: 5em 0 7em 0;
 	height: 77vh;
+	// height: 100em;
 	background: no-repeat center/100% url("../images/brushed2.jpg");
+	background-size: auto;
 
 	.titlePic {
 		color: #ffffff;

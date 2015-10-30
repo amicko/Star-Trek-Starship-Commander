@@ -33976,22 +33976,14 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'dashboardContainer', onClick: this.onBackground },
-			React.createElement(
-				'a',
-				{ href: '#', className: 'dashboardIcon' },
-				'LOBBY'
-			),
-			React.createElement(
-				'a',
-				{ href: '#', className: 'userSettingsIcon' },
-				'USER SETTINGS'
-			),
+			React.createElement('a', { href: '#', className: 'dashboardIcon' }),
+			React.createElement('a', { href: '#', className: 'userSettingsIcon' }),
 			React.createElement(
 				'div',
 				{ className: 'optionBoxContainer' },
 				React.createElement(
 					'a',
-					{ href: '#create-character', className: 'optionBox' },
+					{ href: '#create-character', className: 'optionBox gradient-box' },
 					React.createElement(
 						'span',
 						{ className: 'span' },
@@ -34000,12 +33992,12 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'a',
-					{ href: '#', className: 'optionBox', onClick: this.onChoose },
+					{ href: '#', className: 'optionBox gradient-box', onClick: this.onChoose },
 					dropDown
 				),
 				React.createElement(
 					'a',
-					{ href: '#', className: 'optionBox' },
+					{ href: '#', className: 'optionBox gradient-box' },
 					React.createElement(
 						'span',
 						{ className: 'span' },
@@ -34303,7 +34295,7 @@ module.exports = React.createClass({
 		});
 
 		this.sectorMissionStats = this.state.sectorMissions.map(function (mission, index) {
-			var style = { display: 'none', 'zIndex': '999', 'backgroundColor': 'red', 'marginLeft': '-25em', width: '50%', float: 'right' };
+			var style = { display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '50%', height: '75.5vh', float: 'right' };
 			return React.createElement(MissionStatsComponent, { toggle: _this2.onBackground, style: style, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), typeReq: mission.get('TypeReq'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL') });
 		});
 
@@ -34316,11 +34308,7 @@ module.exports = React.createClass({
 					null,
 					sector.get('Name')
 				),
-				React.createElement(
-					'div',
-					{ className: 'sectorImage' },
-					'SectorImage'
-				),
+				React.createElement('div', { className: 'sectorImage' }),
 				React.createElement(
 					'div',
 					{ className: 'sectorLoreTitle' },
@@ -34352,16 +34340,8 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'missionScreenContainer' },
-			React.createElement(
-				'a',
-				{ href: '#sector-map/' + this.props.characterId, className: 'sectorMapIcon' },
-				'Sector Map'
-			),
-			React.createElement(
-				'a',
-				{ href: '#', className: 'userSettingsIcon' },
-				'User Settings'
-			),
+			React.createElement('a', { href: '#sector-map/' + this.props.characterId, className: 'sectorMapIcon' }),
+			React.createElement('a', { href: '#', className: 'userSettingsIcon' }),
 			React.createElement(
 				'div',
 				{ className: 'userHUD' },
@@ -34721,11 +34701,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'sectorMapContainer' },
-			React.createElement(
-				'div',
-				{ className: 'userSettingsIcon' },
-				'Image'
-			),
+			React.createElement('div', { className: 'userSettingsIcon' }),
 			React.createElement(
 				'div',
 				{ className: 'sectorMap' },

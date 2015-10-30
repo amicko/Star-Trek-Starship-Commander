@@ -62,12 +62,12 @@ module.exports = React.createClass({
 		}
 		return (
 			<div className="dashboardContainer" onClick={this.onBackground}>
-				<a href="#"className="dashboardIcon">LOBBY</a>
-				<a href="#"className="userSettingsIcon">USER SETTINGS</a>
+				<a href="#"className="dashboardIcon"></a>
+				<a href="#"className="userSettingsIcon"></a>
 				<div className="optionBoxContainer">
-					<a href="#create-character" className="optionBox"><span className="span">CREATE NEW CHARACTER</span></a>
-					<a href="#" className="optionBox" onClick={this.onChoose}>{dropDown}</a>
-					<a href="#" className="optionBox"><span className="span">HOW TO PLAY</span></a>
+					<a href="#create-character" className="optionBox gradient-box"><span className="span">CREATE NEW CHARACTER</span></a>
+					<a href="#" className="optionBox gradient-box" onClick={this.onChoose}>{dropDown}</a>
+					<a href="#" className="optionBox gradient-box"><span className="span">HOW TO PLAY</span></a>
 				</div>
 				<div className="footerBox">
 					<div className="footerImage">Image</div>

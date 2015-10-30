@@ -1,5 +1,5 @@
 .sectorMapContainer {
-	background-color: grey;
+	// background-color: grey;
 	overflow: hidden;
 	min-width: 75em;
 
@@ -13,51 +13,69 @@
 	}
 
 	.sectorMap {
-		margin: 6em auto 2em auto;
+		margin: 6em auto 1em auto;
 		height: 35em;
-		width: 70em;
+		width: 60em;
 		background: no-repeat center/85% url("../images/STO-Map.jpg");
+		border: 2px solid white;
+		background-size: cover;
 
 		.sectorBlock {
+			box-sizing: border-box;
+			padding-top: 1.3em;
 			display: block;
 			color: white;
 			border: 3px solid #ffffff;
 			height: 6em;
 			width: 8em;
 			text-align: center;
-			line-height: 6em;
+			line-height: 1.5em;
 			position: relative;
 			border-radius: 10px;
 			background-color: hsla(100, 100%, 100%, 0.2);
+			font-family: 'Orbitron', sans-serif;
+			// font-size: 0.6em;
+		}
+
+		.sectorBlock:hover {
+			background-color: hsla(100, 100%, 100%, 0.4);
 		}
 
 		.sector1 {
-			left: 22em;
+			left: 19em;
 			top: 6em;
 		}
 
 		.sector2 {
-			left: 37em;
+			left: 33em;
 			top: 7em;
 		}
 
 		.sector3 {
-			left: 18em;
+			left: 14em;
 			top: 8em;
+			padding-top: 2em;
 		}
 
 		.sector4 {
-			left: 45em;
+			left: 40em;
 			top: 3em;
 		}
 	}
 
 	.dashboardButton {
 		display: block;
-		width: 50em;
-		height: 5em;
+		font-size: 1.5em;
+		width: 27em;
+		height: 1.8em;
 		border-radius: 15px;
 		background-color: lightgrey;
-		margin: 1em auto;
+		margin: 0.5em auto;
+		font-family: 'Orbitron', sans-serif;
+		background: linear-gradient(#ffffff, #423D3D);
+	}
+
+	.dashboardButton:hover {
+		background: linear-gradient(#423D3D, #ffffff);
 	}
 }

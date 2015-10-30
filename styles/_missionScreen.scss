@@ -1,36 +1,57 @@
 .missionScreenContainer {
 	// background-color: grey;
-	z-index: 1;
+	// z-index: 1;
+	// background-size: auto;
 
 	.userHUD {
 		clear: both;
 		border: 3px solid black;
 		overflow: hidden;
 		background-color: lightgrey;
+		// background: linear-gradient(black, #7D7072, black);
+		background: linear-gradient(to right, black, black, black, grey, lightgrey, white, lightgrey, grey, black, black, black);
+		// background: no-repeat center/100% url("../images/nav_background.jpg");
 
 		.HUDFiller {
-			height: 3em;
+			padding-top: 1em;
+			height: 2em;
 			width: 20%;
 			float: left;
+			font-weight: bold;
+			font-family: 'Orbitron', sans-serif;
 		}
 
 		.HUDButton {
+			font-size: 1.4em;
+			color: white;
 			width: 30%;
 			float: left;
-			height: 3em;
+			height: 1em;
+			background: none;
+			border: none;
+			margin-top: -0.4em;
+		}
+
+		.HUDButton:hover {
+			opacity: 0.7;
 		}
 	}
 
 	.sectorBlockContainer {
-		width: 50em;
-		border: 3px solid black;
+		color: white;
+		width: 70em;
+		height: 75.5vh;
+		border: 3px solid white;
 		margin: 0 auto;
 		overflow: hidden;
 		background-color: lightblue;
+		background: no-repeat top/100% url("../images/sleek-back.jpg");
+		
 
 		.sectorLoreBlock {
 			width: 50%;
-			border: 3px solid black;
+			height: 75.5vh;
+			border-right: 3px solid white;
 			box-sizing: border-box;
 			float: left;
 
@@ -43,7 +64,8 @@
 				height: 10em;
 				width: 18em;
 				margin: 2em auto;
-				border: 3px solid black;
+				border: 3px solid grey;
+				background: no-repeat center/100% url("../images/space.jpg");
 			}
 
 			.sectorLoreTitle {
@@ -58,31 +80,43 @@
 
 		.sectorMissionBlock {
 			width: 50%;
-			height: 20em;
-			border: 3px solid black;
+			height: 75.5vh;
+			// border-bottom: 3px solid white;
 			box-sizing: border-box;
 			float: right;
 			overflow: scroll;
 
 			.sectorMission {
-				border: 3px solid black;
+				border-bottom: 3px solid white;
 				overflow: hidden;
 				padding: 0.5em;
+				height: 10em;
 
 				.missionName {
-					font-size: 1.5em;
+					font-size: 2em;
 					font-weight: bold;
 				}
 
 				.missionTeaser {
-					font-size: 0.8em;
+					margin-top: 1em;
+					font-size: 1.3em;
 				}
 
 				.dropDownIcon {
+					color: white;
+					border-radius: 15px;
+					width: 10em;
+					height: 3em;
 					float: right;
 					position: relative;
 					bottom: 1.7em;
 					right: 1em;
+					background: no-repeat top/100% url("../images/blue-button.jpg");
+					
+				}
+
+				.dropDownIcon:hover {
+					opacity: 0.7;
 				}
 			}
 		}
