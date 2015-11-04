@@ -1,19 +1,27 @@
 //dependencies
 var React = require('react');
 
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(PersonnelModel);
+
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
-			personnel: []
+			personnel: [],
+			character: []
 		};
 	},
 	componentWillMount: function() {
-		var PersonnelModel = Parse.Object.extend('PersonnelModel');
-		var Query = new Parse.Query(PersonnelModel);
-
-		Query.find().then((personnel) => {
-			this.setState({
-				personnel: personnel
+		CharacterQuery.equalTo('objectId', this.props.characterId)
+		.find().then((character) => {
+		// console.log(Math.round(character[0].get('XP')/100)+1)
+			Query.lessThan('lvlReq', (Math.round(character[0].get('XP')/100)+1))
+			.find().then((personnel) => {
+				this.setState({
+					personnel: personnel
+				})
 			})
 		})
 	},
@@ -29,12 +37,37 @@ module.exports = React.createClass({
 					<div>Engineer: {person.get('engineer')}</div>
 					<div>Cost: {person.get('cost')}</div>
 					<div>Level Req: {person.get('lvlReq')}</div>
-					<button>Select</button>
+					<button onClick={this.onChoose.bind(this, person)}>Select</button>
 				</div>
 			)
 		})
 		return (
 			<div className="personnelBox">{personnel}</div>
 		)
+	},
+	onChoose: function(person) {
+		var PersonCost = person.get('cost');
+		var CharDil = this.props.character.get('Dilithium');
+		var officer = new PersonnelModel({
+			objectId: person.id
+		})
+		
+		if(PersonCost > CharDil) {
+			throw 'Not enough Dilithium'
+		}
+		else {
+			this.props.character.set('Dilithium', (CharDil - PersonCost))
+			this.props.character.save(null, {
+				success: function(CharacterModel) {
+					// console.log('Cost subtracted from Dilithium')
+				}
+			});
+			this.props.starship.set('MedOfficer', officer)
+			this.props.starship.save(null, {
+				success: function(StarshipModel) {
+					// console.log('Successfully saved to server')
+				}
+			});
+		}
 	}
 })
