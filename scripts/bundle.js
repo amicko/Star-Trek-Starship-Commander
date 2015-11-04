@@ -31908,6 +31908,10 @@ module.exports = React.createClass({
 			);
 		});
 
+		var currentStarship = this.state.currentStarship.map(function (starship) {
+			return starship.get('Captain');
+		});
+
 		var currentStarshipClass = this.state.currentStarshipClass.map(function (starship) {
 			return React.createElement(
 				'div',
@@ -31919,6 +31923,12 @@ module.exports = React.createClass({
 						'div',
 						{ className: 'starshipName' },
 						starship.get('Name')
+					),
+					React.createElement(
+						'div',
+						{ className: 'starshipClassBox' },
+						'Class: ',
+						starship.get('Class').get('Name')
 					),
 					React.createElement(
 						'div',
@@ -32616,7 +32626,7 @@ module.exports = React.createClass({
 				currentStarshipClass
 			);
 		} else {
-			starship = React.createElement(StarshipListComponent, null);
+			starship = React.createElement(StarshipListComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
 		}
 
 		if (this.state.captain === 'captain') {
@@ -32626,7 +32636,8 @@ module.exports = React.createClass({
 				starshipCaptain
 			);
 		} else {
-			captain = React.createElement(SeniorOffCaptainComponent, { starship: this.state.currentStarship });
+			// console.log(currentStarship[0].id)
+			captain = React.createElement(SeniorOffCaptainComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
 		}
 		if (this.state.firstOff === 'firstOff') {
 			firstOff = React.createElement(
@@ -32635,7 +32646,7 @@ module.exports = React.createClass({
 				starshipFirstOfficer
 			);
 		} else {
-			firstOff = React.createElement(SeniorOffFirstOffComponent, null);
+			firstOff = React.createElement(SeniorOffFirstOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
 		}
 		if (this.state.helmsman === 'helmsman') {
 			helmsman = React.createElement(
@@ -32644,7 +32655,7 @@ module.exports = React.createClass({
 				starshipHelmsman
 			);
 		} else {
-			helmsman = React.createElement(SeniorOffHelmsmanComponent, null);
+			helmsman = React.createElement(SeniorOffHelmsmanComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
 		}
 		if (this.state.tacOff === 'tacOff') {
 			tacOff = React.createElement(
@@ -32653,7 +32664,7 @@ module.exports = React.createClass({
 				starshipTacticalOfficer
 			);
 		} else {
-			tacOff = React.createElement(SeniorOffTacOffComponent, null);
+			tacOff = React.createElement(SeniorOffTacOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
 		}
 		if (this.state.medOff === 'medOff') {
 			medOff = React.createElement(
@@ -32662,7 +32673,7 @@ module.exports = React.createClass({
 				starshipMedicalOfficer
 			);
 		} else {
-			medOff = React.createElement(SeniorOffMedOffComponent, null);
+			medOff = React.createElement(SeniorOffMedOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
 		}
 		if (this.state.sciOff === 'sciOff') {
 			sciOff = React.createElement(
@@ -32671,7 +32682,7 @@ module.exports = React.createClass({
 				starshipScienceOfficer
 			);
 		} else {
-			sciOff = React.createElement(SeniorOffSciOffComponent, null);
+			sciOff = React.createElement(SeniorOffSciOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
 		}
 		if (this.state.engOff === 'engOff') {
 			engOff = React.createElement(
@@ -32680,7 +32691,7 @@ module.exports = React.createClass({
 				starshipEngineerOfficer
 			);
 		} else {
-			engOff = React.createElement(SeniorOffEngOffComponent, null);
+			engOff = React.createElement(SeniorOffEngOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
 		}
 		return React.createElement(
 			'div',
@@ -32901,7 +32912,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./SeniorOffCaptainComponent.js":171,"./SeniorOffEngOffComponent.js":172,"./SeniorOffFirstOffComponent.js":173,"./SeniorOffHelmsmanComponent.js":174,"./SeniorOffMedOffComponent.js":175,"./SeniorOffSciOffComponent.js":176,"./SeniorOffTacOffComponent.js":177,"./StarshipListComponent.js":178,"react":160}],163:[function(require,module,exports){
+},{"./SeniorOffCaptainComponent.js":172,"./SeniorOffEngOffComponent.js":173,"./SeniorOffFirstOffComponent.js":174,"./SeniorOffHelmsmanComponent.js":175,"./SeniorOffMedOffComponent.js":176,"./SeniorOffSciOffComponent.js":177,"./SeniorOffTacOffComponent.js":178,"./StarshipListComponent.js":179,"react":160}],163:[function(require,module,exports){
 //dependencies
 'use strict';
 
@@ -32909,756 +32920,27 @@ var React = require('react');
 
 //components
 
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(PersonnelModel);
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			starship: 'starship',
-			captain: 'captain',
-			firstOff: 'firstOff',
-			helmsman: 'helmsman',
-			tacOff: 'tacOff',
-			medOff: 'medOff',
-			sciOff: 'sciOff',
-			engOff: 'engOff'
+			personnel: [],
+			character: []
 		};
 	},
+	componentWillMount: function componentWillMount() {
+		var User = Parse.User.current();
+		var UserId = User.id;
+
+		console.log(UserId);
+	},
 	render: function render() {
-		var starship = null;
-		var captain = null;
-		var firstOff = null;
-		var helmsman = null;
-		var tacOff = null;
-		var medOff = null;
-		var sciOff = null;
-		var engOff = null;
-
-		if (this.state.starship === 'starship') {
-			starship = React.createElement(
-				'div',
-				{ className: 'starshipBox' },
-				React.createElement(
-					'div',
-					{ className: 'starshipStatsBox' },
-					React.createElement(
-						'div',
-						{ className: 'starshipImage' },
-						'Image'
-					),
-					React.createElement(
-						'div',
-						{ className: 'starshipStatBox' },
-						'Range'
-					),
-					React.createElement(
-						'div',
-						{ className: 'starshipStatBox' },
-						'Weapons'
-					),
-					React.createElement(
-						'div',
-						{ className: 'starshipStatBox' },
-						'Shields'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'chooseStarshipBox' },
-					React.createElement(
-						'button',
-						{ className: 'changeStarship', onClick: this.onChangeStarship },
-						'Change Starship'
-					)
-				)
-			);
-		} else {
-			starship = React.createElement(
-				'div',
-				{ className: 'starshipBox' },
-				'List Component'
-			);
-		}
-
-		if (this.state.captain === 'captain') {
-			captain = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				React.createElement(
-					'div',
-					{ className: 'position' },
-					'CAPTAIN'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelImage' },
-					'IMAGE'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelName' },
-					'Name'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Officer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				)
-			);
-		} else {
-			captain = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.firstOff === 'firstOff') {
-			firstOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				React.createElement(
-					'div',
-					{ className: 'position' },
-					'FIRST OFFICER'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelImage' },
-					'IMAGE'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelName' },
-					'Name'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Officer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				)
-			);
-		} else {
-			firstOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.helmsman === 'helmsman') {
-			helmsman = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				React.createElement(
-					'div',
-					{ className: 'position' },
-					'HELMSMAN'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelImage' },
-					'IMAGE'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelName' },
-					'Name'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Officer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				)
-			);
-		} else {
-			helmsman = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.tacOff === 'tacOff') {
-			tacOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				React.createElement(
-					'div',
-					{ className: 'position' },
-					'TACTICAL OFFICER'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelImage' },
-					'IMAGE'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelName' },
-					'Name'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Officer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				)
-			);
-		} else {
-			tacOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.medOff === 'medOff') {
-			medOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				React.createElement(
-					'div',
-					{ className: 'position' },
-					'MEDICAL OFFICER'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelImage' },
-					'IMAGE'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelName' },
-					'Name'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Officer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				)
-			);
-		} else {
-			medOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.sciOff === 'sciOff') {
-			sciOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				React.createElement(
-					'div',
-					{ className: 'position' },
-					'SCIENCE OFFICER'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelImage' },
-					'IMAGE'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelName' },
-					'Name'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Officer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				)
-			);
-		} else {
-			sciOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
-		if (this.state.engOff === 'engOff') {
-			engOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				React.createElement(
-					'div',
-					{ className: 'position' },
-					'ENGINEERING OFFICER'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelImage' },
-					'IMAGE'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelName' },
-					'Name'
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Officer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						'#'
-					)
-				)
-			);
-		} else {
-			engOff = React.createElement(
-				'div',
-				{ className: 'personnelBox' },
-				'List Component'
-			);
-		}
 		return React.createElement(
 			'div',
 			{ className: 'createCharacterContainer', onClick: this.onBackground },
@@ -33683,74 +32965,23 @@ module.exports = React.createClass({
 						null,
 						'Choose Character Name'
 					),
-					React.createElement('input', { type: 'text', placeholder: 'ex: Edward Jellico' }),
+					React.createElement('input', { ref: 'CharacterName', type: 'text', placeholder: 'ex: Edward Jellico' }),
 					React.createElement(
 						'label',
 						null,
 						'Choose Starship Name'
 					),
-					React.createElement('input', { type: 'text', placeholder: 'ex: Enterprise' }),
+					React.createElement('input', { ref: 'StarshipName', type: 'text', placeholder: 'ex: Enterprise' }),
 					React.createElement(
 						'label',
 						null,
 						'Choose Starship Registry'
 					),
-					React.createElement('input', { type: 'text', placeholder: 'ex: 1701' }),
+					React.createElement('input', { ref: 'Registry', type: 'text', placeholder: 'ex: 1701' }),
 					React.createElement(
 						'button',
 						{ onClick: this.onSaveCharacter },
 						'Save New Character'
-					)
-				),
-				starship,
-				React.createElement(
-					'div',
-					{ className: 'seniorStaffContainer' },
-					captain,
-					firstOff,
-					helmsman,
-					tacOff,
-					medOff,
-					sciOff,
-					engOff,
-					React.createElement(
-						'div',
-						{ className: 'buttons' },
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeCaptain },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeFirstOff },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeHelmsman },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeTacOff },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeMedOff },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeSciOff },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeEngOff },
-							'Change'
-						)
 					)
 				)
 			)
@@ -33762,146 +32993,69 @@ module.exports = React.createClass({
 	onSaveCharacter: function onSaveCharacter(e) {
 		e.preventDefault();
 		console.log('Character Saved');
-	},
-	onBackground: function onBackground(e) {
-		e.preventDefault();
-		console.log('Background Clicked');
-		if (this.state.starship === null) {
-			this.setState({
-				starship: 'starship'
-			});
-		}
-		if (this.state.captain === null) {
-			this.setState({
-				captain: 'captain'
-			});
-		}
-		if (this.state.firstOff === null) {
-			this.setState({
-				firstOff: 'firstOff'
-			});
-		}
-		if (this.state.helmsman === null) {
-			this.setState({
-				helmsman: 'helmsman'
-			});
-		}
-		if (this.state.tacOff === null) {
-			this.setState({
-				tacOff: 'tacOff'
-			});
-		}
-		if (this.state.medOff === null) {
-			this.setState({
-				medOff: 'medOff'
-			});
-		}
-		if (this.state.sciOff === null) {
-			this.setState({
-				sciOff: 'sciOff'
-			});
-		}
-		if (this.state.engOff === null) {
-			this.setState({
-				engOff: 'engOff'
-			});
-		}
-	},
-	onChangeStarship: function onChangeStarship(e) {
-		e.preventDefault();
-		if (!this.state.starship) {
-			this.setState({
-				starship: 'starship'
-			});
-		} else {
-			this.setState({
-				starship: null
-			});
-		}
-	},
-	onChangeCaptain: function onChangeCaptain(e) {
-		e.preventDefault();
-		if (!this.state.captain) {
-			this.setState({
-				captain: 'captain'
-			});
-		} else {
-			this.setState({
-				captain: null
-			});
-		}
-	},
-	onChangeFirstOff: function onChangeFirstOff(e) {
-		e.preventDefault();
-		if (!this.state.firstOff) {
-			this.setState({
-				firstOff: 'firstOff'
-			});
-		} else {
-			this.setState({
-				firstOff: null
-			});
-		}
-	},
-	onChangeHelmsman: function onChangeHelmsman(e) {
-		e.preventDefault();
-		if (!this.state.helmsman) {
-			this.setState({
-				helmsman: 'helmsman'
-			});
-		} else {
-			this.setState({
-				helmsman: null
-			});
-		}
-	},
-	onChangeTacOff: function onChangeTacOff(e) {
-		e.preventDefault();
-		if (!this.state.tacOff) {
-			this.setState({
-				tacOff: 'tacOff'
-			});
-		} else {
-			this.setState({
-				tacOff: null
-			});
-		}
-	},
-	onChangeMedOff: function onChangeMedOff(e) {
-		e.preventDefault();
-		if (!this.state.medOff) {
-			this.setState({
-				medOff: 'medOff'
-			});
-		} else {
-			this.setState({
-				medOff: null
-			});
-		}
-	},
-	onChangeSciOff: function onChangeSciOff(e) {
-		e.preventDefault();
-		if (!this.state.sciOff) {
-			this.setState({
-				sciOff: 'sciOff'
-			});
-		} else {
-			this.setState({
-				sciOff: null
-			});
-		}
-	},
-	onChangeEngOff: function onChangeEngOff(e) {
-		e.preventDefault();
-		if (!this.state.engOff) {
-			this.setState({
-				engOff: 'engOff'
-			});
-		} else {
-			this.setState({
-				engOff: null
-			});
-		}
+		// var CharacterName = document.getElementById('characterName');
+		// var Name = CharacterName.value();
+		var User = Parse.User.current();
+		var UserId = User.id;
+		var UserModel = Parse.Object.extend('_User');
+		var NewUser = new UserModel({
+			objectId: UserId
+		});
+		var CharacterModel = Parse.Object.extend('CharacterModel');
+		var NewCharacter = new CharacterModel({
+			objectId: ''
+		});
+		var PersonnelModel = Parse.Object.extend('PersonnelModel');
+		var Captain = new PersonnelModel({
+			objectId: 'eFoAyWTKgQ'
+		});
+		var FirstOff = new PersonnelModel({
+			objectId: 'IrXtv7N8WB'
+		});
+		var Helmsman = new PersonnelModel({
+			objectId: 'AuEEh5eiEi'
+		});
+		var TacOff = new PersonnelModel({
+			objectId: '2uFZnyRzqc'
+		});
+		var MedOff = new PersonnelModel({
+			objectId: 'edEJ9hT81z'
+		});
+		var SciOff = new PersonnelModel({
+			objectId: 'k1cvFNwKiB'
+		});
+		var EngOff = new PersonnelModel({
+			objectId: 'N5aOeS9r6t'
+		});
+		var StarshipClassModel = Parse.Object.extend('StarshipClassModel');
+		var NewStarshipClass = new StarshipClassModel({
+			objectId: 'p13jnSro9r'
+		});
+		var StarshipModel = Parse.Object.extend('StarshipModel');
+		var NewStarship = new StarshipModel({
+			Name: this.refs.StarshipName.value,
+			Registry: this.refs.Registry.value,
+			Class: NewStarshipClass,
+			Captain: Captain,
+			FirstOfficer: FirstOff,
+			Helmsman: Helmsman,
+			TacOfficer: TacOff,
+			MedOfficer: MedOff,
+			SciOfficer: SciOff,
+			EngOfficer: EngOff
+		});
+
+		// characterId:
+		// Character:
+		NewCharacter.save({
+			Name: this.refs.CharacterName.value,
+			XP: 100,
+			Starship: NewStarship,
+			Dilithium: 1000,
+			GoldPressedLatinum: 1000,
+			UserId: UserId,
+			User: NewUser
+		});
 	}
 });
 
@@ -34049,6 +33203,53 @@ module.exports = React.createClass({
 
 var React = require('react');
 
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			character: [],
+			charDilithium: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			_this.setState({
+				character: character
+			});
+		});
+	},
+	render: function render() {
+		var charDil = this.state.character.map(function (character) {
+			return character.get('Dilithium');
+		});
+		console.log(charDil[0]);
+		var that = this;
+		// setInterval(function() {
+		// 	that.state.character[0].set('Dilithium', (parseFloat(charDil[0]) + 1))
+		// 	that.state.character[0].save()
+		// }, 3000)
+
+		return React.createElement(
+			'div',
+			null,
+			'Dilithium: ',
+			charDil
+		);
+	}
+});
+
+},{"react":160}],166:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
 //components
 var RegisterComponent = require('./RegisterComponent.js');
 var LoginComponent = require('./LoginComponent.js');
@@ -34133,7 +33334,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./LoginComponent.js":166,"./RegisterComponent.js":169,"react":160}],166:[function(require,module,exports){
+},{"./LoginComponent.js":167,"./RegisterComponent.js":170,"react":160}],167:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34228,7 +33429,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],167:[function(require,module,exports){
+},{"react":160}],168:[function(require,module,exports){
 //dependencies
 'use strict';
 
@@ -34236,6 +33437,7 @@ var React = require('react');
 
 //components
 var MissionStatsComponent = require('./MissionStatsComponent.js');
+var DilithiumCounterComponent = require('./DilithiumCounterComponent.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -34245,11 +33447,23 @@ module.exports = React.createClass({
 			mainBox: 'missions',
 			missionDrop: null,
 			sectorMissions: [],
-			sector: []
+			sector: [],
+			character: []
 		};
 	},
+	// charDilithium: []
 	componentWillMount: function componentWillMount() {
 		var _this = this;
+
+		var CharacterModel = Parse.Object.extend('CharacterModel');
+		var CharacterQuery = new Parse.Query(CharacterModel);
+
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			// console.log(character[0].get('GoldPressedLatinum'))
+			_this.setState({
+				character: character
+			});
+		});
 
 		var sectorId = this.props.sectorId;
 		var Query = new Parse.Query('MissionsModel');
@@ -34269,6 +33483,32 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		var _this2 = this;
+
+		var that = this;
+		var charName = this.state.character.map(function (character) {
+			return character.get('Name');
+		});
+		var charDil = this.state.character.map(function (character) {
+			return character.get('Dilithium');
+		});
+		var charGPL = this.state.character.map(function (character) {
+			return character.get('GoldPressedLatinum');
+		});
+
+		// setInterval(function() {
+		// 	// console.log(that.state.character[0])
+		// 	that.state.character[0].set('Dilithium', (parseFloat(charDil) + 1))
+		// 	that.state.character[0].save(null, {
+		// 		success: function(CharacterModel) {
+		// 			// console.log('Dilithium Increased')
+		// 			that.setState({
+		// 				charDilithium: charDil
+		// 			})
+		// 		}
+		// 	})
+		// }, 3000)
+
+		// console.log(charDil[0])
 
 		var sectorMissions = this.state.sectorMissions.map(function (missions, index) {
 			return React.createElement(
@@ -34296,7 +33536,7 @@ module.exports = React.createClass({
 
 		this.sectorMissionStats = this.state.sectorMissions.map(function (mission, index) {
 			var style = { display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '50%', height: '75.5vh', float: 'right' };
-			return React.createElement(MissionStatsComponent, { toggle: _this2.onBackground, style: style, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), typeReq: mission.get('TypeReq'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL') });
+			return React.createElement(MissionStatsComponent, { toggle: _this2.onBackground, style: style, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), typeReq: mission.get('TypeReq'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL'), characterId: _this2.props.characterId });
 		});
 
 		var SectorStats = this.state.sector.map(function (sector) {
@@ -34348,22 +33588,18 @@ module.exports = React.createClass({
 				React.createElement(
 					'button',
 					{ className: 'HUDFiller HUDButton', onClick: this.onCharStats },
-					'Character Name'
+					charName
 				),
 				React.createElement(
 					'div',
 					{ className: 'HUDFiller' },
-					'Dilithium Amount'
+					React.createElement(DilithiumCounterComponent, { characterId: this.props.characterId })
 				),
 				React.createElement(
 					'div',
 					{ className: 'HUDFiller' },
-					'Gold-Pressed Latinum Amount'
-				),
-				React.createElement(
-					'button',
-					{ className: 'HUDFiller HUDButton', onClick: this.onCharStats },
-					'Starship Name'
+					'GPL: ',
+					charGPL
 				)
 			),
 			React.createElement(
@@ -34403,16 +33639,47 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./MissionStatsComponent.js":168,"react":160}],168:[function(require,module,exports){
+},{"./DilithiumCounterComponent.js":165,"./MissionStatsComponent.js":169,"react":160}],169:[function(require,module,exports){
 //dependencies
 'use strict';
 
 var React = require('react');
 
+var StarshipModel = Parse.Object.extend('StarshipModel');
+var StarshipQuery = new Parse.Query(StarshipModel);
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		return {
+			statNum: [],
+			character: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		StarshipQuery.equalTo('characterId', this.props.characterId);
+		StarshipQuery.include(this.props.typeReq);
+		StarshipQuery.find().then(function (result) {
+			// console.log(result[0].get(this.props.typeReq).get(this.props.neededStat))
+			_this.setState({
+				statNum: result[0].get(_this.props.typeReq).get(_this.props.neededStat)
+			});
+		});
+
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			_this.setState({
+				character: character
+			});
+		});
+	},
 	render: function render() {
+		var that = this;
 		return React.createElement(
 			'div',
 			{ style: this.props.style, className: ' missionStatBlock' },
@@ -34516,10 +33783,46 @@ module.exports = React.createClass({
 	},
 	doMission: function doMission() {
 		console.log('Mission Attempted');
+		var charDil = this.state.character.map(function (character) {
+			return character.get('Dilithium');
+		});
+		var charXP = this.state.character.map(function (character) {
+			return character.get('XP');
+		});
+		var charGPL = this.state.character.map(function (character) {
+			return character.get('GoldPressedLatinum');
+		});
+		var calc = Math.random();
+
+		this.state.character[0].set('Dilithium', parseFloat(charDil) - parseFloat(this.props.time) * 100);
+		this.state.character[0].save(null, {
+			success: function success(CharacterModel) {
+				console.log('Dilithium Decreased');
+			}
+		});
+		if (calc * 5 <= this.state.statNum) {
+			console.log('Success:', this.state.statNum + ' is greater than ' + calc * 5);
+			this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP);
+			this.state.character[0].save(null, {
+				success: function success(CharacterModel) {
+					console.log('XP Increased');
+				}
+			});
+			this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL);
+			this.state.character[0].save(null, {
+				success: function success(CharacterModel) {
+					console.log('GPL Increased');
+				}
+			});
+			// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
+		} else {
+				console.log('Failure:', this.state.statNum + ' is not greater than ' + calc * 5);
+			}
+		console.log(charXP);
 	}
 });
 
-},{"react":160}],169:[function(require,module,exports){
+},{"react":160}],170:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -34616,7 +33919,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],170:[function(require,module,exports){
+},{"react":160}],171:[function(require,module,exports){
 //dependencies
 'use strict';
 
@@ -34739,29 +34042,35 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":160}],171:[function(require,module,exports){
+},{"react":160}],172:[function(require,module,exports){
 //dependencies
 'use strict';
 
 var React = require('react');
+
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(PersonnelModel);
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			personnel: []
+			personnel: [],
+			character: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
-		var PersonnelModel = Parse.Object.extend('PersonnelModel');
-		var Query = new Parse.Query(PersonnelModel);
-
-		Query.find().then(function (personnel) {
-			_this.setState({
-				personnel: personnel
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			// console.log(Math.round(character[0].get('XP')/100)+1)
+			Query.lessThan('lvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (personnel) {
+				_this.setState({
+					personnel: personnel
+				});
 			});
 		});
 	},
@@ -34834,106 +34143,28 @@ module.exports = React.createClass({
 		);
 	},
 	onChoose: function onChoose(person) {
-		// console.log(this.props.starship);
-		this.props.starship.set('Captain', person.id);
-
-		this.props.starship.save(null, {
-			success: function success(StarshipModel) {}
+		var PersonCost = person.get('cost');
+		var CharDil = this.props.character.get('Dilithium');
+		var officer = new PersonnelModel({
+			objectId: person.id
 		});
-	}
-});
 
-},{"react":160}],172:[function(require,module,exports){
-//dependencies
-'use strict';
-
-var React = require('react');
-
-module.exports = React.createClass({
-	displayName: 'exports',
-
-	getInitialState: function getInitialState() {
-		return {
-			personnel: []
-		};
-	},
-	componentWillMount: function componentWillMount() {
-		var _this = this;
-
-		var PersonnelModel = Parse.Object.extend('PersonnelModel');
-		var Query = new Parse.Query(PersonnelModel);
-
-		Query.find().then(function (personnel) {
-			_this.setState({
-				personnel: personnel
+		if (PersonCost > CharDil) {
+			throw 'Not enough Dilithium';
+		} else {
+			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.save(null, {
+				success: function success(CharacterModel) {
+					// console.log('Cost subtracted from Dilithium')
+				}
 			});
-		});
-	},
-	render: function render() {
-		var personnel = this.state.personnel.map(function (person) {
-			return React.createElement(
-				'div',
-				{ className: 'personBox' },
-				React.createElement(
-					'div',
-					null,
-					'Name: ',
-					person.get('Name')
-				),
-				React.createElement(
-					'div',
-					null,
-					'Officer: ',
-					person.get('officer')
-				),
-				React.createElement(
-					'div',
-					null,
-					'Security: ',
-					person.get('security')
-				),
-				React.createElement(
-					'div',
-					null,
-					'Medical: ',
-					person.get('medical')
-				),
-				React.createElement(
-					'div',
-					null,
-					'Science: ',
-					person.get('science')
-				),
-				React.createElement(
-					'div',
-					null,
-					'Engineer: ',
-					person.get('engineer')
-				),
-				React.createElement(
-					'div',
-					null,
-					'Cost: ',
-					person.get('cost')
-				),
-				React.createElement(
-					'div',
-					null,
-					'Level Req: ',
-					person.get('lvlReq')
-				),
-				React.createElement(
-					'button',
-					null,
-					'Select'
-				)
-			);
-		});
-		return React.createElement(
-			'div',
-			{ className: 'personnelBox' },
-			personnel
-		);
+			this.props.starship.set('Captain', officer);
+			this.props.starship.save(null, {
+				success: function success(StarshipModel) {
+					// console.log('Successfully saved to server')
+				}
+			});
+		}
 	}
 });
 
@@ -34943,27 +34174,35 @@ module.exports = React.createClass({
 
 var React = require('react');
 
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(PersonnelModel);
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			personnel: []
+			personnel: [],
+			character: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
-		var PersonnelModel = Parse.Object.extend('PersonnelModel');
-		var Query = new Parse.Query(PersonnelModel);
-
-		Query.find().then(function (personnel) {
-			_this.setState({
-				personnel: personnel
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			console.log(Math.round(character[0].get('XP') / 100) + 1);
+			Query.lessThan('lvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (personnel) {
+				_this.setState({
+					personnel: personnel
+				});
 			});
 		});
 	},
 	render: function render() {
+		var _this2 = this;
+
 		var personnel = this.state.personnel.map(function (person) {
 			return React.createElement(
 				'div',
@@ -35018,7 +34257,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'button',
-					null,
+					{ onClick: _this2.onChoose.bind(_this2, person) },
 					'Select'
 				)
 			);
@@ -35028,6 +34267,30 @@ module.exports = React.createClass({
 			{ className: 'personnelBox' },
 			personnel
 		);
+	},
+	onChoose: function onChoose(person) {
+		var PersonCost = person.get('cost');
+		var CharDil = this.props.character.get('Dilithium');
+		var officer = new PersonnelModel({
+			objectId: person.id
+		});
+
+		if (PersonCost > CharDil) {
+			throw 'Not enough Dilithium';
+		} else {
+			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.save(null, {
+				success: function success(CharacterModel) {
+					// console.log('Cost subtracted from Dilithium')
+				}
+			});
+			this.props.starship.set('EngOfficer', officer);
+			this.props.starship.save(null, {
+				success: function success(StarshipModel) {
+					// console.log('Successfully saved to server')
+				}
+			});
+		}
 	}
 });
 
@@ -35037,27 +34300,35 @@ module.exports = React.createClass({
 
 var React = require('react');
 
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(PersonnelModel);
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			personnel: []
+			personnel: [],
+			character: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
-		var PersonnelModel = Parse.Object.extend('PersonnelModel');
-		var Query = new Parse.Query(PersonnelModel);
-
-		Query.find().then(function (personnel) {
-			_this.setState({
-				personnel: personnel
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			// console.log(Math.round(character[0].get('XP')/100)+1)
+			Query.lessThan('lvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (personnel) {
+				_this.setState({
+					personnel: personnel
+				});
 			});
 		});
 	},
 	render: function render() {
+		var _this2 = this;
+
 		var personnel = this.state.personnel.map(function (person) {
 			return React.createElement(
 				'div',
@@ -35112,7 +34383,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'button',
-					null,
+					{ onClick: _this2.onChoose.bind(_this2, person) },
 					'Select'
 				)
 			);
@@ -35122,6 +34393,30 @@ module.exports = React.createClass({
 			{ className: 'personnelBox' },
 			personnel
 		);
+	},
+	onChoose: function onChoose(person) {
+		var PersonCost = person.get('cost');
+		var CharDil = this.props.character.get('Dilithium');
+		var officer = new PersonnelModel({
+			objectId: person.id
+		});
+
+		if (PersonCost > CharDil) {
+			throw 'Not enough Dilithium';
+		} else {
+			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.save(null, {
+				success: function success(CharacterModel) {
+					// console.log('Cost subtracted from Dilithium')
+				}
+			});
+			this.props.starship.set('FirstOfficer', officer);
+			this.props.starship.save(null, {
+				success: function success(StarshipModel) {
+					// console.log('Successfully saved to server')
+				}
+			});
+		}
 	}
 });
 
@@ -35131,27 +34426,35 @@ module.exports = React.createClass({
 
 var React = require('react');
 
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(PersonnelModel);
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			personnel: []
+			personnel: [],
+			character: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
-		var PersonnelModel = Parse.Object.extend('PersonnelModel');
-		var Query = new Parse.Query(PersonnelModel);
-
-		Query.find().then(function (personnel) {
-			_this.setState({
-				personnel: personnel
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			// console.log(Math.round(character[0].get('XP')/100)+1)
+			Query.lessThan('lvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (personnel) {
+				_this.setState({
+					personnel: personnel
+				});
 			});
 		});
 	},
 	render: function render() {
+		var _this2 = this;
+
 		var personnel = this.state.personnel.map(function (person) {
 			return React.createElement(
 				'div',
@@ -35206,7 +34509,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'button',
-					null,
+					{ onClick: _this2.onChoose.bind(_this2, person) },
 					'Select'
 				)
 			);
@@ -35216,6 +34519,30 @@ module.exports = React.createClass({
 			{ className: 'personnelBox' },
 			personnel
 		);
+	},
+	onChoose: function onChoose(person) {
+		var PersonCost = person.get('cost');
+		var CharDil = this.props.character.get('Dilithium');
+		var officer = new PersonnelModel({
+			objectId: person.id
+		});
+
+		if (PersonCost > CharDil) {
+			throw 'Not enough Dilithium';
+		} else {
+			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.save(null, {
+				success: function success(CharacterModel) {
+					// console.log('Cost subtracted from Dilithium')
+				}
+			});
+			this.props.starship.set('Helmsman', officer);
+			this.props.starship.save(null, {
+				success: function success(StarshipModel) {
+					// console.log('Successfully saved to server')
+				}
+			});
+		}
 	}
 });
 
@@ -35225,27 +34552,35 @@ module.exports = React.createClass({
 
 var React = require('react');
 
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(PersonnelModel);
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			personnel: []
+			personnel: [],
+			character: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
-		var PersonnelModel = Parse.Object.extend('PersonnelModel');
-		var Query = new Parse.Query(PersonnelModel);
-
-		Query.find().then(function (personnel) {
-			_this.setState({
-				personnel: personnel
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			// console.log(Math.round(character[0].get('XP')/100)+1)
+			Query.lessThan('lvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (personnel) {
+				_this.setState({
+					personnel: personnel
+				});
 			});
 		});
 	},
 	render: function render() {
+		var _this2 = this;
+
 		var personnel = this.state.personnel.map(function (person) {
 			return React.createElement(
 				'div',
@@ -35300,7 +34635,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'button',
-					null,
+					{ onClick: _this2.onChoose.bind(_this2, person) },
 					'Select'
 				)
 			);
@@ -35310,6 +34645,30 @@ module.exports = React.createClass({
 			{ className: 'personnelBox' },
 			personnel
 		);
+	},
+	onChoose: function onChoose(person) {
+		var PersonCost = person.get('cost');
+		var CharDil = this.props.character.get('Dilithium');
+		var officer = new PersonnelModel({
+			objectId: person.id
+		});
+
+		if (PersonCost > CharDil) {
+			throw 'Not enough Dilithium';
+		} else {
+			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.save(null, {
+				success: function success(CharacterModel) {
+					// console.log('Cost subtracted from Dilithium')
+				}
+			});
+			this.props.starship.set('MedOfficer', officer);
+			this.props.starship.save(null, {
+				success: function success(StarshipModel) {
+					// console.log('Successfully saved to server')
+				}
+			});
+		}
 	}
 });
 
@@ -35319,27 +34678,35 @@ module.exports = React.createClass({
 
 var React = require('react');
 
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(PersonnelModel);
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			personnel: []
+			personnel: [],
+			character: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
-		var PersonnelModel = Parse.Object.extend('PersonnelModel');
-		var Query = new Parse.Query(PersonnelModel);
-
-		Query.find().then(function (personnel) {
-			_this.setState({
-				personnel: personnel
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			console.log(Math.round(character[0].get('XP') / 100) + 1);
+			Query.lessThan('lvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (personnel) {
+				_this.setState({
+					personnel: personnel
+				});
 			});
 		});
 	},
 	render: function render() {
+		var _this2 = this;
+
 		var personnel = this.state.personnel.map(function (person) {
 			return React.createElement(
 				'div',
@@ -35394,7 +34761,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'button',
-					null,
+					{ onClick: _this2.onChoose.bind(_this2, person) },
 					'Select'
 				)
 			);
@@ -35404,6 +34771,30 @@ module.exports = React.createClass({
 			{ className: 'personnelBox' },
 			personnel
 		);
+	},
+	onChoose: function onChoose(person) {
+		var PersonCost = person.get('cost');
+		var CharDil = this.props.character.get('Dilithium');
+		var officer = new PersonnelModel({
+			objectId: person.id
+		});
+
+		if (PersonCost > CharDil) {
+			throw 'Not enough Dilithium';
+		} else {
+			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.save(null, {
+				success: function success(CharacterModel) {
+					// console.log('Cost subtracted from Dilithium')
+				}
+			});
+			this.props.starship.set('SciOfficer', officer);
+			this.props.starship.save(null, {
+				success: function success(StarshipModel) {
+					// console.log('Successfully saved to server')
+				}
+			});
+		}
 	}
 });
 
@@ -35413,30 +34804,163 @@ module.exports = React.createClass({
 
 var React = require('react');
 
+var PersonnelModel = Parse.Object.extend('PersonnelModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(PersonnelModel);
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			starships: []
+			personnel: [],
+			character: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
-		var StarshipClassModel = Parse.Object.extend('StarshipClassModel');
-		var Query = new Parse.Query(StarshipClassModel);
-
-		Query.find().then(function (starships) {
-			_this.setState({
-				starships: starships
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			// console.log(Math.round(character[0].get('XP')/100)+1)
+			Query.lessThan('lvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (personnel) {
+				_this.setState({
+					personnel: personnel
+				});
 			});
 		});
 	},
 	render: function render() {
 		var _this2 = this;
 
-		var personnel = this.state.starships.map(function (starship) {
+		var personnel = this.state.personnel.map(function (person) {
+			return React.createElement(
+				'div',
+				{ className: 'personBox' },
+				React.createElement(
+					'div',
+					null,
+					'Name: ',
+					person.get('Name')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Officer: ',
+					person.get('officer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Security: ',
+					person.get('security')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Medical: ',
+					person.get('medical')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Science: ',
+					person.get('science')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Engineer: ',
+					person.get('engineer')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Cost: ',
+					person.get('cost')
+				),
+				React.createElement(
+					'div',
+					null,
+					'Level Req: ',
+					person.get('lvlReq')
+				),
+				React.createElement(
+					'button',
+					{ onClick: _this2.onChoose.bind(_this2, person) },
+					'Select'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'personnelBox' },
+			personnel
+		);
+	},
+	onChoose: function onChoose(person) {
+		var PersonCost = person.get('cost');
+		var CharDil = this.props.character.get('Dilithium');
+		var officer = new PersonnelModel({
+			objectId: person.id
+		});
+
+		if (PersonCost > CharDil) {
+			throw 'Not enough Dilithium';
+		} else {
+			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.save(null, {
+				success: function success(CharacterModel) {
+					// console.log('Cost subtracted from Dilithium')
+				}
+			});
+			this.props.starship.set('TacOfficer', officer);
+			this.props.starship.save(null, {
+				success: function success(StarshipModel) {
+					// console.log('Successfully saved to server')
+				}
+			});
+		}
+	}
+});
+
+},{"react":160}],179:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+var StarshipClassModel = Parse.Object.extend('StarshipClassModel');
+var CharacterModel = Parse.Object.extend('CharacterModel');
+var CharacterQuery = new Parse.Query(CharacterModel);
+var Query = new Parse.Query(StarshipClassModel);
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			starships: [],
+			character: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			// console.log(Math.round(character[0].get('XP')/100)+1)
+			Query.lessThan('LvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (starships) {
+				_this.setState({
+					starships: starships
+				});
+			});
+		});
+	},
+	render: function render() {
+		var _this2 = this;
+
+		var starshipDetails = this.state.starships.map(function (starship) {
+			// console.log(starship.get('Cost'))
 			return React.createElement(
 				'div',
 				{ className: 'starshipDetailBox' },
@@ -35474,11 +34998,11 @@ module.exports = React.createClass({
 					'div',
 					null,
 					'Level Req: ',
-					starship.get('lvlReq')
+					starship.get('LvlReq')
 				),
 				React.createElement(
 					'button',
-					{ onClick: _this2.onChoose },
+					{ onClick: _this2.onChoose.bind(_this2, starship) },
 					'Select'
 				)
 			);
@@ -35486,15 +35010,37 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'starshipBox' },
-			personnel
+			starshipDetails
 		);
 	},
-	onChoose: function onChoose() {
-		console.log('Starship Class Chosen');
+	onChoose: function onChoose(starship) {
+		// console.log(starship);
+		var StarshipCost = starship.get('Cost');
+		var CharDil = this.props.character.get('Dilithium');
+		var newStarship = new StarshipClassModel({
+			objectId: starship.id
+		});
+
+		if (StarshipCost > CharDil) {
+			throw 'Not enough Dilithium';
+		} else {
+			this.props.character.set('Dilithium', CharDil - StarshipCost);
+			this.props.character.save(null, {
+				success: function success(CharacterModel) {
+					// console.log('Cost subtracted from Dilithium')
+				}
+			});
+			this.props.starship.set('Class', newStarship);
+			this.props.starship.save(null, {
+				success: function success(StarshipModel) {
+					// console.log('Successfully saved to server')
+				}
+			});
+		}
 	}
 });
 
-},{"react":160}],179:[function(require,module,exports){
+},{"react":160}],180:[function(require,module,exports){
 'use strict';
 //dependencies
 var React = require('react');
@@ -35559,7 +35105,7 @@ function onLogout() {
 	// this.props.router.navigate('', {trigger: true});
 }
 
-},{"./components/CharacterStatsComponent.js":162,"./components/CreateCharacterComponent.js":163,"./components/DashboardComponent.js":164,"./components/HomeComponent.js":165,"./components/MissionComponent.js":167,"./components/SectorMapComponent.js":170,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[179])
+},{"./components/CharacterStatsComponent.js":162,"./components/CreateCharacterComponent.js":163,"./components/DashboardComponent.js":164,"./components/HomeComponent.js":166,"./components/MissionComponent.js":168,"./components/SectorMapComponent.js":171,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[180])
 
 
 //# sourceMappingURL=bundle.js.map

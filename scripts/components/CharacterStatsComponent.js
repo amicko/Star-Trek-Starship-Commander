@@ -118,12 +118,17 @@ module.exports = React.createClass({
 				</div>
 			)
 		})
+
+		var currentStarship = this.state.currentStarship.map((starship) => {
+			return starship.get('Captain')
+		})
 		
 		var currentStarshipClass = this.state.currentStarshipClass.map((starship) => {
 			return(
 				<div className="starshipBox">
 					<div className="starshipStatsBox">
 						<div className="starshipName">{starship.get('Name')}</div>
+						<div className="starshipClassBox">Class: {starship.get('Class').get('Name')}</div>
 						<div className="starshipImage">Image</div>
 						<div className="starshipStatBox">Range: {starship.get('Class').get('Range')}</div>
 						<div className="starshipStatBox">Weapons: {starship.get('Class').get('Weapons')}</div>
@@ -362,7 +367,7 @@ module.exports = React.createClass({
 		}
 		else {
 			starship = (
-				<StarshipListComponent />
+				<StarshipListComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
 			);
 		}
 
@@ -372,8 +377,9 @@ module.exports = React.createClass({
 			);
 		}
 		else {
+			// console.log(currentStarship[0].id)
 			captain = (
-				<SeniorOffCaptainComponent starship={this.state.currentStarship}/>
+				<SeniorOffCaptainComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
 			);
 		}
 		if(this.state.firstOff === 'firstOff') {
@@ -383,7 +389,7 @@ module.exports = React.createClass({
 		}
 		else {
 			firstOff = (
-				<SeniorOffFirstOffComponent />
+				<SeniorOffFirstOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
 			);
 		}
 		if(this.state.helmsman === 'helmsman') {
@@ -393,7 +399,7 @@ module.exports = React.createClass({
 		}
 		else {
 			helmsman = (
-				<SeniorOffHelmsmanComponent />
+				<SeniorOffHelmsmanComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
 			);
 		}
 		if(this.state.tacOff === 'tacOff') {
@@ -403,7 +409,7 @@ module.exports = React.createClass({
 		}
 		else {
 			tacOff = (
-				<SeniorOffTacOffComponent />
+				<SeniorOffTacOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
 			);
 		}
 		if(this.state.medOff === 'medOff') {
@@ -413,7 +419,7 @@ module.exports = React.createClass({
 		}
 		else {
 			medOff = (
-				<SeniorOffMedOffComponent />
+				<SeniorOffMedOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
 			);
 		}
 		if(this.state.sciOff === 'sciOff') {
@@ -423,7 +429,7 @@ module.exports = React.createClass({
 		}
 		else {
 			sciOff = (
-				<SeniorOffSciOffComponent />
+				<SeniorOffSciOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
 			);
 		}
 		if(this.state.engOff === 'engOff') {
@@ -433,7 +439,7 @@ module.exports = React.createClass({
 		}
 		else {
 			engOff = (
-				<SeniorOffEngOffComponent />
+				<SeniorOffEngOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
 			);
 		}
 		return (
