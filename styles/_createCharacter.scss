@@ -2,6 +2,22 @@
 	background-color: grey;
 	min-width: 1550px;
 
+	.settings {
+		display: block;
+		height: 6em;
+		width: 6em;
+		text-align: center;
+		float: right;
+		margin: 1em;
+		background: no-repeat center/100% url("../images/cog.png");
+		opacity: 0.7;
+		border: none;
+	}
+
+	.settings:hover {
+		opacity: 1;
+	}
+
 	.statsContainer {
 		clear: both;
 		background-color: lightgrey;
@@ -159,7 +175,11 @@
 					position: relative;
 					top: -2em;
 				}
+
+
 			}
+
+
 		}
 	}
 }

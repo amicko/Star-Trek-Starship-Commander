@@ -47,16 +47,16 @@ module.exports = React.createClass({
 	},
 	onChoose: function(person) {
 		var PersonCost = person.get('cost');
-		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var officer = new PersonnelModel({
 			objectId: person.id
 		})
 		
-		if(PersonCost > CharDil) {
-			throw 'Not enough Dilithium'
+		if(PersonCost > CharGPL) {
+			throw 'Not enough Gold-Pressed Latinum'
 		}
 		else {
-			this.props.character.set('Dilithium', (CharDil - PersonCost))
+			this.props.character.set('GoldPressedLatinum', (CharGPL - PersonCost))
 			this.props.character.save(null, {
 				success: function(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')

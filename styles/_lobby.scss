@@ -1,38 +1,36 @@
 .titleContainer{
-	background-color: #2B2626;
-	// min-height: 100em;
-	padding: 5em 0 7em 0;
-	height: 77vh;
-	// height: 100em;
-	background: no-repeat center/100% url("../images/brushed2.jpg");
-	background-size: auto;
+	min-height: 45em;
 
 	.titlePic {
 		color: #ffffff;
 		text-align: center;
-		background-color: black;
-		height: 25em;
-		background: no-repeat center/100% url("../images/startreklogo.jpg");
+		margin-top: 4em;
+		height: 20em;
+
+		img {
+			height: 17em;
+			width: 100%;
+		}
 
 		span {
-			font-size: 3em;
-			position: relative;
-			top: 6.5em;
+			display: block;
+			margin-top: -2em;
+			background-color: #000000;
+			font-size: 1.8em;
 			font-family: 'Orbitron', sans-serif;
-			color: #7D7072;
-			background: -webkit-linear-gradient(#eee, #333);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
+			color: #eee;
 		}
 	}
 
 	nav {
+		margin-top: -3em;
 		margin-bottom: 1em;
 		padding: 1em;
 		background-color: #000000;
 		background: linear-gradient(#423D3D, #7D7072);
 
 		button {
+			height: 2em;
 			background-color: #000000;
 			background: linear-gradient(#423D3D, #7D7072);
 			border: none;
@@ -40,8 +38,9 @@
 			font-size: 2em;
 			margin: 0 0.5em;
 			border-radius: 10px;
-			padding: 0 0.5em;
+			padding: 0 0.3em;
 			font-family: 'Orbitron', sans-serif;
+
 
 		}
 
@@ -51,14 +50,6 @@
 			border: none;
 			color: #ffffff;
 		}
-
-		// .registerBtn {
-		// 	background-color: #000000;
-		// 	border: none;
-		// 	color: #ffffff;
-		// 	font-size: 2em;
-		// 	margin: 0 0.5em;
-		// }
 	}
 
 	.dropDownBox {
@@ -73,9 +64,9 @@
 			background-color: grey;
 			padding: 0 2em;
 			background: no-repeat center/100% url("../images/drop-box.jpg");
+			background-size: auto;
 			font-family: 'Orbitron', sans-serif;
 			font-weight: none;
-			// opacity: 0.4;
 
 			label {
 				display: block;
@@ -109,7 +100,7 @@
 				border: none;
 				color: #ffffff;
 				border-radius: 10px;
-				padding: 0 1em;
+				padding: 0 0.5em;
 			}
 
 			button:hover {
@@ -118,5 +109,52 @@
 				border: none;
 				color: #ffffff;
 			}
+	}
+}
+
+@media screen and (min-width: 475px) {
+		.titleContainer{
+
+		.titlePic {
+
+			span {
+				margin: 0;
+				font-size: 2em;
+				position: relative;
+				top: -1.8em;
+				font-family: 'Orbitron', sans-serif;
+				color: #7D7072;
+				background: -webkit-linear-gradient(#eee, #333);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+		}
+
+		nav {
+
+			button {
+				height: 1em;
+				padding: 0 0.5em;
+
+			}
+
+			button:hover {
+			}
+		}
+
+		.dropDownBox {
+
+				label {
+				}
+
+				input{
+				}
+
+				button {
+				}
+
+				button:hover {
+				}
+		}
 	}
 }

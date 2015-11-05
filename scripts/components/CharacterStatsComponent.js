@@ -444,8 +444,8 @@ module.exports = React.createClass({
 		}
 		return (
 			<div className="createCharacterContainer" onClick={this.onBackground}>
-				<a href={'#sector-map/'+ this.props.characterId} className="dashboardIcon" onClick={this.onReturn}>GO BACK</a>
-				<a href="#" className="userSettingsIcon">USER SETTINGS</a>
+				<a href={'#sector/' +this.props.characterId+ '/'+ this.props.sectorId} className="dashboardIcon" onClick={this.onReturn}></a>
+				<button onClick={this.onSettings} className="settings"></button>
 				<div className="statsContainer">
 					{currentCharacter}
 					{starship}
@@ -520,6 +520,9 @@ module.exports = React.createClass({
 	},
 	onReturn: function() {
 		this.props.router.navigate('sector-map/'+ this.props.characterId, {trigger: true});
+	},
+	onSettings: function() {
+		this.props.router.navigate('settings', {trigger: true});
 	},
 	onChangeStarship: function(e) {
 		e.preventDefault();
