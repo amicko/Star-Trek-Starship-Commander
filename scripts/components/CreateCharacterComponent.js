@@ -19,14 +19,12 @@ module.exports = React.createClass({
 	componentWillMount: function() {
 		var User = Parse.User.current();
 		var UserId = User.id
-
-		console.log(UserId)
 	},
 	render: function() {
 		return (
 			<div className="createCharacterContainer" onClick={this.onBackground}>
-				<a href="#dashboard" className="dashboardIcon" onClick={this.onDashboard}>GO BACK</a>
-				<a href="#" className="userSettingsIcon">USER SETTINGS</a>
+				<a href="#dashboard" className="dashboardIcon" onClick={this.onDashboard}></a>
+				<a href="#settings" className="userSettingsIcon"></a>
 				<div className="statsContainer">
 					<form className="newCharacterForm">
 						<label>Choose Character Name</label>
@@ -47,8 +45,6 @@ module.exports = React.createClass({
 	onSaveCharacter: function(e) {
 		e.preventDefault();
 		console.log('Character Saved');
-		// var CharacterName = document.getElementById('characterName');
-		// var Name = CharacterName.value();
 		var User = Parse.User.current();
 		var UserId = User.id
 		var UserModel = Parse.Object.extend('_User');
@@ -57,7 +53,7 @@ module.exports = React.createClass({
 		});
 		var CharacterModel = Parse.Object.extend('CharacterModel');
 		var NewCharacter = new CharacterModel({
-			objectId: ''
+			
 		});
 		var PersonnelModel = Parse.Object.extend('PersonnelModel');
 		var Captain = new PersonnelModel({
@@ -96,21 +92,25 @@ module.exports = React.createClass({
 			TacOfficer: TacOff,
 			MedOfficer: MedOff,
 			SciOfficer: SciOff,
-			EngOfficer: EngOff,
-			// characterId: 
+			EngOfficer: EngOff
 			// Character:
+		}).save().then((savedStarship) => {
+			NewCharacter.save({
+				Name: this.refs.CharacterName.value,
+				XP: 100,
+				Starship: savedStarship,
+				Dilithium: 1000,
+				GoldPressedLatinum: 1000,
+				UserId: UserId,
+				User: NewUser
+			}).then((savedCharacter) => {
+				savedStarship.set('characterId', savedCharacter.id)
+				savedStarship.save()
+			})
 		});
 
 		
 
-		NewCharacter.save({
-			Name: this.refs.CharacterName.value,
-			XP: 100,
-			Starship: NewStarship,
-			Dilithium: 1000,
-			GoldPressedLatinum: 1000,
-			UserId: UserId,
-			User: NewUser
-		})
+		
 	}
 })

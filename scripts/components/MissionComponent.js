@@ -17,27 +17,21 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillMount: function() {
-
 		var CharacterModel = Parse.Object.extend('CharacterModel');
 		var CharacterQuery = new Parse.Query(CharacterModel);
+		var sectorId = this.props.sectorId;
+		var MissionQuery = new Parse.Query('MissionsModel');
+		var SectorQuery = new Parse.Query('SectorModel');
 
 		CharacterQuery.equalTo('objectId', this.props.characterId)
 		.find().then((character) => {
-			// console.log(character[0].get('GoldPressedLatinum'))
-			this.setState({
-				character: character
-			})
-		})
-		
-
-		var sectorId = this.props.sectorId;
-		var Query = new Parse.Query('MissionsModel');
-		var SectorQuery = new Parse.Query('SectorModel');
-
-		Query.equalTo('Sector', sectorId)
-		.find().then((missions) => {
-			this.setState({
-				sectorMissions: missions
+			MissionQuery.equalTo('Sector', sectorId)
+			.lessThan('lvlReq', (Math.round(character[0].get('XP')/100)+1))
+			.find().then((missions) => {
+				this.setState({
+					sectorMissions: missions,
+					character: character
+				})
 			})
 		})
 
@@ -47,33 +41,16 @@ module.exports = React.createClass({
 				sector: sector
 			})
 		})
+
+		// console.log(this.props.sectorId);
 	},
 	render: function() {
-		var that = this;
 		var charName = this.state.character.map((character) => {
 			return character.get('Name')
-		})
-		var charDil = this.state.character.map((character) => {
-			return character.get('Dilithium')
 		})
 		var charGPL = this.state.character.map((character) => {
 			return character.get('GoldPressedLatinum')
 		})
-
-		// setInterval(function() {
-		// 	// console.log(that.state.character[0])
-		// 	that.state.character[0].set('Dilithium', (parseFloat(charDil) + 1))
-		// 	that.state.character[0].save(null, {
-		// 		success: function(CharacterModel) {
-		// 			// console.log('Dilithium Increased')
-		// 			that.setState({
-		// 				charDilithium: charDil
-		// 			})
-		// 		}
-		// 	})
-		// }, 3000)
-
-		// console.log(charDil[0])
 
 		var sectorMissions = this.state.sectorMissions.map((missions, index) => {
 			return (
@@ -88,7 +65,7 @@ module.exports = React.createClass({
 		this.sectorMissionStats = this.state.sectorMissions.map((mission, index) => {
 			var style = {display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '50%', height: '75.5vh', float: 'right'};
 			return (
-				<MissionStatsComponent toggle={this.onBackground} style={style} key={index} missionName={mission.get('Name')} missionLore={mission.get('Lore')} lvlReq={mission.get('lvlReq')} time={mission.get('TimeToCompletion')} typeReq={mission.get('TypeReq')} neededStat={mission.get('NeededStat')} rewardXP={mission.get('RewardXP')} rewardGPL={mission.get('RewardGPL')} characterId={this.props.characterId}/>
+				<MissionStatsComponent update={this.onUpdate} toggle={this.onBackground} style={style} key={index} missionName={mission.get('Name')} missionLore={mission.get('Lore')} lvlReq={mission.get('lvlReq')} time={mission.get('TimeToCompletion')} typeReq={mission.get('TypeReq')} neededStat={mission.get('NeededStat')} rewardXP={mission.get('RewardXP')} rewardGPL={mission.get('RewardGPL')} characterId={this.props.characterId}/>
 			)
 		})
 
@@ -121,7 +98,7 @@ module.exports = React.createClass({
 		return (
 			<div className="missionScreenContainer">
 				<a href={'#sector-map/' + this.props.characterId}className="sectorMapIcon"></a>
-				<a href="#" className="userSettingsIcon"></a>
+				<a href="#settings" className="userSettingsIcon"></a>
 				<div className="userHUD">
 					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>{charName}</button>
 					<div className="HUDFiller"><DilithiumCounterComponent characterId={this.props.characterId}/></div>
@@ -134,15 +111,18 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
+	onUpdate: function(e) {
+		this.forceUpdate();
+	},
 	onBackground: function(e) {
 		this.setState({
 			mainBox: 'missions'
 		})
 	},
 	onCharStats: function() {
-		var User = Parse.User.current();
+		// var User = Parse.User.current();
 		// console.log(User);
-		this.props.router.navigate('character-stats/' + this.props.characterId, {trigger: true});
+		this.props.router.navigate('character-stats/' + this.props.characterId + '/' + this.props.sectorId, {trigger: true});
 	},
 	onMissionDropDown: function(e, index) {
 		e.preventDefault();

@@ -1,90 +1,40 @@
-//dependencies
 var React = require('react');
-
-//components
 
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
-			sector1: [],
-			sector2: [],
-			sector3: [],
-			sector4: []
+			sectors: []
 		};
 	},
 	componentWillMount: function() {
 		var SectorModel = Parse.Object.extend('SectorModel');
-		var Query = new Parse.Query(SectorModel);
+		var SectorQuery = new Parse.Query(SectorModel);
+		var CharacterModel = Parse.Object.extend('CharacterModel');
+		var CharacterQuery = new Parse.Query(CharacterModel);
 
-		Query.equalTo('Name', 'Arawath Sector')
-		.find().then((result) => {
+		CharacterQuery.equalTo('objectId', this.props.characterId)
+		.find().then((character) => {
+			SectorQuery
+			.lessThan('LvlReq', (Math.round(character[0].get('XP')/100)+1))
+			.find().then((sectors) => {
 			this.setState({
-				sector1: result
-			})
+				sectors: sectors
+			});
+		});
 		})
 
-		Query.equalTo('Name', 'Nelvana Sector')
-		.find().then((result) => {
-			this.setState({
-				sector2: result
-			})
-		})
-
-		Query.equalTo('Name', 'Bajor Sector')
-		.find().then((result) => {
-			this.setState({
-				sector3: result
-			})
-		})
-
-		Query.equalTo('Name', 'Archanis Sector')
-		.find().then((result) => {
-			this.setState({
-				sector4: result
-			})
-		})
+		
 	},
 	render: function() {
-		var sector1Name = this.state.sector1.map((name) => {
-			return name.get('Name')
-		})
-
-		var sector1Id = this.state.sector1.map((name) => {
-			return name.id
-		})
-
-		var sector2Name = this.state.sector2.map((name) => {
-			return name.get('Name')
-		})
-
-		var sector2Id = this.state.sector2.map((name) => {
-			return name.id
-		})
-
-		var sector3Name = this.state.sector3.map((name) => {
-			return name.get('Name')
-		})
-
-		var sector3Id = this.state.sector3.map((name) => {
-			return name.id
-		})
-
-		var sector4Name = this.state.sector4.map((name) => {
-			return name.get('Name')
-		})
-
-		var sector4Id = this.state.sector4.map((name) => {
-			return name.id
-		})
-
+		var sectors = this.state.sectors.map((sector) => {
+			return <a key={sector.id} href={'#sector/' +this.props.characterId+ '/'+ sector.id} className={'sectorBlock sector-'+sector.id}>{sector.get('Name')}</a>
+		});
+		
 		return (
 			<div className="sectorMapContainer">
-				<div className="userSettingsIcon"></div>
+				<a href="#settings" className="userSettingsIcon"></a>
 				<div className="sectorMap">
-					<a href={'#sector/' +this.props.characterId+ '/'+ sector1Id} className="sectorBlock sector1">{sector1Name}</a>
-					<a href={'#sector/' +this.props.characterId+ '/'+ sector2Id} className="sectorBlock sector2">{sector2Name}</a>
-					<a href={'#sector/' +this.props.characterId+ '/'+ sector3Id} className="sectorBlock sector3">{sector3Name}</a>
-					<a href={'#sector/' +this.props.characterId+ '/'+ sector4Id} className="sectorBlock sector4">{sector4Name}</a>
+					{sectors}
 				</div>
 				<button className="dashboardButton" onClick={this.onDashboard}>DASHBOARD</button>
 			</div>

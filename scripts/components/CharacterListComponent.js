@@ -1,19 +1,7 @@
-//dependencies
 var React = require('react');
 
-//components
-
 module.exports = React.createClass({
-	getInitialState: function() {
-		return {
-			sector1: null
-		};
-	},
-	componentWillMount: function() {
-		
-	},
 	render: function() {
-
 		return (
 			<div className="charStatsContainer">
 				<div className="charStats">
@@ -29,7 +17,6 @@ module.exports = React.createClass({
 	},
 	onClickEnter: function(e) {
 		e.preventDefault();
-		console.log('button clicked')
 		this.props.router.navigate('sector-map/' + this.props.characterId, {trigger: true});
 	}
 })
