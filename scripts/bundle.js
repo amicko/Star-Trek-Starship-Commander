@@ -31702,24 +31702,14 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":29}],161:[function(require,module,exports){
-//dependencies
 "use strict";
 
 var React = require('react');
 
-//components
-
 module.exports = React.createClass({
 	displayName: "exports",
 
-	getInitialState: function getInitialState() {
-		return {
-			sector1: null
-		};
-	},
-	componentWillMount: function componentWillMount() {},
 	render: function render() {
-
 		return React.createElement(
 			"div",
 			{ className: "charStatsContainer" },
@@ -31758,7 +31748,6 @@ module.exports = React.createClass({
 	},
 	onClickEnter: function onClickEnter(e) {
 		e.preventDefault();
-		console.log('button clicked');
 		this.props.router.navigate('sector-map/' + this.props.characterId, { trigger: true });
 	}
 });
@@ -32696,16 +32685,8 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'createCharacterContainer', onClick: this.onBackground },
-			React.createElement(
-				'a',
-				{ href: '#sector-map/' + this.props.characterId, className: 'dashboardIcon', onClick: this.onReturn },
-				'GO BACK'
-			),
-			React.createElement(
-				'a',
-				{ href: '#', className: 'userSettingsIcon' },
-				'USER SETTINGS'
-			),
+			React.createElement('a', { href: '#sector/' + this.props.characterId + '/' + this.props.sectorId, className: 'dashboardIcon', onClick: this.onReturn }),
+			React.createElement('button', { onClick: this.onSettings, className: 'settings' }),
 			React.createElement(
 				'div',
 				{ className: 'statsContainer' },
@@ -32813,6 +32794,9 @@ module.exports = React.createClass({
 	},
 	onReturn: function onReturn() {
 		this.props.router.navigate('sector-map/' + this.props.characterId, { trigger: true });
+	},
+	onSettings: function onSettings() {
+		this.props.router.navigate('settings', { trigger: true });
 	},
 	onChangeStarship: function onChangeStarship(e) {
 		e.preventDefault();
@@ -32937,23 +32921,13 @@ module.exports = React.createClass({
 	componentWillMount: function componentWillMount() {
 		var User = Parse.User.current();
 		var UserId = User.id;
-
-		console.log(UserId);
 	},
 	render: function render() {
 		return React.createElement(
 			'div',
 			{ className: 'createCharacterContainer', onClick: this.onBackground },
-			React.createElement(
-				'a',
-				{ href: '#dashboard', className: 'dashboardIcon', onClick: this.onDashboard },
-				'GO BACK'
-			),
-			React.createElement(
-				'a',
-				{ href: '#', className: 'userSettingsIcon' },
-				'USER SETTINGS'
-			),
+			React.createElement('a', { href: '#dashboard', className: 'dashboardIcon', onClick: this.onDashboard }),
+			React.createElement('a', { href: '#settings', className: 'userSettingsIcon' }),
 			React.createElement(
 				'div',
 				{ className: 'statsContainer' },
@@ -32991,10 +32965,10 @@ module.exports = React.createClass({
 		this.props.router.navigate('dashboard', { trigger: true });
 	},
 	onSaveCharacter: function onSaveCharacter(e) {
+		var _this = this;
+
 		e.preventDefault();
 		console.log('Character Saved');
-		// var CharacterName = document.getElementById('characterName');
-		// var Name = CharacterName.value();
 		var User = Parse.User.current();
 		var UserId = User.id;
 		var UserModel = Parse.Object.extend('_User');
@@ -33002,9 +32976,7 @@ module.exports = React.createClass({
 			objectId: UserId
 		});
 		var CharacterModel = Parse.Object.extend('CharacterModel');
-		var NewCharacter = new CharacterModel({
-			objectId: ''
-		});
+		var NewCharacter = new CharacterModel({});
 		var PersonnelModel = Parse.Object.extend('PersonnelModel');
 		var Captain = new PersonnelModel({
 			objectId: 'eFoAyWTKgQ'
@@ -33043,18 +33015,20 @@ module.exports = React.createClass({
 			MedOfficer: MedOff,
 			SciOfficer: SciOff,
 			EngOfficer: EngOff
-		});
-
-		// characterId:
-		// Character:
-		NewCharacter.save({
-			Name: this.refs.CharacterName.value,
-			XP: 100,
-			Starship: NewStarship,
-			Dilithium: 1000,
-			GoldPressedLatinum: 1000,
-			UserId: UserId,
-			User: NewUser
+			// Character:
+		}).save().then(function (savedStarship) {
+			NewCharacter.save({
+				Name: _this.refs.CharacterName.value,
+				XP: 100,
+				Starship: savedStarship,
+				Dilithium: 1000,
+				GoldPressedLatinum: 1000,
+				UserId: UserId,
+				User: NewUser
+			}).then(function (savedCharacter) {
+				savedStarship.set('characterId', savedCharacter.id);
+				savedStarship.save();
+			});
 		});
 	}
 });
@@ -33110,7 +33084,7 @@ module.exports = React.createClass({
 		var r = this.props.router;
 
 		var CharacterList = this.state.characters.map(function (character) {
-			return React.createElement(CharacterListComponent, { characterId: character.id, name: character.get('Name'), level: character.get('XP'), starship: character.get('Starship').get('Name'), dilithium: character.get('Dilithium'), gpl: character.get('GoldPressedLatinum'), router: r });
+			return React.createElement(CharacterListComponent, { key: character.id, characterId: character.id, name: character.get('Name'), level: character.get('XP'), starship: character.get('Starship').get('Name'), dilithium: character.get('Dilithium'), gpl: character.get('GoldPressedLatinum'), router: r });
 		});
 
 		var dropDown = null;
@@ -33131,7 +33105,7 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'dashboardContainer', onClick: this.onBackground },
 			React.createElement('a', { href: '#', className: 'dashboardIcon' }),
-			React.createElement('a', { href: '#', className: 'userSettingsIcon' }),
+			React.createElement('a', { href: '#settings', className: 'userSettingsIcon' }),
 			React.createElement(
 				'div',
 				{ className: 'optionBoxContainer' },
@@ -33211,35 +33185,42 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		return {
-			character: [],
+			character: null,
 			charDilithium: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
-		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+		CharacterQuery.get(this.props.characterId).then(function (character) {
 			_this.setState({
 				character: character
 			});
+			if (character.get('Dilithium') < character.get('XP')) {
+				var that = _this;
+				setInterval(function () {
+					character.set('Dilithium', character.get('Dilithium') + 1);
+					character.save();
+					that.forceUpdate();
+				}, 30000);
+			}
 		});
 	},
 	render: function render() {
-		var charDil = this.state.character.map(function (character) {
-			return character.get('Dilithium');
-		});
-		console.log(charDil[0]);
-		var that = this;
-		// setInterval(function() {
-		// 	that.state.character[0].set('Dilithium', (parseFloat(charDil[0]) + 1))
-		// 	that.state.character[0].save()
-		// }, 3000)
+		// var charDil = this.state.character.map((character) => {
+		// 	return character.get('Dilithium')
+		// })
+		// console.log(this.state.character)
+		var DilCount = '';
 
+		if (this.state.character) {
+			DilCount = this.state.character.get('Dilithium');
+		}
 		return React.createElement(
 			'div',
 			null,
 			'Dilithium: ',
-			charDil
+			DilCount
 		);
 	}
 });
@@ -33284,6 +33265,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'titlePic' },
+					React.createElement('img', { src: '../images/startreklogo.jpg' }),
 					React.createElement(
 						'span',
 						null,
@@ -33457,21 +33439,16 @@ module.exports = React.createClass({
 
 		var CharacterModel = Parse.Object.extend('CharacterModel');
 		var CharacterQuery = new Parse.Query(CharacterModel);
-
-		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
-			// console.log(character[0].get('GoldPressedLatinum'))
-			_this.setState({
-				character: character
-			});
-		});
-
 		var sectorId = this.props.sectorId;
-		var Query = new Parse.Query('MissionsModel');
+		var MissionQuery = new Parse.Query('MissionsModel');
 		var SectorQuery = new Parse.Query('SectorModel');
 
-		Query.equalTo('Sector', sectorId).find().then(function (missions) {
-			_this.setState({
-				sectorMissions: missions
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			MissionQuery.equalTo('Sector', sectorId).lessThan('lvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (missions) {
+				_this.setState({
+					sectorMissions: missions,
+					character: character
+				});
 			});
 		});
 
@@ -33480,35 +33457,18 @@ module.exports = React.createClass({
 				sector: sector
 			});
 		});
+
+		// console.log(this.props.sectorId);
 	},
 	render: function render() {
 		var _this2 = this;
 
-		var that = this;
 		var charName = this.state.character.map(function (character) {
 			return character.get('Name');
-		});
-		var charDil = this.state.character.map(function (character) {
-			return character.get('Dilithium');
 		});
 		var charGPL = this.state.character.map(function (character) {
 			return character.get('GoldPressedLatinum');
 		});
-
-		// setInterval(function() {
-		// 	// console.log(that.state.character[0])
-		// 	that.state.character[0].set('Dilithium', (parseFloat(charDil) + 1))
-		// 	that.state.character[0].save(null, {
-		// 		success: function(CharacterModel) {
-		// 			// console.log('Dilithium Increased')
-		// 			that.setState({
-		// 				charDilithium: charDil
-		// 			})
-		// 		}
-		// 	})
-		// }, 3000)
-
-		// console.log(charDil[0])
 
 		var sectorMissions = this.state.sectorMissions.map(function (missions, index) {
 			return React.createElement(
@@ -33536,7 +33496,7 @@ module.exports = React.createClass({
 
 		this.sectorMissionStats = this.state.sectorMissions.map(function (mission, index) {
 			var style = { display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '50%', height: '75.5vh', float: 'right' };
-			return React.createElement(MissionStatsComponent, { toggle: _this2.onBackground, style: style, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), typeReq: mission.get('TypeReq'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL'), characterId: _this2.props.characterId });
+			return React.createElement(MissionStatsComponent, { update: _this2.onUpdate, toggle: _this2.onBackground, style: style, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), typeReq: mission.get('TypeReq'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL'), characterId: _this2.props.characterId });
 		});
 
 		var SectorStats = this.state.sector.map(function (sector) {
@@ -33581,7 +33541,7 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'missionScreenContainer' },
 			React.createElement('a', { href: '#sector-map/' + this.props.characterId, className: 'sectorMapIcon' }),
-			React.createElement('a', { href: '#', className: 'userSettingsIcon' }),
+			React.createElement('a', { href: '#settings', className: 'userSettingsIcon' }),
 			React.createElement(
 				'div',
 				{ className: 'userHUD' },
@@ -33610,15 +33570,18 @@ module.exports = React.createClass({
 			)
 		);
 	},
+	onUpdate: function onUpdate(e) {
+		this.forceUpdate();
+	},
 	onBackground: function onBackground(e) {
 		this.setState({
 			mainBox: 'missions'
 		});
 	},
 	onCharStats: function onCharStats() {
-		var User = Parse.User.current();
+		// var User = Parse.User.current();
 		// console.log(User);
-		this.props.router.navigate('character-stats/' + this.props.characterId, { trigger: true });
+		this.props.router.navigate('character-stats/' + this.props.characterId + '/' + this.props.sectorId, { trigger: true });
 	},
 	onMissionDropDown: function onMissionDropDown(e, index) {
 		e.preventDefault();
@@ -33679,7 +33642,7 @@ module.exports = React.createClass({
 		});
 	},
 	render: function render() {
-		var that = this;
+		// var that = this
 		return React.createElement(
 			'div',
 			{ style: this.props.style, className: ' missionStatBlock' },
@@ -33793,32 +33756,36 @@ module.exports = React.createClass({
 			return character.get('GoldPressedLatinum');
 		});
 		var calc = Math.random();
-
-		this.state.character[0].set('Dilithium', parseFloat(charDil) - parseFloat(this.props.time) * 100);
-		this.state.character[0].save(null, {
-			success: function success(CharacterModel) {
-				console.log('Dilithium Decreased');
-			}
-		});
-		if (calc * 5 <= this.state.statNum) {
-			console.log('Success:', this.state.statNum + ' is greater than ' + calc * 5);
-			this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP);
-			this.state.character[0].save(null, {
-				success: function success(CharacterModel) {
-					console.log('XP Increased');
-				}
-			});
-			this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL);
-			this.state.character[0].save(null, {
-				success: function success(CharacterModel) {
-					console.log('GPL Increased');
-				}
-			});
-			// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
+		if (this.props.time * 100 > charDil) {
+			throw 'Not enough Dilithium';
 		} else {
-				console.log('Failure:', this.state.statNum + ' is not greater than ' + calc * 5);
-			}
+			this.state.character[0].set('Dilithium', parseFloat(charDil) - parseFloat(this.props.time) * 100);
+			this.state.character[0].save(null, {
+				success: function success(CharacterModel) {
+					console.log('Dilithium Decreased');
+				}
+			});
+			if (calc * 5 <= this.state.statNum) {
+				console.log('Success:', this.state.statNum + ' is greater than ' + calc * 5);
+				this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP);
+				this.state.character[0].save(null, {
+					success: function success(CharacterModel) {
+						console.log('XP Increased');
+					}
+				});
+				this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL);
+				this.state.character[0].save(null, {
+					success: function success(CharacterModel) {
+						console.log('GPL Increased');
+					}
+				});
+				// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
+			} else {
+					console.log('Failure:', this.state.statNum + ' is not greater than ' + calc * 5);
+				}
+		}
 		console.log(charXP);
+		this.props.update();
 	}
 });
 
@@ -33920,114 +33887,53 @@ module.exports = React.createClass({
 });
 
 },{"react":160}],171:[function(require,module,exports){
-//dependencies
 'use strict';
 
 var React = require('react');
-
-//components
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
-			sector1: [],
-			sector2: [],
-			sector3: [],
-			sector4: []
+			sectors: []
 		};
 	},
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
 		var SectorModel = Parse.Object.extend('SectorModel');
-		var Query = new Parse.Query(SectorModel);
+		var SectorQuery = new Parse.Query(SectorModel);
+		var CharacterModel = Parse.Object.extend('CharacterModel');
+		var CharacterQuery = new Parse.Query(CharacterModel);
 
-		Query.equalTo('Name', 'Arawath Sector').find().then(function (result) {
-			_this.setState({
-				sector1: result
-			});
-		});
-
-		Query.equalTo('Name', 'Nelvana Sector').find().then(function (result) {
-			_this.setState({
-				sector2: result
-			});
-		});
-
-		Query.equalTo('Name', 'Bajor Sector').find().then(function (result) {
-			_this.setState({
-				sector3: result
-			});
-		});
-
-		Query.equalTo('Name', 'Archanis Sector').find().then(function (result) {
-			_this.setState({
-				sector4: result
+		CharacterQuery.equalTo('objectId', this.props.characterId).find().then(function (character) {
+			SectorQuery.lessThan('LvlReq', Math.round(character[0].get('XP') / 100) + 1).find().then(function (sectors) {
+				_this.setState({
+					sectors: sectors
+				});
 			});
 		});
 	},
 	render: function render() {
-		var sector1Name = this.state.sector1.map(function (name) {
-			return name.get('Name');
-		});
+		var _this2 = this;
 
-		var sector1Id = this.state.sector1.map(function (name) {
-			return name.id;
-		});
-
-		var sector2Name = this.state.sector2.map(function (name) {
-			return name.get('Name');
-		});
-
-		var sector2Id = this.state.sector2.map(function (name) {
-			return name.id;
-		});
-
-		var sector3Name = this.state.sector3.map(function (name) {
-			return name.get('Name');
-		});
-
-		var sector3Id = this.state.sector3.map(function (name) {
-			return name.id;
-		});
-
-		var sector4Name = this.state.sector4.map(function (name) {
-			return name.get('Name');
-		});
-
-		var sector4Id = this.state.sector4.map(function (name) {
-			return name.id;
+		var sectors = this.state.sectors.map(function (sector) {
+			return React.createElement(
+				'a',
+				{ key: sector.id, href: '#sector/' + _this2.props.characterId + '/' + sector.id, className: 'sectorBlock sector-' + sector.id },
+				sector.get('Name')
+			);
 		});
 
 		return React.createElement(
 			'div',
 			{ className: 'sectorMapContainer' },
-			React.createElement('div', { className: 'userSettingsIcon' }),
+			React.createElement('a', { href: '#settings', className: 'userSettingsIcon' }),
 			React.createElement(
 				'div',
 				{ className: 'sectorMap' },
-				React.createElement(
-					'a',
-					{ href: '#sector/' + this.props.characterId + '/' + sector1Id, className: 'sectorBlock sector1' },
-					sector1Name
-				),
-				React.createElement(
-					'a',
-					{ href: '#sector/' + this.props.characterId + '/' + sector2Id, className: 'sectorBlock sector2' },
-					sector2Name
-				),
-				React.createElement(
-					'a',
-					{ href: '#sector/' + this.props.characterId + '/' + sector3Id, className: 'sectorBlock sector3' },
-					sector3Name
-				),
-				React.createElement(
-					'a',
-					{ href: '#sector/' + this.props.characterId + '/' + sector4Id, className: 'sectorBlock sector4' },
-					sector4Name
-				)
+				sectors
 			),
 			React.createElement(
 				'button',
@@ -34144,15 +34050,15 @@ module.exports = React.createClass({
 	},
 	onChoose: function onChoose(person) {
 		var PersonCost = person.get('cost');
-		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var officer = new PersonnelModel({
 			objectId: person.id
 		});
 
-		if (PersonCost > CharDil) {
-			throw 'Not enough Dilithium';
+		if (PersonCost > CharGPL) {
+			throw 'Not enough Gold-Pressed Latinum';
 		} else {
-			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
 				success: function success(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')
@@ -34270,15 +34176,15 @@ module.exports = React.createClass({
 	},
 	onChoose: function onChoose(person) {
 		var PersonCost = person.get('cost');
-		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var officer = new PersonnelModel({
 			objectId: person.id
 		});
 
-		if (PersonCost > CharDil) {
-			throw 'Not enough Dilithium';
+		if (PersonCost > CharGPL) {
+			throw 'Not enough Gold-Pressed Latinum';
 		} else {
-			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
 				success: function success(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')
@@ -34396,15 +34302,15 @@ module.exports = React.createClass({
 	},
 	onChoose: function onChoose(person) {
 		var PersonCost = person.get('cost');
-		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var officer = new PersonnelModel({
 			objectId: person.id
 		});
 
-		if (PersonCost > CharDil) {
-			throw 'Not enough Dilithium';
+		if (PersonCost > CharGPL) {
+			throw 'Not enough Gold-Pressed Latinum';
 		} else {
-			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
 				success: function success(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')
@@ -34522,15 +34428,15 @@ module.exports = React.createClass({
 	},
 	onChoose: function onChoose(person) {
 		var PersonCost = person.get('cost');
-		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var officer = new PersonnelModel({
 			objectId: person.id
 		});
 
-		if (PersonCost > CharDil) {
-			throw 'Not enough Dilithium';
+		if (PersonCost > CharGPL) {
+			throw 'Not enough Gold-Pressed Latinum';
 		} else {
-			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
 				success: function success(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')
@@ -34648,15 +34554,15 @@ module.exports = React.createClass({
 	},
 	onChoose: function onChoose(person) {
 		var PersonCost = person.get('cost');
-		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var officer = new PersonnelModel({
 			objectId: person.id
 		});
 
-		if (PersonCost > CharDil) {
-			throw 'Not enough Dilithium';
+		if (PersonCost > CharGPL) {
+			throw 'Not enough Gold-Pressed Latinum';
 		} else {
-			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
 				success: function success(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')
@@ -34774,15 +34680,15 @@ module.exports = React.createClass({
 	},
 	onChoose: function onChoose(person) {
 		var PersonCost = person.get('cost');
-		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var officer = new PersonnelModel({
 			objectId: person.id
 		});
 
-		if (PersonCost > CharDil) {
-			throw 'Not enough Dilithium';
+		if (PersonCost > CharGPL) {
+			throw 'Not enough Gold-Pressed Latinum';
 		} else {
-			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
 				success: function success(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')
@@ -34900,15 +34806,15 @@ module.exports = React.createClass({
 	},
 	onChoose: function onChoose(person) {
 		var PersonCost = person.get('cost');
-		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var officer = new PersonnelModel({
 			objectId: person.id
 		});
 
-		if (PersonCost > CharDil) {
-			throw 'Not enough Dilithium';
+		if (PersonCost > CharGPL) {
+			throw 'Not enough Gold-Pressed Latinum';
 		} else {
-			this.props.character.set('Dilithium', CharDil - PersonCost);
+			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
 				success: function success(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')
@@ -35041,10 +34947,105 @@ module.exports = React.createClass({
 });
 
 },{"react":160}],180:[function(require,module,exports){
+//dependencies
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			user: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var UserModel = Parse.Object.extend('_User');
+		var UserQuery = new Parse.Query(UserModel);
+		var User = Parse.User.current();
+
+		console.log(User);
+
+		UserQuery.equalTo('objectId', User.id).find().then(function (user) {
+			_this.setState({
+				user: user
+			});
+		});
+	},
+	render: function render() {
+		var _this2 = this;
+
+		var userblock = this.state.user.map(function (user) {
+			return React.createElement(
+				'form',
+				{ className: 'newCharacterForm' },
+				React.createElement(
+					'label',
+					null,
+					'User Email'
+				),
+				React.createElement('input', { ref: 'UserEmail', type: 'text', placeholder: user.get('username') }),
+				React.createElement(
+					'button',
+					{ onClick: _this2.onSaveEmail },
+					'Change Email'
+				),
+				React.createElement(
+					'label',
+					null,
+					'User Password'
+				),
+				React.createElement('input', { ref: 'UserPassword', type: 'password', placeholder: 'Password' }),
+				React.createElement(
+					'button',
+					{ onClick: _this2.onSavePassword },
+					'Change Password'
+				)
+			);
+		});
+		return React.createElement(
+			'div',
+			{ className: 'userSettingsContainer', onClick: this.onBackground },
+			React.createElement('a', { href: '#dashboard', className: 'dashboardIcon', onClick: this.onDashboard }),
+			React.createElement('a', { href: '#', className: 'userSettingsIcon' }),
+			React.createElement(
+				'div',
+				{ className: 'statsContainer' },
+				userblock
+			)
+		);
+	},
+	onSaveEmail: function onSaveEmail(e) {
+		e.preventDefault();
+		console.log('Email Changed Button Clicked');
+		this.state.user[0].set('email', this.refs.UserEmail.value);
+		this.state.user[0].set('username', this.refs.UserEmail.value);
+		this.state.user[0].save(null, {
+			success: function success(CharacterModel) {
+				console.log('Email Changed On Server');
+			}
+		});
+	},
+	onSavePassword: function onSavePassword(e) {
+		e.preventDefault();
+		console.log('Password Changed');
+		this.state.user[0].set('password', this.refs.UserPassword.value);
+		this.state.user[0].save(null, {
+			success: function success(CharacterModel) {
+				console.log('Password Changed On Server');
+			}
+		});
+	}
+});
+
+},{"react":160}],181:[function(require,module,exports){
 'use strict';
 //dependencies
 var React = require('react');
-var ReactDom = require('react-dom');
+var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
 var $ = require('jquery');
 Parse.initialize('Snilj4eJd19FAHaUolOCxWfJTPMzBazhkRlVyWkV', 'BtifBAoTsDgeuDpIl6pyabRCInHRsqk5Qic6P64U');
@@ -35059,6 +35060,7 @@ var SectorMapComponent = require('./components/SectorMapComponent.js');
 var MissionComponent = require('./components/MissionComponent.js');
 var CreateCharacterComponent = require('./components/CreateCharacterComponent.js');
 var CharacterStatsComponent = require('./components/CharacterStatsComponent.js');
+var UserSettingsComponent = require('./components/UserSettingsComponent.js');
 
 //router
 var Router = Backbone.Router.extend({
@@ -35068,33 +35070,35 @@ var Router = Backbone.Router.extend({
 		'create-character': 'createCharacter',
 		'sector-map/:characterId': 'sectorMap',
 		'sector/:characterId/:sectorId': 'sectorMissions',
-		'character-stats/:characterId': 'characterStats',
+		'character-stats/:characterId/:sectorId': 'characterStats',
 		'settings': 'settings'
 	},
 	home: function home() {
 		onLogout();
-		ReactDom.render(React.createElement(HomeComponent, { router: r }), main);
+		ReactDOM.render(React.createElement(HomeComponent, { router: this }), main);
 	},
 	dashboard: function dashboard() {
 		if (!Parse.User.current()) {
 			this.navigate('', { trigger: true });
 		} else {
-			ReactDom.render(React.createElement(DashboardComponent, { router: r }), main);
+			ReactDOM.render(React.createElement(DashboardComponent, { router: this }), main);
 		}
 	},
 	createCharacter: function createCharacter() {
-		ReactDom.render(React.createElement(CreateCharacterComponent, { router: r }), main);
+		ReactDOM.render(React.createElement(CreateCharacterComponent, { router: this }), main);
 	},
 	sectorMap: function sectorMap(characterId) {
-		ReactDom.render(React.createElement(SectorMapComponent, { characterId: characterId, router: r }), main);
+		ReactDOM.render(React.createElement(SectorMapComponent, { characterId: characterId, router: this }), main);
 	},
 	sectorMissions: function sectorMissions(characterId, sectorId) {
-		ReactDom.render(React.createElement(MissionComponent, { characterId: characterId, sectorId: sectorId, router: r }), main);
+		ReactDOM.render(React.createElement(MissionComponent, { characterId: characterId, sectorId: sectorId, router: this }), main);
 	},
-	characterStats: function characterStats(characterId) {
-		ReactDom.render(React.createElement(CharacterStatsComponent, { characterId: characterId, router: r }), main);
+	characterStats: function characterStats(characterId, sectorId) {
+		ReactDOM.render(React.createElement(CharacterStatsComponent, { characterId: characterId, sectorId: sectorId, router: this }), main);
 	},
-	settings: function settings() {}
+	settings: function settings() {
+		ReactDOM.render(React.createElement(UserSettingsComponent, { router: this }), main);
+	}
 });
 
 var r = new Router();
@@ -35105,7 +35109,7 @@ function onLogout() {
 	// this.props.router.navigate('', {trigger: true});
 }
 
-},{"./components/CharacterStatsComponent.js":162,"./components/CreateCharacterComponent.js":163,"./components/DashboardComponent.js":164,"./components/HomeComponent.js":166,"./components/MissionComponent.js":168,"./components/SectorMapComponent.js":171,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[180])
+},{"./components/CharacterStatsComponent.js":162,"./components/CreateCharacterComponent.js":163,"./components/DashboardComponent.js":164,"./components/HomeComponent.js":166,"./components/MissionComponent.js":168,"./components/SectorMapComponent.js":171,"./components/UserSettingsComponent.js":180,"backbone":1,"jquery":4,"react":160,"react-dom":5}]},{},[181])
 
 
 //# sourceMappingURL=bundle.js.map

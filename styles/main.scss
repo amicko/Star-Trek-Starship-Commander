@@ -2,13 +2,14 @@
 		'dashboard',
 		'sectorMap',
 		'missionScreen',
-		'createCharacter';
+		'createCharacter',
+		'userSettings';
 
 a {
 	text-decoration: none;
 }
 body {
-	background-color: black;
+	// background-color: black;
 	background: no-repeat center/100% url("../images/brushed2.jpg");
 	background-size: auto;
 }
@@ -17,7 +18,6 @@ body {
 	display: block;
 	height: 4em;
 	width: 7em;
-	// border: 2px solid black;
 	text-align: center;
 	float: left;
 	margin: 1em;
@@ -33,7 +33,6 @@ body {
 	display: block;
 	height: 4em;
 	width: 4em;
-	border: 2px solid black;
 	text-align: center;
 	float: left;
 	margin: 1em;
@@ -50,7 +49,6 @@ body {
 	display: block;
 	height: 4em;
 	width: 4em;
-	// border: 2px solid black;
 	text-align: center;
 	float: right;
 	margin: 1em;

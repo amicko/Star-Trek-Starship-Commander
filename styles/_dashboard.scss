@@ -1,43 +1,38 @@
 .dashboardContainer {
-	// background-color: lightgrey;
-	overflow: hidden;
-	height: 97vh;
-	// background: no-repeat center/100% url("../images/brushed2.jpg");
 
 	.optionBoxContainer {
 		clear: both;
-		width: 65em;
+		width: 80%;
 		margin: 10em auto;
 		margin-bottom: 1px;
 		overflow: hidden;
 
 		.optionBox {
+			box-sizing: border-box;
+			font-family: 'Orbitron', sans-serif;
 			color: red;
-			height: 30em;
-			width: 18em;
-			border: 0.1em solid grey;
-			border-style: outset;
-			border-radius: 15px;
+			height: 10em;
+			width: 93%;
 			float: left;
-			margin: 1px 1em;
+			margin: 0.5em 1em;
 			overflow: scroll;
 			text-align: center;
-			// background: no-repeat center/100% url("../images/glass-texture.jpg")
-			background: no-repeat center/300% url("../images/glass-texture.jpg");
+			background: no-repeat center/100% url("../images/glass-texture.jpg");
 
 			.span {
 				display: block;
-				// text-align: center;
-				margin-top: 5.5em;
+				text-align: center;
+				margin-top: 1.75em;
 				font-size: 2em;
 			}
 
 			.charStatsContainer {
 				color: black;
-				width: 100%;
+				width: 98%;
 				border: 4px outset black;
-				overflow: hidden;
+				overflow: scroll;
 				padding-top: 1px;
+				font-size: 1.2em;
 
 				.charStats {
 					text-align: left;
@@ -47,19 +42,52 @@
 					margin: 1em auto;
 					float: left;
 					font-weight: bold;
-					font-size: 1em;
-					// border: 2px solid black;
+					font-size: 0.85em;
+					line-height: 1.1em;
+					padding-top: 0.6em;
+
+					div {
+					background: -webkit-linear-gradient(#fff, #2F4574);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					}
+				}
+
+				.charStats:hover {
+					div {
+					background: -webkit-linear-gradient(#fff, green);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					}
 				}
 
 				.buttonContainer {
 					float: right;
 					padding: 2em 0.5em 2em 0.5em;
 					box-sizing: border-box;
+					color: white;
 
 					.charStatsButton {
 						width: 8em;
 						display: block;
-						margin: 0 auto;
+						margin: 0.5em auto;
+						background: linear-gradient(#423D3D, #7D7072);
+						border-radius: 10px;
+						color: #ffffff;
+					}
+
+					.charStatsButton:hover {
+						background: linear-gradient(#7D7072, #423D3D);
+					}
+				}
+			}
+
+			.charStatsContainer:hover {
+				.charStats {
+					div {
+					background: -webkit-linear-gradient(#fff, green);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
 					}
 				}
 			}
@@ -92,12 +120,12 @@
 	.footerBox {
 		display: block;
 		height: 5em;
-		width: 60em;
+		width: 85%;
 		margin: 5em auto;
 		clear: both;
 
 		.footerImage {
-			display: block;
+			display: none;
 			height: 4em;
 			width: 4em;
 			border: 3px solid #000000;
@@ -107,10 +135,130 @@
 
 		.footerText {
 			display: block;
-			width: 50em;
 			color: green;
-			float: left;
-			margin: 0 2em;
+			margin: 0 auto;
+			background: -webkit-linear-gradient(#fff, red);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	}
+}
+
+@media screen and (min-width: 900px) {
+	.dashboardContainer {
+		// background-color: lightgrey;
+		// overflow: hidden;
+		// height: 97vh;
+		// background: no-repeat center/100% url("../images/brushed2.jpg");
+
+		.optionBoxContainer {
+			// clear: both;
+			// width: 65em;
+			// margin: 10em auto;
+			// margin-bottom: 1px;
+			// overflow: hidden;
+
+			.optionBox {
+				// color: red;
+				// height: 24em;
+				// width: 16em;
+				// border: 0.1em solid grey;
+				// border-style: outset;
+				// border-radius: 15px;
+				// float: left;
+				// margin: 1px 1em;
+				// overflow: scroll;
+				// text-align: center;
+				// background: no-repeat center/100% url("../images/glass-texture.jpg")
+				// background: no-repeat center/300% url("../images/glass-texture.jpg");
+
+				.span {
+					// display: block;
+					// text-align: center;
+					// margin-top: 5.5em;
+					// font-size: 2em;
+				}
+
+				.charStatsContainer {
+					// color: black;
+					// width: 100%;
+					// border: 4px outset black;
+					// overflow: hidden;
+					// padding-top: 1px;
+
+					.charStats {
+						// text-align: left;
+						// display: inline;
+						// width: 60%;
+						// color: green;
+						// margin: 1em auto;
+						// float: left;
+						// font-weight: bold;
+						// font-size: 1em;
+						// border: 2px solid black;
+					}
+
+					.buttonContainer {
+						// float: right;
+						// padding: 2em 0.5em 2em 0.5em;
+						// box-sizing: border-box;
+
+						.charStatsButton {
+							// width: 8em;
+							// display: block;
+							// margin: 0 auto;
+						}
+					}
+				}
+			}
+
+			.optionBox:hover {
+				// border-style: inset;
+				// opacity: 0.8;
+			}
+
+			.gradient-box{
+			    // border-radius: 30px;
+			    // border: 0.2em solid transparent;
+			    // -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+			    // -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+			    // border-image: linear-gradient(to bottom, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+			    // border-image-slice: 1;
+			}
+
+			.gradient-box:hover {
+				// border-radius: 30px;
+			 //    border: 0.4em solid transparent;
+			 //    -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
+			 //    -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
+			 //    border-image: linear-gradient(to bottom, #FAEFED 0%, green 50%, #FAEFED 100%);
+			 //    border-image-slice: 1;
+			}
+		}
+
+		.footerBox {
+			// display: block;
+			// height: 5em;
+			// width: 60em;
+			// margin: 5em auto;
+			// clear: both;
+
+			.footerImage {
+				// display: block;
+				// height: 4em;
+				// width: 4em;
+				// border: 3px solid #000000;
+				// color: blue;
+				// float: left;
+			}
+
+			.footerText {
+				// display: block;
+				// width: 50em;
+				// color: green;
+				// float: left;
+				// margin: 0 2em;
+			}
 		}
 	}
 }

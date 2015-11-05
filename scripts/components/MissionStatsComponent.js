@@ -32,7 +32,7 @@ module.exports = React.createClass({
 		})
 	},
 	render: function() {
-		var that = this
+		// var that = this
 		return (
 			<div style={this.props.style} className=" missionStatBlock">
 				<h3>{this.props.missionName}</h3>
@@ -63,32 +63,37 @@ module.exports = React.createClass({
 			return character.get('GoldPressedLatinum')
 		})
 		var calc = Math.random();
-
-		this.state.character[0].set('Dilithium', parseFloat(charDil) - (parseFloat(this.props.time) * 100));
-		this.state.character[0].save(null, {
-			success: function(CharacterModel) {
-				console.log('Dilithium Decreased')
-			}
-		})
-		if(calc * 5 <= this.state.statNum) {
-			console.log('Success:', this.state.statNum + ' is greater than ' + (calc * 5))
-			this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP)
-			this.state.character[0].save(null, {
-				success: function(CharacterModel) {
-					console.log('XP Increased')
-				}
-			})
-			this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL)
-			this.state.character[0].save(null, {
-				success: function(CharacterModel) {
-					console.log('GPL Increased')
-				}
-			})
-			// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
+		if(this.props.time * 100 > charDil) {
+			throw ('Not enough Dilithium')
 		}
 		else {
-			console.log('Failure:', this.state.statNum + ' is not greater than ' + (calc * 5))
+			this.state.character[0].set('Dilithium', parseFloat(charDil) - (parseFloat(this.props.time) * 100));
+			this.state.character[0].save(null, {
+				success: function(CharacterModel) {
+					console.log('Dilithium Decreased')
+				}
+			})
+			if(calc * 5 <= this.state.statNum) {
+				console.log('Success:', this.state.statNum + ' is greater than ' + (calc * 5))
+				this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP)
+				this.state.character[0].save(null, {
+					success: function(CharacterModel) {
+						console.log('XP Increased')
+					}
+				})
+				this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL)
+				this.state.character[0].save(null, {
+					success: function(CharacterModel) {
+						console.log('GPL Increased')
+					}
+				})
+				// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
+			}
+			else {
+				console.log('Failure:', this.state.statNum + ' is not greater than ' + (calc * 5))
+			}
 		}
-		console.log(charXP)
+		console.log(charXP);
+		this.props.update();
 	}
 })

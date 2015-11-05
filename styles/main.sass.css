@@ -1,30 +1,28 @@
 .titleContainer {
-  background-color: #2B2626;
-  padding: 5em 0 7em 0;
-  height: 77vh;
-  background: no-repeat center/100% url("../images/brushed2.jpg");
-  background-size: auto; }
+  min-height: 45em; }
   .titleContainer .titlePic {
     color: #ffffff;
     text-align: center;
-    background-color: black;
-    height: 25em;
-    background: no-repeat center/100% url("../images/startreklogo.jpg"); }
+    margin-top: 4em;
+    height: 20em; }
+    .titleContainer .titlePic img {
+      height: 17em;
+      width: 100%; }
     .titleContainer .titlePic span {
-      font-size: 3em;
-      position: relative;
-      top: 6.5em;
+      display: block;
+      margin-top: -2em;
+      background-color: #000000;
+      font-size: 1.8em;
       font-family: 'Orbitron', sans-serif;
-      color: #7D7072;
-      background: -webkit-linear-gradient(#eee, #333);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; }
+      color: #eee; }
   .titleContainer nav {
+    margin-top: -3em;
     margin-bottom: 1em;
     padding: 1em;
     background-color: #000000;
     background: linear-gradient(#423D3D, #7D7072); }
     .titleContainer nav button {
+      height: 2em;
       background-color: #000000;
       background: linear-gradient(#423D3D, #7D7072);
       border: none;
@@ -32,7 +30,7 @@
       font-size: 2em;
       margin: 0 0.5em;
       border-radius: 10px;
-      padding: 0 0.5em;
+      padding: 0 0.3em;
       font-family: 'Orbitron', sans-serif; }
     .titleContainer nav button:hover {
       background-color: #000000;
@@ -51,6 +49,7 @@
     background-color: grey;
     padding: 0 2em;
     background: no-repeat center/100% url("../images/drop-box.jpg");
+    background-size: auto;
     font-family: 'Orbitron', sans-serif;
     font-weight: none; }
     .titleContainer .dropDownBox label {
@@ -79,108 +78,136 @@
       border: none;
       color: #ffffff;
       border-radius: 10px;
-      padding: 0 1em; }
+      padding: 0 0.5em; }
     .titleContainer .dropDownBox button:hover {
       background-color: #000000;
       background: linear-gradient(#110E0F, #7D7072);
       border: none;
       color: #ffffff; }
 
-.dashboardContainer {
-  overflow: hidden;
-  height: 97vh; }
-  .dashboardContainer .optionBoxContainer {
-    clear: both;
-    width: 65em;
-    margin: 10em auto;
-    margin-bottom: 1px;
-    overflow: hidden; }
-    .dashboardContainer .optionBoxContainer .optionBox {
-      color: red;
-      height: 30em;
-      width: 18em;
-      border: 0.1em solid grey;
-      border-style: outset;
-      border-radius: 15px;
-      float: left;
-      margin: 1px 1em;
-      overflow: scroll;
+@media screen and (min-width: 475px) {
+  .titleContainer .titlePic span {
+    margin: 0;
+    font-size: 2em;
+    position: relative;
+    top: -1.8em;
+    font-family: 'Orbitron', sans-serif;
+    color: #7D7072;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; }
+  .titleContainer nav button {
+    height: 1em;
+    padding: 0 0.5em; } }
+
+.dashboardContainer .optionBoxContainer {
+  clear: both;
+  width: 80%;
+  margin: 10em auto;
+  margin-bottom: 1px;
+  overflow: hidden; }
+  .dashboardContainer .optionBoxContainer .optionBox {
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+    color: red;
+    height: 10em;
+    width: 93%;
+    float: left;
+    margin: 0.5em 1em;
+    overflow: scroll;
+    text-align: center;
+    background: no-repeat center/100% url("../images/glass-texture.jpg"); }
+    .dashboardContainer .optionBoxContainer .optionBox .span {
+      display: block;
       text-align: center;
-      background: no-repeat center/300% url("../images/glass-texture.jpg"); }
-      .dashboardContainer .optionBoxContainer .optionBox .span {
-        display: block;
-        margin-top: 5.5em;
-        font-size: 2em; }
-      .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer {
-        color: black;
-        width: 100%;
-        border: 4px outset black;
-        overflow: hidden;
-        padding-top: 1px; }
-        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats {
-          text-align: left;
-          display: inline;
-          width: 60%;
-          color: green;
-          margin: 1em auto;
-          float: left;
-          font-weight: bold;
-          font-size: 1em; }
-        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer {
-          float: right;
-          padding: 2em 0.5em 2em 0.5em;
-          box-sizing: border-box; }
-          .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer .charStatsButton {
-            width: 8em;
-            display: block;
-            margin: 0 auto; }
-    .dashboardContainer .optionBoxContainer .optionBox:hover {
-      border-style: inset;
-      opacity: 0.8; }
-    .dashboardContainer .optionBoxContainer .gradient-box {
-      border-radius: 30px;
-      border: 0.2em solid transparent;
-      -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
-      -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
-      border-image: linear-gradient(to bottom, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
-      border-image-slice: 1; }
-    .dashboardContainer .optionBoxContainer .gradient-box:hover {
-      border-radius: 30px;
-      border: 0.4em solid transparent;
-      -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
-      -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
-      border-image: linear-gradient(to bottom, #FAEFED 0%, green 50%, #FAEFED 100%);
-      border-image-slice: 1; }
-  .dashboardContainer .footerBox {
+      margin-top: 1.75em;
+      font-size: 2em; }
+    .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer {
+      color: black;
+      width: 98%;
+      border: 4px outset black;
+      overflow: scroll;
+      padding-top: 1px;
+      font-size: 1.2em; }
+      .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats {
+        text-align: left;
+        display: inline;
+        width: 60%;
+        color: green;
+        margin: 1em auto;
+        float: left;
+        font-weight: bold;
+        font-size: 0.85em;
+        line-height: 1.1em;
+        padding-top: 0.6em; }
+        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats div {
+          background: -webkit-linear-gradient(#fff, #2F4574);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent; }
+      .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats:hover div {
+        background: -webkit-linear-gradient(#fff, green);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; }
+      .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer {
+        float: right;
+        padding: 2em 0.5em 2em 0.5em;
+        box-sizing: border-box;
+        color: white; }
+        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer .charStatsButton {
+          width: 8em;
+          display: block;
+          margin: 0.5em auto;
+          background: linear-gradient(#423D3D, #7D7072);
+          border-radius: 10px;
+          color: #ffffff; }
+        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer .charStatsButton:hover {
+          background: linear-gradient(#7D7072, #423D3D); }
+    .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer:hover .charStats div {
+      background: -webkit-linear-gradient(#fff, green);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; }
+  .dashboardContainer .optionBoxContainer .optionBox:hover {
+    border-style: inset;
+    opacity: 0.8; }
+  .dashboardContainer .optionBoxContainer .gradient-box {
+    border-radius: 30px;
+    border: 0.2em solid transparent;
+    -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+    -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+    border-image: linear-gradient(to bottom, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+    border-image-slice: 1; }
+  .dashboardContainer .optionBoxContainer .gradient-box:hover {
+    border-radius: 30px;
+    border: 0.4em solid transparent;
+    -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
+    -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
+    border-image: linear-gradient(to bottom, #FAEFED 0%, green 50%, #FAEFED 100%);
+    border-image-slice: 1; }
+
+.dashboardContainer .footerBox {
+  display: block;
+  height: 5em;
+  width: 85%;
+  margin: 5em auto;
+  clear: both; }
+  .dashboardContainer .footerBox .footerImage {
+    display: none;
+    height: 4em;
+    width: 4em;
+    border: 3px solid #000000;
+    color: blue;
+    float: left; }
+  .dashboardContainer .footerBox .footerText {
     display: block;
-    height: 5em;
-    width: 60em;
-    margin: 5em auto;
-    clear: both; }
-    .dashboardContainer .footerBox .footerImage {
-      display: block;
-      height: 4em;
-      width: 4em;
-      border: 3px solid #000000;
-      color: blue;
-      float: left; }
-    .dashboardContainer .footerBox .footerText {
-      display: block;
-      width: 50em;
-      color: green;
-      float: left;
-      margin: 0 2em; }
+    color: green;
+    margin: 0 auto;
+    background: -webkit-linear-gradient(#fff, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; }
 
 .sectorMapContainer {
   overflow: hidden;
   min-width: 75em; }
-  .sectorMapContainer .userSettingsIcon {
-    height: 4em;
-    width: 4em;
-    border: 3px solid black;
-    position: absolute;
-    right: 0;
-    margin: 1em; }
   .sectorMapContainer .sectorMap {
     margin: 6em auto 1em auto;
     height: 35em;
@@ -204,19 +231,19 @@
       font-family: 'Orbitron', sans-serif; }
     .sectorMapContainer .sectorMap .sectorBlock:hover {
       background-color: rgba(255, 255, 255, 0.4); }
-    .sectorMapContainer .sectorMap .sector1 {
+    .sectorMapContainer .sectorMap .sector-FNu15SvITK {
       left: 19em;
       top: 6em; }
-    .sectorMapContainer .sectorMap .sector2 {
+    .sectorMapContainer .sectorMap .sector-2TXDd3I2v1 {
       left: 33em;
       top: 7em; }
-    .sectorMapContainer .sectorMap .sector3 {
+    .sectorMapContainer .sectorMap .sector-ubjIrzTDdM {
       left: 14em;
-      top: 8em;
+      top: 4em;
       padding-top: 2em; }
-    .sectorMapContainer .sectorMap .sector4 {
+    .sectorMapContainer .sectorMap .sector-YdGaQIqNke {
       left: 40em;
-      top: 3em; }
+      top: 10em; }
   .sectorMapContainer .dashboardButton {
     display: block;
     font-size: 1.5em;
@@ -317,6 +344,18 @@
 .createCharacterContainer {
   background-color: grey;
   min-width: 1550px; }
+  .createCharacterContainer .settings {
+    display: block;
+    height: 6em;
+    width: 6em;
+    text-align: center;
+    float: right;
+    margin: 1em;
+    background: no-repeat center/100% url("../images/cog.png");
+    opacity: 0.7;
+    border: none; }
+  .createCharacterContainer .settings:hover {
+    opacity: 1; }
   .createCharacterContainer .statsContainer {
     clear: both;
     background-color: lightgrey; }
@@ -426,11 +465,14 @@
           position: relative;
           top: -2em; }
 
+.userSettingsContainer {
+  color: #ffffff;
+  clear: both; }
+
 a {
   text-decoration: none; }
 
 body {
-  background-color: black;
   background: no-repeat center/100% url("../images/brushed2.jpg");
   background-size: auto; }
 
@@ -451,7 +493,6 @@ body {
   display: block;
   height: 4em;
   width: 4em;
-  border: 2px solid black;
   text-align: center;
   float: left;
   margin: 1em;

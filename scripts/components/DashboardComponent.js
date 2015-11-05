@@ -45,7 +45,7 @@ module.exports = React.createClass({
 
 		var CharacterList = this.state.characters.map((character) => {
 			return (
-				<CharacterListComponent characterId={character.id} name={character.get('Name')} level={character.get('XP')} starship={character.get('Starship').get('Name')} dilithium={character.get('Dilithium')} gpl={character.get('GoldPressedLatinum')} router={r}/>
+				<CharacterListComponent key={character.id} characterId={character.id} name={character.get('Name')} level={character.get('XP')} starship={character.get('Starship').get('Name')} dilithium={character.get('Dilithium')} gpl={character.get('GoldPressedLatinum')} router={r}/>
 			)
 		})
 
@@ -63,7 +63,7 @@ module.exports = React.createClass({
 		return (
 			<div className="dashboardContainer" onClick={this.onBackground}>
 				<a href="#"className="dashboardIcon"></a>
-				<a href="#"className="userSettingsIcon"></a>
+				<a href="#settings"className="userSettingsIcon"></a>
 				<div className="optionBoxContainer">
 					<a href="#create-character" className="optionBox gradient-box"><span className="span">CREATE NEW CHARACTER</span></a>
 					<a href="#" className="optionBox gradient-box" onClick={this.onChoose}>{dropDown}</a>
