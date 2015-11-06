@@ -1,35 +1,77 @@
 .missionScreenContainer {
-	// background-color: grey;
-	// z-index: 1;
-	// background-size: auto;
+
+	.sectorLoreBlock {
+		clear: both;
+		// background-color: red;
+		text-align: center;
+		width: 100%;
+		box-sizing: border-box;
+		// position: absolute;
+		// top: -3%;
+		// left: 25%;
+
+		h3 {
+			font-size: 2.5em;
+			text-align: center;
+		}
+
+		.sectorLore {
+			margin: 0.5em;
+			margin-top: -2em;
+		}
+	}
 
 	.userHUD {
+		box-sizing: border-box;
+		// position: absolute;
+		// top: 23%;
+		// width: 100%;
 		clear: both;
 		border: 3px solid black;
-		overflow: hidden;
+		// overflow: hidden;
 		background-color: lightgrey;
-		// background: linear-gradient(black, #7D7072, black);
 		background: linear-gradient(to right, black, black, black, grey, lightgrey, white, lightgrey, grey, black, black, black);
-		// background: no-repeat center/100% url("../images/nav_background.jpg");
+		// padding-left: 10%;
+		// padding-right: 10%;
 
-		.HUDFiller {
+		.HUDDil {
+			margin-left: -1em;
+			text-align: center;
+			width: 100%;
+			padding: 0 4%;
+			color: black;
 			padding-top: 1em;
 			height: 2em;
-			width: 20%;
-			float: left;
+			// float: left;
+			font-size: 1.4em;
+			font-weight: bold;
+			font-family: 'Orbitron', sans-serif;
+		}
+
+		.HUDGPL {
+			text-align: center;
+			color: black;
+			padding-top: 1em;
+			height: 2em;
+			// float: right;
+			font-size: 1.4em;
 			font-weight: bold;
 			font-family: 'Orbitron', sans-serif;
 		}
 
 		.HUDButton {
+			// position: absolute;
+			// left: 35%;
 			font-size: 1.4em;
-			color: white;
-			width: 30%;
-			float: left;
+			color: black;
+			width: 100%;
+			// float: left;
 			height: 1em;
 			background: none;
 			border: none;
-			margin-top: -0.4em;
+			font-weight: bold;
+			margin-top: -0.2em;
+			font-family: 'Orbitron', sans-serif;
 		}
 
 		.HUDButton:hover {
@@ -38,71 +80,265 @@
 	}
 
 	.sectorBlockContainer {
+		// position: absolute;
+		// top: 16em;
+		// left: 15%;
 		color: white;
-		width: 70em;
-		height: 75.5vh;
-		border: 3px solid white;
+		width: 100%;
+		height: 33em;
+		// border: 3px solid white;
 		margin: 0 auto;
 		overflow: hidden;
-		background-color: lightblue;
-		background: no-repeat top/100% url("../images/sleek-back.jpg");
-		
+		// background: no-repeat top/100% url("../images/space01.png");
+		background-size: auto;
+		clear: both;
 
-		.sectorLoreBlock {
-			width: 50%;
-			height: 75.5vh;
-			border-right: 3px solid white;
+		.missionStatBlock {
+			height: 16em;
+			font-size: 2em;
+			overflow: scroll;
+
+			.category {
+				font-weight: bold;
+				color: red;
+			}
+
+			h3 {
+				text-align: center;
+			}
+
+			button {
+				margin: 1em 1em;
+				color: white;
+				border-radius: 15px;
+				width: 10em;
+				height: 3em;
+				float: right;
+				position: relative;
+				bottom: 1.7em;
+				background: no-repeat top/100% url("../images/blue-button.jpg");
+			}
+
+			button:hover {
+				opacity: 0.7;
+			}
+		}
+
+		.sectorMissionBlock {
+			width: 100%;
+			// height: 30%;
 			box-sizing: border-box;
 			float: left;
+			overflow: scroll;
+			background-color: black;
+
+			.systemInfo {
+				display: block;
+				// position: absolute;
+				z-index: 1;
+				border: 1px solid grey;
+
+				.teaserBox {
+					// display: none;
+					z-index: 100;
+					// width: 20em;
+					height: 10em;
+					// opacity: 1;
+					// background-color: black;
+
+					.missionName {
+						font-size: 2em;
+						font-weight: bold;
+					}
+
+					.missionTeaser {
+						margin-top: 1em;
+						font-size: 1em;
+					}
+
+					.lore {
+						font-size: 0.5em;
+					}
+
+					.dropDownIcon {
+						margin-top: 1em;
+						color: white;
+						border-radius: 15px;
+						width: 10em;
+						height: 3em;
+						float: right;
+						position: relative;
+						bottom: 1.7em;
+						background: no-repeat top/100% url("../images/blue-button.jpg");
+					}
+
+					.dropDownIcon:hover {
+						opacity: 0.7;
+					}
+				}
+			}
+
+			.system0zTCvNPPPq {
+				// left: 80%;
+				// top: 70%;
+			}
+
+			// .system0zTCvNPPPq:hover {
+			// 	display: block;
+			// 	width: 20em;
+			// 	height: 10em;
+
+			// 	.teaserBox {
+			// 		display: block;
+			// 		z-index: 10;
+			// 		// position: absolute;
+			// 		// right: 75%;
+			// 	}
+			// }
+
+			.systemUufVeQXSt3 {
+				// left: 10%;
+				// top: 30%;
+			}
+
+			// .systemUufVeQXSt3:hover {
+			// 	display: block;
+			// 	width: 20em;
+			// 	height: 10em;
+
+			// 	.teaserBox {
+			// 		display: block;
+			// 		z-index: 10;
+			// 	}
+			// }
+
+			.systemIsYOG63CEv {
+				// top: 58%;
+				// left: 45%;
+			}
+
+			// .systemIsYOG63CEv:hover {
+			// 	display: block;
+			// 	width: 20em;
+			// 	height:10em;
+
+			// 	.teaserBox {
+			// 		display: block;
+			// 		z-index: 10;
+			// 	}
+			// }
+		}
+	}
+}
+
+@media screen and (min-width: 652px) {
+	.missionScreenContainer {
+
+		.sectorLoreBlock {
+			text-align: center;
+			width: 55%;
+			box-sizing: border-box;
+			position: absolute;
+			top: -3%;
+			left: 25%;
 
 			h3 {
 				font-size: 2.5em;
 				text-align: center;
 			}
 
-			.sectorImage {
-				height: 10em;
-				width: 18em;
-				margin: 2em auto;
-				border: 3px solid grey;
-				background: no-repeat center/100% url("../images/space.jpg");
-			}
-
-			.sectorLoreTitle {
-				font-size: 1.5em;
-				margin-left: 0.5em;
-			}
-
 			.sectorLore {
 				margin: 0.5em;
+				margin-top: -2em;
 			}
 		}
 
-		.sectorMissionBlock {
-			width: 50%;
-			height: 75.5vh;
-			// border-bottom: 3px solid white;
+		.userHUD {
 			box-sizing: border-box;
-			float: right;
-			overflow: scroll;
+			position: absolute;
+			top: 23%;
+			width: 100%;
+			clear: both;
+			border: 3px solid black;
+			overflow: hidden;
+			background-color: lightgrey;
+			background: linear-gradient(to right, black, black, black, grey, lightgrey, white, lightgrey, grey, black, black, black);
+			padding-left: 10%;
+			padding-right: 10%;
 
-			.sectorMission {
-				border-bottom: 3px solid white;
-				overflow: hidden;
-				padding: 0.5em;
-				height: 10em;
+			.HUDDil {
+				margin-left: none;
+				text-align: left;
+				// padding: 0 4%;
+				color: #ffffff;
+				padding-top: 0.7em;
+				height: 2em;
+				width: 30%;
+				float: left;
+				font-weight: bold;
+				font-family: 'Orbitron', sans-serif;
+			}
 
-				.missionName {
-					font-size: 2em;
+			.HUDGPL {
+				text-align: left;
+				color: #ffffff;
+				padding-top: 0.7em;
+				height: 2em;
+				float: right;
+				font-weight: bold;
+				font-family: 'Orbitron', sans-serif;
+			}
+
+			.HUDButton {
+				position: absolute;
+				left: 35%;
+				font-size: 1.4em;
+				color: #000000;
+				width: 30%;
+				float: left;
+				height: 1em;
+				background: none;
+				border: none;
+				font-weight: bold;
+				margin-top: 0.7em;
+				font-family: 'Orbitron', sans-serif;
+			}
+
+			.HUDButton:hover {
+				opacity: 0.7;
+			}
+		}
+
+		.sectorBlockContainer {
+			position: absolute;
+			top: 16em;
+			left: 15%;
+			color: white;
+			width: 71%;
+			height: 33em;
+			border: 3px solid white;
+			margin: 0 auto;
+			overflow: hidden;
+			background: no-repeat top/100% url("../images/space01.png");
+			background-size: auto;
+			clear: both;
+
+			.missionStatBlock {
+				height: 16em;
+				font-size: 2em;
+				overflow: scroll;
+
+				.category {
 					font-weight: bold;
+					color: red;
 				}
 
-				.missionTeaser {
-					margin-top: 1em;
-					font-size: 1.3em;
+				h3 {
+					text-align: center;
 				}
 
-				.dropDownIcon {
+				button {
+					margin: 1em 1em;
 					color: white;
 					border-radius: 15px;
 					width: 10em;
@@ -110,17 +346,118 @@
 					float: right;
 					position: relative;
 					bottom: 1.7em;
-					right: 1em;
 					background: no-repeat top/100% url("../images/blue-button.jpg");
-					
 				}
 
-				.dropDownIcon:hover {
+				button:hover {
 					opacity: 0.7;
+				}
+			}
+
+			.sectorMissionBlock {
+				// width: 70%;
+				// height: 30%;
+				box-sizing: border-box;
+				float: left;
+				overflow: scroll;
+
+				.systemInfo {
+					display: block;
+					position: absolute;
+					z-index: 1;
+					border: none;
+
+					.teaserBox {
+						display: none;
+						z-index: 100;
+						width: 20em;
+						height: 10em;
+						// opacity: 1;
+						// background-color: black;
+
+						.missionName {
+							font-size: 2em;
+							font-weight: bold;
+						}
+
+						.missionTeaser {
+							margin-top: 1em;
+							font-size: 1em;
+						}
+
+						.lore {
+							font-size: 0.5em;
+						}
+
+						.dropDownIcon {
+							margin-top: 1em;
+							color: white;
+							border-radius: 15px;
+							width: 10em;
+							height: 3em;
+							float: right;
+							position: relative;
+							bottom: 1.7em;
+							background: no-repeat top/100% url("../images/blue-button.jpg");
+						}
+
+						.dropDownIcon:hover {
+							opacity: 0.7;
+						}
+					}
+				}
+
+				.system0zTCvNPPPq {
+					left: 80%;
+					top: 70%;
+				}
+
+				.system0zTCvNPPPq:hover {
+					display: block;
+					width: 20em;
+					height: 10em;
+
+					.teaserBox {
+						display: block;
+						z-index: 10;
+						position: absolute;
+						right: 75%;
+					}
+				}
+
+				.systemUufVeQXSt3 {
+					left: 10%;
+					top: 30%;
+				}
+
+				.systemUufVeQXSt3:hover {
+					display: block;
+					width: 20em;
+					height: 10em;
+
+					.teaserBox {
+						display: block;
+						z-index: 10;
+					}
+				}
+
+				.systemIsYOG63CEv {
+					top: 58%;
+					left: 45%;
+				}
+
+				.systemIsYOG63CEv:hover {
+					display: block;
+					width: 20em;
+					height:10em;
+
+					.teaserBox {
+						display: block;
+						z-index: 10;
+					}
 				}
 			}
 		}
 	}
 }
-
 

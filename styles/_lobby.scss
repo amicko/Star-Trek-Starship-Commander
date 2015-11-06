@@ -1,6 +1,7 @@
 .titleContainer{
 	min-height: 45em;
 
+
 	.titlePic {
 		color: #ffffff;
 		text-align: center;
@@ -27,18 +28,18 @@
 		margin-bottom: 1em;
 		padding: 1em;
 		background-color: #000000;
-		background: linear-gradient(#423D3D, #7D7072);
+		background: linear-gradient(to top, lightgrey, grey, black);
 
 		button {
 			height: 2em;
 			background-color: #000000;
-			background: linear-gradient(#423D3D, #7D7072);
+			background: linear-gradient(to bottom, lightgrey, black);
 			border: none;
 			color: #ffffff;
 			font-size: 2em;
 			margin: 0 0.5em;
 			border-radius: 10px;
-			padding: 0 0.3em;
+			padding: 0 0.5em;
 			font-family: 'Orbitron', sans-serif;
 
 
@@ -46,7 +47,7 @@
 
 		button:hover {
 			background-color: #000000;
-			background: linear-gradient(#110E0F, #7D7072);
+			background: linear-gradient(to top, lightgrey, black);
 			border: none;
 			color: #ffffff;
 		}
@@ -133,7 +134,7 @@
 		nav {
 
 			button {
-				height: 1em;
+				height: 1.5em;
 				padding: 0 0.5em;
 
 			}

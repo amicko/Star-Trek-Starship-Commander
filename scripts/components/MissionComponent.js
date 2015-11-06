@@ -54,18 +54,21 @@ module.exports = React.createClass({
 
 		var sectorMissions = this.state.sectorMissions.map((missions, index) => {
 			return (
-					<div key={'mission'+index} className="sectorMission">
+				<div className={'systemInfo system' + missions.id}>{missions.get('System')}
+					<div className="teaserBox">
 						<div className="missionName">{missions.get('Name')}</div>
 						<div className="missionTeaser">{missions.get('Lore')}</div>
+						<br />
 						<button className="dropDownIcon" onClick={(e) => {this.onMissionDropDown(e, index)}}>Expand</button>
 					</div>
+				</div>
 			)
 		})
 
 		this.sectorMissionStats = this.state.sectorMissions.map((mission, index) => {
-			var style = {display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '50%', height: '75.5vh', float: 'right'};
+			// var style = {display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '100%', height: '75.5vh', float: 'right'};
 			return (
-				<MissionStatsComponent update={this.onUpdate} toggle={this.onBackground} style={style} key={index} missionName={mission.get('Name')} missionLore={mission.get('Lore')} lvlReq={mission.get('lvlReq')} time={mission.get('TimeToCompletion')} typeReq={mission.get('TypeReq')} neededStat={mission.get('NeededStat')} rewardXP={mission.get('RewardXP')} rewardGPL={mission.get('RewardGPL')} characterId={this.props.characterId}/>
+				<MissionStatsComponent update={this.onUpdate} toggle={this.onBackground}  key={index} missionName={mission.get('Name')} missionLore={mission.get('Lore')} lvlReq={mission.get('lvlReq')} time={mission.get('TimeToCompletion')} offNeeded={mission.get('ShownOffNeeded')} typeReq={mission.get('TypeReq')} statNeeded={mission.get('ShownStatNeeded')} neededStat={mission.get('NeededStat')} rewardXP={mission.get('RewardXP')} rewardGPL={mission.get('RewardGPL')} characterId={this.props.characterId}/>
 			)
 		})
 
@@ -73,8 +76,6 @@ module.exports = React.createClass({
 			return (
 				<div className="sectorLoreBlock">
 					<h3>{sector.get('Name')}</h3>
-					<div className="sectorImage"></div>
-					<div className="sectorLoreTitle">Sector Lore</div>
 					<div className="sectorLore">{sector.get('Lore')}
 					</div>
 				</div>
@@ -99,14 +100,14 @@ module.exports = React.createClass({
 			<div className="missionScreenContainer">
 				<a href={'#sector-map/' + this.props.characterId}className="sectorMapIcon"></a>
 				<a href="#settings" className="userSettingsIcon"></a>
+				{SectorStats}
 				<div className="userHUD">
+					<div className="HUDDil"><DilithiumCounterComponent characterId={this.props.characterId}/></div>
 					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>{charName}</button>
-					<div className="HUDFiller"><DilithiumCounterComponent characterId={this.props.characterId}/></div>
-					<div className="HUDFiller">GPL: {charGPL}</div>
+					<div className="HUDGPL">GPL: {charGPL}</div>
 				</div>
 				<div className="sectorBlockContainer">
 					{dropDown}
-					{SectorStats}
 				</div>
 			</div>
 		)
@@ -126,7 +127,7 @@ module.exports = React.createClass({
 	},
 	onMissionDropDown: function(e, index) {
 		e.preventDefault();
-		this.sectorMissionStats[index].props.style.display = 'block';
+		// this.sectorMissionStats[index].props.style.display = 'block';
 		var shownComponent = this.sectorMissionStats[index]
 		this.setState({
 			missionDrop: shownComponent

@@ -33265,7 +33265,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'titlePic' },
-					React.createElement('img', { src: '../images/startreklogo.jpg' }),
+					React.createElement('img', { src: './images/startreklogo.jpg' }),
 					React.createElement(
 						'span',
 						null,
@@ -33473,30 +33473,36 @@ module.exports = React.createClass({
 		var sectorMissions = this.state.sectorMissions.map(function (missions, index) {
 			return React.createElement(
 				'div',
-				{ key: 'mission' + index, className: 'sectorMission' },
+				{ className: 'systemInfo system' + missions.id },
+				missions.get('System'),
 				React.createElement(
 					'div',
-					{ className: 'missionName' },
-					missions.get('Name')
-				),
-				React.createElement(
-					'div',
-					{ className: 'missionTeaser' },
-					missions.get('Lore')
-				),
-				React.createElement(
-					'button',
-					{ className: 'dropDownIcon', onClick: function (e) {
-							_this2.onMissionDropDown(e, index);
-						} },
-					'Expand'
+					{ className: 'teaserBox' },
+					React.createElement(
+						'div',
+						{ className: 'missionName' },
+						missions.get('Name')
+					),
+					React.createElement(
+						'div',
+						{ className: 'missionTeaser' },
+						missions.get('Lore')
+					),
+					React.createElement('br', null),
+					React.createElement(
+						'button',
+						{ className: 'dropDownIcon', onClick: function (e) {
+								_this2.onMissionDropDown(e, index);
+							} },
+						'Expand'
+					)
 				)
 			);
 		});
 
 		this.sectorMissionStats = this.state.sectorMissions.map(function (mission, index) {
-			var style = { display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '50%', height: '75.5vh', float: 'right' };
-			return React.createElement(MissionStatsComponent, { update: _this2.onUpdate, toggle: _this2.onBackground, style: style, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), typeReq: mission.get('TypeReq'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL'), characterId: _this2.props.characterId });
+			// var style = {display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '100%', height: '75.5vh', float: 'right'};
+			return React.createElement(MissionStatsComponent, { update: _this2.onUpdate, toggle: _this2.onBackground, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), offNeeded: mission.get('ShownOffNeeded'), typeReq: mission.get('TypeReq'), statNeeded: mission.get('ShownStatNeeded'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL'), characterId: _this2.props.characterId });
 		});
 
 		var SectorStats = this.state.sector.map(function (sector) {
@@ -33507,12 +33513,6 @@ module.exports = React.createClass({
 					'h3',
 					null,
 					sector.get('Name')
-				),
-				React.createElement('div', { className: 'sectorImage' }),
-				React.createElement(
-					'div',
-					{ className: 'sectorLoreTitle' },
-					'Sector Lore'
 				),
 				React.createElement(
 					'div',
@@ -33542,9 +33542,15 @@ module.exports = React.createClass({
 			{ className: 'missionScreenContainer' },
 			React.createElement('a', { href: '#sector-map/' + this.props.characterId, className: 'sectorMapIcon' }),
 			React.createElement('a', { href: '#settings', className: 'userSettingsIcon' }),
+			SectorStats,
 			React.createElement(
 				'div',
 				{ className: 'userHUD' },
+				React.createElement(
+					'div',
+					{ className: 'HUDDil' },
+					React.createElement(DilithiumCounterComponent, { characterId: this.props.characterId })
+				),
 				React.createElement(
 					'button',
 					{ className: 'HUDFiller HUDButton', onClick: this.onCharStats },
@@ -33552,12 +33558,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'HUDFiller' },
-					React.createElement(DilithiumCounterComponent, { characterId: this.props.characterId })
-				),
-				React.createElement(
-					'div',
-					{ className: 'HUDFiller' },
+					{ className: 'HUDGPL' },
 					'GPL: ',
 					charGPL
 				)
@@ -33565,8 +33566,7 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'sectorBlockContainer' },
-				dropDown,
-				SectorStats
+				dropDown
 			)
 		);
 	},
@@ -33585,7 +33585,7 @@ module.exports = React.createClass({
 	},
 	onMissionDropDown: function onMissionDropDown(e, index) {
 		e.preventDefault();
-		this.sectorMissionStats[index].props.style.display = 'block';
+		// this.sectorMissionStats[index].props.style.display = 'block';
 		var shownComponent = this.sectorMissionStats[index];
 		this.setState({
 			missionDrop: shownComponent
@@ -33645,7 +33645,7 @@ module.exports = React.createClass({
 		// var that = this
 		return React.createElement(
 			'div',
-			{ style: this.props.style, className: ' missionStatBlock' },
+			{ className: 'missionStatBlock' },
 			React.createElement(
 				'h3',
 				null,
@@ -33653,21 +33653,21 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				null,
+				{ className: 'lore' },
 				React.createElement(
-					'strong',
-					null,
+					'span',
+					{ className: 'category' },
 					'Lore:'
 				),
-				React.createElement('br', null),
+				' ',
 				this.props.missionLore
 			),
 			React.createElement(
 				'div',
 				null,
 				React.createElement(
-					'strong',
-					null,
+					'span',
+					{ className: 'category' },
 					'Level Required:'
 				),
 				' ',
@@ -33677,42 +33677,42 @@ module.exports = React.createClass({
 				'div',
 				null,
 				React.createElement(
-					'strong',
-					null,
-					'Time to Complete:'
+					'span',
+					{ className: 'category' },
+					'Cost to Attempt:'
 				),
 				' ',
-				this.props.time,
-				' Minute'
+				this.props.time * 100,
+				' Dilithium'
 			),
 			React.createElement(
 				'div',
 				null,
 				React.createElement(
-					'strong',
-					null,
+					'span',
+					{ className: 'category' },
 					'Senior Officer Needed:'
 				),
 				' ',
-				this.props.typeReq
+				this.props.offNeeded
 			),
 			React.createElement(
 				'div',
 				null,
 				React.createElement(
-					'strong',
-					null,
+					'span',
+					{ className: 'category' },
 					'Stat Used:'
 				),
 				' ',
-				this.props.neededStat
+				this.props.statNeeded
 			),
 			React.createElement(
 				'div',
 				null,
 				React.createElement(
-					'strong',
-					null,
+					'span',
+					{ className: 'category' },
 					'XP Value:'
 				),
 				' ',
@@ -33722,8 +33722,8 @@ module.exports = React.createClass({
 				'div',
 				null,
 				React.createElement(
-					'strong',
-					null,
+					'span',
+					{ className: 'category' },
 					'Gold-Pressed Latinum Value:'
 				),
 				' ',
@@ -33731,12 +33731,12 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'button',
-				{ onClick: this.onToggle },
-				'Minimize'
+				{ className: 'minButton', onClick: this.onToggle },
+				'Sector Screen'
 			),
 			React.createElement(
 				'button',
-				{ onClick: this.doMission },
+				{ className: 'attButton', onClick: this.doMission },
 				'Attempt Mission'
 			)
 		);
