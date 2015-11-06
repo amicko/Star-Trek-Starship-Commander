@@ -10,8 +10,11 @@ a {
 }
 body {
 	// background-color: black;
-	background: no-repeat center/100% url("../images/brushed2.jpg");
-	background-size: auto;
+	// min-height: 100em;
+	// background: no-repeat center/100% url("../images/brushed2.jpg");
+	// background-size: auto;
+	background: linear-gradient(to right, black, grey, white, grey, black);
+
 }
 
 .sectorMapIcon {
