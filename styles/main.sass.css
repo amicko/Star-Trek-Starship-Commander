@@ -20,21 +20,21 @@
     margin-bottom: 1em;
     padding: 1em;
     background-color: #000000;
-    background: linear-gradient(#423D3D, #7D7072); }
+    background: linear-gradient(to top, lightgrey, grey, black); }
     .titleContainer nav button {
       height: 2em;
       background-color: #000000;
-      background: linear-gradient(#423D3D, #7D7072);
+      background: linear-gradient(to bottom, lightgrey, black);
       border: none;
       color: #ffffff;
       font-size: 2em;
       margin: 0 0.5em;
       border-radius: 10px;
-      padding: 0 0.3em;
+      padding: 0 0.5em;
       font-family: 'Orbitron', sans-serif; }
     .titleContainer nav button:hover {
       background-color: #000000;
-      background: linear-gradient(#110E0F, #7D7072);
+      background: linear-gradient(to top, lightgrey, black);
       border: none;
       color: #ffffff; }
   .titleContainer .dropDownBox {
@@ -97,7 +97,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; }
   .titleContainer nav button {
-    height: 1em;
+    height: 1.5em;
     padding: 0 0.5em; } }
 
 .dashboardContainer .optionBoxContainer {
@@ -133,7 +133,6 @@
         text-align: left;
         display: inline;
         width: 60%;
-        color: green;
         margin: 1em auto;
         float: left;
         font-weight: bold;
@@ -141,11 +140,11 @@
         line-height: 1.1em;
         padding-top: 0.6em; }
         .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats div {
-          background: -webkit-linear-gradient(#fff, #2F4574);
+          background: -webkit-linear-gradient(#fff, grey);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent; }
       .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats:hover div {
-        background: -webkit-linear-gradient(#fff, green);
+        background: -webkit-linear-gradient(grey, #fff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent; }
       .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer {
@@ -154,34 +153,34 @@
         box-sizing: border-box;
         color: white; }
         .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer .charStatsButton {
+          height: 3em;
           width: 8em;
           display: block;
           margin: 0.5em auto;
-          background: linear-gradient(#423D3D, #7D7072);
+          background: linear-gradient(to bottom, lightgrey, black);
           border-radius: 10px;
           color: #ffffff; }
         .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer .charStatsButton:hover {
-          background: linear-gradient(#7D7072, #423D3D); }
+          background: linear-gradient(to top, lightgrey, black); }
     .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer:hover .charStats div {
-      background: -webkit-linear-gradient(#fff, green);
+      background: -webkit-linear-gradient(grey, #fff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent; }
   .dashboardContainer .optionBoxContainer .optionBox:hover {
     border-style: inset;
     opacity: 0.8; }
   .dashboardContainer .optionBoxContainer .gradient-box {
-    border-radius: 30px;
     border: 0.2em solid transparent;
-    -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
-    -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
-    border-image: linear-gradient(to bottom, #FAEFED 0%, #2F4574 50%, #FAEFED 100%);
+    -moz-border-image: -moz-linear-gradient(top, grey 0%, white 50%, grey 100%);
+    -webkit-border-image: -webkit-linear-gradient(top, grey 0%, white 50%, grey 100%);
+    border-image: linear-gradient(to bottom, grey 0%, white 50%, grey 100%);
     border-image-slice: 1; }
   .dashboardContainer .optionBoxContainer .gradient-box:hover {
     border-radius: 30px;
     border: 0.4em solid transparent;
-    -moz-border-image: -moz-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
-    -webkit-border-image: -webkit-linear-gradient(top, #FAEFED 0%, green 50%, #FAEFED 100%);
-    border-image: linear-gradient(to bottom, #FAEFED 0%, green 50%, #FAEFED 100%);
+    -moz-border-image: -moz-linear-gradient(top, lightgrey 0%, black 40%, black 60%, lightgrey 100%);
+    -webkit-border-image: -webkit-linear-gradient(top, lightgrey 0%, black 40%, black 60%, lightgrey 100%);
+    border-image: linear-gradient(to bottom, lightgrey 0%, black 40%, black 60%, lightgrey 100%);
     border-image-slice: 1; }
 
 .dashboardContainer .footerBox {
@@ -257,78 +256,202 @@
   .sectorMapContainer .dashboardButton:hover {
     background: linear-gradient(#423D3D, #ffffff); }
 
+.missionScreenContainer .sectorLoreBlock {
+  clear: both;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box; }
+  .missionScreenContainer .sectorLoreBlock h3 {
+    font-size: 2.5em;
+    text-align: center; }
+  .missionScreenContainer .sectorLoreBlock .sectorLore {
+    margin: 0.5em;
+    margin-top: -2em; }
+
 .missionScreenContainer .userHUD {
+  box-sizing: border-box;
   clear: both;
   border: 3px solid black;
-  overflow: hidden;
   background-color: lightgrey;
   background: linear-gradient(to right, black, black, black, grey, lightgrey, white, lightgrey, grey, black, black, black); }
-  .missionScreenContainer .userHUD .HUDFiller {
+  .missionScreenContainer .userHUD .HUDDil {
+    margin-left: -1em;
+    text-align: center;
+    width: 100%;
+    padding: 0 4%;
+    color: black;
     padding-top: 1em;
     height: 2em;
-    width: 20%;
-    float: left;
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif; }
+  .missionScreenContainer .userHUD .HUDGPL {
+    text-align: center;
+    color: black;
+    padding-top: 1em;
+    height: 2em;
+    font-size: 1.4em;
     font-weight: bold;
     font-family: 'Orbitron', sans-serif; }
   .missionScreenContainer .userHUD .HUDButton {
     font-size: 1.4em;
-    color: white;
-    width: 30%;
-    float: left;
+    color: black;
+    width: 100%;
     height: 1em;
     background: none;
     border: none;
-    margin-top: -0.4em; }
+    font-weight: bold;
+    margin-top: -0.2em;
+    font-family: 'Orbitron', sans-serif; }
   .missionScreenContainer .userHUD .HUDButton:hover {
     opacity: 0.7; }
 
 .missionScreenContainer .sectorBlockContainer {
   color: white;
-  width: 70em;
-  height: 75.5vh;
-  border: 3px solid white;
+  width: 100%;
+  height: 33em;
   margin: 0 auto;
   overflow: hidden;
-  background-color: lightblue;
-  background: no-repeat top/100% url("../images/sleek-back.jpg"); }
-  .missionScreenContainer .sectorBlockContainer .sectorLoreBlock {
-    width: 50%;
-    height: 75.5vh;
-    border-right: 3px solid white;
+  background-size: auto;
+  clear: both; }
+  .missionScreenContainer .sectorBlockContainer .missionStatBlock {
+    height: 16em;
+    font-size: 2em;
+    overflow: scroll; }
+    .missionScreenContainer .sectorBlockContainer .missionStatBlock .category {
+      font-weight: bold;
+      color: red; }
+    .missionScreenContainer .sectorBlockContainer .missionStatBlock h3 {
+      text-align: center; }
+    .missionScreenContainer .sectorBlockContainer .missionStatBlock button {
+      margin: 1em 1em;
+      color: white;
+      border-radius: 15px;
+      width: 10em;
+      height: 3em;
+      float: right;
+      position: relative;
+      bottom: 1.7em;
+      background: no-repeat top/100% url("../images/blue-button.jpg"); }
+    .missionScreenContainer .sectorBlockContainer .missionStatBlock button:hover {
+      opacity: 0.7; }
+  .missionScreenContainer .sectorBlockContainer .sectorMissionBlock {
+    width: 100%;
     box-sizing: border-box;
-    float: left; }
-    .missionScreenContainer .sectorBlockContainer .sectorLoreBlock h3 {
+    float: left;
+    overflow: scroll;
+    background-color: black; }
+    .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo {
+      display: block;
+      z-index: 1;
+      border: 1px solid grey; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox {
+        z-index: 100;
+        height: 10em; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .missionName {
+          font-size: 2em;
+          font-weight: bold; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .missionTeaser {
+          margin-top: 1em;
+          font-size: 1em; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .lore {
+          font-size: 0.5em; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .dropDownIcon {
+          margin-top: 1em;
+          color: white;
+          border-radius: 15px;
+          width: 10em;
+          height: 3em;
+          float: right;
+          position: relative;
+          bottom: 1.7em;
+          background: no-repeat top/100% url("../images/blue-button.jpg"); }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .dropDownIcon:hover {
+          opacity: 0.7; }
+
+@media screen and (min-width: 652px) {
+  .missionScreenContainer .sectorLoreBlock {
+    text-align: center;
+    width: 55%;
+    box-sizing: border-box;
+    position: absolute;
+    top: -3%;
+    left: 25%; }
+    .missionScreenContainer .sectorLoreBlock h3 {
       font-size: 2.5em;
       text-align: center; }
-    .missionScreenContainer .sectorBlockContainer .sectorLoreBlock .sectorImage {
-      height: 10em;
-      width: 18em;
-      margin: 2em auto;
-      border: 3px solid grey;
-      background: no-repeat center/100% url("../images/space.jpg"); }
-    .missionScreenContainer .sectorBlockContainer .sectorLoreBlock .sectorLoreTitle {
-      font-size: 1.5em;
-      margin-left: 0.5em; }
-    .missionScreenContainer .sectorBlockContainer .sectorLoreBlock .sectorLore {
-      margin: 0.5em; }
-  .missionScreenContainer .sectorBlockContainer .sectorMissionBlock {
-    width: 50%;
-    height: 75.5vh;
+    .missionScreenContainer .sectorLoreBlock .sectorLore {
+      margin: 0.5em;
+      margin-top: -2em; }
+  .missionScreenContainer .userHUD {
     box-sizing: border-box;
-    float: right;
-    overflow: scroll; }
-    .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .sectorMission {
-      border-bottom: 3px solid white;
-      overflow: hidden;
-      padding: 0.5em;
-      height: 10em; }
-      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .sectorMission .missionName {
-        font-size: 2em;
-        font-weight: bold; }
-      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .sectorMission .missionTeaser {
-        margin-top: 1em;
-        font-size: 1.3em; }
-      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .sectorMission .dropDownIcon {
+    position: absolute;
+    top: 23%;
+    width: 100%;
+    clear: both;
+    border: 3px solid black;
+    overflow: hidden;
+    background-color: lightgrey;
+    background: linear-gradient(to right, black, black, black, grey, lightgrey, white, lightgrey, grey, black, black, black);
+    padding-left: 10%;
+    padding-right: 10%; }
+    .missionScreenContainer .userHUD .HUDDil {
+      margin-left: none;
+      text-align: left;
+      color: #ffffff;
+      padding-top: 0.7em;
+      height: 2em;
+      width: 30%;
+      float: left;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif; }
+    .missionScreenContainer .userHUD .HUDGPL {
+      text-align: left;
+      color: #ffffff;
+      padding-top: 0.7em;
+      height: 2em;
+      float: right;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif; }
+    .missionScreenContainer .userHUD .HUDButton {
+      position: absolute;
+      left: 35%;
+      font-size: 1.4em;
+      color: #000000;
+      width: 30%;
+      float: left;
+      height: 1em;
+      background: none;
+      border: none;
+      font-weight: bold;
+      margin-top: 0.7em;
+      font-family: 'Orbitron', sans-serif; }
+    .missionScreenContainer .userHUD .HUDButton:hover {
+      opacity: 0.7; }
+  .missionScreenContainer .sectorBlockContainer {
+    position: absolute;
+    top: 16em;
+    left: 15%;
+    color: white;
+    width: 71%;
+    height: 33em;
+    border: 3px solid white;
+    margin: 0 auto;
+    overflow: hidden;
+    background: no-repeat top/100% url("../images/space01.png");
+    background-size: auto;
+    clear: both; }
+    .missionScreenContainer .sectorBlockContainer .missionStatBlock {
+      height: 16em;
+      font-size: 2em;
+      overflow: scroll; }
+      .missionScreenContainer .sectorBlockContainer .missionStatBlock .category {
+        font-weight: bold;
+        color: red; }
+      .missionScreenContainer .sectorBlockContainer .missionStatBlock h3 {
+        text-align: center; }
+      .missionScreenContainer .sectorBlockContainer .missionStatBlock button {
+        margin: 1em 1em;
         color: white;
         border-radius: 15px;
         width: 10em;
@@ -336,10 +459,75 @@
         float: right;
         position: relative;
         bottom: 1.7em;
-        right: 1em;
         background: no-repeat top/100% url("../images/blue-button.jpg"); }
-      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .sectorMission .dropDownIcon:hover {
+      .missionScreenContainer .sectorBlockContainer .missionStatBlock button:hover {
         opacity: 0.7; }
+    .missionScreenContainer .sectorBlockContainer .sectorMissionBlock {
+      box-sizing: border-box;
+      float: left;
+      overflow: scroll; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        border: none; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox {
+          display: none;
+          z-index: 100;
+          width: 20em;
+          height: 10em; }
+          .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .missionName {
+            font-size: 2em;
+            font-weight: bold; }
+          .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .missionTeaser {
+            margin-top: 1em;
+            font-size: 1em; }
+          .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .lore {
+            font-size: 0.5em; }
+          .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .dropDownIcon {
+            margin-top: 1em;
+            color: white;
+            border-radius: 15px;
+            width: 10em;
+            height: 3em;
+            float: right;
+            position: relative;
+            bottom: 1.7em;
+            background: no-repeat top/100% url("../images/blue-button.jpg"); }
+          .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .dropDownIcon:hover {
+            opacity: 0.7; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system0zTCvNPPPq {
+        left: 80%;
+        top: 70%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system0zTCvNPPPq:hover {
+        display: block;
+        width: 20em;
+        height: 10em; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system0zTCvNPPPq:hover .teaserBox {
+          display: block;
+          z-index: 10;
+          position: absolute;
+          right: 75%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemUufVeQXSt3 {
+        left: 10%;
+        top: 30%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemUufVeQXSt3:hover {
+        display: block;
+        width: 20em;
+        height: 10em; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemUufVeQXSt3:hover .teaserBox {
+          display: block;
+          z-index: 10; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemIsYOG63CEv {
+        top: 58%;
+        left: 45%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemIsYOG63CEv:hover {
+        display: block;
+        width: 20em;
+        height: 10em; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemIsYOG63CEv:hover .teaserBox {
+          display: block;
+          z-index: 10; } }
 
 .createCharacterContainer {
   background-color: grey;
@@ -473,8 +661,7 @@ a {
   text-decoration: none; }
 
 body {
-  background: no-repeat center/100% url("../images/brushed2.jpg");
-  background-size: auto; }
+  background: linear-gradient(to right, black, grey, white, grey, black); }
 
 .sectorMapIcon {
   display: block;

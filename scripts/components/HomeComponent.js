@@ -33,7 +33,7 @@ module.exports = React.createClass({
 			<div className="titleContainer">
 				<div className="titlePicBox">
 					<div className="titlePic">
-						<img src="../images/startreklogo.jpg"/>
+						<img src="./images/startreklogo.jpg"/>
 						<span>STARSHIP COMMANDER</span>
 					</div>
 				</div>

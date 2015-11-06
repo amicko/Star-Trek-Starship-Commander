@@ -34,17 +34,17 @@ module.exports = React.createClass({
 	render: function() {
 		// var that = this
 		return (
-			<div style={this.props.style} className=" missionStatBlock">
+			<div  className="missionStatBlock">
 				<h3>{this.props.missionName}</h3>
-				<div><strong>Lore:</strong><br/>{this.props.missionLore}</div>
-				<div><strong>Level Required:</strong> {this.props.lvlReq}</div>
-				<div><strong>Time to Complete:</strong> {this.props.time} Minute</div>
-				<div><strong>Senior Officer Needed:</strong> {this.props.typeReq}</div>
-				<div><strong>Stat Used:</strong> {this.props.neededStat}</div>
-				<div><strong>XP Value:</strong> {this.props.rewardXP}</div>
-				<div><strong>Gold-Pressed Latinum Value:</strong> {this.props.rewardGPL}</div>
-				<button onClick={this.onToggle}>Minimize</button>
-				<button onClick={this.doMission}>Attempt Mission</button>
+				<div className="lore"><span className="category">Lore:</span> {this.props.missionLore}</div>
+				<div><span className="category">Level Required:</span> {this.props.lvlReq}</div>
+				<div><span className="category">Cost to Attempt:</span> {this.props.time*100} Dilithium</div>
+				<div><span className="category">Senior Officer Needed:</span> {this.props.offNeeded}</div>
+				<div><span className="category">Stat Used:</span> {this.props.statNeeded}</div>
+				<div><span className="category">XP Value:</span> {this.props.rewardXP}</div>
+				<div><span className="category">Gold-Pressed Latinum Value:</span> {this.props.rewardGPL}</div>
+				<button className="minButton" onClick={this.onToggle}>Sector Screen</button>
+				<button className="attButton" onClick={this.doMission}>Attempt Mission</button>
 			</div>
 		)
 	},
