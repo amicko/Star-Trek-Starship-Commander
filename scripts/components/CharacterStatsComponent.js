@@ -127,9 +127,9 @@ module.exports = React.createClass({
 			return(
 				<div className="starshipBox">
 					<div className="starshipStatsBox">
-						<div className="starshipName">{starship.get('Name')}</div>
+						<div className="starshipName">U.S.S. {starship.get('Name')}</div>
 						<div className="starshipClassBox">Class: {starship.get('Class').get('Name')}</div>
-						<div className="starshipImage">Image</div>
+						<div className="starshipImage"><img src={starship.get('Class').get('ImageURL')}/></div>
 						<div className="starshipStatBox">Range: {starship.get('Class').get('Range')}</div>
 						<div className="starshipStatBox">Weapons: {starship.get('Class').get('Weapons')}</div>
 						<div className="starshipStatBox">Shields: {starship.get('Class').get('Shields')}</div>
