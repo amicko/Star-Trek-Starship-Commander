@@ -110,11 +110,11 @@ module.exports = React.createClass({
 		var currentCharacter = this.state.currentCharacter.map((character) => {
 			return (
 				<div className="characterStatsBox">
-					<div className="characterName">NAME: {character.get('Name')}</div>
-					<div className="characterXp">XP: {character.get('XP')}</div>
-					<div className="characterLevel">LEVEL: {Math.round(character.get('XP')/100)}</div>
-					<div className="CharacterDilithium">DILITHIUM: {character.get('Dilithium')}</div>
-					<div className="goldPressedLatinum">GOLD-PRESSED LATINUM: {character.get('GoldPressedLatinum')}</div>
+					<div className="characterName"><span className="category">NAME: </span>{character.get('Name')}</div>
+					<div className="characterXp"><span className="category">XP: </span>{character.get('XP')}</div>
+					<div className="characterLevel"><span className="category">LEVEL: </span>{Math.round(character.get('XP')/100)}</div>
+					<div className="CharacterDilithium"><span className="category">DILITHIUM: </span>{character.get('Dilithium')}</div>
+					<div className="goldPressedLatinum"><span className="category">GOLD-PRESSED LATINUM: </span>{character.get('GoldPressedLatinum')}</div>
 				</div>
 			)
 		})
@@ -147,26 +147,29 @@ module.exports = React.createClass({
 					<div className="position">CAPTAIN</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('Captain').get('Name')}</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">{person.get('Captain').get('officer')}</div>
+					<div className="personnelStatsContainer">
+						<div className="personnelStatBox">
+							<div className="stat">Officer</div>
+							<div className="box">{person.get('Captain').get('officer')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Security</div>
+							<div className="box">{person.get('Captain').get('security')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Medical</div>
+							<div className="box">{person.get('Captain').get('medical')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Science</div>
+							<div className="box">{person.get('Captain').get('science')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Engineer</div>
+							<div className="box">{person.get('Captain').get('engineer')}</div>
+						</div>
 					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">{person.get('Captain').get('security')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">{person.get('Captain').get('medical')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">{person.get('Captain').get('science')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">{person.get('Captain').get('engineer')}</div>
-					</div>
+					<button className="changePersonnel" onClick={this.onChangeCaptain}>Change</button>
 				</div>
 			)
 		})
@@ -177,26 +180,29 @@ module.exports = React.createClass({
 					<div className="position">FIRST OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('FirstOfficer').get('Name')}</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">{person.get('FirstOfficer').get('officer')}</div>
+					<div className="personnelStatsContainer">
+						<div className="personnelStatBox">
+							<div className="stat">Officer</div>
+							<div className="box">{person.get('FirstOfficer').get('officer')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Security</div>
+							<div className="box">{person.get('FirstOfficer').get('security')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Medical</div>
+							<div className="box">{person.get('FirstOfficer').get('medical')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Science</div>
+							<div className="box">{person.get('FirstOfficer').get('science')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Engineer</div>
+							<div className="box">{person.get('FirstOfficer').get('engineer')}</div>
+						</div>
 					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">{person.get('FirstOfficer').get('security')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">{person.get('FirstOfficer').get('medical')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">{person.get('FirstOfficer').get('science')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">{person.get('FirstOfficer').get('engineer')}</div>
-					</div>
+					<button className="changePersonnel" onClick={this.onChangeFirstOff}>Change</button>
 				</div>
 			)
 		})
@@ -207,26 +213,29 @@ module.exports = React.createClass({
 					<div className="position">HELMSMAN</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('Helmsman').get('Name')}</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">{person.get('Helmsman').get('officer')}</div>
+					<div className="personnelStatsContainer">
+						<div className="personnelStatBox">
+							<div className="stat">Officer</div>
+							<div className="box">{person.get('Helmsman').get('officer')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Security</div>
+							<div className="box">{person.get('Helmsman').get('security')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Medical</div>
+							<div className="box">{person.get('Helmsman').get('medical')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Science</div>
+							<div className="box">{person.get('Helmsman').get('science')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Engineer</div>
+							<div className="box">{person.get('Helmsman').get('engineer')}</div>
+						</div>
 					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">{person.get('Helmsman').get('security')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">{person.get('Helmsman').get('medical')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">{person.get('Helmsman').get('science')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">{person.get('Helmsman').get('engineer')}</div>
-					</div>
+					<button className="changePersonnel" onClick={this.onChangeHelmsman}>Change</button>
 				</div>
 			)
 		})
@@ -237,26 +246,29 @@ module.exports = React.createClass({
 					<div className="position">TACTICAL OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('TacOfficer').get('Name')}</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">{person.get('TacOfficer').get('officer')}</div>
+					<div className="personnelStatsContainer">
+						<div className="personnelStatBox">
+							<div className="stat">Officer</div>
+							<div className="box">{person.get('TacOfficer').get('officer')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Security</div>
+							<div className="box">{person.get('TacOfficer').get('security')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Medical</div>
+							<div className="box">{person.get('TacOfficer').get('medical')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Science</div>
+							<div className="box">{person.get('TacOfficer').get('science')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Engineer</div>
+							<div className="box">{person.get('TacOfficer').get('engineer')}</div>
+						</div>
 					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">{person.get('TacOfficer').get('security')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">{person.get('TacOfficer').get('medical')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">{person.get('TacOfficer').get('science')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">{person.get('TacOfficer').get('engineer')}</div>
-					</div>
+					<button className="changePersonnel" onClick={this.onChangeTacOff}>Change</button>
 				</div>
 			)
 		})
@@ -267,26 +279,29 @@ module.exports = React.createClass({
 					<div className="position">MEDICAL OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('MedOfficer').get('Name')}</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">{person.get('MedOfficer').get('officer')}</div>
+					<div className="personnelStatsContainer">
+						<div className="personnelStatBox">
+							<div className="stat">Officer</div>
+							<div className="box">{person.get('MedOfficer').get('officer')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Security</div>
+							<div className="box">{person.get('MedOfficer').get('security')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Medical</div>
+							<div className="box">{person.get('MedOfficer').get('medical')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Science</div>
+							<div className="box">{person.get('MedOfficer').get('science')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Engineer</div>
+							<div className="box">{person.get('MedOfficer').get('engineer')}</div>
+						</div>
 					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">{person.get('MedOfficer').get('security')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">{person.get('MedOfficer').get('medical')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">{person.get('MedOfficer').get('science')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">{person.get('MedOfficer').get('engineer')}</div>
-					</div>
+					<button className="changePersonnel" onClick={this.onChangeMedOff}>Change</button>
 				</div>
 			)
 		})
@@ -297,26 +312,29 @@ module.exports = React.createClass({
 					<div className="position">SCIENCE OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('SciOfficer').get('Name')}</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">{person.get('SciOfficer').get('officer')}</div>
+					<div className="personnelStatsContainer">
+						<div className="personnelStatBox">
+							<div className="stat">Officer</div>
+							<div className="box">{person.get('SciOfficer').get('officer')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Security</div>
+							<div className="box">{person.get('SciOfficer').get('security')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Medical</div>
+							<div className="box">{person.get('SciOfficer').get('medical')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Science</div>
+							<div className="box">{person.get('SciOfficer').get('science')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Engineer</div>
+							<div className="box">{person.get('SciOfficer').get('engineer')}</div>
+						</div>
 					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">{person.get('SciOfficer').get('security')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">{person.get('SciOfficer').get('medical')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">{person.get('SciOfficer').get('science')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">{person.get('SciOfficer').get('engineer')}</div>
-					</div>
+					<button className="changePersonnel" onClick={this.onChangeSciOff}>Change</button>
 				</div>
 			)
 		})
@@ -327,26 +345,29 @@ module.exports = React.createClass({
 					<div className="position">ENGINEER OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('EngOfficer').get('Name')}</div>
-					<div className="personnelStatBox">
-						<div className="stat">Officer</div>
-						<div className="box">{person.get('EngOfficer').get('officer')}</div>
+					<div className="personnelStatsContainer">
+						<div className="personnelStatBox">
+							<div className="stat">Officer</div>
+							<div className="box">{person.get('EngOfficer').get('officer')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Security</div>
+							<div className="box">{person.get('EngOfficer').get('security')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Medical</div>
+							<div className="box">{person.get('EngOfficer').get('medical')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Science</div>
+							<div className="box">{person.get('EngOfficer').get('science')}</div>
+						</div>
+						<div className="personnelStatBox">
+							<div className="stat">Engineer</div>
+							<div className="box">{person.get('EngOfficer').get('engineer')}</div>
+						</div>
 					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Security</div>
-						<div className="box">{person.get('EngOfficer').get('security')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Medical</div>
-						<div className="box">{person.get('EngOfficer').get('medical')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Science</div>
-						<div className="box">{person.get('EngOfficer').get('science')}</div>
-					</div>
-					<div className="personnelStatBox">
-						<div className="stat">Engineer</div>
-						<div className="box">{person.get('EngOfficer').get('engineer')}</div>
-					</div>
+					<button className="changePersonnel" onClick={this.onChangeEngOff}>Change</button>
 				</div>
 			)
 		})
@@ -443,7 +464,7 @@ module.exports = React.createClass({
 			);
 		}
 		return (
-			<div className="createCharacterContainer" onClick={this.onBackground}>
+			<div className="characterStatsContainer" onClick={this.onBackground}>
 				<a href={'#sector/' +this.props.characterId+ '/'+ this.props.sectorId} className="dashboardIcon" onClick={this.onReturn}></a>
 				<button onClick={this.onSettings} className="settings"></button>
 				<div className="statsContainer">
@@ -457,15 +478,6 @@ module.exports = React.createClass({
 						{medOff}
 						{sciOff}
 						{engOff}
-						<div className="buttons">
-							<button className="changePersonnel" onClick={this.onChangeCaptain}>Change</button>
-							<button className="changePersonnel" onClick={this.onChangeFirstOff}>Change</button>
-							<button className="changePersonnel" onClick={this.onChangeHelmsman}>Change</button>
-							<button className="changePersonnel" onClick={this.onChangeTacOff}>Change</button>
-							<button className="changePersonnel" onClick={this.onChangeMedOff}>Change</button>
-							<button className="changePersonnel" onClick={this.onChangeSciOff}>Change</button>
-							<button className="changePersonnel" onClick={this.onChangeEngOff}>Change</button>
-						</div>
 					</div>
 				</div>
 			</div>

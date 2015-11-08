@@ -29,15 +29,15 @@ module.exports = React.createClass({
 		var personnel = this.state.personnel.map((person) => {
 			return(
 				<div className="personBox">
-					<div>Name: {person.get('Name')}</div>
-					<div>Officer: {person.get('officer')}</div>
-					<div>Security: {person.get('security')}</div>
-					<div>Medical: {person.get('medical')}</div>
-					<div>Science: {person.get('science')}</div>
-					<div>Engineer: {person.get('engineer')}</div>
-					<div>Cost: {person.get('cost')}</div>
-					<div>Level Req: {person.get('lvlReq')}</div>
-					<button onClick={this.onChoose.bind(this, person)}>Select</button>
+					<div className="personName">Name: {person.get('Name')}</div>
+					<div className="personOff">Officer: {person.get('officer')}</div>
+					<div className="personTac">Security: {person.get('security')}</div>
+					<div className="personMed">Medical: {person.get('medical')}</div>
+					<div className="personSci">Science: {person.get('science')}</div>
+					<div className="personEng">Engineer: {person.get('engineer')}</div>
+					<div className="personCost">Cost: {person.get('cost')}</div>
+					<div className="personLvlReq">Level Req: {person.get('lvlReq')}</div>
+					<button className="personSelect" onClick={this.onChoose.bind(this, person)}>Select</button>
 				</div>
 			)
 		})

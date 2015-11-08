@@ -37,7 +37,7 @@ module.exports = React.createClass({
 			<div className="userSettingsContainer" onClick={this.onBackground}>
 				<a href="#dashboard" className="dashboardIcon" onClick={this.onDashboard}></a>
 				<a href="#" className="userSettingsIcon"></a>
-				<div className="statsContainer">
+				<div className="statsContainer"><span className="title">USER SETTINGS</span>
 					{userblock}
 				</div>
 			</div>
