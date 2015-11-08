@@ -106,7 +106,7 @@ module.exports = React.createClass({
 					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>{charName}</button>
 					<div className="HUDGPL">GPL: {charGPL}</div>
 				</div>
-				<div className="sectorBlockContainer">
+				<div className={'sectorBlockContainer sector-' + this.props.sectorId}>
 					{dropDown}
 				</div>
 			</div>

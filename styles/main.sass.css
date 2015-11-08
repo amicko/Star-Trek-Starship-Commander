@@ -122,14 +122,12 @@
       text-align: center;
       margin-top: 1.75em;
       font-size: 2em; }
-    .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer {
+    .dashboardContainer .optionBoxContainer .optionBox .charStatsBox {
       color: black;
       width: 98%;
-      border: 4px outset black;
-      overflow: scroll;
       padding-top: 1px;
       font-size: 1.2em; }
-      .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats {
+      .dashboardContainer .optionBoxContainer .optionBox .charStatsBox .charStats {
         text-align: left;
         display: inline;
         width: 60%;
@@ -139,28 +137,27 @@
         font-size: 0.85em;
         line-height: 1.1em;
         padding-top: 0.6em; }
-        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats div {
+        .dashboardContainer .optionBoxContainer .optionBox .charStatsBox .charStats div {
           background: -webkit-linear-gradient(#fff, grey);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent; }
-      .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .charStats:hover div {
+      .dashboardContainer .optionBoxContainer .optionBox .charStatsBox .charStats:hover div {
         background: -webkit-linear-gradient(grey, #fff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent; }
-      .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer {
+      .dashboardContainer .optionBoxContainer .optionBox .charStatsBox .buttonContainer {
         float: right;
-        padding: 2em 0.5em 2em 0.5em;
+        padding: 1.5em 0.5em 1.5em 0.5em;
         box-sizing: border-box;
         color: white; }
-        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer .charStatsButton {
-          height: 3em;
+        .dashboardContainer .optionBoxContainer .optionBox .charStatsBox .buttonContainer .charStatsButton {
           width: 8em;
           display: block;
           margin: 0.5em auto;
           background: linear-gradient(to bottom, lightgrey, black);
           border-radius: 10px;
           color: #ffffff; }
-        .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer .buttonContainer .charStatsButton:hover {
+        .dashboardContainer .optionBoxContainer .optionBox .charStatsBox .buttonContainer .charStatsButton:hover {
           background: linear-gradient(to top, lightgrey, black); }
     .dashboardContainer .optionBoxContainer .optionBox .charStatsContainer:hover .charStats div {
       background: -webkit-linear-gradient(grey, #fff);
@@ -296,7 +293,8 @@
   clear: both;
   text-align: center;
   width: 100%;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin-bottom: 1em; }
   .missionScreenContainer .sectorLoreBlock h3 {
     font-size: 2.5em;
     text-align: center; }
@@ -305,6 +303,7 @@
     margin-top: -2em; }
 
 .missionScreenContainer .userHUD {
+  margin: 1.5em 0;
   box-sizing: border-box;
   clear: both;
   border: 3px solid black;
@@ -345,13 +344,11 @@
 .missionScreenContainer .sectorBlockContainer {
   color: white;
   width: 100%;
-  height: 33em;
   margin: 0 auto;
   overflow: hidden;
   background-size: auto;
   clear: both; }
   .missionScreenContainer .sectorBlockContainer .missionStatBlock {
-    height: 16em;
     font-size: 2em;
     overflow: scroll;
     background-color: black; }
@@ -380,11 +377,10 @@
     background-color: black; }
     .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo {
       display: block;
-      z-index: 1;
       border: 1px solid grey; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox {
-        z-index: 100;
-        height: 10em; }
+        opacity: 1;
+        min-height: 12em; }
         .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .missionName {
           font-size: 2em;
           font-weight: bold; }
@@ -408,12 +404,11 @@
 
 @media screen and (min-width: 652px) {
   .missionScreenContainer .sectorLoreBlock {
+    clear: none;
     text-align: center;
     width: 55%;
     box-sizing: border-box;
-    position: absolute;
-    top: -3%;
-    left: 25%; }
+    margin-left: 25%; }
     .missionScreenContainer .sectorLoreBlock h3 {
       font-size: 2.5em;
       text-align: center; }
@@ -422,8 +417,6 @@
       margin-top: -2em; }
   .missionScreenContainer .userHUD {
     box-sizing: border-box;
-    position: absolute;
-    top: 23%;
     width: 100%;
     clear: both;
     border: 3px solid black;
@@ -466,25 +459,20 @@
     .missionScreenContainer .userHUD .HUDButton:hover {
       opacity: 0.7; }
   .missionScreenContainer .sectorBlockContainer {
-    position: absolute;
-    top: 16em;
-    left: 15%;
     color: white;
     width: 71%;
-    height: 33em;
-    border: 3px solid white;
+    height: 40em;
     margin: 0 auto;
     overflow: hidden;
     background: no-repeat top/100% url("../images/space01.png");
-    background-size: auto;
-    clear: both; }
+    background-size: auto; }
     .missionScreenContainer .sectorBlockContainer .missionStatBlock {
       height: 16em;
-      font-size: 2em;
-      overflow: scroll; }
+      font-size: 2em; }
       .missionScreenContainer .sectorBlockContainer .missionStatBlock .category {
         font-weight: bold;
-        color: red; }
+        color: red;
+        clear: both; }
       .missionScreenContainer .sectorBlockContainer .missionStatBlock h3 {
         text-align: center; }
       .missionScreenContainer .sectorBlockContainer .missionStatBlock button {
@@ -494,25 +482,20 @@
         width: 10em;
         height: 3em;
         float: right;
-        position: relative;
-        bottom: 1.7em;
         background: no-repeat top/100% url("../images/blue-button.jpg"); }
       .missionScreenContainer .sectorBlockContainer .missionStatBlock button:hover {
         opacity: 0.7; }
     .missionScreenContainer .sectorBlockContainer .sectorMissionBlock {
       box-sizing: border-box;
       float: left;
-      overflow: scroll; }
+      overflow: hidden; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo {
         display: block;
         position: absolute;
-        z-index: 1;
         border: none; }
         .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox {
           display: none;
-          z-index: 100;
-          width: 20em;
-          height: 10em; }
+          width: 20em; }
           .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .missionName {
             font-size: 2em;
             font-weight: bold; }
@@ -533,38 +516,135 @@
             background: no-repeat top/100% url("../images/blue-button.jpg"); }
           .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo .teaserBox .dropDownIcon:hover {
             opacity: 0.7; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemInfo:hover {
+        width: 20em; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemPLT4V1bBEv {
+        left: 70%;
+        top: 45%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemPLT4V1bBEv:hover {
+        display: block; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemPLT4V1bBEv:hover .teaserBox {
+          display: block;
+          position: absolute;
+          right: 75%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemdOP2u1SyVo {
+        top: 80%;
+        left: 50%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemdOP2u1SyVo:hover {
+        display: block; }
+        .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemdOP2u1SyVo:hover .teaserBox {
+          display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemFRW4Uj03ly {
+        top: 60%;
+        left: 30%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemFRW4Uj03ly:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system6gNnHzBlT1 {
+        top: 35%;
+        left: 20%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system6gNnHzBlT1:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system5aEWs3QJF6 {
+        top: 84%;
+        left: 25%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system5aEWs3QJF6:hover .teaserBox {
+        display: block; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system0zTCvNPPPq {
-        left: 80%;
-        top: 70%; }
+        left: 70%;
+        top: 80%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system0zTCvNPPPq:hover {
-        display: block;
-        width: 20em;
-        height: 10em; }
+        display: block; }
         .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system0zTCvNPPPq:hover .teaserBox {
           display: block;
-          z-index: 10;
           position: absolute;
           right: 75%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemUufVeQXSt3 {
-        left: 10%;
-        top: 30%; }
+        left: 20%;
+        top: 50%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemUufVeQXSt3:hover {
-        display: block;
-        width: 20em;
-        height: 10em; }
+        display: block; }
         .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemUufVeQXSt3:hover .teaserBox {
-          display: block;
-          z-index: 10; }
+          display: block; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemIsYOG63CEv {
-        top: 58%;
+        top: 70%;
         left: 45%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemIsYOG63CEv:hover {
-        display: block;
-        width: 20em;
-        height: 10em; }
+        display: block; }
         .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemIsYOG63CEv:hover .teaserBox {
-          display: block;
-          z-index: 10; } }
+          display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemvr4dkZwCSw {
+        top: 40%;
+        left: 70%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemvr4dkZwCSw:hover .teaserBox {
+        display: block;
+        position: absolute;
+        right: 75%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system3i1OOxODRq {
+        left: 25%;
+        top: 80%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system3i1OOxODRq:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system2R4h32LQ6R {
+        top: 37%;
+        left: 25%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system2R4h32LQ6R:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemGWqwJfvQ0d {
+        top: 40%;
+        left: 40%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemGWqwJfvQ0d:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemlaWasFz526 {
+        top: 60%;
+        left: 60%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemlaWasFz526:hover .teaserBox {
+        display: block;
+        position: absolute;
+        right: 35%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemt7MVOZYGxq {
+        top: 50%;
+        left: 30%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemt7MVOZYGxq:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system6N4Ou0yWkD {
+        top: 70%;
+        left: 36%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system6N4Ou0yWkD:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemvvs5WPErs7 {
+        top: 80%;
+        left: 45%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemvvs5WPErs7:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemoxxeVjil0H {
+        top: 40%;
+        left: 22%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemoxxeVjil0H:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system4SJ1GB4Iaz {
+        top: 40%;
+        left: 70%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system4SJ1GB4Iaz:hover .teaserBox {
+        display: block;
+        position: absolute;
+        right: 75%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemqflFVcix31 {
+        top: 50%;
+        left: 40%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemqflFVcix31:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemMdFRoMeIZR {
+        top: 70%;
+        left: 35%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemMdFRoMeIZR:hover .teaserBox {
+        display: block; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemomjq453MVQ {
+        top: 80%;
+        left: 60%; }
+      .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemomjq453MVQ:hover .teaserBox {
+        display: block;
+        position: absolute;
+        right: 35%; } }
 
 .createCharacterContainer .statsContainer {
   clear: both;
@@ -633,7 +713,7 @@
       width: 70%;
       margin: 0 auto;
       font-size: 2em;
-      background-color: lightblue;
+      background: linear-gradient(to left, white, black, white);
       border: 10px solid red;
       border-style: outset;
       text-align: right; }
@@ -649,8 +729,26 @@
       margin: 2em auto;
       width: 70%;
       max-height: 30em;
-      overflow: scroll;
-      background-color: grey; }
+      overflow: scroll; }
+      .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox {
+        color: white;
+        text-align: center;
+        background: linear-gradient(to left, white, black, white);
+        margin: 1em 0;
+        padding: 0.5em 0;
+        font-family: 'Orbitron', sans-serif; }
+        .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox .classItemTitle {
+          font-weight: bold; }
+        .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox button {
+          font-family: 'Orbitron', sans-serif;
+          color: white;
+          margin: 0.5em 0;
+          border-radius: 15px;
+          height: 3em;
+          width: 6em;
+          background: linear-gradient(to bottom, lightgrey, black); }
+        .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox button:hover {
+          background: linear-gradient(to bottom, black, lightgrey); }
       .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox {
         padding-top: 1px;
         overflow: hidden;
@@ -669,6 +767,9 @@
           width: 50%;
           height: 8em;
           margin: 1em auto; }
+          .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipImage img {
+            width: 100%;
+            height: 8em; }
         .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipStatBox {
           padding: 0.25em;
           border: 3px solid black;
@@ -691,8 +792,11 @@
         margin: 1em auto;
         overflow: scroll; }
         .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personBox {
-          background-color: red;
-          padding: 0.5em 0; }
+          text-align: center;
+          color: white;
+          background: linear-gradient(to left, white, black, white);
+          padding: 0.5em 0;
+          margin: 1em 0; }
         .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .position {
           font-weight: bold;
           font-size: 1.5em;
@@ -740,8 +844,156 @@
           background: linear-gradient(to bottom, black, lightgrey); }
 
 @media screen and (min-width: 800px) {
-  .personnelStatsContainer {
-    padding-left: 7%; } }
+  .characterStatsContainer {
+    font-family: 'Orbitron', sans-serif; }
+    .characterStatsContainer .settings {
+      display: block;
+      height: 6em;
+      width: 6em;
+      text-align: center;
+      float: right;
+      margin: 1em;
+      background: no-repeat center/100% url("../images/cog.png");
+      opacity: 0.7;
+      border: none; }
+    .characterStatsContainer .settings:hover {
+      opacity: 1; }
+    .characterStatsContainer .statsContainer {
+      clear: both;
+      padding: 0 10%; }
+      .characterStatsContainer .statsContainer .characterStatsBox {
+        float: left;
+        border: 2px solid black;
+        width: 40%;
+        margin: 3em auto 0 auto;
+        font-size: 2em;
+        background: linear-gradient(to left, white, black, white);
+        border: 10px solid red;
+        border-style: outset;
+        text-align: right; }
+        .characterStatsContainer .statsContainer .characterStatsBox span {
+          display: inline-block;
+          width: 60%; }
+        .characterStatsContainer .statsContainer .characterStatsBox .category {
+          font-weight: bold;
+          text-align: left;
+          width: 40%; }
+      .characterStatsContainer .statsContainer .starshipBox {
+        float: right;
+        border: 3px solid black;
+        margin: 2em auto;
+        width: 50%;
+        max-height: 30em;
+        overflow: scroll; }
+        .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox {
+          color: white;
+          text-align: center;
+          background: linear-gradient(to left, white, black, white);
+          margin: 1em 0;
+          padding: 0.5em 0;
+          font-family: 'Orbitron', sans-serif; }
+          .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox .classItemTitle {
+            font-weight: bold; }
+          .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox button {
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            margin: 0.5em 0;
+            border-radius: 15px;
+            height: 3em;
+            width: 6em;
+            background: linear-gradient(to bottom, lightgrey, black); }
+          .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox button:hover {
+            background: linear-gradient(to bottom, black, lightgrey); }
+        .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox {
+          padding-top: 1px;
+          overflow: hidden;
+          box-sizing: border-box; }
+          .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipName {
+            font-weight: bold;
+            font-size: 2em;
+            text-align: center; }
+          .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipClassBox {
+            font-size: 1.5em;
+            text-align: center; }
+          .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipImage {
+            text-align: center;
+            line-height: 8em;
+            border: 3px solid black;
+            width: 50%;
+            height: 8em;
+            margin: 1em auto; }
+          .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipStatBox {
+            padding: 0.25em;
+            border: 3px solid black;
+            margin: 1em 7% 0 7%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em; }
+        .characterStatsContainer .statsContainer .starshipBox .chooseStarshipBox .changeStarship {
+          display: block;
+          margin: 0.75em auto;
+          width: 8em;
+          height: 5em; }
+      .characterStatsContainer .statsContainer .seniorStaffContainer {
+        clear: both;
+        overflow: hidden; }
+        .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox {
+          border: 3px solid black;
+          max-height: 25em;
+          width: 90%;
+          margin: 1em auto;
+          overflow: scroll; }
+          .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personBox {
+            text-align: center;
+            color: white;
+            background: linear-gradient(to left, white, black, white);
+            padding: 0.5em 0;
+            margin: 1em 0; }
+          .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .position {
+            font-weight: bold;
+            font-size: 1.5em;
+            text-align: center;
+            margin: 1em 0 0.5em 0; }
+          .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personnelImage {
+            display: none;
+            margin: 0 auto 1em auto;
+            width: 3em;
+            height: 3em;
+            border: 3px solid black; }
+          .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personnelName {
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 1em; }
+          .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatsContainer {
+            overflow: hidden;
+            width: 42%;
+            margin: 0 auto; }
+            .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatsContainer .personnelStatBox {
+              width: 5em;
+              overflow: hidden;
+              float: left;
+              margin: 0.1em 0 0.3em 0; }
+              .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatsContainer .personnelStatBox .stat {
+                text-align: center; }
+              .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatsContainer .personnelStatBox .box {
+                padding: 0.2em;
+                width: 1em;
+                text-align: center;
+                margin: 1em auto;
+                border: 2px solid black;
+                font-weight: bold; }
+          .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox button {
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 15px;
+            color: white;
+            clear: both;
+            display: block;
+            width: 9em;
+            height: 3em;
+            margin: 1em auto;
+            background: linear-gradient(to bottom, lightgrey, black); }
+          .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox button:hover {
+            background: linear-gradient(to bottom, black, lightgrey); } }
 
 .userSettingsContainer .statsContainer {
   width: 100%;
@@ -806,6 +1058,9 @@ a {
 body {
   background: linear-gradient(to right, black, grey, white, grey, black);
   font-family: 'Orbitron', sans-serif; }
+
+body::-webkit-scrollbar {
+  display: none; }
 
 .sectorMapIcon {
   display: block;

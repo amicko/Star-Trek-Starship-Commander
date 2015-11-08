@@ -25,7 +25,7 @@
 			width: 70%;
 			margin: 0 auto;
 			font-size: 2em;
-			background-color: lightblue;
+			background: linear-gradient(to left, white, black, white);
 			// background: repeating-linear-gradient(40deg, lightblue, blue, black);
 			border: 10px solid red;
 			border-style: outset;
@@ -72,7 +72,34 @@
 			width: 70%;
 			max-height: 30em;
 			overflow: scroll;
-			background-color: grey;
+			// background-color: grey;
+
+			.starshipDetailBox {
+				color: white;
+				text-align: center;
+				background: linear-gradient(to left, white, black, white);
+				margin: 1em 0;
+				padding: 0.5em 0;
+				font-family: 'Orbitron', sans-serif;
+
+				.classItemTitle {
+					font-weight: bold;
+				}
+
+				button {
+					font-family: 'Orbitron', sans-serif;
+					color: white;
+					margin: 0.5em 0;
+					border-radius: 15px;
+					height: 3em;
+					width: 6em;
+					background: linear-gradient(to bottom, lightgrey, black);
+				}
+
+				button:hover {
+					background: linear-gradient(to bottom, black, lightgrey);
+				}
+			}
 
 			.starshipStatsBox {
 				padding-top: 1px;
@@ -97,6 +124,11 @@
 					width: 50%;
 					height: 8em;
 					margin: 1em auto;
+
+					img {
+						width: 100%;
+						height: 8em;
+					}
 				}
 
 				.starshipStatBox {
@@ -132,8 +164,11 @@
 				overflow: scroll;
 
 				.personBox {
-					background-color: red;
+					text-align: center;
+					color: white;
+					background: linear-gradient(to left, white, black, white);
 					padding: 0.5em 0;
+					margin: 1em 0;
 
 					.personName {
 
@@ -239,10 +274,286 @@
 }
 
 @media screen and (min-width: 800px) {
-	.personnelStatsContainer {
-		// background-color: red;
-		padding-left: 7%;
-		// float: left;
-		// width: 30%;
+	.characterStatsContainer {
+	font-family: 'Orbitron', sans-serif;
+
+	.settings {
+		display: block;
+		height: 6em;
+		width: 6em;
+		text-align: center;
+		float: right;
+		margin: 1em;
+		background: no-repeat center/100% url("../images/cog.png");
+		opacity: 0.7;
+		border: none;
 	}
+
+	.settings:hover {
+		opacity: 1;
+	}
+
+	.statsContainer {
+		clear: both;
+		padding: 0 10%;
+
+		.characterStatsBox {
+			float: left;
+			border: 2px solid black;
+			width: 40%;
+			margin: 3em auto 0 auto;
+			font-size: 2em;
+			background: linear-gradient(to left, white, black, white);
+			// background: repeating-linear-gradient(40deg, lightblue, blue, black);
+			border: 10px solid red;
+			border-style: outset;
+			text-align: right;
+			
+			.characterName {
+
+			}
+
+			.characterXp {
+
+			}
+
+			.characterLevel {
+
+			}
+
+			.CharacterDilithium {
+
+			}
+
+			.goldPressedLatinum {
+
+			}
+
+			span {
+				display: inline-block;
+				width: 60%;
+			}
+
+			.category	 {
+				// display: block;
+				font-weight: bold;
+				text-align: left;
+				width: 40%
+			}
+
+
+		}
+
+		.starshipBox {
+			float: right;
+			border: 3px solid black;
+			margin: 2em auto;
+			width: 50%;
+			max-height: 30em;
+			overflow: scroll;
+			// background-color: grey;
+
+			.starshipDetailBox {
+				color: white;
+				text-align: center;
+				background: linear-gradient(to left, white, black, white);
+				margin: 1em 0;
+				padding: 0.5em 0;
+				font-family: 'Orbitron', sans-serif;
+
+				.classItemTitle {
+					font-weight: bold;
+				}
+
+				button {
+					font-family: 'Orbitron', sans-serif;
+					color: white;
+					margin: 0.5em 0;
+					border-radius: 15px;
+					height: 3em;
+					width: 6em;
+					background: linear-gradient(to bottom, lightgrey, black);
+				}
+
+				button:hover {
+					background: linear-gradient(to bottom, black, lightgrey);
+				}
+			}
+
+			.starshipStatsBox {
+				padding-top: 1px;
+				overflow: hidden;
+				box-sizing: border-box;
+
+				.starshipName {
+					font-weight: bold;
+					font-size: 2em;
+					text-align: center;
+				}
+
+				.starshipClassBox {
+					font-size: 1.5em;
+					text-align: center;
+				}
+
+				.starshipImage {
+					text-align: center;
+					line-height: 8em;
+					border: 3px solid black;
+					width: 50%;
+					height: 8em;
+					margin: 1em auto;
+				}
+
+				.starshipStatBox {
+					padding: 0.25em;
+					border: 3px solid black;
+					margin: 1em 7% 0 7%;
+					text-align: center;
+					font-weight: bold;
+					font-size: 1.2em;
+				}
+			}
+
+			.chooseStarshipBox {
+
+				.changeStarship {
+					display: block;
+					margin: 0.75em auto;
+					width: 8em;
+					height: 5em;
+				}
+			}
+		}
+
+		.seniorStaffContainer {
+			clear: both;
+			overflow: hidden;
+
+			.personnelBox {
+				border: 3px solid black;
+				max-height: 25em;
+				width: 90%;
+				margin: 1em auto;
+				overflow: scroll;
+
+				.personBox {
+					text-align: center;
+					color: white;
+					background: linear-gradient(to left, white, black, white);
+					padding: 0.5em 0;
+					margin: 1em 0;
+
+					.personName {
+
+					}
+
+					.personOff {
+
+					}
+
+					.personTac {
+
+					}
+
+					.personMed {
+
+					}
+
+					.personSci {
+
+					}
+
+					.personEng {
+
+					}
+
+					.personCost {
+
+					}
+
+					.personLvlReq {
+
+					}
+
+					.personSelect {
+
+					}
+				}
+
+				.position {
+					font-weight: bold;
+					font-size: 1.5em;
+					text-align: center;
+					margin: 1em 0 0.5em 0;
+				}
+
+				.personnelImage {
+					display: none;
+					margin: 0 auto 1em auto;
+					width: 3em;
+					height: 3em;
+					border: 3px solid black;
+				}
+
+				.personnelName {
+					font-size: 1.2em;
+					text-align: center;
+					margin-bottom: 1em;
+				}
+
+				.personnelStatsContainer {
+					overflow: hidden;
+					width: 42%;
+					margin: 0 auto;
+
+					.personnelStatBox {
+						width: 5em;
+						overflow: hidden;
+						float: left;
+						margin: 0.1em 0 0.3em 0;
+
+						.stat {
+							text-align: center;
+						}
+
+						.box {
+							padding: 0.2em;
+							width: 1em;
+							text-align: center;
+							margin: 1em auto;
+							border: 2px solid black;
+							font-weight: bold;
+						}
+					}
+				}
+				button {
+					font-family: 'Orbitron', sans-serif;
+					border-radius: 15px;
+					color: white;
+					clear: both;
+					display: block;
+					width: 9em;
+					height: 3em;
+					margin: 1em auto;
+					background: linear-gradient(to bottom, lightgrey, black);
+				}
+
+				button:hover {
+					background: linear-gradient(to bottom, black, lightgrey);
+				}
+			}
+		}
+	}
+}
+	// .characterStatsBox {
+	// 	background-color: red;
+	// }
+
+	// .personnelStatsContainer {
+	// 	// background-color: red;
+	// 	padding-left: 7%;
+	// 	// float: left;
+	// 	// width: 30%;
+	// }
 }
