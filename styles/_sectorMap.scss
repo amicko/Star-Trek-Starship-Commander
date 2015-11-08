@@ -1,7 +1,10 @@
 .sectorMapContainer {
+	// clear: both;
+	// display: block;
+	// width: 100%;
 	// background-color: grey;
-	overflow: hidden;
-	min-width: 75em;
+	// overflow: hidden;
+	// min-width: 75em;
 
 	// .userSettingsIcon {
 	// 	height: 4em;
@@ -13,12 +16,13 @@
 	// }
 
 	.sectorMap {
-		margin: 6em auto 1em auto;
+		clear: both;
+		margin: 0 auto;
 		height: 35em;
-		width: 60em;
-		background: no-repeat center/85% url("../images/STO-Map.jpg");
-		border: 2px solid white;
-		background-size: cover;
+		width: 85%;
+		// background: no-repeat center/85% url("../images/STO-Map.jpg");
+		// border: 2px solid white;
+		// background-size: cover;
 
 		.sectorBlock {
 			box-sizing: border-box;
@@ -27,46 +31,47 @@
 			color: white;
 			border: 3px solid #ffffff;
 			height: 6em;
-			width: 8em;
+			// width: 8em;
 			text-align: center;
-			line-height: 1.5em;
+			line-height: 2.5em;
 			position: relative;
 			border-radius: 10px;
-			background-color: hsla(100, 100%, 100%, 0.2);
+			background-color: hsla(0, 0%, 0%, 1);
 			font-family: 'Orbitron', sans-serif;
 			// font-size: 0.6em;
 		}
 
 		.sectorBlock:hover {
-			background-color: hsla(100, 100%, 100%, 0.4);
+			color: black;
+			background-color: hsla(100, 100%, 100%, 0.2);
 		}
 
-		.sector-FNu15SvITK {
-			left: 19em;
-			top: 6em;
-		}
+	// 	.sector-FNu15SvITK {
+	// 		left: 19em;
+	// 		top: 6em;
+	// 	}
 
-		.sector-2TXDd3I2v1 {
-			left: 33em;
-			top: 7em;
-		}
+	// 	.sector-2TXDd3I2v1 {
+	// 		left: 33em;
+	// 		top: 7em;
+	// 	}
 
-		.sector-ubjIrzTDdM {
-			left: 14em;
-			top: 4em;
-			padding-top: 2em;
-		}
+	// 	.sector-ubjIrzTDdM {
+	// 		left: 14em;
+	// 		top: 4em;
+	// 		padding-top: 2em;
+	// 	}
 
-		.sector-YdGaQIqNke {
-			left: 40em;
-			top: 10em;
-		}
+	// 	.sector-YdGaQIqNke {
+	// 		left: 40em;
+	// 		top: 10em;
+	// 	}
 	}
 
 	.dashboardButton {
 		display: block;
 		font-size: 1.5em;
-		width: 27em;
+		// width: 33%;
 		height: 1.8em;
 		border-radius: 15px;
 		background-color: lightgrey;
@@ -77,5 +82,89 @@
 
 	.dashboardButton:hover {
 		background: linear-gradient(#423D3D, #ffffff);
+	}
+}
+
+@media screen and(min-width: 600px) {
+	.sectorMapContainer {
+		// background-color: grey;
+		overflow: hidden;
+		min-width: 75em;
+
+		// .userSettingsIcon {
+		// 	height: 4em;
+		// 	width: 4em;
+		// 	border: 3px solid black;
+		// 	position: absolute;
+		// 	right: 0;
+		// 	margin: 1em;
+		// }
+
+		.sectorMap {
+			margin: 6em auto 1em auto;
+			height: 35em;
+			width: 60em;
+			background: no-repeat center/85% url("../images/STO-Map.jpg");
+			border: 2px solid white;
+			background-size: cover;
+
+			.sectorBlock {
+				box-sizing: border-box;
+				padding-top: 1.3em;
+				display: block;
+				color: white;
+				border: 3px solid #ffffff;
+				height: 6em;
+				width: 8em;
+				text-align: center;
+				line-height: 1.5em;
+				position: relative;
+				border-radius: 10px;
+				background-color: hsla(100, 100%, 100%, 0.2);
+				font-family: 'Orbitron', sans-serif;
+				// font-size: 0.6em;
+			}
+
+			.sectorBlock:hover {
+				background-color: hsla(100, 100%, 100%, 0.4);
+			}
+
+			.sector-FNu15SvITK {
+				left: 19em;
+				top: 6em;
+			}
+
+			.sector-2TXDd3I2v1 {
+				left: 33em;
+				top: 7em;
+			}
+
+			.sector-ubjIrzTDdM {
+				left: 14em;
+				top: 4em;
+				padding-top: 2em;
+			}
+
+			.sector-YdGaQIqNke {
+				left: 40em;
+				top: 10em;
+			}
+		}
+
+		.dashboardButton {
+			display: block;
+			font-size: 1.5em;
+			width: 27em;
+			height: 1.8em;
+			border-radius: 15px;
+			background-color: lightgrey;
+			margin: 0.5em auto;
+			font-family: 'Orbitron', sans-serif;
+			background: linear-gradient(#ffffff, #423D3D);
+		}
+
+		.dashboardButton:hover {
+			background: linear-gradient(#423D3D, #ffffff);
+		}
 	}
 }

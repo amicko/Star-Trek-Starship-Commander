@@ -1,185 +1,58 @@
 .createCharacterContainer {
-	background-color: grey;
-	min-width: 1550px;
-
-	.settings {
-		display: block;
-		height: 6em;
-		width: 6em;
-		text-align: center;
-		float: right;
-		margin: 1em;
-		background: no-repeat center/100% url("../images/cog.png");
-		opacity: 0.7;
-		border: none;
-	}
-
-	.settings:hover {
-		opacity: 1;
-	}
 
 	.statsContainer {
 		clear: both;
-		background-color: lightgrey;
+		border: 1px solid black;
 
 		.newCharacterForm {
-			float: left;
-			width: 40em;
-			height: 8em;
-			// border: 3px solid black;
-			overflow: hidden;
-			position: relative;
-			left: 3em;
-			top: 2em;
+			color: #ffffff;
+			width: 65%;
+			border: 5px solid #423D3D;
+			border-style: outset;
+			border-radius: 10px;
+			padding: 0 2em;
+			background: no-repeat center/100% url("../images/drop-box.jpg");
+			background-size: auto;
+			font-family: 'Orbitron', sans-serif;
+			font-weight: none;
+			margin: 5em auto;
 
 			label {
-				float: left;
 				display: block;
-				clear: left;
-				margin-left: 1em;
+				font-size: 1.5em;
+				padding: 0.5em;
 			}
 			input {
 				display: block;
-				width: 70%;
-				float: left;
-				clear: left;
-				margin-left: 1em;
+				width: 99%;
+				margin: 0 auto;
+				font-size: 1.5em;
+				background-color: green;
+			}
+			input:-webkit-autofill {
+				-webkit-box-shadow: 5px 5px 5px 1000px #423D3D inset;
+				-webkit-text-fill-color: #ffffff !important;
 			}
 			button {
-				float: right;
-				position: relative;
-				bottom: 8em;
-				width: 7em;
-				height: 7em;
-				margin: 2em;
-			}
-		}
-
-		.starshipBox {
-			border: 3px solid black;
-			height: 8.8em;
-			width: 40em;
-			float: right;
-			position: relative;
-			right: 3em;
-			top: 1em;
-			margin-bottom: 2em;
-			overflow: scroll;
-
-			.starshipStatsBox {
-				background-color: grey;
-				width: 75%;
-				padding-top: 1px;
-				overflow: hidden;
-
-				.starshipImage {
-					border: 3px solid black;
-					width: 3em;
-					height: 3em;
-					margin: 1em auto;
-				}
-
-				.starshipStatBox {
-					border: 3px solid black;
-					width: 5em;
-					float: left;
-					margin: 1em 2em;
-				}
+				min-width: 33%;
+				min-height: 2em;
+				margin: 1em 33%;
+				font-family: 'Orbitron', sans-serif;
+				font-weight: none;
+				font-size: 1.3em;
+				background-color: #000000;
+				background: linear-gradient(#423D3D, #7D7072);
+				border: none;
+				color: #ffffff;
+				border-radius: 10px;
 			}
 
-			.chooseStarshipBox {
-					border-left: 3px solid black;
-					float: right;
-					width: 25%;
-					height: 8.8em;
-					position: relative;
-					bottom: 8.8em;
-
-				.changeStarship {
-					height: 5em;
-					width: 5em;
-					position: relative;
-					left: 5em;
-					top: 3.5em;
-				}
+			button:hover {
+				background-color: #000000;
+				background: linear-gradient(#110E0F, #7D7072);
+				border: none;
+				color: #ffffff;
 			}
-		}
-
-		.seniorStaffContainer {
-			clear: both;
-			overflow: hidden;
-			margin-left: 2em;
-
-			.personnelBox {
-				border: 3px solid black;
-				height: 18em;
-				width: 12em;
-				float: left;
-				margin: 2em 0.5em;
-				overflow: scroll;
-
-				.personBox {
-					background-color: red;
-				}
-
-				.position {
-					text-align: center;
-					margin: 2em 0 1em 0;
-				}
-
-				.personnelImage {
-					margin: 0 auto 1em auto;
-					width: 3em;
-					height: 3em;
-					border: 3px solid black;
-				}
-
-				.personnelName {
-					text-align: center;
-					margin-bottom: 2em;
-				}
-
-				.personnelStatBox {
-						width: 5em;
-						overflow: hidden;
-						float: left;
-						margin: 0.1em 0.1em 0.3em 0.5em;
-
-					.stat {
-						float: left;
-					}
-
-					.box {
-						padding: 0.2em;
-						float: right;
-						border: 2px solid black;
-					}
-				}
-
-				// button {
-				// 	display: block;
-				// 	clear: both;
-				// 	height: 2em;
-				// 	width: 5em;
-				// 	margin: 2em auto;
-				// 	position: relative;
-				// 	bottom: -1em;
-				// }
-			}
-
-			.buttons {
-				clear: both;
-
-				.changePersonnel {
-					margin: 0 7.2em;
-					position: relative;
-					top: -2em;
-				}
-
-
-			}
-
-
 		}
 	}
 }

@@ -31867,31 +31867,51 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'characterName' },
-					'NAME: ',
+					React.createElement(
+						'span',
+						{ className: 'category' },
+						'NAME: '
+					),
 					character.get('Name')
 				),
 				React.createElement(
 					'div',
 					{ className: 'characterXp' },
-					'XP: ',
+					React.createElement(
+						'span',
+						{ className: 'category' },
+						'XP: '
+					),
 					character.get('XP')
 				),
 				React.createElement(
 					'div',
 					{ className: 'characterLevel' },
-					'LEVEL: ',
+					React.createElement(
+						'span',
+						{ className: 'category' },
+						'LEVEL: '
+					),
 					Math.round(character.get('XP') / 100)
 				),
 				React.createElement(
 					'div',
 					{ className: 'CharacterDilithium' },
-					'DILITHIUM: ',
+					React.createElement(
+						'span',
+						{ className: 'category' },
+						'DILITHIUM: '
+					),
 					character.get('Dilithium')
 				),
 				React.createElement(
 					'div',
 					{ className: 'goldPressedLatinum' },
-					'GOLD-PRESSED LATINUM: ',
+					React.createElement(
+						'span',
+						{ className: 'category' },
+						'GOLD-PRESSED LATINUM: '
+					),
 					character.get('GoldPressedLatinum')
 				)
 			);
@@ -31976,73 +31996,82 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'personnelStatBox' },
+					{ className: 'personnelStatsContainer' },
 					React.createElement(
 						'div',
-						{ className: 'stat' },
-						'Officer'
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Officer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Captain').get('officer')
+						)
 					),
 					React.createElement(
 						'div',
-						{ className: 'box' },
-						person.get('Captain').get('officer')
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Security'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Captain').get('security')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Medical'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Captain').get('medical')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Science'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Captain').get('science')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Engineer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Captain').get('engineer')
+						)
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('Captain').get('security')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('Captain').get('medical')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('Captain').get('science')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('Captain').get('engineer')
-					)
+					'button',
+					{ className: 'changePersonnel', onClick: _this2.onChangeCaptain },
+					'Change'
 				)
 			);
 		});
@@ -32068,73 +32097,82 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'personnelStatBox' },
+					{ className: 'personnelStatsContainer' },
 					React.createElement(
 						'div',
-						{ className: 'stat' },
-						'Officer'
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Officer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('FirstOfficer').get('officer')
+						)
 					),
 					React.createElement(
 						'div',
-						{ className: 'box' },
-						person.get('FirstOfficer').get('officer')
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Security'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('FirstOfficer').get('security')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Medical'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('FirstOfficer').get('medical')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Science'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('FirstOfficer').get('science')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Engineer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('FirstOfficer').get('engineer')
+						)
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('FirstOfficer').get('security')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('FirstOfficer').get('medical')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('FirstOfficer').get('science')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('FirstOfficer').get('engineer')
-					)
+					'button',
+					{ className: 'changePersonnel', onClick: _this2.onChangeFirstOff },
+					'Change'
 				)
 			);
 		});
@@ -32160,73 +32198,82 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'personnelStatBox' },
+					{ className: 'personnelStatsContainer' },
 					React.createElement(
 						'div',
-						{ className: 'stat' },
-						'Officer'
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Officer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Helmsman').get('officer')
+						)
 					),
 					React.createElement(
 						'div',
-						{ className: 'box' },
-						person.get('Helmsman').get('officer')
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Security'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Helmsman').get('security')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Medical'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Helmsman').get('medical')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Science'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Helmsman').get('science')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Engineer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('Helmsman').get('engineer')
+						)
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('Helmsman').get('security')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('Helmsman').get('medical')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('Helmsman').get('science')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('Helmsman').get('engineer')
-					)
+					'button',
+					{ className: 'changePersonnel', onClick: _this2.onChangeHelmsman },
+					'Change'
 				)
 			);
 		});
@@ -32252,73 +32299,82 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'personnelStatBox' },
+					{ className: 'personnelStatsContainer' },
 					React.createElement(
 						'div',
-						{ className: 'stat' },
-						'Officer'
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Officer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('TacOfficer').get('officer')
+						)
 					),
 					React.createElement(
 						'div',
-						{ className: 'box' },
-						person.get('TacOfficer').get('officer')
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Security'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('TacOfficer').get('security')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Medical'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('TacOfficer').get('medical')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Science'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('TacOfficer').get('science')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Engineer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('TacOfficer').get('engineer')
+						)
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('TacOfficer').get('security')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('TacOfficer').get('medical')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('TacOfficer').get('science')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('TacOfficer').get('engineer')
-					)
+					'button',
+					{ className: 'changePersonnel', onClick: _this2.onChangeTacOff },
+					'Change'
 				)
 			);
 		});
@@ -32344,73 +32400,82 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'personnelStatBox' },
+					{ className: 'personnelStatsContainer' },
 					React.createElement(
 						'div',
-						{ className: 'stat' },
-						'Officer'
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Officer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('MedOfficer').get('officer')
+						)
 					),
 					React.createElement(
 						'div',
-						{ className: 'box' },
-						person.get('MedOfficer').get('officer')
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Security'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('MedOfficer').get('security')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Medical'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('MedOfficer').get('medical')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Science'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('MedOfficer').get('science')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Engineer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('MedOfficer').get('engineer')
+						)
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('MedOfficer').get('security')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('MedOfficer').get('medical')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('MedOfficer').get('science')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('MedOfficer').get('engineer')
-					)
+					'button',
+					{ className: 'changePersonnel', onClick: _this2.onChangeMedOff },
+					'Change'
 				)
 			);
 		});
@@ -32436,73 +32501,82 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'personnelStatBox' },
+					{ className: 'personnelStatsContainer' },
 					React.createElement(
 						'div',
-						{ className: 'stat' },
-						'Officer'
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Officer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('SciOfficer').get('officer')
+						)
 					),
 					React.createElement(
 						'div',
-						{ className: 'box' },
-						person.get('SciOfficer').get('officer')
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Security'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('SciOfficer').get('security')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Medical'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('SciOfficer').get('medical')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Science'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('SciOfficer').get('science')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Engineer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('SciOfficer').get('engineer')
+						)
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('SciOfficer').get('security')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('SciOfficer').get('medical')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('SciOfficer').get('science')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('SciOfficer').get('engineer')
-					)
+					'button',
+					{ className: 'changePersonnel', onClick: _this2.onChangeSciOff },
+					'Change'
 				)
 			);
 		});
@@ -32528,73 +32602,82 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'personnelStatBox' },
+					{ className: 'personnelStatsContainer' },
 					React.createElement(
 						'div',
-						{ className: 'stat' },
-						'Officer'
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Officer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('EngOfficer').get('officer')
+						)
 					),
 					React.createElement(
 						'div',
-						{ className: 'box' },
-						person.get('EngOfficer').get('officer')
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Security'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('EngOfficer').get('security')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Medical'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('EngOfficer').get('medical')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Science'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('EngOfficer').get('science')
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'personnelStatBox' },
+						React.createElement(
+							'div',
+							{ className: 'stat' },
+							'Engineer'
+						),
+						React.createElement(
+							'div',
+							{ className: 'box' },
+							person.get('EngOfficer').get('engineer')
+						)
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Security'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('EngOfficer').get('security')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Medical'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('EngOfficer').get('medical')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Science'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('EngOfficer').get('science')
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'personnelStatBox' },
-					React.createElement(
-						'div',
-						{ className: 'stat' },
-						'Engineer'
-					),
-					React.createElement(
-						'div',
-						{ className: 'box' },
-						person.get('EngOfficer').get('engineer')
-					)
+					'button',
+					{ className: 'changePersonnel', onClick: _this2.onChangeEngOff },
+					'Change'
 				)
 			);
 		});
@@ -32684,7 +32767,7 @@ module.exports = React.createClass({
 		}
 		return React.createElement(
 			'div',
-			{ className: 'createCharacterContainer', onClick: this.onBackground },
+			{ className: 'characterStatsContainer', onClick: this.onBackground },
 			React.createElement('a', { href: '#sector/' + this.props.characterId + '/' + this.props.sectorId, className: 'dashboardIcon', onClick: this.onReturn }),
 			React.createElement('button', { onClick: this.onSettings, className: 'settings' }),
 			React.createElement(
@@ -32701,46 +32784,7 @@ module.exports = React.createClass({
 					tacOff,
 					medOff,
 					sciOff,
-					engOff,
-					React.createElement(
-						'div',
-						{ className: 'buttons' },
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeCaptain },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeFirstOff },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeHelmsman },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeTacOff },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeMedOff },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeSciOff },
-							'Change'
-						),
-						React.createElement(
-							'button',
-							{ className: 'changePersonnel', onClick: this.onChangeEngOff },
-							'Change'
-						)
-					)
+					engOff
 				)
 			)
 		);
@@ -33989,55 +34033,55 @@ module.exports = React.createClass({
 				{ className: 'personBox' },
 				React.createElement(
 					'div',
-					null,
+					{ className: 'personName' },
 					'Name: ',
 					person.get('Name')
 				),
 				React.createElement(
 					'div',
-					null,
+					{ className: 'personOff' },
 					'Officer: ',
 					person.get('officer')
 				),
 				React.createElement(
 					'div',
-					null,
+					{ className: 'personTac' },
 					'Security: ',
 					person.get('security')
 				),
 				React.createElement(
 					'div',
-					null,
+					{ className: 'personMed' },
 					'Medical: ',
 					person.get('medical')
 				),
 				React.createElement(
 					'div',
-					null,
+					{ className: 'personSci' },
 					'Science: ',
 					person.get('science')
 				),
 				React.createElement(
 					'div',
-					null,
+					{ className: 'personEng' },
 					'Engineer: ',
 					person.get('engineer')
 				),
 				React.createElement(
 					'div',
-					null,
+					{ className: 'personCost' },
 					'Cost: ',
 					person.get('cost')
 				),
 				React.createElement(
 					'div',
-					null,
+					{ className: 'personLvlReq' },
 					'Level Req: ',
 					person.get('lvlReq')
 				),
 				React.createElement(
 					'button',
-					{ onClick: _this2.onChoose.bind(_this2, person) },
+					{ className: 'personSelect', onClick: _this2.onChoose.bind(_this2, person) },
 					'Select'
 				)
 			);
@@ -35014,6 +35058,11 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'statsContainer' },
+				React.createElement(
+					'span',
+					{ className: 'title' },
+					'USER SETTINGS'
+				),
 				userblock
 			)
 		);

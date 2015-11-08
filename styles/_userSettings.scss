@@ -1,5 +1,79 @@
 .userSettingsContainer {
-	// background-color: red;
-	color: #ffffff;
-	clear: both;
+
+	.statsContainer {
+		width: 100%;
+		// height: 50em;
+		border: 1px solid black;
+		clear: both;
+
+		.title {
+			display: block;
+			font-size: 3em;
+			text-align: center;
+		}
+
+		.newCharacterForm {
+			margin: 10em auto;
+			padding: 5em;
+			color: #ffffff;
+			width: 65%;
+			border: 2px solid;
+			color: #ffffff;
+			display: block;
+			z-index: 9999;
+			// margin: 0 auto;
+			// width: 50%;
+			border: 5px solid #423D3D;
+			border-style: outset;
+			border-radius: 10px;
+			background-color: grey;
+			padding: 0 2em;
+			background: no-repeat center/100% url("../images/drop-box.jpg");
+			background-size: auto;
+			font-family: 'Orbitron', sans-serif;
+			font-weight: none;
+
+			label {
+				display: block;
+				font-size: 1.5em;
+				padding: 0.5em;
+			}
+
+			input {
+				display: block;
+				width: 99%;
+				margin: 0 auto;
+				font-size: 1.5em;
+				background-color: green;
+			}
+
+			input:-webkit-autofill {
+				-webkit-box-shadow: 5px 5px 5px 1000px #423D3D inset;
+				-webkit-text-fill-color: #ffffff !important;
+			}
+
+			button {
+				display: block;
+				margin: 0.5em auto;
+				// height: 1.5em;
+				// width: 6em;
+				font-family: 'Orbitron', sans-serif;
+				font-weight: none;
+				font-size: 1.5em;
+				background-color: #000000;
+				background: linear-gradient(#423D3D, #7D7072);
+				border: none;
+				color: #ffffff;
+				border-radius: 10px;
+				padding: 0 0.5em;
+			}
+
+			button:hover {
+				background-color: #000000;
+				background: linear-gradient(#110E0F, #7D7072);
+				border: none;
+				color: #ffffff;
+			}
+		}
+	}
 }

@@ -97,6 +97,7 @@
 			height: 16em;
 			font-size: 2em;
 			overflow: scroll;
+			background-color: black;
 
 			.category {
 				font-weight: bold;
@@ -108,7 +109,7 @@
 			}
 
 			button {
-				margin: 1em 1em;
+				margin: 2em 1em;
 				color: white;
 				border-radius: 15px;
 				width: 10em;

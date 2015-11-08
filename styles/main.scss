@@ -3,6 +3,7 @@
 		'sectorMap',
 		'missionScreen',
 		'createCharacter',
+		'characterStats',
 		'userSettings';
 
 a {
@@ -14,6 +15,7 @@ body {
 	// background: no-repeat center/100% url("../images/brushed2.jpg");
 	// background-size: auto;
 	background: linear-gradient(to right, black, grey, white, grey, black);
+	font-family: 'Orbitron', sans-serif;
 
 }
 
