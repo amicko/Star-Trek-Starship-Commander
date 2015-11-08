@@ -3,7 +3,7 @@ var React = require('react');
 module.exports = React.createClass({
 	render: function() {
 		return (
-			<div className="charStatsContainer">
+			<div className="charStatsBox">
 				<div className="charStats">
 					<div>Character: {this.props.name}</div>
 					<div>Level: {Math.round(this.props.level/100)}</div>

@@ -6,6 +6,7 @@
 		text-align: center;
 		width: 100%;
 		box-sizing: border-box;
+		margin-bottom: 1em;
 		// position: absolute;
 		// top: -3%;
 		// left: 25%;
@@ -22,17 +23,12 @@
 	}
 
 	.userHUD {
+		margin: 1.5em 0;
 		box-sizing: border-box;
-		// position: absolute;
-		// top: 23%;
-		// width: 100%;
 		clear: both;
 		border: 3px solid black;
-		// overflow: hidden;
 		background-color: lightgrey;
 		background: linear-gradient(to right, black, black, black, grey, lightgrey, white, lightgrey, grey, black, black, black);
-		// padding-left: 10%;
-		// padding-right: 10%;
 
 		.HUDDil {
 			margin-left: -1em;
@@ -42,7 +38,6 @@
 			color: black;
 			padding-top: 1em;
 			height: 2em;
-			// float: left;
 			font-size: 1.4em;
 			font-weight: bold;
 			font-family: 'Orbitron', sans-serif;
@@ -85,7 +80,7 @@
 		// left: 15%;
 		color: white;
 		width: 100%;
-		height: 33em;
+		// height: 40em;
 		// border: 3px solid white;
 		margin: 0 auto;
 		overflow: hidden;
@@ -94,10 +89,11 @@
 		clear: both;
 
 		.missionStatBlock {
-			height: 16em;
+			// min-height: 16em;
 			font-size: 2em;
 			overflow: scroll;
 			background-color: black;
+			// border: 2px solid white;
 
 			.category {
 				font-weight: bold;
@@ -136,16 +132,20 @@
 			.systemInfo {
 				display: block;
 				// position: absolute;
-				z-index: 1;
+				// z-index: 1;
 				border: 1px solid grey;
 
 				.teaserBox {
+					opacity: 1;
+					// background-color: black;
 					// display: none;
-					z-index: 100;
+					// z-index: 100;
 					// width: 20em;
-					height: 10em;
+					min-height: 12em;
 					// opacity: 1;
 					// background-color: black;
+					// overflow: hidden;
+					// border: 2px solid white;
 
 					.missionName {
 						font-size: 2em;
@@ -236,12 +236,14 @@
 	.missionScreenContainer {
 
 		.sectorLoreBlock {
+			clear: none;
 			text-align: center;
 			width: 55%;
 			box-sizing: border-box;
-			position: absolute;
-			top: -3%;
-			left: 25%;
+			margin-left: 25%;
+			// position: absolute;
+			// top: -3%;
+			// left: 25%;
 
 			h3 {
 				font-size: 2.5em;
@@ -256,8 +258,8 @@
 
 		.userHUD {
 			box-sizing: border-box;
-			position: absolute;
-			top: 23%;
+			// position: absolute;
+			// top: 23%;
 			width: 100%;
 			clear: both;
 			border: 3px solid black;
@@ -311,27 +313,28 @@
 		}
 
 		.sectorBlockContainer {
-			position: absolute;
-			top: 16em;
-			left: 15%;
+			// position: absolute;
+			// top: 35%;
+			// left: 15%;
 			color: white;
 			width: 71%;
-			height: 33em;
-			border: 3px solid white;
+			height: 40em;
+			// border: 3px solid white;
 			margin: 0 auto;
 			overflow: hidden;
 			background: no-repeat top/100% url("../images/space01.png");
 			background-size: auto;
-			clear: both;
+			// clear: both;
 
 			.missionStatBlock {
 				height: 16em;
 				font-size: 2em;
-				overflow: scroll;
+				// overflow: scroll;
 
 				.category {
 					font-weight: bold;
 					color: red;
+					clear: both;
 				}
 
 				h3 {
@@ -345,8 +348,8 @@
 					width: 10em;
 					height: 3em;
 					float: right;
-					position: relative;
-					bottom: 1.7em;
+					// position: relative;
+					// bottom: 1.7em;
 					background: no-repeat top/100% url("../images/blue-button.jpg");
 				}
 
@@ -360,19 +363,19 @@
 				// height: 30%;
 				box-sizing: border-box;
 				float: left;
-				overflow: scroll;
+				overflow: hidden;
 
 				.systemInfo {
 					display: block;
 					position: absolute;
-					z-index: 1;
+					// z-index: 1;
 					border: none;
 
 					.teaserBox {
 						display: none;
-						z-index: 100;
+						// z-index: 100;
 						width: 20em;
-						height: 10em;
+						// height: 10em;
 						// opacity: 1;
 						// background-color: black;
 
@@ -408,53 +411,306 @@
 					}
 				}
 
+				.systemInfo:hover {
+					width: 20em;
+				}
+
+				.systemPLT4V1bBEv {
+					//Delphi Ardu
+					left: 70%;
+					top: 45%;
+				}
+
+				.systemPLT4V1bBEv:hover {
+					display: block;
+
+					.teaserBox {
+						display: block;
+						position: absolute;
+						right: 75%;
+					}
+				}
+
+				.systemdOP2u1SyVo {
+					//Deneb
+					top: 80%;
+					left: 50%;
+				}
+
+				.systemdOP2u1SyVo:hover {
+					display: block;
+
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.systemFRW4Uj03ly {
+					//Malcor
+					top: 60%;
+					left: 30%;
+				}
+
+				.systemFRW4Uj03ly:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.system6gNnHzBlT1 {
+					//Kurl
+					top: 35%;
+					left: 20%;
+				}
+
+				.system6gNnHzBlT1:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.system5aEWs3QJF6 {
+					top: 84%;
+					left: 25%;
+				}
+
+				.system5aEWs3QJF6:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
 				.system0zTCvNPPPq {
-					left: 80%;
-					top: 70%;
+					//Beta Lankal
+					left: 70%;
+					top: 80%;
+					// border: 2px solid white;
 				}
 
 				.system0zTCvNPPPq:hover {
 					display: block;
-					width: 20em;
-					height: 10em;
+					// width: 20em;
+					// height: 10em;
 
 					.teaserBox {
 						display: block;
-						z-index: 10;
+					// 	// z-index: 10;
 						position: absolute;
 						right: 75%;
 					}
 				}
 
 				.systemUufVeQXSt3 {
-					left: 10%;
-					top: 30%;
+					//Archanis
+					left: 20%;
+					top: 50%;
+					// border: 2px solid white;
 				}
 
 				.systemUufVeQXSt3:hover {
 					display: block;
-					width: 20em;
-					height: 10em;
+					// width: 20em;
+					// height: 10em;
 
 					.teaserBox {
 						display: block;
-						z-index: 10;
+						// z-index: 10;
 					}
 				}
 
 				.systemIsYOG63CEv {
-					top: 58%;
+					//Tor'keth
+					top: 70%;
 					left: 45%;
+					// border: 2px solid white;
 				}
 
 				.systemIsYOG63CEv:hover {
 					display: block;
-					width: 20em;
-					height:10em;
+					// width: 20em;
+					// height:10em;
 
 					.teaserBox {
 						display: block;
-						z-index: 10;
+						// z-index: 10;
+					}
+				}
+
+				.systemvr4dkZwCSw {
+					//Sherman
+					top: 40%;
+					left: 70%;
+				}
+
+				.systemvr4dkZwCSw:hover {
+
+					.teaserBox {
+						display: block;
+						position: absolute;
+						right: 75%;
+					}
+				}
+
+				.system3i1OOxODRq {
+					//Olmerak
+					left: 25%;
+					top: 80%;
+				}
+
+				.system3i1OOxODRq:hover {
+
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.system2R4h32LQ6R {
+					//Boradis
+					top: 37%;
+					left: 25%;
+				}
+
+				.system2R4h32LQ6R:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.systemGWqwJfvQ0d {
+					//Graveworld
+					top: 40%;
+					left: 40%;
+				}
+
+				.systemGWqwJfvQ0d:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.systemlaWasFz526 {
+					//Mintaka
+					top: 60%;
+					left: 60%;
+				}
+
+				.systemlaWasFz526:hover {
+					
+					.teaserBox {
+						display: block;
+						position: absolute;
+						right: 35%;
+					}
+				}
+
+				.systemt7MVOZYGxq {
+					//Moab
+					top: 50%;
+					left: 30%;
+				}
+
+				.systemt7MVOZYGxq:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.system6N4Ou0yWkD {
+					//Edge of Neutral Zone
+					top: 70%;
+					left: 36%;
+				}
+
+				.system6N4Ou0yWkD:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.systemvvs5WPErs7 {
+					top: 80%;
+					left: 45%;
+				}
+
+				.systemvvs5WPErs7:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.systemoxxeVjil0H {
+					//Tzenketh
+					top: 40%;
+					left: 22%;
+				}
+
+				.systemoxxeVjil0H:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.system4SJ1GB4Iaz {
+					//Trill
+					top: 40%;
+					left: 70%;
+				}
+
+				.system4SJ1GB4Iaz:hover {
+					
+					.teaserBox {
+						display: block;
+						position: absolute;
+						right: 75%;
+					}
+				}
+
+				.systemqflFVcix31 {
+					//T'Lani
+					top: 50%;
+					left: 40%;
+				}
+
+				.systemqflFVcix31:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.systemMdFRoMeIZR {
+					//Chin'Toka
+					top: 70%;
+					left: 35%;
+				}
+
+				.systemMdFRoMeIZR:hover {
+					
+					.teaserBox {
+						display: block;
+					}
+				}
+
+				.systemomjq453MVQ {
+					top: 80%;
+					left: 60%;
+				}
+
+				.systemomjq453MVQ:hover {
+					
+					.teaserBox {
+						display: block;
+						position: absolute;
+						right: 35%;
 					}
 				}
 			}

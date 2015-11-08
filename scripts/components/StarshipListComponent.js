@@ -30,12 +30,12 @@ module.exports = React.createClass({
 			// console.log(starship.get('Cost'))
 			return(
 				<div className="starshipDetailBox">
-					<div>Class Name: {starship.get('Name')}</div>
-					<div>Range: {starship.get('Range')}</div>
-					<div>Weapons: {starship.get('Weapons')}</div>
-					<div>Shields: {starship.get('Shields')}</div>
-					<div>Cost: {starship.get('Cost')}</div>
-					<div>Level Req: {starship.get('LvlReq')}</div>
+					<div><span className="classItemTitle">Class Name: </span>{starship.get('Name')}</div>
+					<div><span className="classItemTitle">Range: </span>{starship.get('Range')}</div>
+					<div><span className="classItemTitle">Weapons: </span>{starship.get('Weapons')}</div>
+					<div><span className="classItemTitle">Shields: </span>{starship.get('Shields')}</div>
+					<div><span className="classItemTitle">Cost: </span>{starship.get('Cost')}</div>
+					<div><span className="classItemTitle">Level Req: </span>{starship.get('LvlReq')}</div>
 					<button onClick={this.onChoose.bind(this, starship)}>Select</button>
 				</div>
 			)

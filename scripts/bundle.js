@@ -31712,7 +31712,7 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "charStatsContainer" },
+			{ className: "charStatsBox" },
 			React.createElement(
 				"div",
 				{ className: "charStats" },
@@ -31931,6 +31931,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'starshipName' },
+						'U.S.S. ',
 						starship.get('Name')
 					),
 					React.createElement(
@@ -31942,7 +31943,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'starshipImage' },
-						'Image'
+						React.createElement('img', { src: starship.get('Class').get('ImageURL') })
 					),
 					React.createElement(
 						'div',
@@ -33609,7 +33610,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'sectorBlockContainer' },
+				{ className: 'sectorBlockContainer sector-' + this.props.sectorId },
 				dropDown
 			)
 		);
@@ -34917,37 +34918,61 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					null,
-					'Class Name: ',
+					React.createElement(
+						'span',
+						{ className: 'classItemTitle' },
+						'Class Name: '
+					),
 					starship.get('Name')
 				),
 				React.createElement(
 					'div',
 					null,
-					'Range: ',
+					React.createElement(
+						'span',
+						{ className: 'classItemTitle' },
+						'Range: '
+					),
 					starship.get('Range')
 				),
 				React.createElement(
 					'div',
 					null,
-					'Weapons: ',
+					React.createElement(
+						'span',
+						{ className: 'classItemTitle' },
+						'Weapons: '
+					),
 					starship.get('Weapons')
 				),
 				React.createElement(
 					'div',
 					null,
-					'Shields: ',
+					React.createElement(
+						'span',
+						{ className: 'classItemTitle' },
+						'Shields: '
+					),
 					starship.get('Shields')
 				),
 				React.createElement(
 					'div',
 					null,
-					'Cost: ',
+					React.createElement(
+						'span',
+						{ className: 'classItemTitle' },
+						'Cost: '
+					),
 					starship.get('Cost')
 				),
 				React.createElement(
 					'div',
 					null,
-					'Level Req: ',
+					React.createElement(
+						'span',
+						{ className: 'classItemTitle' },
+						'Level Req: '
+					),
 					starship.get('LvlReq')
 				),
 				React.createElement(
