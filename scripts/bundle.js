@@ -33098,8 +33098,8 @@ module.exports = React.createClass({
 				Name: _this.refs.CharacterName.value,
 				XP: 100,
 				Starship: savedStarship,
-				Dilithium: 1000,
-				GoldPressedLatinum: 1000,
+				Dilithium: 10,
+				GoldPressedLatinum: 100,
 				UserId: UserId,
 				User: NewUser
 			}).then(function (savedCharacter) {
@@ -33274,9 +33274,9 @@ module.exports = React.createClass({
 			_this.setState({
 				character: character
 			});
-			console.log(typeof Math.round(character.get('XP') / 100));
-			console.log(typeof character.get('Dilithium'));
-			if (character.get('Dilithium') < Math.round(character.get('XP') / 100)) {
+			// console.log(typeof Math.round(character.get('XP')/100))
+			// console.log(typeof character.get('Dilithium'))
+			if (character.get('Dilithium') < Math.round(character.get('XP') / 100 + 10)) {
 				var that = _this;
 				setInterval(function () {
 					character.set('Dilithium', character.get('Dilithium') + 1);
@@ -33302,7 +33302,7 @@ module.exports = React.createClass({
 			'Dilithium: ',
 			DilCount,
 			' / ',
-			Math.round(this.props.charXP / 100)
+			Math.round(this.props.charXP / 100 + 10)
 		);
 	}
 });
