@@ -72,7 +72,7 @@
 			margin: 2em auto;
 			width: 70%;
 			max-height: 30em;
-			overflow: hidden;
+			overflow: scroll;
 			// background-color: grey;
 
 			.starshipDetailBox {
@@ -119,14 +119,15 @@
 				}
 
 				.starshipImage {
-					// text-align: center;
-					// line-height: 8em;
+					text-align: center;
+					line-height: 8em;
 					// border: 3px solid black;
 					width: 50%;
 					height: 8em;
 					margin: 1em auto;
 
 					img {
+						margin: 0 auto;
 						width: 15em;
 						height: 8em;
 					}
@@ -170,7 +171,7 @@
 				max-height: 25em;
 				width: 80%;
 				margin: 1em auto;
-				overflow: hidden;
+				overflow: scroll;
 
 				.personBox {
 					text-align: center;
