@@ -10,6 +10,8 @@ var SeniorOffTacOffComponent = require('./SeniorOffTacOffComponent.js');
 var SeniorOffMedOffComponent = require('./SeniorOffMedOffComponent.js');
 var SeniorOffSciOffComponent = require('./SeniorOffSciOffComponent.js');
 var SeniorOffEngOffComponent = require('./SeniorOffEngOffComponent.js');
+var message = '';
+var messagePerson = '';
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -107,9 +109,9 @@ module.exports = React.createClass({
 		})
 	},
 	render: function() {
-		var currentCharacter = this.state.currentCharacter.map((character) => {
+		var currentCharacter = this.state.currentCharacter.map((character, index) => {
 			return (
-				<div className="characterStatsBox">
+				<div key={index} className="characterStatsBox">
 					<div className="characterName"><span className="category">NAME: </span>{character.get('Name')}</div>
 					<div className="characterXp"><span className="category">XP: </span>{character.get('XP')}</div>
 					<div className="characterLevel"><span className="category">LEVEL: </span>{Math.round(character.get('XP')/100)}</div>
@@ -123,9 +125,9 @@ module.exports = React.createClass({
 			return starship.get('Captain')
 		})
 		
-		var currentStarshipClass = this.state.currentStarshipClass.map((starship) => {
+		var currentStarshipClass = this.state.currentStarshipClass.map((starship, index) => {
 			return(
-				<div className="starshipBox">
+				<div key={index} className="starshipBox">
 					<div className="starshipStatsBox">
 						<div className="starshipName">U.S.S. {starship.get('Name')}</div>
 						<div className="starshipClassBox">Class: {starship.get('Class').get('Name')}</div>
@@ -141,9 +143,9 @@ module.exports = React.createClass({
 			)
 		})
 
-		var starshipCaptain = this.state.currentStarshipCaptain.map((person) => {
+		var starshipCaptain = this.state.currentStarshipCaptain.map((person, index) => {
 			return (
-				<div className="personnelBox">
+				<div key={index} className="personnelBox">
 					<div className="position">CAPTAIN</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('Captain').get('Name')}</div>
@@ -174,9 +176,9 @@ module.exports = React.createClass({
 			)
 		})
 
-		var starshipFirstOfficer = this.state.currentStarshipFirstOfficer.map((person) => {
+		var starshipFirstOfficer = this.state.currentStarshipFirstOfficer.map((person, index) => {
 			return (
-				<div className="personnelBox">
+				<div key={index} className="personnelBox">
 					<div className="position">FIRST OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('FirstOfficer').get('Name')}</div>
@@ -207,9 +209,9 @@ module.exports = React.createClass({
 			)
 		})
 
-		var starshipHelmsman = this.state.currentStarshipHelmsman.map((person) => {
+		var starshipHelmsman = this.state.currentStarshipHelmsman.map((person, index) => {
 			return (
-				<div className="personnelBox">
+				<div key={index} className="personnelBox">
 					<div className="position">HELMSMAN</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('Helmsman').get('Name')}</div>
@@ -240,9 +242,9 @@ module.exports = React.createClass({
 			)
 		})
 
-		var starshipTacticalOfficer = this.state.currentStarshipTacticalOfficer.map((person) => {
+		var starshipTacticalOfficer = this.state.currentStarshipTacticalOfficer.map((person, index) => {
 			return (
-				<div className="personnelBox">
+				<div key={index} className="personnelBox">
 					<div className="position">TACTICAL OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('TacOfficer').get('Name')}</div>
@@ -273,9 +275,9 @@ module.exports = React.createClass({
 			)
 		})
 
-		var starshipMedicalOfficer = this.state.currentStarshipMedicalOfficer.map((person) => {
+		var starshipMedicalOfficer = this.state.currentStarshipMedicalOfficer.map((person, index) => {
 			return (
-				<div className="personnelBox">
+				<div key={index} className="personnelBox">
 					<div className="position">MEDICAL OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('MedOfficer').get('Name')}</div>
@@ -306,9 +308,9 @@ module.exports = React.createClass({
 			)
 		})
 
-		var starshipScienceOfficer = this.state.currentStarshipScienceOfficer.map((person) => {
+		var starshipScienceOfficer = this.state.currentStarshipScienceOfficer.map((person, index) => {
 			return (
-				<div className="personnelBox">
+				<div key={index} className="personnelBox">
 					<div className="position">SCIENCE OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('SciOfficer').get('Name')}</div>
@@ -339,9 +341,9 @@ module.exports = React.createClass({
 			)
 		})
 
-		var starshipEngineerOfficer = this.state.currentStarshipEngineerOfficer.map((person) => {
+		var starshipEngineerOfficer = this.state.currentStarshipEngineerOfficer.map((person, index) => {
 			return (
-				<div className="personnelBox">
+				<div key={index} className="personnelBox">
 					<div className="position">ENGINEER OFFICER</div>
 					<div className="personnelImage">IMAGE</div>
 					<div className="personnelName">{person.get('EngOfficer').get('Name')}</div>
@@ -388,7 +390,7 @@ module.exports = React.createClass({
 		}
 		else {
 			starship = (
-				<StarshipListComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
+				<StarshipListComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]} onDebt={this.onDebt} noDebt={this.noDebt}/>
 			);
 		}
 
@@ -400,7 +402,7 @@ module.exports = React.createClass({
 		else {
 			// console.log(currentStarship[0].id)
 			captain = (
-				<SeniorOffCaptainComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
+				<SeniorOffCaptainComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]} onDebt={this.onGebt} noDebt={this.noGebt}/>
 			);
 		}
 		if(this.state.firstOff === 'firstOff') {
@@ -410,7 +412,7 @@ module.exports = React.createClass({
 		}
 		else {
 			firstOff = (
-				<SeniorOffFirstOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
+				<SeniorOffFirstOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]} onDebt={this.onGebt} noDebt={this.noGebt}/>
 			);
 		}
 		if(this.state.helmsman === 'helmsman') {
@@ -420,7 +422,7 @@ module.exports = React.createClass({
 		}
 		else {
 			helmsman = (
-				<SeniorOffHelmsmanComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
+				<SeniorOffHelmsmanComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]} onDebt={this.onGebt} noDebt={this.noGebt}/>
 			);
 		}
 		if(this.state.tacOff === 'tacOff') {
@@ -430,7 +432,7 @@ module.exports = React.createClass({
 		}
 		else {
 			tacOff = (
-				<SeniorOffTacOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
+				<SeniorOffTacOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]} onDebt={this.onGebt} noDebt={this.noGebt}/>
 			);
 		}
 		if(this.state.medOff === 'medOff') {
@@ -440,7 +442,7 @@ module.exports = React.createClass({
 		}
 		else {
 			medOff = (
-				<SeniorOffMedOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
+				<SeniorOffMedOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]} onDebt={this.onGebt} noDebt={this.noGebt}/>
 			);
 		}
 		if(this.state.sciOff === 'sciOff') {
@@ -450,7 +452,7 @@ module.exports = React.createClass({
 		}
 		else {
 			sciOff = (
-				<SeniorOffSciOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
+				<SeniorOffSciOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]} onDebt={this.onGebt} noDebt={this.noGebt}/>
 			);
 		}
 		if(this.state.engOff === 'engOff') {
@@ -460,7 +462,7 @@ module.exports = React.createClass({
 		}
 		else {
 			engOff = (
-				<SeniorOffEngOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]}/>
+				<SeniorOffEngOffComponent starship={this.state.currentStarship[0]} characterId={this.props.characterId} character={this.state.currentCharacter[0]} onDebt={this.onGebt} noDebt={this.noGebt}/>
 			);
 		}
 		return (
@@ -471,6 +473,8 @@ module.exports = React.createClass({
 					{currentCharacter}
 					{starship}
 					<div className="seniorStaffContainer">
+						<div className="message">{message}</div>
+						<div className="message">{messagePerson}</div>
 						{captain}
 						{firstOff}
 						{helmsman}
@@ -482,6 +486,26 @@ module.exports = React.createClass({
 				</div>
 			</div>
 		)
+	},
+	onDebt: function(e) {
+		message = 'Not enough Dilithium';
+		messagePerson = '';
+		this.forceUpdate();
+	},
+	noDebt: function(e) {
+		message = '';
+		messagePerson = '';
+		this.forceUpdate();
+	},
+	onGebt: function(e) {
+		message = '';
+		messagePerson = 'Not enough Gold-Pressed Latinum';
+		this.forceUpdate();
+	},
+	noGebt: function(e) {
+		message = '';
+		messagePerson = '';
+		this.forceUpdate();
 	},
 	onSaveCharacter: function(e) {
 		e.preventDefault();

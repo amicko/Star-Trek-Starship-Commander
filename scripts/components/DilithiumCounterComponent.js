@@ -38,7 +38,7 @@ module.exports = React.createClass({
 			DilCount = this.state.character.get('Dilithium')
 		}
 		return (
-			<div>Dilithium: {DilCount}</div>
+			<div>Dilithium: {DilCount} / {this.props.charXP}</div>
 		)
 
 	}

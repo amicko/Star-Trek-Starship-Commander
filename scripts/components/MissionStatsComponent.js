@@ -6,6 +6,7 @@ var StarshipQuery = new Parse.Query(StarshipModel);
 var PersonnelModel = Parse.Object.extend('PersonnelModel');
 var CharacterModel = Parse.Object.extend('CharacterModel');
 var CharacterQuery = new Parse.Query(CharacterModel);
+var message = '';
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -33,6 +34,9 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		// var that = this
+		// var showMessage = false 
+		// this.forceUpdate();
+		
 		return (
 			<div  className="missionStatBlock">
 				<h3>{this.props.missionName}</h3>
@@ -45,14 +49,17 @@ module.exports = React.createClass({
 				<div><span className="category">Gold-Pressed Latinum Value:</span> {this.props.rewardGPL}</div>
 				<button className="minButton" onClick={this.onToggle}>Sector Screen</button>
 				<button className="attButton" onClick={this.doMission}>Attempt Mission</button>
+				<div className="message">{message}</div>
 			</div>
 		)
 	},
 	onToggle: function() {
+		message = ''
+		this.forceUpdate();
 		this.props.toggle();
 	},
 	doMission: function() {
-		console.log('Mission Attempted');
+		// console.log('Mission Attempted');
 		var charDil = this.state.character.map((character) => {
 			return character.get('Dilithium')
 		})
@@ -64,36 +71,44 @@ module.exports = React.createClass({
 		})
 		var calc = Math.random();
 		if(this.props.time * 100 > charDil) {
-			throw ('Not enough Dilithium')
+			message = 'Not enough Dilithium'
+			this.forceUpdate();
+			// throw 'Not enough Dilithium'
 		}
 		else {
+			
 			this.state.character[0].set('Dilithium', parseFloat(charDil) - (parseFloat(this.props.time) * 100));
 			this.state.character[0].save(null, {
 				success: function(CharacterModel) {
-					console.log('Dilithium Decreased')
+					// console.log('Dilithium Decreased')
 				}
 			})
 			if(calc * 5 <= this.state.statNum) {
-				console.log('Success:', this.state.statNum + ' is greater than ' + (calc * 5))
+				message = 'Mission Succeeded';
+				this.forceUpdate();
+				// console.log('Success:', this.state.statNum + ' is greater than ' + (calc * 5))
 				this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP)
 				this.state.character[0].save(null, {
 					success: function(CharacterModel) {
-						console.log('XP Increased')
+						// console.log('XP Increased')
 					}
 				})
 				this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL)
 				this.state.character[0].save(null, {
 					success: function(CharacterModel) {
-						console.log('GPL Increased')
+						// console.log('GPL Increased')
 					}
 				})
 				// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
 			}
 			else {
-				console.log('Failure:', this.state.statNum + ' is not greater than ' + (calc * 5))
+				message = 'Mission Failed';
+				this.forceUpdate();
+				// console.log('Failure:', this.state.statNum + ' is not greater than ' + (calc * 5))
 			}
 		}
-		console.log(charXP);
+		// console.log(message);
+		// message = 'test';
 		this.props.update();
 	}
 })

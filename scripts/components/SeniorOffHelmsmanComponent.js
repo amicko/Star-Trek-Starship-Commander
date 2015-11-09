@@ -53,7 +53,7 @@ module.exports = React.createClass({
 		})
 		
 		if(PersonCost > CharGPL) {
-			throw 'Not enough Gold-Pressed Latinum'
+			this.props.onDebt();
 		}
 		else {
 			this.props.character.set('GoldPressedLatinum', (CharGPL - PersonCost))
@@ -68,6 +68,7 @@ module.exports = React.createClass({
 					// console.log('Successfully saved to server')
 				}
 			});
+			this.props.noDebt();
 		}
 	}
 })

@@ -31767,6 +31767,8 @@ var SeniorOffTacOffComponent = require('./SeniorOffTacOffComponent.js');
 var SeniorOffMedOffComponent = require('./SeniorOffMedOffComponent.js');
 var SeniorOffSciOffComponent = require('./SeniorOffSciOffComponent.js');
 var SeniorOffEngOffComponent = require('./SeniorOffEngOffComponent.js');
+var message = '';
+var messagePerson = '';
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -31860,10 +31862,10 @@ module.exports = React.createClass({
 	render: function render() {
 		var _this2 = this;
 
-		var currentCharacter = this.state.currentCharacter.map(function (character) {
+		var currentCharacter = this.state.currentCharacter.map(function (character, index) {
 			return React.createElement(
 				'div',
-				{ className: 'characterStatsBox' },
+				{ key: index, className: 'characterStatsBox' },
 				React.createElement(
 					'div',
 					{ className: 'characterName' },
@@ -31921,10 +31923,10 @@ module.exports = React.createClass({
 			return starship.get('Captain');
 		});
 
-		var currentStarshipClass = this.state.currentStarshipClass.map(function (starship) {
+		var currentStarshipClass = this.state.currentStarshipClass.map(function (starship, index) {
 			return React.createElement(
 				'div',
-				{ className: 'starshipBox' },
+				{ key: index, className: 'starshipBox' },
 				React.createElement(
 					'div',
 					{ className: 'starshipStatsBox' },
@@ -31976,10 +31978,10 @@ module.exports = React.createClass({
 			);
 		});
 
-		var starshipCaptain = this.state.currentStarshipCaptain.map(function (person) {
+		var starshipCaptain = this.state.currentStarshipCaptain.map(function (person, index) {
 			return React.createElement(
 				'div',
-				{ className: 'personnelBox' },
+				{ key: index, className: 'personnelBox' },
 				React.createElement(
 					'div',
 					{ className: 'position' },
@@ -32077,10 +32079,10 @@ module.exports = React.createClass({
 			);
 		});
 
-		var starshipFirstOfficer = this.state.currentStarshipFirstOfficer.map(function (person) {
+		var starshipFirstOfficer = this.state.currentStarshipFirstOfficer.map(function (person, index) {
 			return React.createElement(
 				'div',
-				{ className: 'personnelBox' },
+				{ key: index, className: 'personnelBox' },
 				React.createElement(
 					'div',
 					{ className: 'position' },
@@ -32178,10 +32180,10 @@ module.exports = React.createClass({
 			);
 		});
 
-		var starshipHelmsman = this.state.currentStarshipHelmsman.map(function (person) {
+		var starshipHelmsman = this.state.currentStarshipHelmsman.map(function (person, index) {
 			return React.createElement(
 				'div',
-				{ className: 'personnelBox' },
+				{ key: index, className: 'personnelBox' },
 				React.createElement(
 					'div',
 					{ className: 'position' },
@@ -32279,10 +32281,10 @@ module.exports = React.createClass({
 			);
 		});
 
-		var starshipTacticalOfficer = this.state.currentStarshipTacticalOfficer.map(function (person) {
+		var starshipTacticalOfficer = this.state.currentStarshipTacticalOfficer.map(function (person, index) {
 			return React.createElement(
 				'div',
-				{ className: 'personnelBox' },
+				{ key: index, className: 'personnelBox' },
 				React.createElement(
 					'div',
 					{ className: 'position' },
@@ -32380,10 +32382,10 @@ module.exports = React.createClass({
 			);
 		});
 
-		var starshipMedicalOfficer = this.state.currentStarshipMedicalOfficer.map(function (person) {
+		var starshipMedicalOfficer = this.state.currentStarshipMedicalOfficer.map(function (person, index) {
 			return React.createElement(
 				'div',
-				{ className: 'personnelBox' },
+				{ key: index, className: 'personnelBox' },
 				React.createElement(
 					'div',
 					{ className: 'position' },
@@ -32481,10 +32483,10 @@ module.exports = React.createClass({
 			);
 		});
 
-		var starshipScienceOfficer = this.state.currentStarshipScienceOfficer.map(function (person) {
+		var starshipScienceOfficer = this.state.currentStarshipScienceOfficer.map(function (person, index) {
 			return React.createElement(
 				'div',
-				{ className: 'personnelBox' },
+				{ key: index, className: 'personnelBox' },
 				React.createElement(
 					'div',
 					{ className: 'position' },
@@ -32582,10 +32584,10 @@ module.exports = React.createClass({
 			);
 		});
 
-		var starshipEngineerOfficer = this.state.currentStarshipEngineerOfficer.map(function (person) {
+		var starshipEngineerOfficer = this.state.currentStarshipEngineerOfficer.map(function (person, index) {
 			return React.createElement(
 				'div',
-				{ className: 'personnelBox' },
+				{ key: index, className: 'personnelBox' },
 				React.createElement(
 					'div',
 					{ className: 'position' },
@@ -32699,7 +32701,7 @@ module.exports = React.createClass({
 				currentStarshipClass
 			);
 		} else {
-			starship = React.createElement(StarshipListComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
+			starship = React.createElement(StarshipListComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0], onDebt: this.onDebt, noDebt: this.noDebt });
 		}
 
 		if (this.state.captain === 'captain') {
@@ -32710,7 +32712,7 @@ module.exports = React.createClass({
 			);
 		} else {
 			// console.log(currentStarship[0].id)
-			captain = React.createElement(SeniorOffCaptainComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
+			captain = React.createElement(SeniorOffCaptainComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0], onDebt: this.onGebt, noDebt: this.noGebt });
 		}
 		if (this.state.firstOff === 'firstOff') {
 			firstOff = React.createElement(
@@ -32719,7 +32721,7 @@ module.exports = React.createClass({
 				starshipFirstOfficer
 			);
 		} else {
-			firstOff = React.createElement(SeniorOffFirstOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
+			firstOff = React.createElement(SeniorOffFirstOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0], onDebt: this.onGebt, noDebt: this.noGebt });
 		}
 		if (this.state.helmsman === 'helmsman') {
 			helmsman = React.createElement(
@@ -32728,7 +32730,7 @@ module.exports = React.createClass({
 				starshipHelmsman
 			);
 		} else {
-			helmsman = React.createElement(SeniorOffHelmsmanComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
+			helmsman = React.createElement(SeniorOffHelmsmanComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0], onDebt: this.onGebt, noDebt: this.noGebt });
 		}
 		if (this.state.tacOff === 'tacOff') {
 			tacOff = React.createElement(
@@ -32737,7 +32739,7 @@ module.exports = React.createClass({
 				starshipTacticalOfficer
 			);
 		} else {
-			tacOff = React.createElement(SeniorOffTacOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
+			tacOff = React.createElement(SeniorOffTacOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0], onDebt: this.onGebt, noDebt: this.noGebt });
 		}
 		if (this.state.medOff === 'medOff') {
 			medOff = React.createElement(
@@ -32746,7 +32748,7 @@ module.exports = React.createClass({
 				starshipMedicalOfficer
 			);
 		} else {
-			medOff = React.createElement(SeniorOffMedOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
+			medOff = React.createElement(SeniorOffMedOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0], onDebt: this.onGebt, noDebt: this.noGebt });
 		}
 		if (this.state.sciOff === 'sciOff') {
 			sciOff = React.createElement(
@@ -32755,7 +32757,7 @@ module.exports = React.createClass({
 				starshipScienceOfficer
 			);
 		} else {
-			sciOff = React.createElement(SeniorOffSciOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
+			sciOff = React.createElement(SeniorOffSciOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0], onDebt: this.onGebt, noDebt: this.noGebt });
 		}
 		if (this.state.engOff === 'engOff') {
 			engOff = React.createElement(
@@ -32764,7 +32766,7 @@ module.exports = React.createClass({
 				starshipEngineerOfficer
 			);
 		} else {
-			engOff = React.createElement(SeniorOffEngOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0] });
+			engOff = React.createElement(SeniorOffEngOffComponent, { starship: this.state.currentStarship[0], characterId: this.props.characterId, character: this.state.currentCharacter[0], onDebt: this.onGebt, noDebt: this.noGebt });
 		}
 		return React.createElement(
 			'div',
@@ -32779,6 +32781,16 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'seniorStaffContainer' },
+					React.createElement(
+						'div',
+						{ className: 'message' },
+						message
+					),
+					React.createElement(
+						'div',
+						{ className: 'message' },
+						messagePerson
+					),
 					captain,
 					firstOff,
 					helmsman,
@@ -32789,6 +32801,26 @@ module.exports = React.createClass({
 				)
 			)
 		);
+	},
+	onDebt: function onDebt(e) {
+		message = 'Not enough Dilithium';
+		messagePerson = '';
+		this.forceUpdate();
+	},
+	noDebt: function noDebt(e) {
+		message = '';
+		messagePerson = '';
+		this.forceUpdate();
+	},
+	onGebt: function onGebt(e) {
+		message = '';
+		messagePerson = 'Not enough Gold-Pressed Latinum';
+		this.forceUpdate();
+	},
+	noGebt: function noGebt(e) {
+		message = '';
+		messagePerson = '';
+		this.forceUpdate();
 	},
 	onSaveCharacter: function onSaveCharacter(e) {
 		e.preventDefault();
@@ -33075,6 +33107,8 @@ module.exports = React.createClass({
 				savedStarship.save();
 			});
 		});
+
+		// this.props.router.navigate('dashboard', {trigger: true});
 	}
 });
 
@@ -33265,7 +33299,9 @@ module.exports = React.createClass({
 			'div',
 			null,
 			'Dilithium: ',
-			DilCount
+			DilCount,
+			' / ',
+			this.props.charXP
 		);
 	}
 });
@@ -33515,10 +33551,16 @@ module.exports = React.createClass({
 			return character.get('GoldPressedLatinum');
 		});
 
+		var charXP = this.state.character.map(function (character) {
+			return character.get('XP');
+		});
+
+		var charLvl = Math.round(charXP[0] / 100);
+
 		var sectorMissions = this.state.sectorMissions.map(function (missions, index) {
 			return React.createElement(
 				'div',
-				{ className: 'systemInfo system' + missions.id },
+				{ key: index, className: 'systemInfo system' + missions.id },
 				missions.get('System'),
 				React.createElement(
 					'div',
@@ -33550,10 +33592,10 @@ module.exports = React.createClass({
 			return React.createElement(MissionStatsComponent, { update: _this2.onUpdate, toggle: _this2.onBackground, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), offNeeded: mission.get('ShownOffNeeded'), typeReq: mission.get('TypeReq'), statNeeded: mission.get('ShownStatNeeded'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL'), characterId: _this2.props.characterId });
 		});
 
-		var SectorStats = this.state.sector.map(function (sector) {
+		var SectorStats = this.state.sector.map(function (sector, index) {
 			return React.createElement(
 				'div',
-				{ className: 'sectorLoreBlock' },
+				{ key: index, className: 'sectorLoreBlock' },
 				React.createElement(
 					'h3',
 					null,
@@ -33594,12 +33636,15 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'HUDDil' },
-					React.createElement(DilithiumCounterComponent, { characterId: this.props.characterId })
+					React.createElement(DilithiumCounterComponent, { characterId: this.props.characterId, charXP: charXP[0] })
 				),
 				React.createElement(
 					'button',
 					{ className: 'HUDFiller HUDButton', onClick: this.onCharStats },
-					charName
+					charName,
+					' (Level ',
+					charLvl,
+					')'
 				),
 				React.createElement(
 					'div',
@@ -33658,6 +33703,7 @@ var StarshipQuery = new Parse.Query(StarshipModel);
 var PersonnelModel = Parse.Object.extend('PersonnelModel');
 var CharacterModel = Parse.Object.extend('CharacterModel');
 var CharacterQuery = new Parse.Query(CharacterModel);
+var message = '';
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -33688,6 +33734,9 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// var that = this
+		// var showMessage = false
+		// this.forceUpdate();
+
 		return React.createElement(
 			'div',
 			{ className: 'missionStatBlock' },
@@ -33783,14 +33832,21 @@ module.exports = React.createClass({
 				'button',
 				{ className: 'attButton', onClick: this.doMission },
 				'Attempt Mission'
+			),
+			React.createElement(
+				'div',
+				{ className: 'message' },
+				message
 			)
 		);
 	},
 	onToggle: function onToggle() {
+		message = '';
+		this.forceUpdate();
 		this.props.toggle();
 	},
 	doMission: function doMission() {
-		console.log('Mission Attempted');
+		// console.log('Mission Attempted');
 		var charDil = this.state.character.map(function (character) {
 			return character.get('Dilithium');
 		});
@@ -33802,34 +33858,42 @@ module.exports = React.createClass({
 		});
 		var calc = Math.random();
 		if (this.props.time * 100 > charDil) {
-			throw 'Not enough Dilithium';
+			message = 'Not enough Dilithium';
+			this.forceUpdate();
+			// throw 'Not enough Dilithium'
 		} else {
-			this.state.character[0].set('Dilithium', parseFloat(charDil) - parseFloat(this.props.time) * 100);
-			this.state.character[0].save(null, {
-				success: function success(CharacterModel) {
-					console.log('Dilithium Decreased');
-				}
-			});
-			if (calc * 5 <= this.state.statNum) {
-				console.log('Success:', this.state.statNum + ' is greater than ' + calc * 5);
-				this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP);
+
+				this.state.character[0].set('Dilithium', parseFloat(charDil) - parseFloat(this.props.time) * 100);
 				this.state.character[0].save(null, {
 					success: function success(CharacterModel) {
-						console.log('XP Increased');
+						// console.log('Dilithium Decreased')
 					}
 				});
-				this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL);
-				this.state.character[0].save(null, {
-					success: function success(CharacterModel) {
-						console.log('GPL Increased');
+				if (calc * 5 <= this.state.statNum) {
+					message = 'Mission Succeeded';
+					this.forceUpdate();
+					// console.log('Success:', this.state.statNum + ' is greater than ' + (calc * 5))
+					this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP);
+					this.state.character[0].save(null, {
+						success: function success(CharacterModel) {
+							// console.log('XP Increased')
+						}
+					});
+					this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL);
+					this.state.character[0].save(null, {
+						success: function success(CharacterModel) {
+							// console.log('GPL Increased')
+						}
+					});
+					// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
+				} else {
+						message = 'Mission Failed';
+						this.forceUpdate();
+						// console.log('Failure:', this.state.statNum + ' is not greater than ' + (calc * 5))
 					}
-				});
-				// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
-			} else {
-					console.log('Failure:', this.state.statNum + ' is not greater than ' + calc * 5);
-				}
-		}
-		console.log(charXP);
+			}
+		// console.log(message);
+		// message = 'test';
 		this.props.update();
 	}
 });
@@ -34101,7 +34165,7 @@ module.exports = React.createClass({
 		});
 
 		if (PersonCost > CharGPL) {
-			throw 'Not enough Gold-Pressed Latinum';
+			this.props.onDebt();
 		} else {
 			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
@@ -34115,6 +34179,7 @@ module.exports = React.createClass({
 					// console.log('Successfully saved to server')
 				}
 			});
+			this.props.noDebt();
 		}
 	}
 });
@@ -34353,7 +34418,7 @@ module.exports = React.createClass({
 		});
 
 		if (PersonCost > CharGPL) {
-			throw 'Not enough Gold-Pressed Latinum';
+			this.props.onDebt();
 		} else {
 			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
@@ -34367,6 +34432,7 @@ module.exports = React.createClass({
 					// console.log('Successfully saved to server')
 				}
 			});
+			this.props.noDebt();
 		}
 	}
 });
@@ -34479,7 +34545,7 @@ module.exports = React.createClass({
 		});
 
 		if (PersonCost > CharGPL) {
-			throw 'Not enough Gold-Pressed Latinum';
+			this.props.onDebt();
 		} else {
 			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
@@ -34493,6 +34559,7 @@ module.exports = React.createClass({
 					// console.log('Successfully saved to server')
 				}
 			});
+			this.props.noDebt();
 		}
 	}
 });
@@ -34857,7 +34924,7 @@ module.exports = React.createClass({
 		});
 
 		if (PersonCost > CharGPL) {
-			throw 'Not enough Gold-Pressed Latinum';
+			this.props.onDebt();
 		} else {
 			this.props.character.set('GoldPressedLatinum', CharGPL - PersonCost);
 			this.props.character.save(null, {
@@ -34871,6 +34938,7 @@ module.exports = React.createClass({
 					// console.log('Successfully saved to server')
 				}
 			});
+			this.props.noDebt();
 		}
 	}
 });
@@ -34910,11 +34978,11 @@ module.exports = React.createClass({
 	render: function render() {
 		var _this2 = this;
 
-		var starshipDetails = this.state.starships.map(function (starship) {
+		var starshipDetails = this.state.starships.map(function (starship, index) {
 			// console.log(starship.get('Cost'))
 			return React.createElement(
 				'div',
-				{ className: 'starshipDetailBox' },
+				{ key: index, className: 'starshipDetailBox' },
 				React.createElement(
 					'div',
 					null,
@@ -34992,14 +35060,15 @@ module.exports = React.createClass({
 		// console.log(starship);
 		var StarshipCost = starship.get('Cost');
 		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var newStarship = new StarshipClassModel({
 			objectId: starship.id
 		});
 
-		if (StarshipCost > CharDil) {
-			throw 'Not enough Dilithium';
+		if (StarshipCost > CharGPL) {
+			this.props.onDebt();
 		} else {
-			this.props.character.set('Dilithium', CharDil - StarshipCost);
+			this.props.character.set('GoldPressedLatinum', CharGPL - StarshipCost);
 			this.props.character.save(null, {
 				success: function success(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')
@@ -35011,6 +35080,7 @@ module.exports = React.createClass({
 					// console.log('Successfully saved to server')
 				}
 			});
+			this.props.noDebt();
 		}
 	}
 });

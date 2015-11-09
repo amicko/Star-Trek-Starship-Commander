@@ -28,7 +28,7 @@
 		clear: both;
 		border: 3px solid black;
 		background-color: lightgrey;
-		background: linear-gradient(to right, black, black, black, grey, lightgrey, white, lightgrey, grey, black, black, black);
+		background: linear-gradient(to right, black, black, grey, grey, lightgrey, white, lightgrey, grey, grey, black, black);
 
 		.HUDDil {
 			margin-left: -1em;
@@ -118,6 +118,10 @@
 
 			button:hover {
 				opacity: 0.7;
+			}
+
+			.message {
+				color: red;
 			}
 		}
 
@@ -327,7 +331,7 @@
 			// clear: both;
 
 			.missionStatBlock {
-				height: 16em;
+				height: 40em;
 				font-size: 2em;
 				// overflow: scroll;
 
@@ -342,7 +346,7 @@
 				}
 
 				button {
-					margin: 1em 1em;
+					margin: 2em 1em;
 					color: white;
 					border-radius: 15px;
 					width: 10em;
@@ -355,6 +359,12 @@
 
 				button:hover {
 					opacity: 0.7;
+				}
+
+				.message {
+					clear: both;
+					text-align: center;
+					color: red;
 				}
 			}
 
@@ -418,7 +428,7 @@
 				.systemPLT4V1bBEv {
 					//Delphi Ardu
 					left: 70%;
-					top: 45%;
+					top: 55%;
 				}
 
 				.systemPLT4V1bBEv:hover {
@@ -433,8 +443,8 @@
 
 				.systemdOP2u1SyVo {
 					//Deneb
-					top: 80%;
-					left: 50%;
+					top: 60%;
+					left: 45%;
 				}
 
 				.systemdOP2u1SyVo:hover {
@@ -447,7 +457,7 @@
 
 				.systemFRW4Uj03ly {
 					//Malcor
-					top: 60%;
+					top: 70%;
 					left: 30%;
 				}
 
@@ -460,7 +470,7 @@
 
 				.system6gNnHzBlT1 {
 					//Kurl
-					top: 35%;
+					top: 45%;
 					left: 20%;
 				}
 

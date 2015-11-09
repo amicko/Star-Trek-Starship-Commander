@@ -52,9 +52,15 @@ module.exports = React.createClass({
 			return character.get('GoldPressedLatinum')
 		})
 
+		var charXP = this.state.character.map((character) => {
+			return character.get('XP')
+		})
+
+		var charLvl = Math.round(charXP[0]/100);
+
 		var sectorMissions = this.state.sectorMissions.map((missions, index) => {
 			return (
-				<div className={'systemInfo system' + missions.id}>{missions.get('System')}
+				<div key={index} className={'systemInfo system' + missions.id}>{missions.get('System')}
 					<div className="teaserBox">
 						<div className="missionName">{missions.get('Name')}</div>
 						<div className="missionTeaser">{missions.get('Lore')}</div>
@@ -72,9 +78,9 @@ module.exports = React.createClass({
 			)
 		})
 
-		var SectorStats = this.state.sector.map((sector) => {
+		var SectorStats = this.state.sector.map((sector, index) => {
 			return (
-				<div className="sectorLoreBlock">
+				<div key={index} className="sectorLoreBlock">
 					<h3>{sector.get('Name')}</h3>
 					<div className="sectorLore">{sector.get('Lore')}
 					</div>
@@ -102,8 +108,8 @@ module.exports = React.createClass({
 				<a href="#settings" className="userSettingsIcon"></a>
 				{SectorStats}
 				<div className="userHUD">
-					<div className="HUDDil"><DilithiumCounterComponent characterId={this.props.characterId}/></div>
-					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>{charName}</button>
+					<div className="HUDDil"><DilithiumCounterComponent characterId={this.props.characterId} charXP={charXP[0]}/></div>
+					<button className="HUDFiller HUDButton" onClick={this.onCharStats}>{charName} (Level {charLvl})</button>
 					<div className="HUDGPL">GPL: {charGPL}</div>
 				</div>
 				<div className={'sectorBlockContainer sector-' + this.props.sectorId}>

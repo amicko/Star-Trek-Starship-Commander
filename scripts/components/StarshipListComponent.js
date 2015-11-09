@@ -26,10 +26,10 @@ module.exports = React.createClass({
 		})
 	},
 	render: function() {
-		var starshipDetails = this.state.starships.map((starship) => {
+		var starshipDetails = this.state.starships.map((starship, index) => {
 			// console.log(starship.get('Cost'))
 			return(
-				<div className="starshipDetailBox">
+				<div key={index} className="starshipDetailBox">
 					<div><span className="classItemTitle">Class Name: </span>{starship.get('Name')}</div>
 					<div><span className="classItemTitle">Range: </span>{starship.get('Range')}</div>
 					<div><span className="classItemTitle">Weapons: </span>{starship.get('Weapons')}</div>
@@ -48,15 +48,16 @@ module.exports = React.createClass({
 		// console.log(starship);
 		var StarshipCost = starship.get('Cost');
 		var CharDil = this.props.character.get('Dilithium');
+		var CharGPL = this.props.character.get('GoldPressedLatinum');
 		var newStarship = new StarshipClassModel({
 			objectId: starship.id
 		})
 		
-		if(StarshipCost > CharDil) {
-			throw 'Not enough Dilithium'
+		if(StarshipCost > CharGPL) {
+			this.props.onDebt();
 		}
 		else {
-			this.props.character.set('Dilithium', (CharDil - StarshipCost))
+			this.props.character.set('GoldPressedLatinum', (CharGPL - StarshipCost))
 			this.props.character.save(null, {
 				success: function(CharacterModel) {
 					// console.log('Cost subtracted from Dilithium')
@@ -68,6 +69,7 @@ module.exports = React.createClass({
 					// console.log('Successfully saved to server')
 				}
 			});
+			this.props.noDebt();
 		}
 	}
 })

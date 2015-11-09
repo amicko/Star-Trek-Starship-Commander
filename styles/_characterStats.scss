@@ -25,11 +25,12 @@
 			width: 70%;
 			margin: 0 auto;
 			font-size: 2em;
-			background: linear-gradient(to left, white, black, white);
+			// background: linear-gradient(to left, white, black, white);
 			// background: repeating-linear-gradient(40deg, lightblue, blue, black);
-			border: 10px solid red;
+			border: 3px solid black;
 			border-style: outset;
 			text-align: right;
+			padding: 0.5em;
 			
 			.characterName {
 
@@ -71,7 +72,7 @@
 			margin: 2em auto;
 			width: 70%;
 			max-height: 30em;
-			overflow: scroll;
+			overflow: hidden;
 			// background-color: grey;
 
 			.starshipDetailBox {
@@ -118,15 +119,15 @@
 				}
 
 				.starshipImage {
-					text-align: center;
-					line-height: 8em;
-					border: 3px solid black;
+					// text-align: center;
+					// line-height: 8em;
+					// border: 3px solid black;
 					width: 50%;
 					height: 8em;
 					margin: 1em auto;
 
 					img {
-						width: 100%;
+						width: 15em;
 						height: 8em;
 					}
 				}
@@ -144,10 +145,18 @@
 			.chooseStarshipBox {
 
 				.changeStarship {
+					color: white;
 					display: block;
 					margin: 0.75em auto;
 					width: 8em;
 					height: 5em;
+					border-radius: 15px;
+					font-family: 'Orbitron', sans-serif;
+					background: linear-gradient(to bottom, lightgrey, black);
+				}
+
+				.changeStarship:hover {
+					background: linear-gradient(to bottom, black, lightgrey);
 				}
 			}
 		}
@@ -161,7 +170,7 @@
 				max-height: 25em;
 				width: 80%;
 				margin: 1em auto;
-				overflow: scroll;
+				overflow: hidden;
 
 				.personBox {
 					text-align: center;
@@ -303,11 +312,12 @@
 			width: 40%;
 			margin: 3em auto 0 auto;
 			font-size: 2em;
-			background: linear-gradient(to left, white, black, white);
+			// background: linear-gradient(to left, white, black, white);
 			// background: repeating-linear-gradient(40deg, lightblue, blue, black);
-			border: 10px solid red;
-			border-style: outset;
+			border: 3px solid black;
+			// border-style: outset;
 			text-align: right;
+			padding: 0.5em;
 			
 			.characterName {
 
@@ -399,8 +409,8 @@
 				.starshipImage {
 					text-align: center;
 					line-height: 8em;
-					border: 3px solid black;
-					width: 50%;
+					// border: 3px solid black;
+					// width: 50%;
 					height: 8em;
 					margin: 1em auto;
 				}

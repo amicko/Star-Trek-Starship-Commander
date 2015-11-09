@@ -123,7 +123,7 @@
       margin-top: 1.75em;
       font-size: 2em; }
     .dashboardContainer .optionBoxContainer .optionBox .charStatsBox {
-      color: black;
+      color: white;
       width: 98%;
       padding-top: 1px;
       font-size: 1.2em; }
@@ -268,14 +268,14 @@
         top: 6em; }
       .sectorMapContainer .sectorMap .sector-2TXDd3I2v1 {
         left: 33em;
-        top: 7em; }
+        top: 2em; }
       .sectorMapContainer .sectorMap .sector-ubjIrzTDdM {
         left: 14em;
         top: 4em;
         padding-top: 2em; }
       .sectorMapContainer .sectorMap .sector-YdGaQIqNke {
         left: 40em;
-        top: 10em; }
+        top: 17em; }
     .sectorMapContainer .dashboardButton {
       display: block;
       font-size: 1.5em;
@@ -308,7 +308,7 @@
   clear: both;
   border: 3px solid black;
   background-color: lightgrey;
-  background: linear-gradient(to right, black, black, black, grey, lightgrey, white, lightgrey, grey, black, black, black); }
+  background: linear-gradient(to right, black, black, grey, grey, lightgrey, white, lightgrey, grey, grey, black, black); }
   .missionScreenContainer .userHUD .HUDDil {
     margin-left: -1em;
     text-align: center;
@@ -369,6 +369,8 @@
       background: no-repeat top/100% url("../images/blue-button.jpg"); }
     .missionScreenContainer .sectorBlockContainer .missionStatBlock button:hover {
       opacity: 0.7; }
+    .missionScreenContainer .sectorBlockContainer .missionStatBlock .message {
+      color: red; }
   .missionScreenContainer .sectorBlockContainer .sectorMissionBlock {
     width: 100%;
     box-sizing: border-box;
@@ -467,7 +469,7 @@
     background: no-repeat top/100% url("../images/space01.png");
     background-size: auto; }
     .missionScreenContainer .sectorBlockContainer .missionStatBlock {
-      height: 16em;
+      height: 40em;
       font-size: 2em; }
       .missionScreenContainer .sectorBlockContainer .missionStatBlock .category {
         font-weight: bold;
@@ -476,7 +478,7 @@
       .missionScreenContainer .sectorBlockContainer .missionStatBlock h3 {
         text-align: center; }
       .missionScreenContainer .sectorBlockContainer .missionStatBlock button {
-        margin: 1em 1em;
+        margin: 2em 1em;
         color: white;
         border-radius: 15px;
         width: 10em;
@@ -485,6 +487,10 @@
         background: no-repeat top/100% url("../images/blue-button.jpg"); }
       .missionScreenContainer .sectorBlockContainer .missionStatBlock button:hover {
         opacity: 0.7; }
+      .missionScreenContainer .sectorBlockContainer .missionStatBlock .message {
+        clear: both;
+        text-align: center;
+        color: red; }
     .missionScreenContainer .sectorBlockContainer .sectorMissionBlock {
       box-sizing: border-box;
       float: left;
@@ -520,7 +526,7 @@
         width: 20em; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemPLT4V1bBEv {
         left: 70%;
-        top: 45%; }
+        top: 55%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemPLT4V1bBEv:hover {
         display: block; }
         .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemPLT4V1bBEv:hover .teaserBox {
@@ -528,19 +534,19 @@
           position: absolute;
           right: 75%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemdOP2u1SyVo {
-        top: 80%;
-        left: 50%; }
+        top: 60%;
+        left: 45%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemdOP2u1SyVo:hover {
         display: block; }
         .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemdOP2u1SyVo:hover .teaserBox {
           display: block; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemFRW4Uj03ly {
-        top: 60%;
+        top: 70%;
         left: 30%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemFRW4Uj03ly:hover .teaserBox {
         display: block; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system6gNnHzBlT1 {
-        top: 35%;
+        top: 45%;
         left: 20%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .system6gNnHzBlT1:hover .teaserBox {
         display: block; }
@@ -657,7 +663,7 @@
     border-radius: 10px;
     padding: 0 2em;
     background: no-repeat center/100% url("../images/drop-box.jpg");
-    background-size: auto;
+    background-size: stretch;
     font-family: 'Orbitron', sans-serif;
     font-weight: none;
     margin: 5em auto; }
@@ -713,10 +719,10 @@
       width: 70%;
       margin: 0 auto;
       font-size: 2em;
-      background: linear-gradient(to left, white, black, white);
-      border: 10px solid red;
+      border: 3px solid black;
       border-style: outset;
-      text-align: right; }
+      text-align: right;
+      padding: 0.5em; }
       .characterStatsContainer .statsContainer .characterStatsBox span {
         display: inline-block;
         width: 60%; }
@@ -729,7 +735,7 @@
       margin: 2em auto;
       width: 70%;
       max-height: 30em;
-      overflow: scroll; }
+      overflow: hidden; }
       .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox {
         color: white;
         text-align: center;
@@ -761,14 +767,11 @@
           font-size: 1.5em;
           text-align: center; }
         .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipImage {
-          text-align: center;
-          line-height: 8em;
-          border: 3px solid black;
           width: 50%;
           height: 8em;
           margin: 1em auto; }
           .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipImage img {
-            width: 100%;
+            width: 15em;
             height: 8em; }
         .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipStatBox {
           padding: 0.25em;
@@ -778,10 +781,16 @@
           font-weight: bold;
           font-size: 1.2em; }
       .characterStatsContainer .statsContainer .starshipBox .chooseStarshipBox .changeStarship {
+        color: white;
         display: block;
         margin: 0.75em auto;
         width: 8em;
-        height: 5em; }
+        height: 5em;
+        border-radius: 15px;
+        font-family: 'Orbitron', sans-serif;
+        background: linear-gradient(to bottom, lightgrey, black); }
+      .characterStatsContainer .statsContainer .starshipBox .chooseStarshipBox .changeStarship:hover {
+        background: linear-gradient(to bottom, black, lightgrey); }
     .characterStatsContainer .statsContainer .seniorStaffContainer {
       clear: both;
       overflow: hidden; }
@@ -790,7 +799,7 @@
         max-height: 25em;
         width: 80%;
         margin: 1em auto;
-        overflow: scroll; }
+        overflow: hidden; }
         .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personBox {
           text-align: center;
           color: white;
@@ -867,10 +876,9 @@
         width: 40%;
         margin: 3em auto 0 auto;
         font-size: 2em;
-        background: linear-gradient(to left, white, black, white);
-        border: 10px solid red;
-        border-style: outset;
-        text-align: right; }
+        border: 3px solid black;
+        text-align: right;
+        padding: 0.5em; }
         .characterStatsContainer .statsContainer .characterStatsBox span {
           display: inline-block;
           width: 60%; }
@@ -918,8 +926,6 @@
           .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipImage {
             text-align: center;
             line-height: 8em;
-            border: 3px solid black;
-            width: 50%;
             height: 8em;
             margin: 1em auto; }
           .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipStatBox {
@@ -1101,3 +1107,8 @@ body::-webkit-scrollbar {
 
 .userSettingsIcon:hover {
   opacity: 1; }
+
+.message {
+  color: red;
+  text-align: center;
+  font-weight: bold; }

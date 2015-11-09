@@ -109,7 +109,7 @@ module.exports = React.createClass({
 			})
 		});
 
-		
+		// this.props.router.navigate('dashboard', {trigger: true});
 
 		
 	}
