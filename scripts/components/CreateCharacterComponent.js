@@ -106,11 +106,8 @@ module.exports = React.createClass({
 			}).then((savedCharacter) => {
 				savedStarship.set('characterId', savedCharacter.id)
 				savedStarship.save()
+				this.props.router.navigate('dashboard', {trigger: true});
 			})
 		});
-
-		// this.props.router.navigate('dashboard', {trigger: true});
-
-		
 	}
 })

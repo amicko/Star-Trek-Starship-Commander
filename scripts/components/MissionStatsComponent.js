@@ -42,7 +42,7 @@ module.exports = React.createClass({
 				<h3>{this.props.missionName}</h3>
 				<div className="lore"><span className="category">Lore:</span> {this.props.missionLore}</div>
 				<div><span className="category">Level Required:</span> {this.props.lvlReq}</div>
-				<div><span className="category">Cost to Attempt:</span> {this.props.time*100} Dilithium</div>
+				<div><span className="category">Cost to Attempt:</span> {this.props.time} Dilithium</div>
 				<div><span className="category">Senior Officer Needed:</span> {this.props.offNeeded}</div>
 				<div><span className="category">Stat Used:</span> {this.props.statNeeded}</div>
 				<div><span className="category">XP Value:</span> {this.props.rewardXP}</div>
@@ -70,14 +70,14 @@ module.exports = React.createClass({
 			return character.get('GoldPressedLatinum')
 		})
 		var calc = Math.random();
-		if(this.props.time * 100 > charDil) {
+		if(this.props.time > charDil) {
 			message = 'Not enough Dilithium'
 			this.forceUpdate();
 			// throw 'Not enough Dilithium'
 		}
 		else {
 			
-			this.state.character[0].set('Dilithium', parseFloat(charDil) - (parseFloat(this.props.time) * 100));
+			this.state.character[0].set('Dilithium', parseFloat(charDil) - (parseFloat(this.props.time)));
 			this.state.character[0].save(null, {
 				success: function(CharacterModel) {
 					// console.log('Dilithium Decreased')

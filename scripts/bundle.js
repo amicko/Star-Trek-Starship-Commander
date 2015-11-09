@@ -33105,10 +33105,9 @@ module.exports = React.createClass({
 			}).then(function (savedCharacter) {
 				savedStarship.set('characterId', savedCharacter.id);
 				savedStarship.save();
+				_this.props.router.navigate('dashboard', { trigger: true });
 			});
 		});
-
-		// this.props.router.navigate('dashboard', {trigger: true});
 	}
 });
 
@@ -33275,7 +33274,9 @@ module.exports = React.createClass({
 			_this.setState({
 				character: character
 			});
-			if (character.get('Dilithium') < character.get('XP')) {
+			console.log(typeof Math.round(character.get('XP') / 100));
+			console.log(typeof character.get('Dilithium'));
+			if (character.get('Dilithium') < Math.round(character.get('XP') / 100)) {
 				var that = _this;
 				setInterval(function () {
 					character.set('Dilithium', character.get('Dilithium') + 1);
@@ -33301,7 +33302,7 @@ module.exports = React.createClass({
 			'Dilithium: ',
 			DilCount,
 			' / ',
-			this.props.charXP
+			Math.round(this.props.charXP / 100)
 		);
 	}
 });
@@ -33776,7 +33777,7 @@ module.exports = React.createClass({
 					'Cost to Attempt:'
 				),
 				' ',
-				this.props.time * 100,
+				this.props.time,
 				' Dilithium'
 			),
 			React.createElement(
@@ -33857,13 +33858,13 @@ module.exports = React.createClass({
 			return character.get('GoldPressedLatinum');
 		});
 		var calc = Math.random();
-		if (this.props.time * 100 > charDil) {
+		if (this.props.time > charDil) {
 			message = 'Not enough Dilithium';
 			this.forceUpdate();
 			// throw 'Not enough Dilithium'
 		} else {
 
-				this.state.character[0].set('Dilithium', parseFloat(charDil) - parseFloat(this.props.time) * 100);
+				this.state.character[0].set('Dilithium', parseFloat(charDil) - parseFloat(this.props.time));
 				this.state.character[0].save(null, {
 					success: function success(CharacterModel) {
 						// console.log('Dilithium Decreased')
@@ -33990,8 +33991,21 @@ module.exports = React.createClass({
 				});
 			}
 		});
+
+		Parse.User.logIn(this.refs.email.value, this.refs.password.value, {
+			success: function success(u) {
+				// console.log(this);
+				_this.props.router.navigate('dashboard', { trigger: true });
+			},
+			error: function error(u, _error2) {
+				_this.setState({
+					error: _error2.message
+				});
+			}
+		});
 		this.refs.email.value = null;
 		this.refs.password.value = null;
+		// this.props.router.navigate('dashboard', {trigger: true});
 	}
 });
 

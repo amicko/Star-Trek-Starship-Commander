@@ -17,7 +17,9 @@ module.exports = React.createClass({
 			this.setState({
 				character: character
 			})
-			if(character.get('Dilithium') < character.get('XP')) {
+			console.log(typeof Math.round(character.get('XP')/100))
+			console.log(typeof character.get('Dilithium'))
+			if(character.get('Dilithium') < Math.round(character.get('XP')/100)) {
 				var that = this;
 				setInterval(function() {
 					character.set('Dilithium', character.get('Dilithium') + 1)
@@ -38,7 +40,7 @@ module.exports = React.createClass({
 			DilCount = this.state.character.get('Dilithium')
 		}
 		return (
-			<div>Dilithium: {DilCount} / {this.props.charXP}</div>
+			<div>Dilithium: {DilCount} / {Math.round(this.props.charXP/100)}</div>
 		)
 
 	}
