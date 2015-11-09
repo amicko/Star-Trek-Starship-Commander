@@ -49,7 +49,7 @@
     background-color: grey;
     padding: 0 2em;
     background: no-repeat center/100% url("../images/drop-box.jpg");
-    background-size: auto;
+    background-size: stretch;
     font-family: 'Orbitron', sans-serif;
     font-weight: none; }
     .titleContainer .dropDownBox label {
@@ -292,9 +292,11 @@
 .missionScreenContainer .sectorLoreBlock {
   clear: both;
   text-align: center;
+  max-height: 192px;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+  overflow: scroll; }
   .missionScreenContainer .sectorLoreBlock h3 {
     font-size: 2.5em;
     text-align: center; }
@@ -640,7 +642,7 @@
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemqflFVcix31:hover .teaserBox {
         display: block; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemMdFRoMeIZR {
-        top: 70%;
+        top: 90%;
         left: 35%; }
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemMdFRoMeIZR:hover .teaserBox {
         display: block; }
@@ -650,7 +652,16 @@
       .missionScreenContainer .sectorBlockContainer .sectorMissionBlock .systemomjq453MVQ:hover .teaserBox {
         display: block;
         position: absolute;
-        right: 35%; } }
+        right: 35%; }
+  .missionScreenContainer .sector-2TXDd3I2v1 {
+    background: no-repeat top/100% url("../images/green-space.jpg");
+    background-size: cover; }
+  .missionScreenContainer .sector-YdGaQIqNke {
+    background: no-repeat top/100% url("../images/red-space.jpg");
+    background-size: cover; }
+  .missionScreenContainer .sector-ubjIrzTDdM {
+    background: no-repeat top/100% url("../images/purple-space.jpg");
+    background-size: cover; } }
 
 .createCharacterContainer .statsContainer {
   clear: both;
@@ -735,7 +746,7 @@
       margin: 2em auto;
       width: 70%;
       max-height: 30em;
-      overflow: hidden; }
+      overflow: scroll; }
       .characterStatsContainer .statsContainer .starshipBox .starshipDetailBox {
         color: white;
         text-align: center;
@@ -767,10 +778,13 @@
           font-size: 1.5em;
           text-align: center; }
         .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipImage {
+          text-align: center;
+          line-height: 8em;
           width: 50%;
           height: 8em;
           margin: 1em auto; }
           .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipImage img {
+            margin: 0 auto;
             width: 15em;
             height: 8em; }
         .characterStatsContainer .statsContainer .starshipBox .starshipStatsBox .starshipStatBox {
@@ -799,7 +813,7 @@
         max-height: 25em;
         width: 80%;
         margin: 1em auto;
-        overflow: hidden; }
+        overflow: scroll; }
         .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personBox {
           text-align: center;
           color: white;
@@ -1024,7 +1038,7 @@
     background-color: grey;
     padding: 0 2em;
     background: no-repeat center/100% url("../images/drop-box.jpg");
-    background-size: auto;
+    background-size: stretch;
     font-family: 'Orbitron', sans-serif;
     font-weight: none; }
     .userSettingsContainer .statsContainer .newCharacterForm label {
