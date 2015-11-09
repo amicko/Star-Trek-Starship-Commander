@@ -58,7 +58,24 @@ module.exports = React.createClass({
 				}
 			}
 		);
+
+		Parse.User.logIn(
+			this.refs.email.value,
+			this.refs.password.value,
+			{
+				success: (u) => {
+					// console.log(this);
+					this.props.router.navigate('dashboard', {trigger: true});
+				},
+				error: (u, error) => {
+					this.setState({
+						error: error.message
+					});
+				}
+			}
+		);
 		this.refs.email.value = null;
 		this.refs.password.value = null;
+		// this.props.router.navigate('dashboard', {trigger: true});
 	}
 });

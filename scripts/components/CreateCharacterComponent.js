@@ -99,18 +99,15 @@ module.exports = React.createClass({
 				Name: this.refs.CharacterName.value,
 				XP: 100,
 				Starship: savedStarship,
-				Dilithium: 1000,
-				GoldPressedLatinum: 1000,
+				Dilithium: 10,
+				GoldPressedLatinum: 100,
 				UserId: UserId,
 				User: NewUser
 			}).then((savedCharacter) => {
 				savedStarship.set('characterId', savedCharacter.id)
 				savedStarship.save()
+				this.props.router.navigate('dashboard', {trigger: true});
 			})
 		});
-
-		// this.props.router.navigate('dashboard', {trigger: true});
-
-		
 	}
 })
