@@ -4,12 +4,14 @@
 		clear: both;
 		// background-color: red;
 		text-align: center;
+		max-height: 192px;
 		width: 100%;
 		box-sizing: border-box;
 		margin-bottom: 1em;
 		// position: absolute;
 		// top: -3%;
 		// left: 25%;
+		overflow: scroll;
 
 		h3 {
 			font-size: 2.5em;
@@ -699,7 +701,7 @@
 
 				.systemMdFRoMeIZR {
 					//Chin'Toka
-					top: 70%;
+					top: 90%;
 					left: 35%;
 				}
 
@@ -724,6 +726,21 @@
 					}
 				}
 			}
+		}
+
+		.sector-2TXDd3I2v1 {
+			background: no-repeat top/100% url("../images/green-space.jpg");
+			background-size: cover;
+		}
+
+		.sector-YdGaQIqNke {
+			background: no-repeat top/100% url("../images/red-space.jpg");
+			background-size: cover;
+		}
+
+		.sector-ubjIrzTDdM {
+			background: no-repeat top/100% url("../images/purple-space.jpg");
+			background-size: cover;
 		}
 	}
 }
