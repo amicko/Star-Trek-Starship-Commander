@@ -18,6 +18,9 @@ var CreateCharacterComponent = require('./components/CreateCharacterComponent.js
 var CharacterStatsComponent = require('./components/CharacterStatsComponent.js');
 var UserSettingsComponent = require('./components/UserSettingsComponent.js');
 
+var audio = document.getElementById('theme');
+		audio.play();
+
 //router
 var Router = Backbone.Router.extend({
 	routes: {

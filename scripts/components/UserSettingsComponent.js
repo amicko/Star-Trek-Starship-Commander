@@ -1,6 +1,8 @@
 //dependencies
 var React = require('react');
 
+
+
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
@@ -21,6 +23,7 @@ module.exports = React.createClass({
 		})
 	},
 	render: function() {
+		var audio = document.getElementById('theme');
 		var userblock = this.state.user.map((user) => {
 			return (
 				<form className="newCharacterForm">
@@ -39,6 +42,10 @@ module.exports = React.createClass({
 				<a href="#" className="userSettingsIcon"></a>
 				<div className="statsContainer"><span className="title">USER SETTINGS</span>
 					{userblock}
+				</div>
+				<div>
+				  <button onClick={audio.play()}>Play the Audio</button>
+				  <button onClick={audio.pause()}>Pause the Audio</button>
 				</div>
 			</div>
 		)

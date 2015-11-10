@@ -35131,6 +35131,7 @@ module.exports = React.createClass({
 	render: function render() {
 		var _this2 = this;
 
+		var audio = document.getElementById('theme');
 		var userblock = this.state.user.map(function (user) {
 			return React.createElement(
 				'form',
@@ -35173,6 +35174,20 @@ module.exports = React.createClass({
 					'USER SETTINGS'
 				),
 				userblock
+			),
+			React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'button',
+					{ onClick: audio.play() },
+					'Play the Audio'
+				),
+				React.createElement(
+					'button',
+					{ onClick: audio.pause() },
+					'Pause the Audio'
+				)
 			)
 		);
 	},
@@ -35219,6 +35234,9 @@ var MissionComponent = require('./components/MissionComponent.js');
 var CreateCharacterComponent = require('./components/CreateCharacterComponent.js');
 var CharacterStatsComponent = require('./components/CharacterStatsComponent.js');
 var UserSettingsComponent = require('./components/UserSettingsComponent.js');
+
+var audio = document.getElementById('theme');
+audio.play();
 
 //router
 var Router = Backbone.Router.extend({
