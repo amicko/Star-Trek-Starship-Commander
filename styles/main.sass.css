@@ -120,7 +120,7 @@
     .dashboardContainer .optionBoxContainer .optionBox .span {
       display: block;
       text-align: center;
-      margin-top: 1.75em;
+      margin-top: 1.3em;
       font-size: 2em; }
     .dashboardContainer .optionBoxContainer .optionBox .charStatsBox {
       color: white;
@@ -195,11 +195,29 @@
     float: left; }
   .dashboardContainer .footerBox .footerText {
     display: block;
-    color: green;
-    margin: 0 auto;
-    background: -webkit-linear-gradient(#fff, red);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; }
+    font-size: 2em;
+    text-align: center;
+    color: black;
+    width: 70%;
+    margin: 0 auto; }
+
+@media screen and (min-width: 500px) {
+  .dashboardContainer .optionBoxContainer .optionBox {
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+    color: red;
+    height: 10em;
+    width: 93%;
+    float: left;
+    margin: 0.5em 1em;
+    overflow: scroll;
+    text-align: center;
+    background: no-repeat center/100% url("../images/glass-texture.jpg"); }
+    .dashboardContainer .optionBoxContainer .optionBox .span {
+      display: block;
+      text-align: center;
+      margin-top: 1.75em;
+      font-size: 2em; } }
 
 .sectorMapContainer .sectorMap {
   clear: both;
@@ -371,6 +389,8 @@
       background: no-repeat top/100% url("../images/blue-button.jpg"); }
     .missionScreenContainer .sectorBlockContainer .missionStatBlock button:hover {
       opacity: 0.7; }
+    .missionScreenContainer .sectorBlockContainer .missionStatBlock button:disabled {
+      opacity: 0.5; }
     .missionScreenContainer .sectorBlockContainer .missionStatBlock .message {
       color: red; }
   .missionScreenContainer .sectorBlockContainer .sectorMissionBlock {
@@ -986,7 +1006,7 @@
             margin-bottom: 1em; }
           .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatsContainer {
             overflow: hidden;
-            width: 42%;
+            width: 25em;
             margin: 0 auto; }
             .characterStatsContainer .statsContainer .seniorStaffContainer .personnelBox .personnelStatsContainer .personnelStatBox {
               width: 5em;

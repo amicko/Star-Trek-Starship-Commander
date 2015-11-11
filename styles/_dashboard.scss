@@ -22,7 +22,7 @@
 			.span {
 				display: block;
 				text-align: center;
-				margin-top: 1.75em;
+				margin-top: 1.3em;
 				font-size: 2em;
 			}
 
@@ -136,16 +136,19 @@
 
 		.footerText {
 			display: block;
-			color: green;
+			font-size: 2em;
+			text-align: center;
+			color: black;
+			width: 70%;
 			margin: 0 auto;
-			background: -webkit-linear-gradient(#fff, red);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
+			// background: -webkit-linear-gradient(right, white, black, white);
+			// -webkit-background-clip: text;
+			// -webkit-text-fill-color: transparent;
 		}
 	}
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 500px) {
 	.dashboardContainer {
 		// background-color: lightgrey;
 		// overflow: hidden;
@@ -160,24 +163,22 @@
 			// overflow: hidden;
 
 			.optionBox {
-				// color: red;
-				// height: 24em;
-				// width: 16em;
-				// border: 0.1em solid grey;
-				// border-style: outset;
-				// border-radius: 15px;
-				// float: left;
-				// margin: 1px 1em;
-				// overflow: scroll;
-				// text-align: center;
-				// background: no-repeat center/100% url("../images/glass-texture.jpg")
-				// background: no-repeat center/300% url("../images/glass-texture.jpg");
+				box-sizing: border-box;
+				font-family: 'Orbitron', sans-serif;
+				color: red;
+				height: 10em;
+				width: 93%;
+				float: left;
+				margin: 0.5em 1em;
+				overflow: scroll;
+				text-align: center;
+				background: no-repeat center/100% url("../images/glass-texture.jpg");
 
 				.span {
-					// display: block;
-					// text-align: center;
-					// margin-top: 5.5em;
-					// font-size: 2em;
+					display: block;
+					text-align: center;
+					margin-top: 1.75em;
+					font-size: 2em;
 				}
 
 				.charStatsContainer {

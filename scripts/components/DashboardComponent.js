@@ -71,8 +71,7 @@ module.exports = React.createClass({
 				</div>
 				<div className="footerBox">
 					<div className="footerImage">Image</div>
-					<div className="footerText">Run a manual sweep of anomalous airborne or electromagnetic readings. Radiation levels in our atmosphere have increased by 3,000 percent. Electromagnetic and subspace wave fronts approaching synchronization. What is the strength of the ship's deflector shields at maximum output?
-					</div>
+					<div className="footerText">Welcome, Commander! To begin, create a new character or select the How to Play!</div>
 				</div>
 			</div>
 		)

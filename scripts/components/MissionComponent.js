@@ -74,7 +74,7 @@ module.exports = React.createClass({
 		this.sectorMissionStats = this.state.sectorMissions.map((mission, index) => {
 			// var style = {display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '100%', height: '75.5vh', float: 'right'};
 			return (
-				<MissionStatsComponent update={this.onUpdate} toggle={this.onBackground}  key={index} missionName={mission.get('Name')} missionLore={mission.get('Lore')} lvlReq={mission.get('lvlReq')} time={mission.get('TimeToCompletion')} offNeeded={mission.get('ShownOffNeeded')} typeReq={mission.get('TypeReq')} statNeeded={mission.get('ShownStatNeeded')} neededStat={mission.get('NeededStat')} rewardXP={mission.get('RewardXP')} rewardGPL={mission.get('RewardGPL')} characterId={this.props.characterId}/>
+				<MissionStatsComponent update={this.onUpdate} toggle={this.onBackground}  key={index} missionName={mission.get('Name')} missionLore={mission.get('Lore')} lvlReq={mission.get('lvlReq')} time={mission.get('TimeToCompletion')} offNeeded={mission.get('ShownOffNeeded')} typeReq={mission.get('TypeReq')} statNeeded={mission.get('ShownStatNeeded')} neededStat={mission.get('NeededStat')} rewardXP={mission.get('RewardXP')} rewardGPL={mission.get('RewardGPL')} characterId={this.props.characterId} missionSuccess={mission.get('ResultSuccess')} missionFailure={mission.get('ResultFailure')}/>
 			)
 		})
 
