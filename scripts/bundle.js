@@ -33222,7 +33222,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'footerText' },
-					'Run a manual sweep of anomalous airborne or electromagnetic readings. Radiation levels in our atmosphere have increased by 3,000 percent. Electromagnetic and subspace wave fronts approaching synchronization. What is the strength of the ship\'s deflector shields at maximum output?'
+					'Welcome, Commander! To begin, create a new character or select the How to Play!'
 				)
 			)
 		);
@@ -33300,9 +33300,7 @@ module.exports = React.createClass({
 			'div',
 			null,
 			'Dilithium: ',
-			DilCount,
-			' / ',
-			Math.round(this.props.charXP / 100 + 10)
+			DilCount
 		);
 	}
 });
@@ -33590,7 +33588,7 @@ module.exports = React.createClass({
 
 		this.sectorMissionStats = this.state.sectorMissions.map(function (mission, index) {
 			// var style = {display: 'none', 'zIndex': '999', 'marginLeft': '-25em', width: '100%', height: '75.5vh', float: 'right'};
-			return React.createElement(MissionStatsComponent, { update: _this2.onUpdate, toggle: _this2.onBackground, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), offNeeded: mission.get('ShownOffNeeded'), typeReq: mission.get('TypeReq'), statNeeded: mission.get('ShownStatNeeded'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL'), characterId: _this2.props.characterId });
+			return React.createElement(MissionStatsComponent, { update: _this2.onUpdate, toggle: _this2.onBackground, key: index, missionName: mission.get('Name'), missionLore: mission.get('Lore'), lvlReq: mission.get('lvlReq'), time: mission.get('TimeToCompletion'), offNeeded: mission.get('ShownOffNeeded'), typeReq: mission.get('TypeReq'), statNeeded: mission.get('ShownStatNeeded'), neededStat: mission.get('NeededStat'), rewardXP: mission.get('RewardXP'), rewardGPL: mission.get('RewardGPL'), characterId: _this2.props.characterId, missionSuccess: mission.get('ResultSuccess'), missionFailure: mission.get('ResultFailure') });
 		});
 
 		var SectorStats = this.state.sector.map(function (sector, index) {
@@ -33831,7 +33829,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'button',
-				{ className: 'attButton', onClick: this.doMission },
+				{ id: 'attButton', className: 'attButton', onClick: this.doMission },
 				'Attempt Mission'
 			),
 			React.createElement(
@@ -33857,41 +33855,50 @@ module.exports = React.createClass({
 		var charGPL = this.state.character.map(function (character) {
 			return character.get('GoldPressedLatinum');
 		});
+		var attButton = document.getElementById('attButton');
 		var calc = Math.random();
 		if (this.props.time > charDil) {
 			message = 'Not enough Dilithium';
 			this.forceUpdate();
 			// throw 'Not enough Dilithium'
 		} else {
+				var result = function result() {
+					if (calc * 5 <= that.state.statNum) {
+						message = 'Mission Succeeded: ' + that.props.missionSuccess;
+						that.forceUpdate();
+						// console.log('Success:', that.state.statNum + ' is greater than ' + (calc * 5))
+						that.state.character[0].set('XP', parseFloat(charXP) + that.props.rewardXP);
+						that.state.character[0].save(null, {
+							success: function success(CharacterModel) {
+								// console.log('XP Increased')
+							}
+						});
+						that.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + that.props.rewardGPL);
+						that.state.character[0].save(null, {
+							success: function success(CharacterModel) {
+								// console.log('GPL Increased')
+							}
+						});
+						// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + that.props.rewardXP))
+					} else {
+							message = 'Mission Failed: ' + that.props.missionFailure;
+							that.forceUpdate();
+							// console.log('Failure:', that.state.statNum + ' is not greater than ' + (calc * 5))
+						}
+					attButton.disabled = false;
+				};
 
+				attButton.disabled = true;
+				message = 'Mission Attempt In Progress...';
 				this.state.character[0].set('Dilithium', parseFloat(charDil) - parseFloat(this.props.time));
 				this.state.character[0].save(null, {
 					success: function success(CharacterModel) {
 						// console.log('Dilithium Decreased')
 					}
 				});
-				if (calc * 5 <= this.state.statNum) {
-					message = 'Mission Succeeded';
-					this.forceUpdate();
-					// console.log('Success:', this.state.statNum + ' is greater than ' + (calc * 5))
-					this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP);
-					this.state.character[0].save(null, {
-						success: function success(CharacterModel) {
-							// console.log('XP Increased')
-						}
-					});
-					this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL);
-					this.state.character[0].save(null, {
-						success: function success(CharacterModel) {
-							// console.log('GPL Increased')
-						}
-					});
-					// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
-				} else {
-						message = 'Mission Failed';
-						this.forceUpdate();
-						// console.log('Failure:', this.state.statNum + ' is not greater than ' + (calc * 5))
-					}
+				var that = this;
+
+				setTimeout(result, 2000);
 			}
 		// console.log(message);
 		// message = 'test';

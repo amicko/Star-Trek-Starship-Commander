@@ -48,7 +48,7 @@ module.exports = React.createClass({
 				<div><span className="category">XP Value:</span> {this.props.rewardXP}</div>
 				<div><span className="category">Gold-Pressed Latinum Value:</span> {this.props.rewardGPL}</div>
 				<button className="minButton" onClick={this.onToggle}>Sector Screen</button>
-				<button className="attButton" onClick={this.doMission}>Attempt Mission</button>
+				<button id="attButton" className="attButton" onClick={this.doMission}>Attempt Mission</button>
 				<div className="message">{message}</div>
 			</div>
 		)
@@ -69,6 +69,7 @@ module.exports = React.createClass({
 		var charGPL = this.state.character.map((character) => {
 			return character.get('GoldPressedLatinum')
 		})
+		var attButton = document.getElementById('attButton');
 		var calc = Math.random();
 		if(this.props.time > charDil) {
 			message = 'Not enough Dilithium'
@@ -76,36 +77,42 @@ module.exports = React.createClass({
 			// throw 'Not enough Dilithium'
 		}
 		else {
-			
+			attButton.disabled = true;
+			message = 'Mission Attempt In Progress...';
 			this.state.character[0].set('Dilithium', parseFloat(charDil) - (parseFloat(this.props.time)));
 			this.state.character[0].save(null, {
 				success: function(CharacterModel) {
 					// console.log('Dilithium Decreased')
 				}
 			})
-			if(calc * 5 <= this.state.statNum) {
-				message = 'Mission Succeeded';
-				this.forceUpdate();
-				// console.log('Success:', this.state.statNum + ' is greater than ' + (calc * 5))
-				this.state.character[0].set('XP', parseFloat(charXP) + this.props.rewardXP)
-				this.state.character[0].save(null, {
-					success: function(CharacterModel) {
-						// console.log('XP Increased')
-					}
-				})
-				this.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + this.props.rewardGPL)
-				this.state.character[0].save(null, {
-					success: function(CharacterModel) {
-						// console.log('GPL Increased')
-					}
-				})
-				// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + this.props.rewardXP))
+			var that = this;
+			function result() {
+				if(calc * 5 <= that.state.statNum) {
+					message = 'Mission Succeeded: ' + that.props.missionSuccess;
+					that.forceUpdate();
+					// console.log('Success:', that.state.statNum + ' is greater than ' + (calc * 5))
+					that.state.character[0].set('XP', parseFloat(charXP) + that.props.rewardXP)
+					that.state.character[0].save(null, {
+						success: function(CharacterModel) {
+							// console.log('XP Increased')
+						}
+					})
+					that.state.character[0].set('GoldPressedLatinum', parseFloat(charGPL) + that.props.rewardGPL)
+					that.state.character[0].save(null, {
+						success: function(CharacterModel) {
+							// console.log('GPL Increased')
+						}
+					})
+					// console.log('Old XP: ' + charXP + 'New XP: ' + (parseFloat(charXP) + that.props.rewardXP))
+				}
+				else {
+					message = 'Mission Failed: ' + that.props.missionFailure;
+					that.forceUpdate();
+					// console.log('Failure:', that.state.statNum + ' is not greater than ' + (calc * 5))
+				}
+				attButton.disabled = false;
 			}
-			else {
-				message = 'Mission Failed';
-				this.forceUpdate();
-				// console.log('Failure:', this.state.statNum + ' is not greater than ' + (calc * 5))
-			}
+			setTimeout(result, 2000);
 		}
 		// console.log(message);
 		// message = 'test';
