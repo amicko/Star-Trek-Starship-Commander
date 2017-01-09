@@ -67,7 +67,7 @@ module.exports = React.createClass({
 				<div className="optionBoxContainer">
 					<a href="#create-character" className="optionBox gradient-box"><span className="span">CREATE NEW CHARACTER</span></a>
 					<a href="#" className="optionBox gradient-box" onClick={this.onChoose}>{dropDown}</a>
-					<a href="#" className="optionBox gradient-box"><span className="span">HOW TO PLAY</span></a>
+					<a href={'#bridge/' + Parse.User.current().id} className="optionBox gradient-box" ><span className="span">HOW TO PLAY</span></a>
 				</div>
 				<div className="footerBox">
 					<div className="footerImage">Image</div>
