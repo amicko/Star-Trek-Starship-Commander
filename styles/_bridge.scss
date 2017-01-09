@@ -1,0 +1,562 @@
+
+.bridgeBox {
+	display: none;
+// 	padding-top: 0;
+
+// 	#bridgeFront {
+// 		background: no-repeat center/100% url("../images/galaxyBridge_frontAngle03.jpg");
+// 		width: 900px;
+// 		height: 600px;
+// 		margin: 0 auto;
+
+// 		button {
+// 			background-color: transparent;
+// 			border: none;
+// 			cursor: pointer;
+// 		}
+
+// 		#connButton {
+// 			position: absolute;
+// 			top: 61%;
+// 			left: 22.5em;
+// 			border: 1px solid lightgreen;
+// 			height: 7em;
+// 			width: 7.5em;
+// 		}
+
+// 		#opsButton {
+// 			position: absolute;
+// 			top: 61%;
+// 			left: 44.5em;
+// 			border: 1px solid lightgreen;
+// 			height: 7em;
+// 			width: 7.5em;
+// 		}
+// 	}
+
+// 	#bridgeConn {
+// 		background: no-repeat center/100% url("../images/galaxyBridge_conn-ops01.png");
+// 		height: 100vh;
+// 	}
+
+// 	#bridgeOps {
+// 		background: no-repeat center/100% url("../images/galaxyBridge_conn-ops02.png");
+// 		height: 100vh;
+// 	}
+}
+
+@media screen and (min-width: 500px) {
+
+	.bridgeBox {
+		display: block;
+		padding-top: 0;
+
+		#bridgeFront {
+			background: no-repeat center/100% url("../images/galaxyBridge_frontAngle03.jpg");
+			width: 500px;
+			height: 285px;
+			background-size: contain;
+			margin: 10em auto;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+			}
+
+			#connButton {
+				position: relative;
+				top: 60%;
+				left: 29%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 4.5em;
+			}
+
+			#opsButton {
+				position: relative;
+				top: 60%;
+				left: 47%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 4.5em;
+			}
+
+			#leftBridgeButton {
+				position: relative;
+				top: 80%;
+				left: -20%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 4.5em;
+			}
+
+			#rightBridgeButton {
+				position: relative;
+				top: 80%;
+				left: 48%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 4.5em;
+			}
+		}
+
+		#bridgeConn {
+			background: no-repeat center/100% url("../images/galaxyBridge_conn-ops01.png");
+			width: 500px;
+			height: 285px;
+			background-size: contain;
+			margin: 10em auto;
+		}
+
+		#bridgeOps {
+			background: no-repeat center/100% url("../images/galaxyBridge_conn-ops02.png");
+			width: 500px;
+			height: 285px;
+			background-size: contain;
+			margin: 10em auto;
+		}
+
+		#bridgeLeft {
+			background: no-repeat center/100% url("../images/galaxyBridge_rearAngle01.png");
+			width: 500px;
+			height: 285px;
+			background-size: contain;
+			margin: 10em auto;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+			}
+
+			.rearBridgeButton {
+				position: relative;
+				top: 15%;
+				left: 52%;
+				border: 1px solid lightgreen;
+				height: 7em;
+				width: 15em;
+			}
+
+			.viewscreenBridgeButton {
+				position: relative;
+				top: 65%;
+				left: -35%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 4.5em;
+			}
+		}
+
+		#bridgeRight {
+			background: no-repeat center/100% url("../images/galaxyBridge_rearAngle02.png");
+			width: 500px;
+			height: 285px;
+			background-size: contain;
+			margin: 10em auto;
+
+			// button {
+			// 	background-color: transparent;
+			// 	border: none;
+			// 	cursor: pointer;
+			// }
+		}
+
+		#bridgeRear {
+			background: no-repeat center/100% url("../images/galaxyBridge_rearWorkStations01a.png");
+			width: 500px;
+			height: 285px;
+			background-size: contain;
+			margin: 10em auto;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+			}
+
+			#leftBridgeButton {
+				position: relative;
+				top: 69%;
+				left: 87%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 4.5em;
+			}
+
+			#console1 {
+				position: relative;
+				top: 46%;
+				left: 3%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 9em;
+			}
+
+			#console2 {
+				position: relative;
+				top: 46%;
+				left: 3%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 9em;
+			}
+
+			#console3 {
+				position: relative;
+				top: 46%;
+				left: 3%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 9em;
+			}
+
+			#rightBridgeButton {
+				position: relative;
+				top: 69%;
+				left: -82%;
+				border: 1px solid lightgreen;
+				height: 4em;
+				width: 4.5em;
+			}
+		}
+	}
+
+}
+
+@media screen and (min-width: 700px) {
+
+	.bridgeBox {
+		display: block;
+		padding-top: 0;
+
+		#bridgeFront {
+			background: no-repeat center/100% url("../images/galaxyBridge_frontAngle03.jpg");
+			width: 700px;
+			height: 470px;
+			background-size: contain;
+			margin: 0 auto;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+			}
+
+			#connButton {
+				position: relative;
+				top: 57%;
+				left: 28%;
+				border: 1px solid lightgreen;
+				height: 6.5em;
+				width: 7.5em;
+			}
+
+			#opsButton {
+				position: relative;
+				top: 57%;
+				left: 44%;
+				border: 1px solid lightgreen;
+				height: 6.5em;
+				width: 7.5em;
+			}
+
+			#leftBridgeButton {
+				position: relative;
+				top: 72%;
+				left: -25%;
+				border: 1px solid lightgreen;
+				height: 6.5em;
+				width: 7.5em;
+			}
+
+			#rightBridgeButton {
+				position: relative;
+				top: 72%;
+				left: 40%;
+				border: 1px solid lightgreen;
+				height: 6.5em;
+				width: 7.5em;
+			}
+		}
+
+		#bridgeConn {
+			background: no-repeat center/100% url("../images/galaxyBridge_conn-ops01.png");
+			width: 700px;
+			height: 470px;
+			background-size: contain;
+			margin: 0 auto;
+		}
+
+		#bridgeOps {
+			background: no-repeat center/100% url("../images/galaxyBridge_conn-ops02.png");
+			width: 700px;
+			height: 470px;
+			background-size: contain;
+			margin: 0 auto;
+		}
+
+		#bridgeLeft {
+			background: no-repeat center/100% url("../images/galaxyBridge_rearAngle01.png");
+			width: 700px;
+			height: 470px;
+			background-size: contain;
+			margin: 0 auto;
+
+			.rearBridgeButton {
+				position: relative;
+				top: 21%;
+				left: 52%;
+				border: 1px solid lightgreen;
+				height: 9em;
+				width: 22em;
+			}
+
+			.viewscreenBridgeButton {
+				position: relative;
+				top: 65%;
+				left: -38%;
+				border: 1px solid lightgreen;
+				height: 6.5em;
+				width: 7.5em;
+			}
+		}
+
+		#bridgeRight {
+			background: no-repeat center/100% url("../images/galaxyBridge_rearAngle02.png");
+			width: 700px;
+			height: 470px;
+			background-size: contain;
+			margin: 0 auto;
+		}
+
+		#bridgeRear {
+			background: no-repeat center/100% url("../images/galaxyBridge_rearWorkStations01a.png");
+			width: 700px;
+			height: 470px;
+			background-size: contain;
+			margin: 0 auto;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+			}
+
+			#leftBridgeButton {
+				position: relative;
+				top: 65%;
+				left: 86%;
+				border: 1px solid lightgreen;
+				height: 5.5em;
+				width: 6.5em;
+			}
+
+			#console1 {
+				position: relative;
+				top: 46%;
+				left: 3%;
+				border: 1px solid lightgreen;
+				height: 6em;
+				width: 12.5em;
+			}
+
+			#console2 {
+				position: relative;
+				top: 46%;
+				left: 3%;
+				border: 1px solid lightgreen;
+				height: 6em;
+				width: 12.5em;
+			}
+
+			#console3 {
+				position: relative;
+				top: 46%;
+				left: 3%;
+				border: 1px solid lightgreen;
+				height: 6em;
+				width: 12.5em;
+			}
+
+			#rightBridgeButton {
+				position: relative;
+				top: 65%;
+				left: -82%;
+				border: 1px solid lightgreen;
+				height: 5.5em;
+				width: 6.5em;
+			}
+		}
+	}
+
+}
+
+@media screen and (min-width: 900px) {
+
+	.bridgeBox {
+		display: block;
+		padding-top: 0;
+
+		#bridgeFront {
+			background: no-repeat center/100% url("../images/galaxyBridge_frontAngle03.jpg");
+			width: 900px;
+			height: 600px;
+			background-size: contain;
+			margin: 0 auto;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+			}
+
+			#connButton {
+				position: relative;
+				top: 59%;
+				left: 29%;
+				border: 1px solid lightgreen;
+				height: 7em;
+				width: 8em;
+			}
+
+			#opsButton {
+				position: relative;
+				top: 59%;
+				left: 47%;
+				border: 1px solid lightgreen;
+				height: 7em;
+				width: 8em;
+			}
+
+			#leftBridgeButton {
+				position: relative;
+				top: 75%;
+				left: -21%;
+				border: 1px solid lightgreen;
+				height: 7em;
+				width: 8em;
+			}
+
+			#rightBridgeButton {
+				position: relative;
+				top: 75%;
+				left: 50%;
+				border: 1px solid lightgreen;
+				height: 7em;
+				width: 8em;
+			}
+		}
+
+		#bridgeConn {
+			background: no-repeat center/100% url("../images/galaxyBridge_conn-ops01.png");
+			width: 900px;
+			height: 600px;
+			background-size: contain;
+			margin: 0 auto;
+		}
+
+		#bridgeOps {
+			background: no-repeat center/100% url("../images/galaxyBridge_conn-ops02.png");
+			width: 900px;
+			height: 600px;
+			background-size: contain;
+			margin: 0 auto;
+		}
+
+		#bridgeLeft {
+			background: no-repeat center/100% url("../images/galaxyBridge_rearAngle01.png");
+			width: 900px;
+			height: 600px;
+			background-size: contain;
+			margin: 0 auto;
+
+			.rearBridgeButton {
+				position: relative;
+				top: 22%;
+				left: 52%;
+				border: 1px solid lightgreen;
+				height: 12em;
+				width: 28em;
+			}
+
+			.viewscreenBridgeButton {
+				position: relative;
+				top: 64%;
+				left: -39%;
+				border: 1px solid lightgreen;
+				height: 7em;
+				width: 8em;
+			}
+		}
+
+		#bridgeRight {
+			background: no-repeat center/100% url("../images/galaxyBridge_rearAngle02.png");
+			width: 900px;
+			height: 600px;
+			background-size: contain;
+			margin: 0 auto;
+		}
+
+		#bridgeRear {
+			background: no-repeat center/100% url("../images/galaxyBridge_rearWorkStations01a.png");
+			width: 900px;
+			height: 600px;
+			background-size: contain;
+			margin: 0 auto;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+			}
+
+			#leftBridgeButton {
+				position: relative;
+				top: 65%;
+				left: 86%;
+				border: 1px solid lightgreen;
+				height: 7em;
+				width: 8em;
+			}
+
+			#console1 {
+				position: relative;
+				top: 46%;
+				left: 4%;
+				border: 1px solid lightgreen;
+				height: 7.5em;
+				width: 15.7em;
+			}
+
+			#console2 {
+				position: relative;
+				top: 46%;
+				left: 4%;
+				border: 1px solid lightgreen;
+				height: 7.5em;
+				width: 15.7em;
+			}
+
+			#console3 {
+				position: relative;
+				top: 46%;
+				left: 4%;
+				border: 1px solid lightgreen;
+				height: 7.5em;
+				width: 15.7em;
+			}
+
+			#rightBridgeButton {
+				position: relative;
+				top: 65%;
+				left: -79.5%;
+				border: 1px solid lightgreen;
+				height: 7em;
+				width: 8em;
+			}
+		}
+	}
+
+}
